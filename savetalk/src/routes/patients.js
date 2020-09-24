@@ -13,7 +13,10 @@ router.param('id', async (id, ctx, next) => {
 
 router.get('patients', '/', async (ctx) => {
     const patients = await ctx.orm.patient.findAll();
-    await ctx.render('patients/index', {patients});
+    await ctx.render('patients/index', {
+        patients,
+        patientPath: id => ctx.router.url('patient', id)
+    });
 });
 
 router.get('patient', '/:id', (ctx) => {
