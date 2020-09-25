@@ -1,7 +1,13 @@
 module.exports = (sequelize, DataTypes) => {
   const patient = sequelize.define('patient', {
     age: DataTypes.INTEGER,
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
+    },
     phone: DataTypes.STRING,
     address: DataTypes.STRING,
     city: DataTypes.STRING,

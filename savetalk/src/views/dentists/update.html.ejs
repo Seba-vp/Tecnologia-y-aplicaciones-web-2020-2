@@ -1,0 +1,63 @@
+<h3>Estas modificando al dentista: <%= dentist.name %> </h3>
+
+<form method="post" action="<%= updateDentistPathDataBase(dentist.id) %>" >
+
+    <% if (locals.errors){ %>
+        <div>
+            <p>El dentista no se pudo crear debido a los siguientes errores:</p>
+            <ul>
+                <% errors.forEach(error => { %>
+                    <li><%= error.path %>: <%= error.message %> </li>
+                <% }); %>
+            </ul>
+        </div>
+    <% } %>
+
+    <div>
+        <label for="name" >Nombre</label>
+        <input type="text" name="name" id="name" value="<%= dentist.name %>" />
+    </div>
+    <div>
+        <label for="university" >Universidad</label>
+        <input type="text" name="university" id="university" value="<%= dentist.university %>" />
+    </div>
+    <div>
+        <label for="speciality" >Especialidad</label>
+        <input type="text" name="speciality" id="speciality" value="<%= dentist.speciality %>" />
+    </div>
+    <div>
+        <label for="year" >Año en la universidad</label>
+        <input type="text" name="year" id="year" value="<%= dentist.year %>" />
+    </div>
+    <div>
+        <label for="kind" >Voluntario(si / no)</label>
+        <input type="text" name="kind" id="kind" value="<%= dentist.kind %>" />
+    </div>
+    <div>
+        <label for="mail" >e-mail</label>
+        <input type="text" name="mail" id="mail" value="<%= dentist.mail %>" />
+    </div>
+    <div>
+        <label for="city" >Ciudad</label>
+        <input type="text" name="city" id="city" value="<%= dentist.city %>" />
+    </div>
+    <div>
+        <label for="address" >Calle</label>
+        <input type="text" name="address" id="address" value="<%= dentist.address %>" />
+    </div>
+    <div>
+        <label for="picture" >Foto</label>
+        <input type="text" name="picture" id="picture" value="<%= dentist.picture %>" />
+    </div>
+    <div>
+        <label for="rut" >Rut</label>
+        <input type="text" name="rut" id="rut" value="<%= dentist.rut %>" />
+    </div>
+    <div>
+        <label for="phone" >Telefono</label>
+        <input type="text" name="phone" id="phone" value="<%= dentist.phone %>" />
+    </div>
+    <div>
+        <input type="submit" value="Crear" />
+    </div>
+</form>

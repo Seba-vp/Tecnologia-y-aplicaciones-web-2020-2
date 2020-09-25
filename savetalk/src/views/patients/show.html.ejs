@@ -1,2 +1,6 @@
 <h1> <%= patient.name %> </h1>
 <p>su edad es: <%= patient.age %> </p>
+<a href="<%= updatePatientPath(patient.id) %>" > Modificar Paciente </a>
+<br>
+<a href="<%= deletePatientPath(patient.id) %>" > Borrar Paciente </a>
+
