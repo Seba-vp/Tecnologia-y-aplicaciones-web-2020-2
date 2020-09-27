@@ -20,8 +20,10 @@ router.get('patients', '/', async (ctx) => {
 });
 
 router.get('patient', '/:id', (ctx) => {
-    const {patient} = ctx.state;
-    return ctx.render('patients/show', {patient});
+    const { patient } = ctx.state;
+    return ctx.render('patients/show', {
+        patient
+    });
 });
 
 module.exports = router;

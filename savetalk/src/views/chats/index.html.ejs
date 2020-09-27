@@ -1,0 +1,8 @@
+<a href="<%= newChatsPath %>">agregar nuevo contacto</a>
+<% chats.forEach( chat => { %>
+<div>
+    <h2>id paciente: <%= chat.idPacient%></h2>
+    <p>id dentista: <%= chat.idDentist %></p>
+    <a href="<%= chatsPath(chat.id) %>">Ver conexión</a>
+</div>
+<% }) %>
