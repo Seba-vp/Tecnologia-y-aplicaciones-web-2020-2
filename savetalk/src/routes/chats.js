@@ -46,7 +46,7 @@ router.get('chat', '/:id', (ctx) => {
 });
 
 router.get('chat-delete', '/delete/:id', (ctx) => {
-    const chat = ctx.state;
+    const { chat } = ctx.state;
     return ctx.render('chats/delete', {
         chat,
         deleteChatPathDataBase: id => ctx.router.url('chat-delete-database', id)
@@ -54,7 +54,7 @@ router.get('chat-delete', '/delete/:id', (ctx) => {
 })
 
 router.post('chat-delete-database', 'delete/:id', async (ctx) => {
-    const chat = ctx.state;
+    const { chat } = ctx.state;
     await chat.destroy();
     ctx.redirect(ctx.router.url('chats'));
 });
