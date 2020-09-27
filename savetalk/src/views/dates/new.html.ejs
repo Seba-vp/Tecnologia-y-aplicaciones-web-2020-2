@@ -1,0 +1,27 @@
+<h1>Odontólogo <%= dentist.name %> creando posible cita</h1>
+
+<form method="post" action="<%= createDatePath(dentist.id, pain.id) %>" >
+
+    <% if (locals.errors){ %>
+        <div>
+            <p>La Cita no se pudo crear debido a los siguientes errores:</p>
+            <ul>
+                <% errors.forEach(error => { %>
+                    <li><%= error.path %>: <%= error.message %> </li>
+                <% }); %>
+            </ul>
+        </div>
+    <% } %>
+
+    <div>
+        <label for="schedule" >Posibles horarios: </label>
+        <input type="text" name="schedule" id="schedule" value="<%= date.schedule %>" />
+    </div>
+    <div>
+        <label for="price" >Precio: </label>
+        <input type="text" name="price" id="price" value="<%= date.price %>" />
+    </div>
+    <div>
+        <input type="submit" value="Crear Cita" />
+    </div>
+</form>

@@ -1,0 +1,21 @@
+<h1> Modificación de solicitud de atención:</h1>
+
+<form method="post" action="<%= updateCarerequestPathDataBase(carerequest.id) %>">
+
+    <div>
+        <label for="datesmeeting">Fechas posibles</label>
+        <input type="text" name="datesmeeting" />
+    </div>
+    <div>
+        <label for="price">Precio</label>
+        <input type="text" name="price" />
+    </div>
+    <div>
+        <label for="message">Mensaje</label>
+        <input type="text" name="message" />
+
+    </div>
+    <div>
+        <input type="submit" value="Modificar solicitud de atención" />
+    </div>
+</form>

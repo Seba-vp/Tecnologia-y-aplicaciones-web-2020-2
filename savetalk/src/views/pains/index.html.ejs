@@ -1,0 +1,7 @@
+<h2>Dolores disponibles: </h2>
+<% pains.forEach( pain => { %>
+    <div>
+        <h2><%= pain.name %></h2>
+        <a href="<%= painPath(pain.id, dentist.id) %>">Ver más</a>
+    </div>
+<% }) %>

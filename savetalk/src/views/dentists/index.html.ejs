@@ -1,0 +1,9 @@
+<a href="<%= newDentistPath %>" >Agregar dentista!</a>
+
+<% dentists.forEach( dentist => { %>
+    <div>
+        <h2><%= dentist.name %></h2>
+        <p><%= dentist.city %></p>
+        <a href="<%= dentistPath(dentist.id) %>">Ver más</a>
+    </div>
+<% }) %>
