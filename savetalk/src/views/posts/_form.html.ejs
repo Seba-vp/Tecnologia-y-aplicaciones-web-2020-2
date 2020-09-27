@@ -1,54 +1,67 @@
-Formulario
+<form method="post" action="<%= createPostPath %>">
+    <% if (locals.errors){ %>
 
-<form method="post" action="<%= createPostPath %>"> 
+        <div class="errors">
+
+            <p>El post no se pudo crear devido a los siguientes errores:</p>
+
+            <ul>
+                <% errors.forEach(error => { %>
+                <li><%= error.path %> : <%= error.message %></li>
+
+                <% }); %>
+            </ul>
+        </div>
+    <% } %>
+ 
     <div class="field" >
         <label for="title">Título </label>
-        <input type="string" name="title"/>
+        <input type="string" name="title" id="title" value="<%= post.title %>"/>
     </div>
 
     <div class="field" >
         <label for="description">Descripción </label>
-        <textarea rows="4" cols="30" name="description"></textarea>
+        <textarea rows="4" cols="30" name="description" id="description" ><%= post.description %></textarea>
     </div>
 
     <div class="field" >
         <label for="public">Publico objetivo </label>
-        <input type="string" name="public"/>
+        <input type="string" name="public" id="public" value="<%= post.public %>"/>
     </div>
     
     <div class="field" >
         <label for="city">Comunas objetivo</label>
-        <input type="string" name="city"/>
+        <input type="string" name="city" id="city" value="<%= post.city %>"/>
     </div>
 
     <div class="field" >
         <label for="coordinator">Coordinador </label>
-        <input type="string" name="coordinator"/>
+        <input type="string" name="coordinator" id="coordinator" value="<%= post.coordinator %>"/>
     </div>
 
     <div class="field" >
         <label for="email">Email </label>
-        <input type="string" name="email"/>
+        <input type="string" name="email" id="email" value="<%= post.email %>"/>
     </div>
 
     <div class="field" >
         <label for="location">Ubicación </label>
-        <input type="string" name="location"/>
+        <input type="string" name="location" id="location" value="<%= post.location %>"/>
     </div>
 
     <div class="field" >
         <label for="image">Imagen </label>
-        <input type="string" name="image"/>
+        <input type="string" name="image" id="image" value="<%= post.image %>"/>
     </div>
 
     <div class="field" >
         <label for="id_user">Id usuario creador </label>
-        <input type="int" name="id_user"/>
+        <input type="int" name="id_user" id="id_user" value="<%= post.id_user %>"/>
     </div>
 
     <div class="field" >
         <label for="interactions">Interacciones (numero) </label>
-        <input type="int" name="interactions"/>
+        <input type="int" name="interactions" id="interactions" value="<%= post.interactions %>"/>
     </div>
 
     <div class="actions" >

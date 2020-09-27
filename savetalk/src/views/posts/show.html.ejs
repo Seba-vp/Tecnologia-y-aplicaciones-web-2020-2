@@ -1,3 +1,7 @@
 <h1>Post Id: <%= post.id %> </h1>
 <h1>Creado por: <%= post.id_user %> </h1>
 <p> Post content: <%= post.description %> </p>
+
+<a href="<%= updatePostPath(post.id) %>" > Modificar Post </a>
+<br>
+<a href="<%= deletePostPath(post.id) %>" > Borrar Post </a>

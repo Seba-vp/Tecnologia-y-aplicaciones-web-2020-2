@@ -3,10 +3,12 @@
 
 <% notifications.forEach( notification => { %>
     <div>
-        <p><%= notification.kind %></p>
-        <p><%= notification.description %></p>
-        <p><%= notification.user_id %></p>
-        <p><%= notification.email%></p>
+        <p>------------------------------------------------------------------------------------------------------------</p>
+        <h1>ID:  <%= notification.id %></h1>
+        <p>Tipo de notificación :<%= notification.kind %></p>
+        <p>Descripsión :<%= notification.description %></p>
+        <p>Usuario notificado (id): <%= notification.user_id %></p>
+        <p>Email para notificación: <%= notification.email%></p>
 
       
         <a href="<%= notificationPath(notification.id) %>">Ver más</a>

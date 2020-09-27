@@ -1,4 +1,5 @@
 const KoaRouter = require('koa-router');
+const post = require('../models/post');
 
 const router = new KoaRouter();
 
@@ -32,20 +33,32 @@ router.get('posts', '/', async (ctx) => {
         posts,
         postPath: id => ctx.router.url('post', id),
 //Lo de abajo es nuevo
-newPostPath: ctx.router.url('posts-new'),
-});
+        newPostPath: ctx.router.url('posts-new'),
+    });
 });
 
 router.get('posts-new', '/new', (ctx) => {
+const post = ctx.orm.post.build();
 return ctx.render('posts/new',{
+    post,
     createPostPath: ctx.router.url('posts-create')
-});
+    });
 })
 
 router.post('posts-create','/', async (ctx)=>{
-const post = ctx.orm.post.build(ctx.request.body);
-await post.save({fields:PERMITED_FIELDS});
-ctx.redirect(ctx.router.url('posts'));
+    const post = ctx.orm.post.build(ctx.request.body);
+
+    try{
+    await post.save({fields:PERMITED_FIELDS});
+    ctx.redirect(ctx.router.url('posts'));
+    }catch (error) {
+    await ctx.render('posts/new',{
+        post,
+        errors: error.errors,
+        createPostPath: ctx.router.url('posts-create'),
+    });
+    
+}
 })
 
 //Hasta aca lo nuevo

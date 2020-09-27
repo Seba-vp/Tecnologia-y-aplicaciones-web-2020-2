@@ -4,10 +4,12 @@
 
 <% feedbacks.forEach( feedback => { %>
     <div>
-        <p><%= feedback.id_odontologo %></p>
-        <p><%= feedback.id_user %></p>
-        <p><%= feedback.description %></p>
-        <p><%= feedback.calification %></p>
+        <p>------------------------------------------------------------------------------------------------------------</p>
+        <h1>ID:  <%= feedback.id %></h1>
+        <p>Id odontologo: <%= feedback.id_odontologo %></p>
+        <p>Id de usuario: <%= feedback.id_user %></p>
+        <p>Descripción :<%= feedback.description %></p>
+        <p>Nota (0-5): <%= feedback.calification %></p>
         
         <a href="<%= feedbackPath(feedback.id) %>">Ver más</a>
     </div>

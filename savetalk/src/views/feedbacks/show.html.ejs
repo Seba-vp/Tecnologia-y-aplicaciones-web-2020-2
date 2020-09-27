@@ -1,5 +1,10 @@
-<h1> Feedback</h1>
+<h1> Feedback <%= feedback.id %></h1>
+
+<p>------------------------------------------------------------------------------------------------------------</p>
 <p>Id odontologo: <%= feedback.id_odontologo %></p>
 <p>Id_user: <%= feedback.id_user %></p>
 <p>Descripcion: <%= feedback.description %></p>
 <p>Calificacion: <%= feedback.calification %></p>
+<p>------------------------------------------------------------------------------------------------------------</p>
+<br>
+<a href="<%= deleteFeedbackPath(feedback.id) %>" > Borrar Feedback </a>

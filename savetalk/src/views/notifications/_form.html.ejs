@@ -1,21 +1,35 @@
-Formulario
+<form method="post" action="<%= createNotificationPath %>">
+    <% if (locals.errors){ %>
+
+        <div class="errors">
+
+            <p>La notificación no se pudo crear devido a los siguientes errores:</p>
+
+            <ul>
+                <% errors.forEach(error => { %>
+                <li><%= error.path %> : <%= error.message %></li>
+
+                <% }); %>
+            </ul>
+        </div>
+    <% } %>
 
 <form method="post" action="<%= createNotificationPath %>"> 
     <div class="field" >
         <label for="kind">Tipo de notificación </label>
-        <input type="string" name="kind"/>
+        <input type="string" name="kind" id="kind" value="<%= notification.kind %>"/>
     </div>
     <div class="field" >
         <label for="description">Descripción de la notificación </label>
-        <textarea rows="4" cols="30" name="description"></textarea>
+        <textarea rows="4" cols="30" name="description" id="description" ><%= notification.description %></textarea>
     </div>
     <div class="field" >
         <label for="user_id"> Id de usuario </label>
-        <input type="int" name="user_id"/>
+        <input type="int" name="user_id" id="user_id" value="<%= notification.user_id %>"/>
     </div>
     <div class="field" >
         <label for="email">Email </label>
-        <input type="string" name="email"/>
+        <input type="string" name="email" id="email" value="<%= notification.email %>"/>
     </div>
     <div class="actions" >
         <input type="submit" value="Crear"/>

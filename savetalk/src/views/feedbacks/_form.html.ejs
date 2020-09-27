@@ -1,21 +1,34 @@
-Formulario
+<form method="post" action="<%= createFeedbackPath %>">
+    <% if (locals.errors){ %>
 
-<form method="post" action="<%= createFeedbackPath %>"> 
+        <div class="errors">
+
+            <p>El feedback no se pudo crear devido a los siguientes errores:</p>
+
+            <ul>
+                <% errors.forEach(error => { %>
+                <li><%= error.path %> : <%= error.message %></li>
+
+                <% }); %>
+            </ul>
+        </div>
+    <% } %>
+
     <div class="field" >
         <label for="id_odontologo">Id Odontologo </label>
-        <input type="int" name="id_odontologo"/>
+        <input type="int" name="id_odontologo" id="id_odontologo" value="<%= feedback.id_odontologo %>"/>
     </div>
     <div class="field" >
         <label for="id_user">Id Usuario </label>
-        <input type="int" name="id_user"/>
+        <input type="int" name="id_user" id="id_user" value="<%= feedback.id_user %>"/>
     </div>
     <div class="field" >
         <label for="description">Descripción </label>
-        <textarea rows="4" cols="30" name="description"></textarea>
+        <textarea rows="4" cols="30" name="description" id="description"> <%= feedback.description%></textarea>
     </div>
     <div class="field" >
         <label for="calification">Calificación (1 a 5)</label>
-        <input type="int" name="calification"/>
+        <input type="int" name="calification" id="calification" value="<%= feedback.calification %>"/>
     </div>
     <div class="actions" >
         <input type="submit" value="Crear"/>
