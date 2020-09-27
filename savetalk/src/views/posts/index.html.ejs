@@ -1,0 +1,12 @@
+<h2>POSTS</h2>
+
+<a href="<%=newPostPath %>">Agregar un post </a>
+
+<% posts.forEach( post => { %>
+    <div>
+        <h2><%= post.title %></h2>
+        <p><%= post.description %></p>
+        <h2><%= post.interactions %></h2>
+        <a href="<%= postPath(post.id) %>">Ver más</a>
+    </div>
+<% }) %>
