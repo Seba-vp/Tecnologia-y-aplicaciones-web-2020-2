@@ -54,10 +54,13 @@ router.post('patients-create', '/', async (ctx) => {
     }
 });
 
-router.get('patient', '/:id', (ctx) => {
+router.get('patient', '/:id', async (ctx) => {
     const {patient} = ctx.state;
     return ctx.render('patients/show', {
         patient,
+        pains: await patient.getPains(),
+        createPainPath: id => ctx.router.url('pains-new', id),
+        specificPainPath: id => ctx.router.url('patientPain', id),
         updatePatientPath: id => ctx.router.url('patient-update', id),
         deletePatientPath: id => ctx.router.url('patient-delete', id)
     });
@@ -119,5 +122,6 @@ router.post('patient-delete-database', 'delete/:id', async (ctx) => {
     await patient.destroy();
     ctx.redirect(ctx.router.url('patients'));
 });
+
 
 module.exports = router;

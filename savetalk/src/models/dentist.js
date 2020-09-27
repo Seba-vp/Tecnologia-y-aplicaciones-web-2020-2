@@ -19,8 +19,9 @@ module.exports = (sequelize, DataTypes) => {
     city: DataTypes.STRING,
   }, {});
 
-  dentist.associate = function associate() {
+  dentist.associate = function associate(models) {
     // associations can be defined here. This method receives a models parameter.
+    dentist.hasMany(models.date);
   };
 
   return dentist;

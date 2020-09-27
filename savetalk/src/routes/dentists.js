@@ -61,6 +61,7 @@ router.get('dentist', '/:id', (ctx) => {
     const {dentist} = ctx.state;
     return ctx.render('dentists/show', {
         dentist,
+        seePainsPath: id => ctx.router.url('pains', id),
         updateDentistPath: id => ctx.router.url('dentist-update', id),
         deleteDentistPath: id => ctx.router.url('dentist-delete', id)
     });

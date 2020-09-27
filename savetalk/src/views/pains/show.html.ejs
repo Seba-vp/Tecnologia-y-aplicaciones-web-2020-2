@@ -1,0 +1,8 @@
+<p>Esta viendo el dentista <%= dentist.name %> </p>
+<h1>Información del Dolor: </h1>
+<h2>Dolor perteneciente al paciente: <%= patient.name %> </h2>
+<h3>Resumen del dolor: <%= pain.name %> </h3>
+<p> <strong>Descripción del dolor: </strong> <%= pain.description%>  </p>
+<p><strong>Categoría del dolor: </strong> <%= pain.category%> </p>
+<a href="<%= dateNewPath(dentist.id, pain.id) %>">Postular a este dolor</a>
+

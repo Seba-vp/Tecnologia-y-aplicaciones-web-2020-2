@@ -17,8 +17,9 @@ module.exports = (sequelize, DataTypes) => {
     isapre: DataTypes.STRING,
   }, {});
 
-  patient.associate = function associate() {
+  patient.associate = function associate(models) {
     // associations can be defined here. This method receives a models parameter.
+    patient.hasMany(models.pain);
   };
 
   return patient;
