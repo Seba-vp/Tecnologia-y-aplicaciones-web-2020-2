@@ -50,8 +50,33 @@ router.get('carerequest', '/:id', (ctx) => {
     const { carerequest } = ctx.state;
     return ctx.render('carerequests/show', {
         carerequest,
+        updateCarerequestPath: id => ctx.router.url('carerequest-update', id),
         deleteCarerequestPath: id => ctx.router.url('carerequest-delete', id)
     });
+});
+
+router.get('carerequest-update', '/update/:id', (ctx) => {
+    const { carerequest } = ctx.state;
+    return ctx.render('carerequests/update', {
+        carerequest,
+        updateCarerequestPathDataBase: id => ctx.router.url('carerequest-update-database', id)
+    });
+})
+
+router.post('carerequest-update-database', 'update/:id', async (ctx) => {
+    const { carerequest } = ctx.state;
+
+    if (carerequest.datesmeeting !== ctx.request.body.datesmeeting) {
+        carerequest.datesmeeting = ctx.request.body.datesmeeting;
+    }
+    if (carerequest.price !== ctx.request.body.price) {
+        carerequest.price = ctx.request.body.price;
+    }
+    if (carerequest.message !== ctx.request.body.message) {
+        carerequest.message = ctx.request.body.message;
+    }
+    await carerequest.save({ fields: PERMITTED_FIELDS });
+    ctx.redirect(ctx.router.url('carerequests'));
 });
 
 router.get('carerequest-delete', '/delete/:id', (ctx) => {

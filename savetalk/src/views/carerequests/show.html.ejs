@@ -3,4 +3,6 @@
 <p>su precio estimado es: <%= carerequest.price %> </p>
 <p>sus fechas estimadas son: <%= carerequest.datesmeeting %> </p>
 <p>su mensaje es: <%= carerequest.message %> </p>
+<a href="<%= updateCarerequestPath(carerequest.id) %>"> Modificar Solicitud </a>
+<br>
 <a href="<%= deleteCarerequestPath(carerequest.id) %>"> Eliminar solicitud </a>
