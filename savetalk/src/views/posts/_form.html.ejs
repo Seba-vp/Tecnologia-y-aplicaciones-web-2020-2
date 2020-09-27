@@ -1,0 +1,57 @@
+Formulario
+
+<form method="post" action="<%= createPostPath %>"> 
+    <div class="field" >
+        <label for="title">Título </label>
+        <input type="string" name="title"/>
+    </div>
+
+    <div class="field" >
+        <label for="description">Descripción </label>
+        <textarea rows="4" cols="30" name="description"></textarea>
+    </div>
+
+    <div class="field" >
+        <label for="public">Publico objetivo </label>
+        <input type="string" name="public"/>
+    </div>
+    
+    <div class="field" >
+        <label for="city">Comunas objetivo</label>
+        <input type="string" name="city"/>
+    </div>
+
+    <div class="field" >
+        <label for="coordinator">Coordinador </label>
+        <input type="string" name="coordinator"/>
+    </div>
+
+    <div class="field" >
+        <label for="email">Email </label>
+        <input type="string" name="email"/>
+    </div>
+
+    <div class="field" >
+        <label for="location">Ubicación </label>
+        <input type="string" name="location"/>
+    </div>
+
+    <div class="field" >
+        <label for="image">Imagen </label>
+        <input type="string" name="image"/>
+    </div>
+
+    <div class="field" >
+        <label for="id_user">Id usuario creador </label>
+        <input type="int" name="id_user"/>
+    </div>
+
+    <div class="field" >
+        <label for="interactions">Interacciones (numero) </label>
+        <input type="int" name="interactions"/>
+    </div>
+
+    <div class="actions" >
+        <input type="submit" value="Crear"/>
+    </div>
+</form>

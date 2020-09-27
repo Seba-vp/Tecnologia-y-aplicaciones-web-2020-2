@@ -1,0 +1,25 @@
+Formulario
+
+<form method="post" action="<%= createNotificationPath %>"> 
+    <div class="field" >
+        <label for="kind">Tipo de notificación </label>
+        <input type="string" name="kind"/>
+    </div>
+    <div class="field" >
+        <label for="description">Descripción de la notificación </label>
+        <textarea rows="4" cols="30" name="description"></textarea>
+    </div>
+    <div class="field" >
+        <label for="user_id"> Id de usuario </label>
+        <input type="int" name="user_id"/>
+    </div>
+    <div class="field" >
+        <label for="email">Email </label>
+        <input type="string" name="email"/>
+    </div>
+    <div class="actions" >
+        <input type="submit" value="Crear"/>
+    </div>
+
+
+</form>

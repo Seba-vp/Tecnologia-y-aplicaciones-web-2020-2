@@ -2,6 +2,15 @@ const KoaRouter = require('koa-router');
 
 const router = new KoaRouter();
 
+//Nuevo
+const PERMITED_FIELDS = [
+    'id_odontologo',
+    'id_user',
+    'description',
+    'calification',
+];
+// hasta aca
+
 router.param('id', async (id, ctx, next) => {
     const feedback = await ctx.orm.feedback.findByPk(id);
     if (!feedback) {
@@ -16,7 +25,7 @@ router.get('feedbacks', '/', async (ctx) => {
     await ctx.render('feedbacks/index', {
         feedbacks,
         feedbackPath: id => ctx.router.url('feedback', id),
-        //Lo de abajo es nuevo
+//Lo de abajo es nuevo
         newFeedbackPath: ctx.router.url('feedbacks-new'),
     });
 });
@@ -28,8 +37,8 @@ router.get('feedbacks-new', '/new', (ctx) => {
 })
 
 router.post('feedbacks-create','/', async (ctx)=>{
-
     const feedback = ctx.orm.feedback.build(ctx.request.body);
+    await feedback.save({fields:PERMITED_FIELDS});
     ctx.redirect(ctx.router.url('feedbacks'));
 })
 
