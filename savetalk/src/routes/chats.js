@@ -4,7 +4,12 @@ const router = new KoaRouter();
 
 const PERMITED_FIELDS = [
     'idDentist',
-    'idPacient'
+    'idPacient',
+    'block'
+];
+
+const PERMITED_FIELDS_UPDATE = [
+    'block'
 ];
 
 router.param('id', async (id, ctx, next) => {
@@ -41,8 +46,27 @@ router.get('chat', '/:id', (ctx) => {
     const { chat } = ctx.state;
     return ctx.render('chats/show', {
         chat,
+        updateChatPath: id => ctx.router.url('chat-update', id),
         deleteChatPath: id => ctx.router.url('chat-delete', id)
     });
+});
+
+router.get('chat-update', '/update/:id', (ctx) => {
+    const { chat } = ctx.state;
+    return ctx.render('chats/update', {
+        chat,
+        updateChatPathDataBase: id => ctx.router.url('chat-update-database', id)
+    });
+})
+
+router.post('chat-update-database', 'update/:id', async (ctx) => {
+    const { chat } = ctx.state;
+
+    if (chat.block !== ctx.request.body.block) {
+        chat.block = ctx.request.body.block;
+    }
+    await chat.save({ fields: PERMITED_FIELDS_UPDATE });
+    ctx.redirect(ctx.router.url('chats'));
 });
 
 router.get('chat-delete', '/delete/:id', (ctx) => {
