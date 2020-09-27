@@ -1,0 +1,12 @@
+<h1> Notificaciónes </h1>
+<% notifications.forEach( notification => { %>
+    <div>
+        <p><%= notification.kind %></p>
+        <p><%= notification.description %></p>
+        <p><%= notification.user_id %></p>
+        <p><%= notification.email%></p>
+
+      
+        <a href="<%= notificationPath(notification.id) %>">Ver más</a>
+    </div>
+<% }) %>

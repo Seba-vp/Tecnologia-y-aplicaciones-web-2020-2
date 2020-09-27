@@ -1,0 +1,14 @@
+<h1> Feedbacks </h1>
+
+<a href="<%=newFeedbackPath %>">Agregar un feedback </a>
+
+<% feedbacks.forEach( feedback => { %>
+    <div>
+        <p><%= feedback.id_odontologo %></p>
+        <p><%= feedback.id_user %></p>
+        <p><%= feedback.description %></p>
+        <p><%= feedback.calification %></p>
+        
+        <a href="<%= feedbackPath(feedback.id) %>">Ver más</a>
+    </div>
+<% }) %>

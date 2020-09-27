@@ -8,7 +8,7 @@ const config = {
   },
   development: {
     extend: 'default',
-    database: process.env.DB_NAME || 'savetalk_dev',
+    database: process.env.DB_NAME || 'new_savetalk_dev',
   },
   test: {
     extend: 'default',

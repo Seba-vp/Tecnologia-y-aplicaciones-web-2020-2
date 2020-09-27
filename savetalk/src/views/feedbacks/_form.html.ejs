@@ -1,0 +1,25 @@
+Formulario
+
+<form method="post" action="<%= createFeedbackPath %>"> 
+    <div class="field" >
+        <label for="id_odontologo">Id Odontologo </label>
+        <input type="text" name="id_odontologo"/>
+    </div>
+    <div class="field" >
+        <label for="id_usuario">Id Usuario </label>
+        <input type="text" name="id_usuario"/>
+    </div>
+    <div class="field" >
+        <label for="description">Descripción </label>
+        <textarea rows="4" cols="30" name="description"></textarea>
+    </div>
+    <div class="field" >
+        <label for="calification">Calificación </label>
+        <input type="text" name="calification"/>
+    </div>
+    <div class="actions" >
+        <input type="submit" value="Crear"/>
+    </div>
+
+
+</form>
