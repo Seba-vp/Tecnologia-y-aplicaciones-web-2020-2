@@ -54,6 +54,7 @@ router.post('patients-create', '/', async (ctx) => {
     }
 });
 
+
 router.get('patient', '/:id', async (ctx) => {
     const {patient} = ctx.state;
     return ctx.render('patients/show', {

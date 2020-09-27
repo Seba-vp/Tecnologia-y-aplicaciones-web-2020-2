@@ -1,0 +1,9 @@
+<a href="<%= newCarerequestPath %>">Enviar solicitudes</a>
+
+<% carerequest.forEach( carerequest => { %>
+<div>
+    <h2><%= carerequest.idDentist %></h2>
+    <p><%= carerequest.idInjury %></p>
+    <a href="<%= carerequestPath(carerequest.id) %>">Ver solicitud</a>
+</div>
+<% }) %>

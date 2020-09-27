@@ -1,0 +1,9 @@
+<form method="post" action="<%= deleteMessagePathDataBase(message.id) %>">
+
+    <div>
+        <label>¿Quieres borrar el siguiente mensaje? <%= message.body %></label>
+    </div>
+    <div>
+        <input type="submit" value="Borrar" />
+    </div>
+</form>
