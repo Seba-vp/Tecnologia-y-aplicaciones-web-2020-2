@@ -1,2 +1,21 @@
 <h1> <%= patient.name %> </h1>
 <p>su edad es: <%= patient.age %> </p>
+<div>
+    <h2><%= pains.length %> dolores presentados </h2>
+    <% if (pains.length){ %>
+        <ul>
+            <% pains.forEach((pain) => { %>
+                <li>
+                    <h4><%= pain.name %></h4>
+                    <a href="<%= specificPainPath(pain.id) %>">Ver más info</a>
+                </li>
+            <% });%>
+        </ul>
+    <% } %>
+</div>
+<a href="<%= createPainPath(patient.id) %>" > Crear dolor </a>
+<br>
+<a href="<%= updatePatientPath(patient.id) %>" > Modificar Paciente </a>
+<br>
+<a href="<%= deletePatientPath(patient.id) %>" > Borrar Paciente </a>
+

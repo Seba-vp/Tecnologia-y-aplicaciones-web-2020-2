@@ -1,0 +1,53 @@
+<form method="post" action="<%= createPatientPath %>" >
+
+    <% if (locals.errors){ %>
+        <div>
+            <p>El paciente no se pudo crear debido a los siguientes errores:</p>
+            <ul>
+                <% errors.forEach(error => { %>
+                    <li><%= error.path %>: <%= error.message %> </li>
+                <% }); %>
+            </ul>
+        </div>
+    <% } %>
+
+    <div>
+        <label for="name" >Nombre</label>
+        <input type="text" name="name" id="name" value="<%= patient.name %>" />
+    </div>
+    <div>
+        <label for="age" >Edad</label>
+        <input type="text" name="age" id="age" value="<%= patient.age %>" />
+    </div>
+    <div>
+        <label for="email" >e-mail</label>
+        <input type="text" name="email" id="email" value="<%= patient.email %>" />
+    </div>
+    <div>
+        <label for="city" >Ciudad</label>
+        <input type="text" name="city" id="city" value="<%= patient.city %>" />
+    </div>
+    <div>
+        <label for="address" >Calle</label>
+        <input type="text" name="address" id="address" value="<%= patient.address %>" />
+    </div>
+    <div>
+        <label for="picture" >Foto</label>
+        <input type="text" name="picture" id="picture" value="<%= patient.picture %>" />
+    </div>
+    <div>
+        <label for="rut" >Rut</label>
+        <input type="text" name="rut" id="rut" value="<%= patient.rut %>" />
+    </div>
+    <div>
+        <label for="isapre" >Isapre</label>
+        <input type="text" name="isapre" id="isapre" value="<%= patient.isapre %>" />
+    </div>
+    <div>
+        <label for="phone" >Telefono</label>
+        <input type="text" name="phone" id="phone" value="<%= patient.phone %>" />
+    </div>
+    <div>
+        <input type="submit" value="Crear" />
+    </div>
+</form>

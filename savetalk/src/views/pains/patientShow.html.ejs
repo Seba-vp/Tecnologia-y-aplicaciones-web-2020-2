@@ -1,0 +1,18 @@
+<h1>Información específica del Dolor </h1>
+<h2>Dolor perteneciente al paciente: <%= patient.name %> </h2>
+<h3>Resumen del dolor: <%= pain.name %> </h3>
+<p> <strong>Descripción del dolor: </strong> <%= pain.description%>  </p>
+<p><strong>Categoría del dolor: </strong> <%= pain.category%> </p>
+<div>
+    <h2><%= dates.length %> Potenciales citas disponibles: </h2>
+    <% if (dates.length){ %>
+        <ul>
+            <% dates.forEach((date) => { %>
+                <li>
+                    <h4><%= date.schedule %></h4>
+                    <a href="<%= specificDatePath(date.id) %>">Ver más info de esta cita</a>
+                </li>
+            <% });%>
+        </ul>
+    <% } %>
+</div>

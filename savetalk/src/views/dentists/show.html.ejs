@@ -1,0 +1,8 @@
+<h1> <%= dentist.name %> </h1>
+<p>Universidad: <%= dentist.university %> </p>
+<p>Año de la carrera: <%= dentist.year %> </p>
+<a href="<%= seePainsPath(dentist.id) %>" > Ver Dolores disponibles </a>
+<br>
+<a href="<%= updateDentistPath(dentist.id) %>" > Modificar Dentista </a>
+<br>
+<a href="<%= deleteDentistPath(dentist.id) %>" > Borrar Dentista </a>
