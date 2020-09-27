@@ -11,7 +11,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    
+
     const patientsArray = [];
 
     patientsArray.push({
