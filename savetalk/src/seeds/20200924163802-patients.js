@@ -30,7 +30,7 @@ module.exports = {
 
     patientsArray.push({
       age: 33,
-      name: 'Arturo Vidal',
+      name: 'Jorge',
       phone: '+56987117188',
       address: 'calle de Milan',
       city: 'Milan',
