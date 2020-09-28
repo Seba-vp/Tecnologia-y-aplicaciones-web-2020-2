@@ -1,12 +1,33 @@
-<h2>POSTS</h2>
+
+<html>
+    <head>
+    <link rel="stylesheet" href="src/assets/styles/plantilla1.scss">
+    </head>
+    
+    <body>
+    
+     
+    <div class="header">
+        <h1>Posts</h1>
+        <p> Aca en posts, podras ver todos los posts de voluntariados y noticias relacionadas a dentlist...</p>
+    </div>
+    
+    <div class="barra">
+        <a href="<%=  %>">Atras</a>
+       
+        <a href="<%=  %>" style="float:right">Inicio</a>
+    </div>
+    
 
 <a href="<%=newPostPath %>">Agregar un post </a>
 
 <% posts.forEach( post => { %>
     <div>
-        <h2><%= post.title %></h2>
+        <p>------------------------------------------------------------------------------------------------------------</p>
+        <p>ID:  <%= post.id %></p>
+        <h1><%= post.title %> </h1>
         <p><%= post.description %></p>
-        <h2><%= post.interactions %></h2>
+        
         <a href="<%= postPath(post.id) %>">Ver más</a>
     </div>
 <% }) %>

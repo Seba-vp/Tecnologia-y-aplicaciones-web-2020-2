@@ -1,7 +1,25 @@
-<h1>Post Id: <%= post.id %> </h1>
-<h1>Creado por: <%= post.id_user %> </h1>
-<p> Post content: <%= post.description %> </p>
+<h1>Titulo: <%= post.title %> </h1>
+<p>Creado por: <%= post.id_user %> </p>
+<p>------------------------------------------------------------------------------------------------------------</p>
+<p> Foto: <%= post.image %> </p>
+<body>
+    <img src="<%= post.image %>" alt="<%= post.image %>" >
+</body>
+<p>------------------------------------------------------------------------------------------------------------</p>
+<p> Contenido: <%= post.description %> </p>
+<p> Publico objetivo: <%= post.public %> </p>
+<p> Comunas involucradas: <%= post.city %> </p>
+<p> Coordinador: <%= post.coordinator %> </p>
+<p> Contacto: <%= post.email %> </p>
+<p> Ubicación: <%= post.location %> </p>
 
+<p> Interacciones: <%= post.interactions %> </p>
+
+
+<p>------------------------------------------------------------------------------------------------------------</p>
+<br>
 <a href="<%= updatePostPath(post.id) %>" > Modificar Post </a>
 <br>
 <a href="<%= deletePostPath(post.id) %>" > Borrar Post </a>
+
+
