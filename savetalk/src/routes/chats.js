@@ -31,15 +31,26 @@ router.get('chats', '/', async (ctx) => {
 });
 
 router.get('chats-new', '/new', (ctx) => {
+    const chat = ctx.orm.chat.build();
     return ctx.render('chats/new', {
+        chat,
         createChatPath: ctx.router.url('chats-create'),
     });
 })
 
 router.post('chats-create', '/', async (ctx) => {
-    const chat = ctx.orm.chat.build(ctx.request.body)
-    await chat.save({ fields: PERMITED_FIELDS });
-    ctx.redirect(ctx.router.url('chats'));
+    const chat = ctx.orm.chat.build(ctx.request.body);
+    chat.block = true
+    try {
+        await chat.save({ fields: PERMITED_FIELDS });
+        ctx.redirect(ctx.router.url('chats'));
+    } catch (error) {
+        await ctx.render('chats/new', {
+            chat,
+            errors: error.errors,
+            createChatPath: ctx.router.url('chats-create')
+        });
+    }
 })
 
 router.get('chat', '/:id', (ctx) => {
@@ -61,12 +72,19 @@ router.get('chat-update', '/update/:id', (ctx) => {
 
 router.post('chat-update-database', 'update/:id', async (ctx) => {
     const { chat } = ctx.state;
-
-    if (chat.block !== ctx.request.body.block) {
-        chat.block = ctx.request.body.block;
+    try {
+        if (chat.block !== ctx.request.body.block) {
+            chat.block = ctx.request.body.block;
+        }
+        await chat.save({ fields: PERMITED_FIELDS_UPDATE });
+        ctx.redirect(ctx.router.url('chats'));
+    } catch (error) {
+        await ctx.render('chats/update', {
+            chat,
+            errors: error.errors,
+            updateChatPathDataBase: id => ctx.router.url('chat-update-database', id)
+        });
     }
-    await chat.save({ fields: PERMITED_FIELDS_UPDATE });
-    ctx.redirect(ctx.router.url('chats'));
 });
 
 router.get('chat-delete', '/delete/:id', (ctx) => {
