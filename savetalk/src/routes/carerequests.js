@@ -3,7 +3,11 @@ const KoaRouter = require('koa-router');
 const router = new KoaRouter();
 
 const PERMITTED_FIELDS = [
+    'idDentist',
+    'idInjury',
+    'daterequest',
     'datesmeeting',
+    'confirmed',
     'price',
     'message'
 ]
@@ -27,7 +31,9 @@ router.get('carerequests', '/', async (ctx) => {
 });
 
 router.get('carerequest-new', '/new', (ctx) => {
+    const carerequest = ctx.orm.carerequest.build();
     return ctx.render('carerequests/new', {
+        carerequest,
         createCarerequestPath: ctx.router.url('carerequests-create')
     });
 })
@@ -65,18 +71,25 @@ router.get('carerequest-update', '/update/:id', (ctx) => {
 
 router.post('carerequest-update-database', 'update/:id', async (ctx) => {
     const { carerequest } = ctx.state;
-
-    if (carerequest.datesmeeting !== ctx.request.body.datesmeeting) {
-        carerequest.datesmeeting = ctx.request.body.datesmeeting;
+    try {
+        if (carerequest.datesmeeting !== ctx.request.body.datesmeeting) {
+            carerequest.datesmeeting = ctx.request.body.datesmeeting;
+        }
+        if (carerequest.price !== ctx.request.body.price) {
+            carerequest.price = ctx.request.body.price;
+        }
+        if (carerequest.message !== ctx.request.body.message) {
+            carerequest.message = ctx.request.body.message;
+        }
+        await carerequest.save({ fields: PERMITTED_FIELDS });
+        ctx.redirect(ctx.router.url('carerequests'));
+    } catch (error) {
+        await ctx.render('carerequests/update', {
+            carerequest,
+            errors: error.errors,
+            updateCarerequestPathDataBase: id => ctx.router.url('carerequest-update-database', id)
+        });
     }
-    if (carerequest.price !== ctx.request.body.price) {
-        carerequest.price = ctx.request.body.price;
-    }
-    if (carerequest.message !== ctx.request.body.message) {
-        carerequest.message = ctx.request.body.message;
-    }
-    await carerequest.save({ fields: PERMITTED_FIELDS });
-    ctx.redirect(ctx.router.url('carerequests'));
 });
 
 router.get('carerequest-delete', '/delete/:id', (ctx) => {

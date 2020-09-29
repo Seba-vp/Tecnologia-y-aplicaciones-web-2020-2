@@ -1,16 +1,41 @@
 <form method="post" action="<%= createCarerequestPath %>">
-
+    <% if (locals.errors){ %>
+    <div>
+        <p>No se pudo crear la solicitud debido a lo siguiente:</p>
+        <ul>
+            <% errors.forEach(error => { %>
+            <li><%= error.path %>: <%= error.message %> </li>
+            <% }); %>
+        </ul>
+    </div>
+    <% } %>
+    <div>
+        <label for="idDentist">idDentist</label>
+        <input type="text" name="idDentist" id="idDentist" value="<%= carerequest.idDentist%>" />
+    </div>
+    <div>
+        <label for="idInjury">idInjury</label>
+        <input type="text" name="idInjury" id="idInjury" value="<%= carerequest.idInjury%>" />
+    </div>
+    <div>
+        <label for="daterequest">daterequest</label>
+        <input type="text" name="daterequest" id="daterequest" value="<%= carerequest.daterequest%>" />
+    </div>
     <div>
         <label for="datesmeeting">Fechas posibles</label>
-        <input type="text" name="datesmeeting" />
+        <input type="text" name="datesmeeting" id="datesmeeting" value="<%= carerequest.datesmeeting%>" />
+    </div>
+    <div>
+        <label for="confirmed">confirmed</label>
+        <input type="text" name="confirmed" id="confirmed" value="<%= carerequest.confirmed%>" />
     </div>
     <div>
         <label for="price">Precio</label>
-        <input type="text" name="price" />
+        <input type="text" name="price" value="<%= carerequest.price%>" />
     </div>
     <div>
         <label for="message">Mensaje</label>
-        <input type="text" name="message" />
+        <input type="text" name="message" value="<%= carerequest.message%>" />
 
     </div>
     <div>

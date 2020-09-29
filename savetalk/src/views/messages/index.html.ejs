@@ -2,8 +2,8 @@
 <a href="<%= newMessagePath %>">Enviar un nuevo mensaje</a>
 <% messages.forEach( message => { %>
 <div>
-    <h2><%= message.idSend %></h2>
-    <p><%= message.idReceive %></p>
+    <h2>Mensaje enviado por: <%= message.idSend %></h2>
+    <p>Mensaje recibido por: <%= message.idReceive %></p>
     <a href="<%= messagePath(message.id) %>">leer</a>
 </div>
 <% }) %>
