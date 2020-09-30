@@ -7,27 +7,24 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true,  
       },
     },
+
     description: {
       type: DataTypes.TEXT,
       allowNull: true,
-      validate:{
-        notEmpty: false,    
-      },
+
     },
+
     public: {
       type: DataTypes.STRING,
       allowNull: true,
-      validate:{
-        notEmpty: false,
-      },
+  
     },
     city: {
       type: DataTypes.STRING,
       allowNull: true,
-      validate:{
-        notEmpty: false,    
-      },
+
     },
+
     coordinator: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -35,27 +32,22 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: false,    
       },
     },
+
     email: {
       type: DataTypes.STRING,
       allowNull: true,
-      validate:{
-        notEmpty: false,    
-      },
+    
     },
     location: {
       type: DataTypes.STRING,
       allowNull: true,
-      validate:{
-        notEmpty: false,    
-      },
+    
     },
     image: {
       type: DataTypes.STRING,
       allowNull: true,
-      validate:{
-        notEmpty: false,    
-      },
     },
+    
     id_user: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -67,10 +59,7 @@ module.exports = (sequelize, DataTypes) => {
     interactions: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      validate:{
-        notEmpty: false,
-        isNumeric: true,     
-      },
+
     },
 
   }, {});
