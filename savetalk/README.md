@@ -1,53 +1,27 @@
-# Template
+# ENTREGA 2 - DENTLIST
 
-Template built with [koa](http://koajs.com/) for IIC2513 - Tecnologías y Aplicaciones Web, Pontificia Universidad Católica de Chile.
+## Consideraciones generales :bangbang:
+**Antes de comenzar a correr el programa** ...
 
-## Prerequisites:
-* PostgreSQL
-  * you will need a database with name and user/password as configured in `src/config/database.js`
-* Node.js LTS (10.x or 12.x)
-* [Yarn](https://yarnpkg.com)
 
-## Project Setup
 
-* Clone repository
-* Install dependencies:
-  * `yarn install`
+### Cosas no implementadas: :x::cry::x:
 
-## Database Setup (development)
+ 
+### Cosas implementadas: :white_check_mark: :stuck_out_tongue_closed_eyes: :white_check_mark:
 
-### Install postgresql
-* On Mac OS X using Homebrew: `brew install postgresql`
-  * Start service: check [LaunchRocket](https://github.com/jimbojsb/launchrocket) or [lunchy](https://www.moncefbelyamani.com/how-to-install-postgresql-on-a-mac-with-homebrew-and-lunchy/) for postgresql service management
-* [Other platforms](https://www.postgresql.org/download/)
+ - **FUNCIONALIDADES:**
+ - **Bonus:**
 
-### Create development database
+### Ejecución del código:  :floppy_disk::floppy_disk::floppy_disk:
 
-```sh
-createdb iic2513template_dev
-```
+-   El módulo principal del servidor es  `main.py`  y el módulo principal del cliente es `main.py`
 
-### Run migrations
-```sh
-./node_modules/.bin/sequelize db:migrate
-```
+### Librerías: :books: 
 
-## Run the app!
+**Librerías:**
 
-```sh
-yarn start
-```
+### Consideraciones específicas y/o supuestos: :grin: :flushed: 
 
-or directly
 
-```sh
-node index.js
-```
-
-or, if you want automatic restart after any change in your files
-
-```sh
-yarn dev
-```
-
-Now go to http://localhost:3000 and start browsing :)
+## Referencias de código externo :
