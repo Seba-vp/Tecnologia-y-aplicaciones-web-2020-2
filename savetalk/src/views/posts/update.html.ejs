@@ -1,0 +1,92 @@
+
+<html>
+    <head>
+    <link rel="stylesheet" href="src/assets/styles/plantilla1.scss">
+    </head>
+    
+<body>
+    
+     
+<div class="header">
+<h1>Estas modificando el post: <%= post.title %> </h1>
+</div>
+
+<div class="caja2">
+
+<form method="post" action="<%= updatePostPathDataBase(post.id) %>" >
+
+    <% if (locals.errors){ %>
+        <div>
+            <p>El post no se pudo actualizar debido a los siguientes errores:</p>
+            <ul>
+                <% errors.forEach(error => { %>
+                    <li><%= error.path %>: <%= error.message %> </li>
+                <% }); %>
+            </ul>
+        </div>
+    <% } %>
+
+    <div class="field" >
+        <label for="title">Título </label>
+        <input type="string" name="title" id="title" value="<%= post.title %>"/>
+    </div>
+
+    <div class="field" >
+        <label for="description">Descripción </label>
+        <textarea rows="4" cols="30" name="description" id="description" ><%= post.description %></textarea>
+    </div>
+
+    <div class="field" >
+        <label for="public">Publico objetivo </label>
+        <input type="string" name="public" id="public" value="<%= post.public %>"/>
+    </div>
+    
+    <div class="field" >
+        <label for="city">Comunas objetivo</label>
+        <input type="string" name="city" id="city" value="<%= post.city %>"/>
+    </div>
+
+    <div class="field" >
+        <label for="coordinator">Coordinador </label>
+        <input type="string" name="coordinator" id="coordinator" value="<%= post.coordinator %>"/>
+    </div>
+
+    <div class="field" >
+        <label for="email">Email </label>
+        <input type="string" name="email" id="email" value="<%= post.email %>"/>
+    </div>
+
+    <div class="field" >
+        <label for="location">Ubicación </label>
+        <input type="string" name="location" id="location" value="<%= post.location %>"/>
+    </div>
+
+    <div class="field" >
+        <label for="image">Imagen </label>
+        <input type="string" name="image" id="image" value="<%= post.image %>"/>
+    </div>
+
+    <div class="field" >
+        <label for="id_user">Id usuario creador </label>
+        <input type="int" name="id_user" id="id_user" value="<%= post.id_user %>"/>
+    </div>
+
+    <div class="field" >
+        <label for="interactions">Interacciones (numero) </label>
+        <input type="int" name="interactions" id="interactions" value="<%= post.interactions %>"/>
+    </div>
+
+    <div class="actions" >
+        <input type="submit" value="Modificar"/>
+    </div>
+</form>
+</div>
+
+
+<div class="pie">
+    <p>Made with &#10084;&#65039; by Rodolfo Mendoza Jorge Toro & Sebastian Villablanca.</p>
+  </div>
+</body>
+</html>
+
+

@@ -30,6 +30,7 @@ router.param('id', async (id, ctx, next) => {
 router.get('posts', '/', async (ctx) => {
     const posts = await ctx.orm.post.findAll();
     await ctx.render('posts/index', {
+        //indexPath,
         posts,
         postPath: id => ctx.router.url('post', id),
 //Lo de abajo es nuevo
@@ -64,7 +65,71 @@ router.post('posts-create','/', async (ctx)=>{
 //Hasta aca lo nuevo
 router.get('post', '/:id', (ctx) => {
     const {post} = ctx.state;
-    return ctx.render('posts/show', {post});
+    return ctx.render('posts/show', {
+        post,
+        updatePostPath: id => ctx.router.url('post-update', id),
+        deletePostPath: id => ctx.router.url('post-delete', id)
+    });
+});
+router.get('post-update', '/update/:id', (ctx) => {
+    const {post} = ctx.state;
+    return ctx.render('posts/update', {
+        post,
+        updatePostPathDataBase: id => ctx.router.url('post-update-database', id)
+    });
+})
+
+router.post('post-update-database', 'update/:id', async (ctx) => {
+    const {post} = ctx.state;
+
+    if (post.title !== ctx.request.body.title) {
+        post.title = ctx.request.body.title;
+    }
+    if (post.description !== ctx.request.body.description) {
+        post.description = ctx.request.body.description;
+    }
+    if (post.public !== ctx.request.body.public) {
+        post.public = ctx.request.body.public;
+    }
+    if (post.city !== ctx.request.body.city) {
+        post.city = ctx.request.body.city;
+    }
+    if (post.coordinator !== ctx.request.body.coordinator) {
+        post.coordinator = ctx.request.body.coordinator;
+    }
+    if (post.email !== ctx.request.body.email) {
+        post.email = ctx.request.body.email;
+    }
+    if (post.location !== ctx.request.body.location) {
+        post.location = ctx.request.body.location;
+    }
+    if (post.image !== ctx.request.body.image) {
+        post.image = ctx.request.body.image;
+    }
+    if (post.id_user !== ctx.request.body.id_user) {
+        post.id_user = ctx.request.body.id_user;
+    }
+    if (post.interactions !== ctx.request.body.interactions) {
+        post.interactions = ctx.request.body.interactions;
+    }
+  
+
+    await post.save({ fields: PERMITED_FIELDS });
+    ctx.redirect(ctx.router.url('posts'));
+});
+
+router.get('post-delete', '/delete/:id', (ctx) => {
+    const {post} = ctx.state;
+    return ctx.render('posts/delete', {
+        post,
+        deletePostPathDataBase: id => ctx.router.url('post-delete-database', id)
+    });
+})
+
+router.post('post-delete-database', 'delete/:id', async (ctx) => {
+    const {post} = ctx.state;
+    await post.destroy();
+    ctx.redirect(ctx.router.url('posts'));
 });
 
 module.exports = router;

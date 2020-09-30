@@ -5,20 +5,20 @@
     
     <body>
         <div class="header">
-          
-            <h1>Borrar conexion</h1>
+            <h1>Borrar post</h1>
         </div>
         
     
 <div class="caja2">
+<form method="post" action="<%= deletePostPathDataBase(post.id) %>" >
 
-<form method="post" action="<%= deleteChatPathDataBase(chat.id) %>">
     <div>
-        <p><label >Para borrar la conexion, aprete el siguiente boton:</label></p>
-        <input type="submit" value="Eliminar conexión" />
+    <p><label >Para borrar el post <%= post.title %>, aprete el boton Borrar</label></p>
+    </div>
+    <div>
+    <p><input type="submit" value="Borrar" /></p>
     </div>
 </form>
-
 </div>
 
 <div class="pie">

@@ -5,6 +5,7 @@ const router = new KoaRouter();
 
 router.get('/', async (ctx) => {
   await ctx.render('index', {
+    indexPath:ctx.router.url('index'),
     patientsPath: ctx.router.url('patients'),
     dentistsPath: ctx.router.url('dentists'),
     carerequestsPath: ctx.router.url('carerequests'),
