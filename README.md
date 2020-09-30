@@ -2,7 +2,7 @@
 
 # ENTREGA 2 - DENTLIST
 
-## Link App en Heroku https://dentilistapp43243242.herokuapp.com/
+## Link App en Heroku https://dentilist473289473289.herokuapp.com/
 
 ## Consideraciones generales :bangbang:
 **Antes de comenzar a correr el programa** ...
