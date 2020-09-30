@@ -4,7 +4,7 @@ const router = new KoaRouter();
 
 const PERMITTED_FIELDS = [
     'idSend',
-    'idRecieve',
+    'idReceive',
     'body',
 ]
 
