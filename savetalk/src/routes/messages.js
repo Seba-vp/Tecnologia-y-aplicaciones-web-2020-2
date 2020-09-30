@@ -5,7 +5,7 @@ const router = new KoaRouter();
 const PERMITTED_FIELDS = [
     'idSend',
     'idRecieve',
-    'body'
+    'body',
 ]
 
 router.param('id', async (id, ctx, next) => {
@@ -27,13 +27,18 @@ router.get('messages', '/', async (ctx) => {
 });
 
 router.get('messages-new', '/new', (ctx) => {
+    const message = ctx.orm.message.build();
     return ctx.render('messages/new', {
+        message,
         createMessagePath: ctx.router.url('messages-create')
     });
 })
 
 router.post('messages-create', '/', async (ctx) => {
     const message = ctx.orm.message.build(ctx.request.body);
+    message.rolSend = 'Dentist';
+    message.rolReceive = 'Pacient';
+    message.date = "2020/09/30";
     try {
         await message.save({ fields: PERMITTED_FIELDS });
         ctx.redirect(ctx.router.url('messages'))

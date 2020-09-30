@@ -1,11 +1,21 @@
 <form method="post" action="<%= createChatPath %>">
+    <% if (locals.errors){ %>
+    <div>
+        <p>No se pudo crear la conexión debido a lo siguiente:</p>
+        <ul>
+            <% errors.forEach(error => { %>
+            <li><%= error.path %>: <%= error.message %> </li>
+            <% }); %>
+        </ul>
+    </div>
+    <% } %>
     <div class="field">
         <label for="idDentist">id odontologo</label>
-        <input type="text" name="idDentist" />
+        <input type="text" name="idDentist" id="idDentist" value="<%= chat.idDentist%>" />
     </div>
     <div class="field">
         <label for="idPacient">id paciente</label>
-        <input type="text" name="idPacient" />
+        <input type="text" name="idPacient" id="idPacient" value="<%= chat.idPacient%>" />
     </div>
     <div class="actions">
         <input type="submit" value="crear contacto" />

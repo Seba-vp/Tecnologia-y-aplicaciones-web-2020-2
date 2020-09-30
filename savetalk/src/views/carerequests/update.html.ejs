@@ -14,18 +14,28 @@
 <div class="caja2">
 
 <form method="post" action="<%= updateCarerequestPathDataBase(carerequest.id) %>">
+    <% if (locals.errors){ %>
+    <div>
+        <p>No se pudo modificar debido a lo siguiente:</p>
+        <ul>
+            <% errors.forEach(error => { %>
+            <li><%= error.path %>: <%= error.message %> </li>
+            <% }); %>
+        </ul>
+    </div>
+    <% } %>
 
     <div>
         <label for="datesmeeting">Fechas posibles</label>
-        <input type="text" name="datesmeeting" />
+        <input type="text" name="datesmeeting" id="datesmeeting" value="<%=carerequest.datesmeeting%>" />
     </div>
     <div>
         <label for="price">Precio</label>
-        <input type="text" name="price" />
+        <input type="text" name="price" id="price" value="<%=carerequest.price%>" />
     </div>
     <div>
-        <label for="message">Mensaje</label>
-        <input type="text" name="message" />
+        <label for=" message">Mensaje</label>
+        <input type="text" name="message" id="message" value="<%=carerequest.message%>" />
 
     </div>
     <div>

@@ -22,10 +22,12 @@
 </div>
 
 <% messages.forEach( message => { %>
+
     <div class="caja2"> 
-    <h2><%= message.idSend %></h2>
-    <p><%= message.idReceive %></p>
-    <p><a href="<%= messagePath(message.id) %>">leer</a></p>
+    <h2>Mensaje enviado por: <%= message.idSend %></h2>
+    <p>Mensaje recibido por: <%= message.idReceive %></p>
+    <a href="<%= messagePath(message.id) %>">leer</a>
+
 </div>
 <% }) %>
 

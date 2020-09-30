@@ -15,7 +15,16 @@
 
 
 <form method="post" action="<%= updateChatPathDataBase(chat.id) %>">
-
+    <% if (locals.errors){ %>
+    <div>
+        <p>No se pudo cambiar la conexión por lo siguiente:</p>
+        <ul>
+            <% errors.forEach(error => { %>
+            <li><%= error.path %>: <%= error.message %> </li>
+            <% }); %>
+        </ul>
+    </div>
+    <% } %>
     <div>
         <label for="block">Conexión</label>
         <input type="text" name="block" />
