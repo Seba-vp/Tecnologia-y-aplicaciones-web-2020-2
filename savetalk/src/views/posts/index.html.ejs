@@ -12,22 +12,26 @@
         <p> Aca en posts, podras ver todos los posts de voluntariados y noticias relacionadas a dentlist...</p>
     </div>
     
-    <div class="barra">
-        <a href="<%=  %>">Atras</a>
-       
-        <a href="<%=  %>" style="float:right">Inicio</a>
-    </div>
-    
-
-<a href="<%=newPostPath %>">Agregar un post </a>
+<div class="caja2">
+    <h1>Agregar un Post </h1>
+   <p> <a href="<%=newPostPath %>">Agregar un post </a></p>
+</div>
 
 <% posts.forEach( post => { %>
-    <div>
-        <p>------------------------------------------------------------------------------------------------------------</p>
+    <div class="caja2"> 
+        
         <p>ID:  <%= post.id %></p>
         <h1><%= post.title %> </h1>
         <p><%= post.description %></p>
         
-        <a href="<%= postPath(post.id) %>">Ver más</a>
+        <p><a href="<%= postPath(post.id) %>">Ver más</a></p>
     </div>
 <% }) %>
+
+<div class="pie">
+    <p>Made with &#10084;&#65039; by Rodolfo Mendoza Jorge Toro & Sebastian Villablanca.</p>
+  </div>
+</body>
+</html>
+
+

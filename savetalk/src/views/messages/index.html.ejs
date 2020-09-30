@@ -1,9 +1,38 @@
-<p>Cantidad de mensajes: <%= messages.length %></p>
-<a href="<%= newMessagePath %>">Enviar un nuevo mensaje</a>
+
+<html>
+    <head>
+    <link rel="stylesheet" href="src/assets/styles/plantilla1.scss">
+    </head>
+    
+    <body>
+    
+     
+    <div class="header">
+        <h1>Mensajes</h1>
+        <p>Cantidad de mensajes: <%= messages.length %></p>
+    
+    </div>
+
+
+
+
+<div class="caja2">
+    <h1>Enviar un nuevo mensaje </h1>
+   <p> <a href="<%= newMessagePath %>">Enviar un nuevo mensaje</a></p>
+</div>
+
 <% messages.forEach( message => { %>
-<div>
+    <div class="caja2"> 
     <h2><%= message.idSend %></h2>
     <p><%= message.idReceive %></p>
-    <a href="<%= messagePath(message.id) %>">leer</a>
+    <p><a href="<%= messagePath(message.id) %>">leer</a></p>
 </div>
 <% }) %>
+
+<div class="pie">
+    <p>Made with &#10084;&#65039; by Rodolfo Mendoza Jorge Toro & Sebastian Villablanca.</p>
+  </div>
+</body>
+</html>
+
+

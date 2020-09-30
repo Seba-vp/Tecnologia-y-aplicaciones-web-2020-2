@@ -48,27 +48,99 @@ body {
 }
 
 /* #################################################################################### */
-/* CAJA*/
+/* CAJA1*/
 /* ##################################################################################### */
-.caja {
+.caja1 {
   background-color: white;
   padding: 20px;
   margin-top: 20px;
 }
-.caja p {
+.caja1 p {
   text-align: center;
 }
 
-.caja h1 {
+.caja1 h1 {
   text-align: center;
 }
 
 
-.caja h2 {
+.caja1 h2 {
   text-align: center;
 }
 
-.caja h5 {
+.caja1 h5 {
+  text-align: center;
+}
+
+.caja1 a:link {
+  color: blue;
+}
+
+/* Clickeado */
+.caja1 a:visited {
+  color: lightblue;
+}
+
+/* Mouse arriba */
+.caja1 a:hover {
+  color: cyan;
+}
+
+/* #################################################################################### */
+/* CAJA2/
+/* ##################################################################################### */
+.caja2 {
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 80%;
+}
+.caja2 p {
+  text-align: center;
+}
+
+.caja2 h1 {
+  text-align: center;
+}
+
+
+.caja2 h2 {
+  text-align: center;
+}
+
+.caja2 h5 {
+  text-align: center;
+}
+
+.caja2 a {
+  text-align: center;
+}
+.caja2 a:link {
+  color: blue;
+}
+
+/* Clickeado */
+.caja2 a:visited {
+  color: lightblue;
+}
+
+/* Mouse arriba */
+.caja2 a:hover {
+  color: cyan;
+}
+
+.caja2 img {
+  padding: 20px;
+  align: center;
+}
+
+.caja2 form {
+  text-align: center
+}
+
+.caja2 {
   text-align: center;
 }
 
@@ -80,4 +152,21 @@ body {
   text-align: center;
   background: #ddd;
   margin-top: 20px;
+}
+/* #################################################################################### */
+/* tag a*/
+/* ##################################################################################### */
+
+a:link {
+  color: blue;
+}
+
+/* Clickeado */
+a:visited {
+  color: lightblue;
+}
+
+/* Mouse arriba */
+a:hover {
+  color: cyan;
 }

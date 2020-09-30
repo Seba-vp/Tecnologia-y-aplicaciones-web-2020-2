@@ -1,4 +1,19 @@
-<h3>Estas modificando al dentista: <%= dentist.name %> </h3>
+
+
+
+<html>
+    <head>
+    <link rel="stylesheet" href="src/assets/styles/plantilla1.scss">
+    </head>
+    
+<body>
+    
+     
+<div class="header">
+    <h1>Estas modificando al dentista: <%= dentist.name %> </h1>
+</div>
+
+<div class="caja1">
 
 <form method="post" action="<%= updateDentistPathDataBase(dentist.id) %>" >
 
@@ -61,3 +76,14 @@
         <input type="submit" value="Crear" />
     </div>
 </form>
+
+</div>
+
+
+<div class="pie">
+    <p>Made with &#10084;&#65039; by Rodolfo Mendoza Jorge Toro & Sebastian Villablanca.</p>
+  </div>
+</body>
+</html>
+
+

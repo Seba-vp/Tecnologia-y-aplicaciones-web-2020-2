@@ -1,9 +1,26 @@
-<h1>Información específica del Dolor </h1>
+<html>
+    <head>
+    <link rel="stylesheet" href="src/assets/styles/plantilla1.scss">
+    </head>
+    
+    <body>
+    
+<div class="header">
+    <h1>Información específica del Dolor </h1>        
+</div>
+
+
+
+
+
+<div class="caja2">
 <h2>Dolor perteneciente al paciente: <%= patient.name %> </h2>
-<h3>Resumen del dolor: <%= pain.name %> </h3>
+<p> <strong>Resumen del dolor: </strong><%= pain.name %> </p>
 <p> <strong>Descripción del dolor: </strong> <%= pain.description%>  </p>
 <p><strong>Categoría del dolor: </strong> <%= pain.category%> </p>
-<div>
+</div>
+
+<div class="caja2">
     <h2><%= dates.length %> Potenciales citas disponibles: </h2>
     <% if (dates.length){ %>
         <ul>

@@ -1,25 +1,58 @@
-<h1>Titulo: <%= post.title %> </h1>
-<p>Creado por: <%= post.id_user %> </p>
-<p>------------------------------------------------------------------------------------------------------------</p>
-<p> Foto: <%= post.image %> </p>
-<body>
-    <img src="<%= post.image %>" alt="<%= post.image %>" >
+<html>
+    <head>
+    <link rel="stylesheet" href="src/assets/styles/plantilla1.scss">
+    </head>
+    
+    <body>
+    
+<div class="header">
+    <h1>Titulo: <%= post.title %> </h1>
+    <h5>Creado por: <%= post.id_user %> </h5>
+        
+</div>
+
+
+
+
+
+
+<div class="caja2">
+<p><img src="<%= post.image %>" alt="<%= post.image %>" ></p>
+</div>
+<div class="caja2">
+<h5>Contenido: </h5><p> <%= post.description %> </p>
+</div>
+<div class="caja2">
+<h5>Publico objetivo: </h5><p> <%= post.public %> </p>
+</div>
+<div class="caja2">
+<h5>Comunas involucradas: </h5><p> <%= post.city %> </p>
+</div>
+<div class="caja2">
+<h5>Coordinador: </h5><p> <%= post.coordinator %> </p>
+</div>
+<div class="caja2">
+<h5>Contacto: </h5><p> <%= post.email %> </p>
+</div>
+<div class="caja2">
+<h5>Ubicación: </h5><p> <%= post.location %> </p>
+</div>
+<div class="caja2">
+<h5>Interacciones: </h5><p> <%= post.interactions %> </p>
+</div>
+
+
+<div class="caja2">
+<p><a href="<%= updatePostPath(post.id) %>" > Modificar Post </a></p>
+<br>
+<p><a href="<%= deletePostPath(post.id) %>" > Borrar Post </a></p>
+
+</div>
+
+<div class="pie">
+    <p>Made with &#10084;&#65039; by Rodolfo Mendoza Jorge Toro & Sebastian Villablanca.</p>
+  </div>
 </body>
-<p>------------------------------------------------------------------------------------------------------------</p>
-<p> Contenido: <%= post.description %> </p>
-<p> Publico objetivo: <%= post.public %> </p>
-<p> Comunas involucradas: <%= post.city %> </p>
-<p> Coordinador: <%= post.coordinator %> </p>
-<p> Contacto: <%= post.email %> </p>
-<p> Ubicación: <%= post.location %> </p>
-
-<p> Interacciones: <%= post.interactions %> </p>
-
-
-<p>------------------------------------------------------------------------------------------------------------</p>
-<br>
-<a href="<%= updatePostPath(post.id) %>" > Modificar Post </a>
-<br>
-<a href="<%= deletePostPath(post.id) %>" > Borrar Post </a>
+</html>
 
 
