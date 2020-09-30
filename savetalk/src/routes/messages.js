@@ -36,9 +36,6 @@ router.get('messages-new', '/new', (ctx) => {
 
 router.post('messages-create', '/', async (ctx) => {
     const message = ctx.orm.message.build(ctx.request.body);
-    message.rolSend = 'Dentist';
-    message.rolReceive = 'Pacient';
-    message.date = "2020/09/30";
     try {
         await message.save({ fields: PERMITTED_FIELDS });
         ctx.redirect(ctx.router.url('messages'))
