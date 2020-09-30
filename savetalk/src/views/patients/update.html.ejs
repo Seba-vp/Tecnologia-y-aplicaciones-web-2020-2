@@ -1,5 +1,16 @@
-<h3>Estas modificando al paciente: <%= patient.name %> </h3>
 
+<html>
+    <head>
+    <link rel="stylesheet" href="src/assets/styles/plantilla1.scss">
+    </head>
+    
+<body>
+
+<div class="header">
+<h1>Estas modificando al paciente: <%= patient.name %> </h1>
+</div>
+
+<div class="caja2">
 <form method="post" action="<%= updatePatientPathDataBase(patient.id) %>" >
 
     <% if (locals.errors){ %>
@@ -53,3 +64,13 @@
         <input type="submit" value="Modificar" />
     </div>
 </form>
+</div>
+
+
+<div class="pie">
+    <p>Made with &#10084;&#65039; by Rodolfo Mendoza Jorge Toro & Sebastian Villablanca.</p>
+  </div>
+</body>
+</html>
+
+

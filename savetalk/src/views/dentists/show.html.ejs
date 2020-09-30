@@ -1,8 +1,35 @@
-<h1> <%= dentist.name %> </h1>
+<html>
+    <head>
+    <link rel="stylesheet" href="src/assets/styles/plantilla1.scss">
+    </head>
+    
+    <body>
+    
+<div class="header">
+    <h1> <%= dentist.name %> </h1>
+        
+</div>
+
+
+
+
+<div class="caja2">
 <p>Universidad: <%= dentist.university %> </p>
 <p>Año de la carrera: <%= dentist.year %> </p>
-<a href="<%= seePainsPath(dentist.id) %>" > Ver Dolores disponibles </a>
+</div>
+<div class="caja2">
+<p><a href="<%= seePainsPath(dentist.id) %>" > Ver Dolores disponibles </a></p>
 <br>
-<a href="<%= updateDentistPath(dentist.id) %>" > Modificar Dentista </a>
+<p><a href="<%= updateDentistPath(dentist.id) %>" > Modificar Dentista </a></p>
 <br>
-<a href="<%= deleteDentistPath(dentist.id) %>" > Borrar Dentista </a>
+<p><a href="<%= deleteDentistPath(dentist.id) %>" > Borrar Dentista </a></p>
+</div>
+
+
+<div class="pie">
+    <p>Made with &#10084;&#65039; by Rodolfo Mendoza Jorge Toro & Sebastian Villablanca.</p>
+  </div>
+</body>
+</html>
+
+

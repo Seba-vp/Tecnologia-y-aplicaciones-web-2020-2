@@ -1,4 +1,29 @@
-<p>ESTADO CHAT BLOQUEADO: <%= chat.block %> </p>
+<html>
+    <head>
+    <link rel="stylesheet" href="src/assets/styles/plantilla1.scss">
+    </head>
+    
+    <body>
+    
+<div class="header">
+    <h1>Chat </h1>
+    <h5>ESTADO CHAT BLOQUEADO: <%= chat.block %>  </h5>
+        
+</div>
+
+
+
+
+
+<div class="caja2">
 <a href="<%= updateChatPath(chat.id) %>"> Modificar conexión </a>
 <br>
 <a href="<%= deleteChatPath(chat.id) %>"> Eliminar conexión </a>
+</div>
+
+<div class="pie">
+    <p>Made with &#10084;&#65039; by Rodolfo Mendoza Jorge Toro & Sebastian Villablanca.</p>
+  </div>
+</body>
+</html>
+

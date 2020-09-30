@@ -1,10 +1,32 @@
-<h1> Feedback <%= feedback.id %></h1>
+<html>
+    <head>
+    <link rel="stylesheet" href="src/assets/styles/plantilla1.scss">
+    </head>
+    
+    <body>
+    
+<div class="header">
+    <h1> Feedback <%= feedback.id %></h1>
+        
+</div>
 
-<p>------------------------------------------------------------------------------------------------------------</p>
+
+<div class="caja2">
 <p>Id odontologo: <%= feedback.id_odontologo %></p>
 <p>Id_user: <%= feedback.id_user %></p>
 <p>Descripcion: <%= feedback.description %></p>
 <p>Calificacion: <%= feedback.calification %></p>
-<p>------------------------------------------------------------------------------------------------------------</p>
-<br>
-<a href="<%= deleteFeedbackPath(feedback.id) %>" > Borrar Feedback </a>
+
+</div>
+
+<div class="caja2">
+    <p><a href="<%= deleteFeedbackPath(feedback.id) %>" > Borrar Feedback </a></p>
+</div>
+
+<div class="pie">
+    <p>Made with &#10084;&#65039; by Rodolfo Mendoza Jorge Toro & Sebastian Villablanca.</p>
+  </div>
+</body>
+</html>
+
+
