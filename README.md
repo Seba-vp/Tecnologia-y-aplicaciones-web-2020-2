@@ -18,19 +18,25 @@ El CRUD de FEEDBACKS, permite ver, crear y eliminar feedbacks, concideramos que 
 
 El CRUD de POSTS esta completo, se puede ver, crear, eliminar y modificar un post. EL modelo incluye validaciones que son revisadas cuando se crea y se actualiza un post, ademas se pueden visualizar las imagenes de los posts.
 
+El CRUD de CHAT esta completo, se puede ver, eliminar y modificar un chat. EL modelo incluye validaciones que son revisadas cuando se crea y se bloquea un chat.
 
+El CRUD de MENSAJE esta completo, se puede ver, crear y eliminar  un mensaje. EL modelo incluye validaciones que son revisadas cuando se crea un mensaje.
+
+El CRUD de SOLICITUD DE HORA esta completo, se puede ver, crear, eliminar y modificar una solicitud. EL modelo incluye validaciones que son revisadas cuando se crea y se bloquea una solicitud.
 
 ### Cosas no implementadas: :x::cry::x:
 
+Todo implementado.
  
 ### Cosas implementadas: :white_check_mark: :stuck_out_tongue_closed_eyes: :white_check_mark:
 
- - **FUNCIONALIDADES:**
+ - **FUNCIONALIDADES MINIMAS:**
 Todos los CRUDS implementados.
+Todas las validaciones implementadas.
 
  - **BONUS:**
-
 Usamos CSS en la visualizacion.
+seed
 
 ### Ejecución del código:  :floppy_disk::floppy_disk::floppy_disk:
 
@@ -43,7 +49,7 @@ Para ver la app DentList, ingresar a https://dentilist473289473289.herokuapp.com
 No usamos ninguna libreria especifica fuera de las usadas en el curso para desarrollar la app.
 
 ### Consideraciones específicas y/o supuestos: :grin: :flushed: 
-
+Todo sigue la normativa
 
 ## Referencias de código externo :
 
