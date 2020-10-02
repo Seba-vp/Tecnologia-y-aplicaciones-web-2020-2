@@ -12,7 +12,12 @@ Los Pacientes pueden ver que odontólogos se han ofrecido a curar su dolor, pero
 
 El CRUD de los DENTISTAS está completo(con validaciones incluidas). Además un dentista puede ver los dolores disponibles en el sitio web, para así poder postularse, y eventualmente ser el elegido para tratar al paciente asociado a ese dolor.
 
-Los demas CRUD están completos también (con validaciones incluidas).
+El CRUD de NOTIFICACIONES, permite ver las notificaciones, crear nuevas notificaciones y eliminar notificaciones existentes, condieramos que no tiene sentido hacer update de una notificacion, el modelo contiene validaciones las que se revisan cunado se crea una nueva notificacion.
+
+El CRUD de FEEDBACKS, permite ver, crear y eliminar feedbacks, concideramos que no tiene sentido actualizar la informacion de un feedback, ya que es algo que tiene poca interaccion por parte de los usuarios, el modelo de feedbacks tiene validaciones que se revisan cuando se crea un nuevo feedback.
+
+El CRUD de POSTS esta completo, se puede ver, crear, eliminar y modificar un post. EL modelo incluye validaciones que son revisadas cuando se crea y se actualiza un post, ademas se pueden visualizar las imagenes de los posts.
+
 
 
 ### Cosas no implementadas: :x::cry::x:
@@ -21,15 +26,25 @@ Los demas CRUD están completos también (con validaciones incluidas).
 ### Cosas implementadas: :white_check_mark: :stuck_out_tongue_closed_eyes: :white_check_mark:
 
  - **FUNCIONALIDADES:**
+Todos los CRUDS implementados.
+
  - **BONUS:**
 
+Usamos CSS en la visualizacion.
+
 ### Ejecución del código:  :floppy_disk::floppy_disk::floppy_disk:
+
+Para ver la app DentList, ingresar a https://dentilist473289473289.herokuapp.com/, o descargar la carpeta savetalk de este repositorio y correr la app localmente.
 
 ### Librerías: :books: 
 
 **Librerías:**
 
+No usamos ninguna libreria especifica fuera de las usadas en el curso para desarrollar la app.
+
 ### Consideraciones específicas y/o supuestos: :grin: :flushed: 
 
 
 ## Referencias de código externo :
+
+Para la implementacion del CSS, no se hizo copy paste de nada, pero si se uso w3School ´https://www.w3schools.com/css/´ para buscar informacion y metodos especificos.
