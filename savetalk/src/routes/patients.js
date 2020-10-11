@@ -5,6 +5,7 @@ const router = new KoaRouter();
 const PERMITTED_FIELDS = [
     'age',
     'name',
+    'password',
     'phone',
     'address',
     'city',
@@ -44,7 +45,8 @@ router.post('patients-create', '/', async (ctx) => {
     const patient = ctx.orm.patient.build(ctx.request.body);   //Lo creamos
     try {
         await patient.save({ fields: PERMITTED_FIELDS });          //Lo insertamos en la base de datos
-        ctx.redirect(ctx.router.url('patients'))
+        ctx.session.currentPatientId = patient.id;
+        ctx.redirect(ctx.router.url('patient', patient.id));
     } catch (error) {
         await ctx.render('patients/new', {
             patient,
@@ -105,9 +107,12 @@ router.post('patient-update-database', 'update/:id', async (ctx) => {
     if (patient.isapre !== ctx.request.body.isapre) {
         patient.isapre = ctx.request.body.isapre;
     }
+    if (patient.password !== ctx.request.body.password) {
+        patient.password = ctx.request.body.password;
+    }
 
     await patient.save({ fields: PERMITTED_FIELDS });
-    ctx.redirect(ctx.router.url('patients'));
+    ctx.redirect(ctx.router.url('patient', ctx.state.currentPatient.id));
 });
 
 router.get('patient-delete', '/delete/:id', (ctx) => {
@@ -121,7 +126,8 @@ router.get('patient-delete', '/delete/:id', (ctx) => {
 router.post('patient-delete-database', 'delete/:id', async (ctx) => {
     const {patient} = ctx.state;
     await patient.destroy();
-    ctx.redirect(ctx.router.url('patients'));
+    ctx.session.currentPatientId = null;
+    ctx.redirect('/');
 });
 
 
