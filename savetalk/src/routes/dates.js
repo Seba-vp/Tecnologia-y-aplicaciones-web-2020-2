@@ -71,7 +71,7 @@ router.post('dates-create', '/:dentistid/:painid', async (ctx) => {
     const date = ctx.orm.date.build(attributes);   //Lo creamos
     try {
         await date.save({ fields: PERMITTED_FIELDS });          //Lo insertamos en la base de datos
-        ctx.redirect(ctx.router.url('dentists'))
+        ctx.redirect(ctx.router.url('dentist', ctx.state.currentDentist.id));
     } catch (error) {
         await ctx.render('dates/new', {
             date,

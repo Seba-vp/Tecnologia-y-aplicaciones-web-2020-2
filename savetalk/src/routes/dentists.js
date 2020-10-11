@@ -5,6 +5,7 @@ const router = new KoaRouter();
 const PERMITTED_FIELDS = [
     'kind',
     'name',
+    'password',
     'phone',
     'address',
     'city',
@@ -47,7 +48,8 @@ router.post('dentists-create', '/', async (ctx) => {
     const dentist = ctx.orm.dentist.build(ctx.request.body);   //Lo creamos
     try {
         await dentist.save({ fields: PERMITTED_FIELDS });          //Lo insertamos en la base de datos
-        ctx.redirect(ctx.router.url('dentists'))
+        ctx.session.currentDentistId = dentist.id;
+        ctx.redirect(ctx.router.url('dentist', dentist.id));
     } catch (error) {
         await ctx.render('dentists/new', {
             dentist,
@@ -111,9 +113,12 @@ router.post('dentist-update-database', 'update/:id', async (ctx) => {
     if (dentist.university !== ctx.request.body.university) {
         dentist.university = ctx.request.body.university
     }
+    if (dentist.password !== ctx.request.body.password) {
+        dentist.password = ctx.request.body.password;
+    }
 
     await dentist.save({ fields: PERMITTED_FIELDS });
-    ctx.redirect(ctx.router.url('dentists'));
+    ctx.redirect(ctx.router.url('dentist', ctx.state.currentDentist.id));
 });
 
 router.get('dentist-delete', '/delete/:id', (ctx) => {
@@ -127,7 +132,8 @@ router.get('dentist-delete', '/delete/:id', (ctx) => {
 router.post('dentist-delete-database', 'delete/:id', async (ctx) => {
     const {dentist} = ctx.state;
     await dentist.destroy();
-    ctx.redirect(ctx.router.url('dentists'));
+    ctx.session.currentDentistId = null;
+    ctx.redirect('/');  
 });
 
 module.exports = router;

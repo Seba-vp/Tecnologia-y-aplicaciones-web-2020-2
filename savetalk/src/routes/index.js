@@ -3,7 +3,7 @@ const pkg = require('../../package.json');
 
 const router = new KoaRouter();
 
-router.get('/', async (ctx) => {
+router.get('indexAfterRegistration', '/', async (ctx) => {
   await ctx.render('index', {
     indexPath:ctx.router.url('index'),
     patientsPath: ctx.router.url('patients'),

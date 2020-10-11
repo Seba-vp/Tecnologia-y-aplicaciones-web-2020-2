@@ -86,7 +86,7 @@ router.post('pains-create', '/:id', async (ctx) => {
     const pain = ctx.orm.pain.build(attributes);   //Lo creamos
     try {
         await pain.save({ fields: PERMITTED_FIELDS });          //Lo insertamos en la base de datos
-        ctx.redirect(ctx.router.url('patients'))
+        ctx.redirect(ctx.router.url('patient', ctx.state.currentPatient.id));
     } catch (error) {
         await ctx.render('pains/new', {
             pain,

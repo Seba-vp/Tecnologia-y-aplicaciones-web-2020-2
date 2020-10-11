@@ -11,6 +11,26 @@
 
   <body>
     <header>
+      <div id="user-bar">
+        <% if (locals.currentPatient) { %>
+          <p>Estas conectado como PACIENTEcon el mail: <%= currentPatient.email %></p>
+          <p>Estas conectado como PACIENTE con el nombre: <%= currentPatient.name %></p>
+          <form action="<%= destroyPatientSessionPath %>" method="post">
+            <input type="hidden" name="_method" value="delete" />
+            <input type="submit" value="Cerrar Sesión" />
+          </form>
+        <% } else if (locals.currentDentist) { %>
+            <p>Estas conectado como DENTISTA con el email: <%= currentDentist.mail %></p>
+            <p>Estas conectado como DENTISTA con el nombre: <%= currentDentist.name %></p>
+            <form action="<%= destroyDentistSessionPath %>" method="post">
+              <input type="hidden" name="_method" value="delete" />
+              <input type="submit" value="Cerrar Sesión" />
+            </form>
+        <% } else { %>
+            <p>NO ESTAS CONECTADO</p>
+            <p><a href="<%= wantToConnectSessionPath %>">HAZ CLICK AQUI SI QUIERES CONECTARTE</a></p>
+        <% } %>
+      </div>
     </header>
     <%- body %>
     <script src="<%= assetPath('app.js') %>"></script>
