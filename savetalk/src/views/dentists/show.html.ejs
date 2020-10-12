@@ -18,20 +18,32 @@
 <p>Año de la carrera: <%= dentist.year %> </p>
 </div>
 
-<% dates.forEach( date => { %>
+<% infoToSend.forEach( info => { %>
     <div class="caja2">
 
-        <% if (date.state === 1) { %>
+        <% if (info.date.state === 1) { %>
 
             <h2>Cita confirmada!</h2>
-            <p>Cita con el id: <%= date.id %></p>
-            <form action="<%= doneDatePath(date.id) %>" method="post">
+            <p>Cita con el id: <%= info.date.id %></p>
+            <p>Cita con el paciente: <%= info.patient.name %> </p>
+            <p>Nombre del Dolor: <%= info.pain.name %> </p>
+            <p>Descripción del Dolor: <%= info.pain.description %> </p>
+            <form action="<%= doneDatePath(info.date.id) %>" method="post">
                 <input type="hidden" name="_method" value="patch" />
                 <input type="submit" value="Cita realizada con éxito" />
             </form>
-            <p><a href=#>Ver información</a></p>
         
-        <% }%>
+        <% } else if (info.date.state === 2) { %>
+
+            <h2>Cita Ya fue llevada a cabo!</h2>
+            <p>Cita con el id: <%= info.date.id %></p>
+            <p>Cita con el paciente: <%= info.patient.name %> </p>
+            <p>Nombre del Dolor: <%= info.pain.name %> </p>
+            <p>Descripción del Dolor: <%= info.pain.description %> </p>
+            
+            <p>Este fue tu feedback: (implementación futuro)</p>
+
+        <% } %>
 
     </div>
 <% }) %>

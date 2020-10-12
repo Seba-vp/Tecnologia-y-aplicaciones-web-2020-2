@@ -18,5 +18,10 @@
 <p><strong>Categoría del dolor: </strong> <%= pain.category%> </p>
 </div>
 <div class="caja2">
-    <a href="<%= dateNewPath(dentist.id, pain.id) %>">Postular a este dolor</a>
+
+    <% if (dentistAlreadyApplied.check === true) { %>
+        <p>Ya postulaste a este dolor!</p>
+    <% } else { %>
+        <a href="<%= dateNewPath(dentist.id, pain.id) %>">Postular a este dolor</a>
+    <% }%>
 </div>

@@ -13,7 +13,7 @@
 </div>
     
 
-<% pains.forEach( pain => { %>
+<% painsToSend.forEach( pain => { %>
     <div class="caja2"> 
         <h2><%= pain.name %></h2>
         <p><a href="<%= painPath(pain.id, dentist.id) %>">Ver más</a> </p>
