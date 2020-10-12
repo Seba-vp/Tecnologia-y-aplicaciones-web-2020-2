@@ -61,11 +61,22 @@ router.post('dentists-create', '/', async (ctx) => {
 
 router.get('dentist', '/:id', async (ctx) => {
     const {dentist} = ctx.state;
-    dates = await dentist.getDates();    
+    dates = await dentist.getDates();  
+    infoToSend = []; 
+    for (const date of dates) {
+        painAssociatedWithTheDate = await date.getPain();
+        patientAssociatedWithTheDate = await painAssociatedWithTheDate.getPatient();
+        newDate = {
+            date,
+            pain: painAssociatedWithTheDate,
+            patient: patientAssociatedWithTheDate
+        };
+        infoToSend.push(newDate);
+    }
 
     return ctx.render('dentists/show', {
         dentist,
-        dates,
+        infoToSend,
         seePainsPath: id => ctx.router.url('pains', id),
         updateDentistPath: id => ctx.router.url('dentist-update', id),
         deleteDentistPath: id => ctx.router.url('dentist-delete', id),

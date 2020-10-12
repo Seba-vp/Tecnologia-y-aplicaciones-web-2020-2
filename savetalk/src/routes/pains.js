@@ -38,9 +38,29 @@ router.param('dentistid', async (id, ctx, next) => {
 
 router.get('pains', '/:dentistid', async (ctx) => {
     const {dentist} = ctx.state;
-    const pains = await ctx.orm.pain.findAll();
+    const pains = await ctx.orm.pain.findAll({ include: ctx.orm.date });
+
+    let painsToSend = [];
+
+    pains.forEach(pain => {
+        let painHasAConfirmDate = false;
+
+        pain.dates.forEach(date => {
+
+            if (date.state===1 || date.state===2) {
+                painHasAConfirmDate = true;
+            }
+
+        });
+
+        if (painHasAConfirmDate === false) {
+            painsToSend.push(pain);
+        }
+
+    });
+
     await ctx.render('pains/index', {
-        pains,
+        painsToSend,
         dentist,
         painPath: (idpain, iddentist) => ctx.router.url('dentistPain', idpain, iddentist),
     });
@@ -49,16 +69,50 @@ router.get('pains', '/:dentistid', async (ctx) => {
 router.get('dentistPain', 'dentistpain/:idpain/:dentistid', async (ctx) => {
     const {pain} = ctx.state;
     const {dentist} = ctx.state;
+    let dentistAlreadyAppliedToThePain = false;
+
+    painDates = await pain.getDates();
+
+    for (const date of painDates) {
+        dentistToCompare =  await date.getDentist();
+        if (dentist.id === dentistToCompare.id) {
+            dentistAlreadyAppliedToThePain = true;
+        }
+    }
+
+    dentistAlreadyApplied = {
+        check: dentistAlreadyAppliedToThePain
+    };
+
     return ctx.render('pains/show', {
         pain,
         dentist,
         patient: await pain.getPatient(),
+        dentistAlreadyApplied,
         dateNewPath: (dentistid, painid) => ctx.router.url('dates-new', dentistid, painid),
     });
 });
 
 router.get('patientPain', 'patientpain/:idpain', async (ctx) => {
     const {pain} = ctx.state;
+    painDates = await pain.getDates();
+    painAlreadyHasAConfirmDate = false;
+    let definitiveDate = null;
+
+    for (const date of painDates){
+        if (date.state === 1 || date.state === 2) {
+            painAlreadyHasAConfirmDate = true;
+            definitiveDate = date;
+            return ctx.render('pains/patientShow', {
+                pain,
+                patient: await pain.getPatient(),
+                dates: await pain.getDates(),
+                specificDatePath: (dateid) => ctx.router.url('date', dateid),
+                definitiveDate
+            });
+        }
+    }
+
     return ctx.render('pains/patientShow', {
         pain,
         patient: await pain.getPatient(),

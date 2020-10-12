@@ -20,16 +20,29 @@
 <p><strong>Categoría del dolor: </strong> <%= pain.category%> </p>
 </div>
 
-<div class="caja2">
-    <h2><%= dates.length %> Potenciales citas disponibles: </h2>
-    <% if (dates.length){ %>
-        <ul>
-            <% dates.forEach((date) => { %>
-                <li>
-                    <h4><%= date.schedule %></h4>
-                    <a href="<%= specificDatePath(date.id) %>">Ver más info de esta cita</a>
-                </li>
-            <% });%>
-        </ul>
-    <% } %>
-</div>
+<% if (locals.definitiveDate) { %>
+
+    <div class="caja2">
+        <h2> Cita Elegida: </h2>
+        <h4> <%= definitiveDate.schedule %> </h4>
+        <a href="<%= specificDatePath(definitiveDate.id) %>">Ver más info de esta cita</a>
+    </div>
+
+<% } else { %>
+
+    <div class="caja2">
+        <h2><%= dates.length %> Potenciales citas disponibles: </h2>
+        <% if (dates.length){ %>
+            <ul>
+                <% dates.forEach((date) => { %>
+                    <li>
+                        <h4><%= date.schedule %></h4>
+                        <a href="<%= specificDatePath(date.id) %>">Ver más info de esta cita</a>
+                    </li>
+                <% });%>
+            </ul>
+        <% } %>
+    </div>
+
+<% } %>
+
