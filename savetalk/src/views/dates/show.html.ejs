@@ -10,14 +10,43 @@
         
 </div>
 
-
-
-
 <div class="caja2">
 <h2>Información de la cita ofrecida: </h2>
 <p><strong>Horario:</strong>  <%= date.schedule %></p>
 <p><strong>Precio:</strong>  <%= date.price %></p>
 </div>
+
+
+
+<% if (date.state === 1) { %>
+    <p><strong>Estado:</strong> Cita Confirmada </p>
+<% } else if (date.state === -1) { %>
+    <p><strong>Estado:</strong> Cita Rechazada </p>
+<% } else if (date.state === 2) {  %>
+    <p><strong>Estado:</strong> Cita Realizada </p>
+    <div>
+        <form action=# method="post">
+            <input type="hidden" name="_method" value="patch" />
+            <input type="submit" value="Dar feedback" />
+        </form>
+    </div>
+<% } else { %>
+    <div>
+        <form action="<%= confirmDatePath(date.id) %>" method="post">
+            <input type="hidden" name="_method" value="patch" />
+            <input type="submit" value="Confirmar Cita" />
+        </form>
+    </div>
+    
+    <div>
+        <form action="<%= rejectDatePath(date.id) %>" method="post">
+            <input type="hidden" name="_method" value="patch" />
+            <input type="submit" value="Rechazar Cita" />
+        </form>
+    </div>
+<% } %>
+
+
 
 <div class="pie">
     <p>Made with &#10084;&#65039; by Rodolfo Mendoza Jorge Toro & Sebastian Villablanca.</p>

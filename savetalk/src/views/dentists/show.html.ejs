@@ -17,6 +17,25 @@
 <p>Universidad: <%= dentist.university %> </p>
 <p>Año de la carrera: <%= dentist.year %> </p>
 </div>
+
+<% dates.forEach( date => { %>
+    <div class="caja2">
+
+        <% if (date.state === 1) { %>
+
+            <h2>Cita confirmada!</h2>
+            <p>Cita con el id: <%= date.id %></p>
+            <form action="<%= doneDatePath(date.id) %>" method="post">
+                <input type="hidden" name="_method" value="patch" />
+                <input type="submit" value="Cita realizada con éxito" />
+            </form>
+            <p><a href=#>Ver información</a></p>
+        
+        <% }%>
+
+    </div>
+<% }) %>
+
 <div class="caja2">
 <p><a href="<%= seePainsPath(dentist.id) %>" > Ver Dolores disponibles </a></p>
 <br>

@@ -59,13 +59,17 @@ router.post('dentists-create', '/', async (ctx) => {
     }
 });
 
-router.get('dentist', '/:id', (ctx) => {
+router.get('dentist', '/:id', async (ctx) => {
     const {dentist} = ctx.state;
+    dates = await dentist.getDates();    
+
     return ctx.render('dentists/show', {
         dentist,
+        dates,
         seePainsPath: id => ctx.router.url('pains', id),
         updateDentistPath: id => ctx.router.url('dentist-update', id),
-        deleteDentistPath: id => ctx.router.url('dentist-delete', id)
+        deleteDentistPath: id => ctx.router.url('dentist-delete', id),
+        doneDatePath: dateId => ctx.router.url('date-done', dateId)
     });
 });
 

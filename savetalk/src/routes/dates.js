@@ -42,7 +42,9 @@ router.get('date', '/:id', async (ctx) => {
     const dentist = await ctx.orm.dentist.findByPk(date.dentistId);
     return ctx.render('dates/show',{
         dentist,
-        date
+        date,
+        confirmDatePath: (dateId) => ctx.router.url('date-confirm', dateId),
+        rejectDatePath: (dateId) => ctx.router.url('date-reject', dateId)
     });
 })
 
@@ -80,6 +82,27 @@ router.post('dates-create', '/:dentistid/:painid', async (ctx) => {
         });
     }
 });
+
+router.patch('date-confirm', '/dateconfirm/:id', async (ctx) => {
+    const {date} = ctx.state;
+    date.state = 1;
+    await date.save({ fields: PERMITTED_FIELDS });
+    ctx.redirect(ctx.router.url('patient', ctx.state.currentPatient.id));
+})
+
+router.patch('date-reject', '/datereject/:id', async (ctx) => {
+    const {date} = ctx.state;
+    date.state = -1;
+    await date.save({ fields: PERMITTED_FIELDS });
+    ctx.redirect(ctx.router.url('patient', ctx.state.currentPatient.id));
+})
+
+router.patch('date-done', '/datedone/:id', async (ctx) => {
+    const {date} = ctx.state;
+    date.state = 2;
+    await date.save({ fields: PERMITTED_FIELDS });
+    ctx.redirect(ctx.router.url('dentist', ctx.state.currentDentist.id));
+})
 
 
 module.exports = router;
