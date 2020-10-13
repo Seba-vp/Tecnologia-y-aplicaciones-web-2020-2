@@ -1,0 +1,29 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="src/assets/styles/plantilla1.scss">
+</head>
+
+<body>
+
+
+    <div class="header">
+        <h1>Chats</h1>
+    </div>
+
+
+    <% chatsToSend.forEach( chat => { %>
+    <div class="caja2">
+        <h2> id paciente: <%= chat.patientId %></h2>
+        <h2> id dentista: <%= chat.dentistId %></h2>
+        <p> block: <%= chat.block %></p>
+    </div>
+    <% }) %>
+
+
+    <div class="pie">
+        <p>Made with &#10084;&#65039; by Rodolfo Mendoza Jorge Toro & Sebastian Villablanca.</p>
+    </div>
+</body>
+
+</html>

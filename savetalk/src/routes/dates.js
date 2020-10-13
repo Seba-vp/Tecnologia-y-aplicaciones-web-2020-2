@@ -92,15 +92,23 @@ router.patch('date-confirm', '/dateconfirm/:id', async (ctx) => {
     const { date } = ctx.state;
     pain = await date.getPain();
     patient = await pain.getPatient();
-
+    chats = await patient.getChats();
     // manejar el caso de que ya tengan citas 
-    const attributes = {
-        dentistId: date.dentistId,
-        patientId: patient.id,
-        block: false
+    createchat = true;
+    for (const element of chats) {
+        if (element.patientId === patient.id && element.dentistId === date.dentistId) {
+            createchat = false;
+        }
     }
-    const chat = ctx.orm.chat.build(attributes);
-    await chat.save({ fields: PERMITTED_FIELDS_CHAT });
+    if (createchat === true) {
+        const attributes = {
+            dentistId: date.dentistId,
+            patientId: patient.id,
+            block: false
+        }
+        const chat = ctx.orm.chat.build(attributes);
+        await chat.save({ fields: PERMITTED_FIELDS_CHAT });
+    }
 
     date.state = 1;
     await date.save({ fields: PERMITTED_FIELDS });

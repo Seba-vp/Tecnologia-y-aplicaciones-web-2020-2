@@ -30,17 +30,21 @@ router.get('chats', '/', async (ctx) => {
     const { dentist } = ctx.state;
     const chats = await ctx.orm.chat.findAll();
 
+    idpatient = ctx.state.currentPatient.id;
+
     let chatsToSend = [];
 
     chats.forEach(chat => {
-        if (chat.block === false) {
+        if (chat.patientId === idpatient) {
             chatsToSend.push(chat);
         }
     });
     await ctx.render('chats/indexdentist', {
         chatsToSend,
         dentist,
-        chatsPath: id => ctx.router.url('chat', id)
+        chatsPath: id => ctx.router.url('chat', id),
+        updateChatPath: id => ctx.router.url('chat-update', id),
+        deleteChatPath: id => ctx.router.url('chat-delete', id),
         // chatPath: (idchat, iddentist) => ctx.router.url('dentistChat', idchat, iddentist),
     });
 });
@@ -67,6 +71,31 @@ router.get('chats-dentist', '/:dentistid', async (ctx) => {
         updateChatPath: id => ctx.router.url('chat-update', id),
         deleteChatPath: id => ctx.router.url('chat-delete', id),
         chatsPath: id => ctx.router.url('chat', id)
+        // chatPath: (idchat, iddentist) => ctx.router.url('dentistChat', idchat, iddentist),
+    });
+});
+
+router.get('chats-patient', '/:patientid', async (ctx) => {
+    const { patient } = ctx.state;
+    const { chat } = ctx.state;
+    const chats = await ctx.orm.chat.findAll();
+
+    idpatient = ctx.state.currentPatient.id;
+
+    let chatsToSend = [];
+
+    chats.forEach(element => {
+        if (element.patientId === idpatient) {
+            chatsToSend.push(element);
+        }
+    });
+    await ctx.render('chats/indexpatient', {
+        chatsToSend,
+        patient,
+        chat,
+        // updateChatPath: id => ctx.router.url('chat-update', id),
+        // deleteChatPath: id => ctx.router.url('chat-delete', id),
+        // chatsPath: id => ctx.router.url('chat', id)
         // chatPath: (idchat, iddentist) => ctx.router.url('dentistChat', idchat, iddentist),
     });
 });
