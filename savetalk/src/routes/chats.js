@@ -3,8 +3,8 @@ const KoaRouter = require('koa-router');
 const router = new KoaRouter();
 
 const PERMITED_FIELDS = [
-    'idDentist',
-    'idPacient',
+    'dentistId',
+    'patientId',
     'block'
 ];
 
@@ -22,11 +22,52 @@ router.param('id', async (id, ctx, next) => {
 });
 
 router.get('chats', '/', async (ctx) => {
+    //const chats = await ctx.orm.chat.findAll();
+    //await ctx.render('chats/index', {
+    //    chats,
+    //    newChatsPath: ctx.router.url('chats-new'),
+    //});
+    const { dentist } = ctx.state;
     const chats = await ctx.orm.chat.findAll();
-    await ctx.render('chats/index', {
-        chats,
-        chatsPath: id => ctx.router.url('chat', id),
-        newChatsPath: ctx.router.url('chats-new'),
+
+    let chatsToSend = [];
+
+    chats.forEach(chat => {
+        if (chat.block === false) {
+            chatsToSend.push(chat);
+        }
+    });
+    await ctx.render('chats/indexdentist', {
+        chatsToSend,
+        dentist,
+        chatsPath: id => ctx.router.url('chat', id)
+        // chatPath: (idchat, iddentist) => ctx.router.url('dentistChat', idchat, iddentist),
+    });
+});
+
+
+router.get('chats-dentist', '/:dentistid', async (ctx) => {
+    const { dentist } = ctx.state;
+    const { chat } = ctx.state;
+    const chats = await ctx.orm.chat.findAll();
+
+    iddentist = ctx.state.currentDentist.id;
+
+    let chatsToSend = [];
+
+    chats.forEach(element => {
+        if (element.dentistId === iddentist) {
+            chatsToSend.push(element);
+        }
+    });
+    await ctx.render('chats/indexdentist', {
+        chatsToSend,
+        dentist,
+        chat,
+        updateChatPath: id => ctx.router.url('chat-update', id),
+        deleteChatPath: id => ctx.router.url('chat-delete', id),
+        chatsPath: id => ctx.router.url('chat', id)
+        // chatPath: (idchat, iddentist) => ctx.router.url('dentistChat', idchat, iddentist),
     });
 });
 
@@ -40,7 +81,7 @@ router.get('chats-new', '/new', (ctx) => {
 
 router.post('chats-create', '/', async (ctx) => {
     const chat = ctx.orm.chat.build(ctx.request.body);
-    chat.block = true
+    chat.block = false
     try {
         await chat.save({ fields: PERMITED_FIELDS });
         ctx.redirect(ctx.router.url('chats'));
@@ -77,7 +118,7 @@ router.post('chat-update-database', 'update/:id', async (ctx) => {
             chat.block = ctx.request.body.block;
         }
         await chat.save({ fields: PERMITED_FIELDS_UPDATE });
-        ctx.redirect(ctx.router.url('chats'));
+        ctx.redirect(ctx.router.url('dentist', ctx.state.currentDentist.id));
     } catch (error) {
         await ctx.render('chats/update', {
             chat,

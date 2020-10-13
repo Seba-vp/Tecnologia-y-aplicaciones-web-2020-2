@@ -37,6 +37,7 @@
     "nodemon": "^2.0.4",
     "react-test-renderer": "^16.13.1",
     "sass-loader": "^10.0.2",
+    "sequelize-cli": "^6.2.0",
     "style-loader": "^1.2.1",
     "supertest": "^4.0.2",
     "webpack": "^4.44.1",
@@ -63,8 +64,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.12.21",
-    "sequelize": "^6.3.5",
-    "sequelize-cli": "^6.2.0"
+    "sequelize": "^6.3.5"
   },
   "engines": {
     "node": "10.x || 12.x",

@@ -6,7 +6,9 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER,
     },
-
+    chatId: {
+      type: Sequelize.INTEGER,
+    },
     idSend: {
       type: Sequelize.INTEGER,
     },
