@@ -18,6 +18,7 @@
         <p>Universidad: <%= dentist.university %> </p>
         <p>Año de la carrera: <%= dentist.year %> </p>
         <p>Cantidad de contactos: <%= chats.length %> </p>
+        <p>id dentista: <%= dentist.id %> </p>
     </div>
 
     <% infoToSend.forEach( info => { %>
@@ -52,6 +53,8 @@
 
     <div class="caja2">
         <p><a href="<%= seePainsPath(dentist.id) %>"> Ver Dolores disponibles </a></p>
+        <br>
+        <p><a href="<%= messagesPath(dentist.id) %>"> Ver mensajes </a></p>
         <br>
         <p><a href="<%= seeChatsPath(dentist.id) %>"> Ver contactos </a></p>
         <br>

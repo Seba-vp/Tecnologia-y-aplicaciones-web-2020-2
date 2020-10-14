@@ -26,6 +26,32 @@ router.get('messages', '/', async (ctx) => {
     });
 });
 
+router.get('messagesdentist', '/:dentistid', async (ctx) => {
+    const { dentist } = ctx.state;
+    const messages = await ctx.orm.message.findAll();
+    let messagesDentistSent = [];
+    let messagesDentistReceive = [];
+    iddentist = ctx.state.currentDentist.id;
+
+    messages.forEach(message => {
+        if (message.idSend === iddentist && message.rolSend === 'Dentist') {
+            messagesDentistSent.push(message)
+        }
+        if (message.idReceive === iddentist && message.rolReceive === 'Dentist') {
+            messagesDentistReceive.push(message)
+        }
+    })
+
+    await ctx.render('messages/index', {
+        dentist,
+        messages,
+        messagesDentistReceive,
+        messagesDentistSent,
+        messagePath: id => ctx.router.url('message', id),
+        newMessagePath: ctx.router.url('messages-new')
+    });
+});
+
 router.get('messages-new', '/new', (ctx) => {
     const message = ctx.orm.message.build();
     return ctx.render('messages/new', {

@@ -80,6 +80,7 @@ router.get('dentist', '/:id', async (ctx) => {
         infoToSend,
         seePainsPath: id => ctx.router.url('pains', id),
         seeChatsPath: id => ctx.router.url('chats-dentist', id),
+        messagesPath: id => ctx.router.url('messagesdentist', id),
         updateDentistPath: id => ctx.router.url('dentist-update', id),
         deleteDentistPath: id => ctx.router.url('dentist-delete', id),
         doneDatePath: dateId => ctx.router.url('date-done', dateId)
