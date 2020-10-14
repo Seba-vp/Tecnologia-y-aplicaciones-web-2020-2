@@ -6,12 +6,21 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER,
     },
-
-    idPacient: {
+    patientId: {
       type: Sequelize.INTEGER,
+      references: {
+        model: 'patients',
+        key: 'id'
+      },
+      onDelete: 'CASCADE'
     },
-    idDentist: {
+    dentistId: {
       type: Sequelize.INTEGER,
+      references: {
+        model: 'dentists',
+        key: 'id'
+      },
+      onDelete: 'CASCADE'
     },
     block: {
       type: Sequelize.BOOLEAN,

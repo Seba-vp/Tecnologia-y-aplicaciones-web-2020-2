@@ -1,13 +1,13 @@
 module.exports = (sequelize, DataTypes) => {
   const chat = sequelize.define('chat', {
-    idPacient: {
+    patientId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notEmpty: true
       },
     },
-    idDentist: {
+    dentistId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
@@ -23,8 +23,10 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
 
-  chat.associate = function associate() {
+  chat.associate = function associate(models) {
     // associations can be defined here. This method receives a models parameter.
+    chat.belongsTo(models.dentist);
+    chat.belongsTo(models.patient);
   };
 
   return chat;

@@ -11,35 +11,6 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-
-    const chatsArray = [];
-
-    chatsArray.push({
-      idPacient: 1,
-      idDentist: 1,
-      block: false,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    });
-
-    chatsArray.push({
-      idPacient: 1,
-      idDentist: 2,
-      block: false,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    });
-
-    chatsArray.push({
-      idPacient: 1,
-      idDentist: 3,
-      block: false,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    });
-
-    return queryInterface.bulkInsert('chats', chatsArray);
-
   },
 
   down: async (queryInterface, Sequelize) => {

@@ -7,6 +7,13 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true
       },
     },
+    chatId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      },
+    },
     idReceive: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -44,8 +51,11 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
 
-  message.associate = function associate() {
+  message.associate = function associate(models) {
     // associations can be defined here. This method receives a models parameter.
+    // message.belongsTo(models.dentist);
+    // message.belongsTo(models.patient);
+    message.belongsTo(models.chat);
   };
 
   return message;

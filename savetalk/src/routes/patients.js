@@ -35,7 +35,7 @@ router.get('patients', '/', async (ctx) => {
 
 router.get('patients-new', '/new', (ctx) => {
     const patient = ctx.orm.patient.build();
-    return ctx.render('patients/new',{
+    return ctx.render('patients/new', {
         patient,
         createPatientPath: ctx.router.url('patients-create')
     });
@@ -58,11 +58,14 @@ router.post('patients-create', '/', async (ctx) => {
 
 
 router.get('patient', '/:id', async (ctx) => {
-    const {patient} = ctx.state;
+    const { patient } = ctx.state;
+    chats = await patient.getChats();
     return ctx.render('patients/show', {
         patient,
+        chats,
         pains: await patient.getPains(),
         createPainPath: id => ctx.router.url('pains-new', id),
+        seeChatPath: id => ctx.router.url('chats', id),
         specificPainPath: id => ctx.router.url('patientPain', id),
         updatePatientPath: id => ctx.router.url('patient-update', id),
         deletePatientPath: id => ctx.router.url('patient-delete', id)
@@ -70,7 +73,7 @@ router.get('patient', '/:id', async (ctx) => {
 });
 
 router.get('patient-update', '/update/:id', (ctx) => {
-    const {patient} = ctx.state;
+    const { patient } = ctx.state;
     return ctx.render('patients/update', {
         patient,
         updatePatientPathDataBase: id => ctx.router.url('patient-update-database', id)
@@ -78,7 +81,7 @@ router.get('patient-update', '/update/:id', (ctx) => {
 })
 
 router.post('patient-update-database', 'update/:id', async (ctx) => {
-    const {patient} = ctx.state;
+    const { patient } = ctx.state;
 
     if (patient.name !== ctx.request.body.name) {
         patient.name = ctx.request.body.name;
@@ -116,7 +119,7 @@ router.post('patient-update-database', 'update/:id', async (ctx) => {
 });
 
 router.get('patient-delete', '/delete/:id', (ctx) => {
-    const {patient} = ctx.state;
+    const { patient } = ctx.state;
     return ctx.render('patients/delete', {
         patient,
         deletePatientPathDataBase: id => ctx.router.url('patient-delete-database', id)
@@ -124,7 +127,7 @@ router.get('patient-delete', '/delete/:id', (ctx) => {
 })
 
 router.post('patient-delete-database', 'delete/:id', async (ctx) => {
-    const {patient} = ctx.state;
+    const { patient } = ctx.state;
     await patient.destroy();
     ctx.session.currentPatientId = null;
     ctx.redirect('/');
