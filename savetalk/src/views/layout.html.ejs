@@ -8,32 +8,50 @@
       <link rel="stylesheet" href="<%= assetPath('app.css') %>">
     <% } %>
   </head>
-
+  <main>
   <body>
-    <header>
-      <div id="user-bar">
+<!--     <header> -->
+      <section class="status">
+        <div class="topnav">
         <% if (locals.currentPatient) { %>
-          <p>Estas conectado como PACIENTEcon el mail: <%= currentPatient.email %></p>
-          <p>Estas conectado como PACIENTE con el nombre: <%= currentPatient.name %></p>
-          <form action="<%= destroyPatientSessionPath %>" method="post">
+
+          <a class="noHover">Estas conectado como PACIENTE :   <%= currentPatient.name %>, <%= currentPatient.email %></a>
+       
+          
+          <form  action="<%= destroyPatientSessionPath %>" method="post">
             <input type="hidden" name="_method" value="delete" />
-            <input type="submit" value="Cerrar Sesión" />
+            <input class="topbutton" style="float:right" type="submit" value="Cerrar Sesión" />
           </form>
-        <% } else if (locals.currentDentist) { %>
-            <p>Estas conectado como DENTISTA con el email: <%= currentDentist.mail %></p>
-            <p>Estas conectado como DENTISTA con el nombre: <%= currentDentist.name %></p>
-            <form action="<%= destroyDentistSessionPath %>" method="post">
+        
+          <% } else if (locals.currentDentist) { %>
+            <a class="noHover">Estas conectado como DENTISTA con el email: <%= currentDentist.name %>, <%= currentDentist.mail %></a>
+
+            <form  action="<%= destroyDentistSessionPath %>" method="post">
               <input type="hidden" name="_method" value="delete" />
-              <input type="submit" value="Cerrar Sesión" />
+              <input class="topbutton" style="float:right" type="submit" value="Cerrar Sesión" />
             </form>
         <% } else { %>
-            <p>NO ESTAS CONECTADO</p>
-            <p><a href="<%= wantToConnectSessionPath %>">HAZ CLICK AQUI SI QUIERES CONECTARTE</a></p>
+
+          
+                <a class="noHover">NO ESTAS CONECTADO</a>
+            
+                <a href="<%= wantToConnectSessionPath %>" style="float:right">HAZ CLICK AQUI SI QUIERES CONECTARTE</a>
+              
+      
+
         <% } %>
-      </div>
-    </header>
+         </div>
+
+
+    </section>
+<!--     </header> -->
     <%- body %>
     <script src="<%= assetPath('app.js') %>"></script>
   </body>
+</main>
+
+<div class="footer">
+  <p>Made with &#10084;&#65039; by Rodolfo Mendoza Jorge Toro & Sebastian Villablanca.</p>
+</div>
 
 </html>

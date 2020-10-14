@@ -6,6 +6,7 @@ const router = new KoaRouter();
 
 
 router.post('session-create-patient', '/patientPost', async (ctx) => {
+    const posts = await ctx.orm.post.findAll();
     const { email, password } = ctx.request.body;
     const patient = await ctx.orm.patient.findOne({ where: { email } });
     try {
@@ -15,6 +16,8 @@ router.post('session-create-patient', '/patientPost', async (ctx) => {
           ctx.redirect(ctx.router.url('patient', patient.id));
         } else {
           await ctx.render('session/index', {
+            posts,
+            postPath: id => ctx.router.url('post', id),
             error: 'Usuario y/o contraseña incorrectos',
             patientRegistrationPath: ctx.router.url('patients-new'),
             dentistRegistrationPath: ctx.router.url('dentists-new'),
@@ -26,6 +29,8 @@ router.post('session-create-patient', '/patientPost', async (ctx) => {
         
     } catch (error) {
         await ctx.render('session/index', {
+            posts,
+            postPath: id => ctx.router.url('post', id),
             error: 'Usuario y/o contraseña incorrectos',
             patientRegistrationPath: ctx.router.url('patients-new'),
             dentistRegistrationPath: ctx.router.url('dentists-new'),
@@ -39,6 +44,7 @@ router.post('session-create-patient', '/patientPost', async (ctx) => {
 
 
 router.post('session-create-dentist', 'dentistPost', async (ctx) => {
+    const posts = await ctx.orm.post.findAll();
     const { mail, password } = ctx.request.body;
     const dentist = await ctx.orm.dentist.findOne({ where: { mail } });
     try {
@@ -49,6 +55,8 @@ router.post('session-create-dentist', 'dentistPost', async (ctx) => {
 
         } else {
           await ctx.render('session/index', {
+            posts,
+            postPath: id => ctx.router.url('post', id),
             error: 'Usuario y/o contraseña incorrectos',
             patientRegistrationPath: ctx.router.url('patients-new'),
             dentistRegistrationPath: ctx.router.url('dentists-new'),
@@ -60,6 +68,8 @@ router.post('session-create-dentist', 'dentistPost', async (ctx) => {
         
     } catch (error) {
         await ctx.render('session/index', {
+            posts,
+            postPath: id => ctx.router.url('post', id),
             error: 'Usuario y/o contraseña incorrectos',
             patientRegistrationPath: ctx.router.url('patients-new'),
             dentistRegistrationPath: ctx.router.url('dentists-new'),
