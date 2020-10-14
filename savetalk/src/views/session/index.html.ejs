@@ -1,67 +1,154 @@
-<h1>Bienvenido a Dentilist</h1>
 
-<div >
-    <% if (locals.currentPatient) { %>
-      <p>Estas conectado como PACIENTE con el email: <%= currentPatient.email %></p>
-      <p>Estas conectado como PACIENTE con el nombre: <%= currentPatient.name %></p>
-    <% } else if (locals.currentDentist) { %>
-        <p>Estas conectado como DENTISTA con el email: <%= currentDentist.mail %></p>
-        <p>Estas conectado como DENTISTA con el nombre: <%= currentDentist.name %></p>
-    <% } else { %>
+<html>
+    <head>
+    <link rel="stylesheet" href="src/assets/styles/index.scss">
+    </head>
+    
+<body>
+    
+    <div class="header">
+        <h1>DentList</h1>
+        <p> Bienvenido a DentList, en desarrollo...</p>
+    </div>
 
-        <p> <a href="<%=patientRegistrationPath %>">Registrarse como Paciente</a> </p>
-        <p> <a href="<%=dentistRegistrationPath %>">Registrarse como Dentista</a> </p>
+    <div class="topnav">
+        <a href="#">Link</a>
+        <a href="#">Link</a>
+        <a href="#">Link</a>
+        <a href="#" style="float:right">Link</a>
+    </div>
+
+<div class="row">
+    <div class="leftcolumn" >
+
+
+        <!-- Notificar que estas conectado como algo -->
+        <% if (locals.currentPatient) { %>
+        <p>Estas conectado como PACIENTE con el email: <%= currentPatient.email %></p>
+        <p>Estas conectado como PACIENTE con el nombre: <%= currentPatient.name %></p>
+        <% } else if (locals.currentDentist) { %>
+            <p>Estas conectado como DENTISTA con el email: <%= currentDentist.mail %></p>
+            <p>Estas conectado como DENTISTA con el nombre: <%= currentDentist.name %></p>
+        <% } else { %>
+
+          <!-- Invitar a registrarse -->
+          <div class="card">
+            <h1>Registrarse</h1>
+
+          <div class="button">
+            <a href="<%=patientRegistrationPath %>">Registrarse como Paciente</a>
+          </div>
+          <!--   <form action="<%=patientRegistrationPath %>" method="post">
+                <input type="submit" value="Registrarse como Paciente" />
+              </form>  -->
+        <div class="button">
+            <a href="<%=dentistRegistrationPath %>">Registrarse como Dentista</a>
+        </div>
+        </div>
+         
+        
+          <!-- Login paciente-->
+          <div class="card">
+            <h2>Iniciar sesión como PACIENTE</h2>
+            <form method="post" action="<%= loginPatientPath %>" >
+
+                <% if (locals.error){ %>
+                    <div>
+                        <p>No pudiste iniciar sesión debido a:</p>
+                        <p><%= error %></p>
+                    </div>
+                <% } %>
                 
-        <hr>
-        <h2>Iniciar sesión como PACIENTE</h2>
-        <form method="post" action="<%= loginPatientPath %>" >
-
-            <% if (locals.error){ %>
-                <div>
-                    <p>No pudiste iniciar sesión debido a:</p>
-                    <p><%= error %></p>
+                <table >
+                <tr> 
+                <div class="field">
+                
+                    <td><label for="email">E-mail</label></td>
+               
+               
+                
+                    <td><input type="email" id="email" name="email" value="<%= locals.email %>" /></td> 
                 </div>
-            <% } %>
 
-            <div class="field">
-                <label for="email">E-mail</label>
-                <input type="email" id="email" name="email" value="<%= locals.email %>" />
-            </div>
-            <div class="field">
-                <label for="password">Contraseña</label>
-                <input type="password" id="password" name="password" />
-            </div>
-            
-            <div class="actions">
-                <input type="submit" value="Iniciar sesión paciente" />
-            </div>
-        </form>
-
-        <hr>
-        <h2>Iniciar sesión como DENTISTA</h2>
-        <form method="post" action="<%= loginDentistPath %>" >
-
-            <% if (locals.error){ %>
-                <div>
-                    <p>No pudiste iniciar sesión debido a:</p>
-                    <p><%= error %></p>
+                 </tr>
+                 
+                 <tr> 
+                <div class="field">
+                    <td><label for="password">Contraseña</label></td>
+                    <td><input type="password" id="password" name="password" /></td>
                 </div>
-            <% } %>
+                </tr>
 
-            <div class="field">
-                <label for="mail">E-mail</label>
-                <input type="mail" id="mail" name="mail" value="<%= locals.mail %>" />
-            </div>
-            <div class="field">
-                <label for="password">Contraseña</label>
-                <input type="password" id="password" name="password" />
-            </div>
+                </table>
+                    
+                <div class="actions">
+                    <input type="submit" value="Iniciar sesión paciente" />
+                </div>
+            </form>
+       
+        </div>
+
+
             
-            <div class="actions">
-                <input type="submit" value="Iniciar sesión dentista" />
+            <!-- Login dentista-->
+        <div class="card">
+            <h2>Iniciar sesión como DENTISTA</h2>
+            <form method="post" action="<%= loginDentistPath %>" >
+
+                <% if (locals.error){ %>
+                    <div>
+                        <p>No pudiste iniciar sesión debido a:</p>
+                        <p><%= error %></p>
+                    </div>
+                <% } %>
+
+                <table >
+                <tr> 
+                <div class="field">
+                    <td><label for="mail">E-mail</label></td>
+                    <td><input type="mail" id="mail" name="mail" value="<%= locals.mail %>" /></td>
+                </div>
+                </tr>
+                <tr>
+                <div class="field">
+                    <td><label for="password">Contraseña</label></td>
+                    <td><input type="password" id="password" name="password" /></td>
+                </div>
+                </tr>
+
+                </table>
+                
+                <div class="actions">
+                    <input type="submit" value="Iniciar sesión dentista" />
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+
+    <div class="rightcolumn">
+       
+        <% posts.forEach( post => { %>
+            <div class="card">
+                
+                <h1><%= post.title %> </h1>
+                <p><%= post.description %></p>
+
+            <div class="fakeimg">
+                <img src="<%= post.image %>" alt="<%= post.image %>" style="width: 100%;">
             </div>
-        </form>
+                
+                <a href="<%= postPath(post.id) %>">Ver más</a>
+            </div>
+        <% }) %>
+    </div>
+</div>
         
     <% } %>
 </div>
+</body>
+</html>
+
+
 
