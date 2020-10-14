@@ -11,17 +11,16 @@
         <h1>Chats</h1>
     </div>
 
-    <div class="caja2">
-        <h1>Agregar un contacto </h1>
-        <a href="<%= newChatsPath %>">agregar nuevo contacto</a>
-    </div>
 
-    <% chats.forEach( chat => { %>
+    <% chatsToSend.forEach( chat => { %>
     <div class="caja2">
         <h2> id paciente: <%= chat.patientId %></h2>
-        <p> id dentista: <%= chat.dentistId %></p>
+        <h2> id dentista: <%= chat.dentistId %></h2>
         <p> block: <%= chat.block %></p>
-        <a href="<%= chatsPath(chat.id) %>">Ver conexión</a>
+        <br>
+        <a href="<%= updateChatPath(chat.id) %>"> Modificar conexión </a>
+        <br>
+        <a href="<%= deleteChatPath(chat.id) %>"> Eliminar conexión </a>
     </div>
     <% }) %>
 

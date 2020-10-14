@@ -38,7 +38,7 @@ router.get('dentists', '/', async (ctx) => {
 
 router.get('dentists-new', '/new', (ctx) => {
     const dentist = ctx.orm.dentist.build();
-    return ctx.render('dentists/new',{
+    return ctx.render('dentists/new', {
         dentist,
         createDentistPath: ctx.router.url('dentists-create')
     });
@@ -60,9 +60,10 @@ router.post('dentists-create', '/', async (ctx) => {
 });
 
 router.get('dentist', '/:id', async (ctx) => {
-    const {dentist} = ctx.state;
-    dates = await dentist.getDates();  
-    infoToSend = []; 
+    const { dentist } = ctx.state;
+    dates = await dentist.getDates();
+    chats = await dentist.getChats();
+    infoToSend = [];
     for (const date of dates) {
         painAssociatedWithTheDate = await date.getPain();
         patientAssociatedWithTheDate = await painAssociatedWithTheDate.getPatient();
@@ -73,11 +74,13 @@ router.get('dentist', '/:id', async (ctx) => {
         };
         infoToSend.push(newDate);
     }
-
     return ctx.render('dentists/show', {
         dentist,
+        chats,
         infoToSend,
         seePainsPath: id => ctx.router.url('pains', id),
+        seeChatsPath: id => ctx.router.url('chats-dentist', id),
+        messagesPath: id => ctx.router.url('messagesdentist', id),
         updateDentistPath: id => ctx.router.url('dentist-update', id),
         deleteDentistPath: id => ctx.router.url('dentist-delete', id),
         doneDatePath: dateId => ctx.router.url('date-done', dateId)
@@ -85,7 +88,7 @@ router.get('dentist', '/:id', async (ctx) => {
 });
 
 router.get('dentist-update', '/update/:id', (ctx) => {
-    const {dentist} = ctx.state;
+    const { dentist } = ctx.state;
     return ctx.render('dentists/update', {
         dentist,
         updateDentistPathDataBase: id => ctx.router.url('dentist-update-database', id)
@@ -93,7 +96,7 @@ router.get('dentist-update', '/update/:id', (ctx) => {
 })
 
 router.post('dentist-update-database', 'update/:id', async (ctx) => {
-    const {dentist} = ctx.state;
+    const { dentist } = ctx.state;
 
     if (dentist.name !== ctx.request.body.name) {
         dentist.name = ctx.request.body.name;
@@ -137,7 +140,7 @@ router.post('dentist-update-database', 'update/:id', async (ctx) => {
 });
 
 router.get('dentist-delete', '/delete/:id', (ctx) => {
-    const {dentist} = ctx.state;
+    const { dentist } = ctx.state;
     return ctx.render('dentists/delete', {
         dentist,
         deleteDentistPathDataBase: id => ctx.router.url('dentist-delete-database', id)
@@ -145,10 +148,10 @@ router.get('dentist-delete', '/delete/:id', (ctx) => {
 })
 
 router.post('dentist-delete-database', 'delete/:id', async (ctx) => {
-    const {dentist} = ctx.state;
+    const { dentist } = ctx.state;
     await dentist.destroy();
     ctx.session.currentDentistId = null;
-    ctx.redirect('/');  
+    ctx.redirect('/');
 });
 
 module.exports = router;

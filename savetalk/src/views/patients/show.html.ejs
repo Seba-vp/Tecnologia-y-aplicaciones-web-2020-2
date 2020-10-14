@@ -8,6 +8,7 @@
 <header>
     <h1>Perfil de <%= patient.name %> </h1>
     <h5>Edad: <%= patient.age %> años</h5>
+    <p>Cantidad de contactos: <%= chats.length %> </p>
 </header>
 <div class="topnav">
     <a href="<%= updatePatientPath(patient.id) %>">Modificar Paciente</a>
@@ -41,11 +42,10 @@
 </div>
 <div class="button">
 <a href="<%= deletePatientPath(patient.id) %>" > Borrar Paciente </a>
+<a href="<%= seeChatPath(patient.id) %>"> Ver contactos </a>
 </div>
 </div>
-
-
+ 
 </body>
+
 </html>
-
-
