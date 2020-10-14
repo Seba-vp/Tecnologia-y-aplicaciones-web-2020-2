@@ -10,25 +10,25 @@
   </head>
   <main>
   <body>
-    <header>
+<!--     <header> -->
       <section class="status">
         <div class="topnav">
         <% if (locals.currentPatient) { %>
 
-          <a class="noHover"></a>>Estas conectado como PACIENTEcon el mail: <%= currentPatient.email %></a>
-          <a class="noHover"></a>>Estas conectado como PACIENTE con el nombre: <%= currentPatient.name %></a>
+          <a class="noHover">Estas conectado como PACIENTE :   <%= currentPatient.name %>, <%= currentPatient.email %></a>
+       
           
-          <form action="<%= destroyPatientSessionPath %>" method="post">
+          <form  action="<%= destroyPatientSessionPath %>" method="post">
             <input type="hidden" name="_method" value="delete" />
-            <input style="float:right" type="submit" value="Cerrar Sesión" />
+            <input class="topbutton" style="float:right" type="submit" value="Cerrar Sesión" />
           </form>
         
           <% } else if (locals.currentDentist) { %>
-            <a class="noHover"></a>>Estas conectado como DENTISTA con el email: <%= currentDentist.mail %></a>
-            <a class="noHover"></a>>Estas conectado como DENTISTA con el nombre: <%= currentDentist.name %></a>
-            <form action="<%= destroyDentistSessionPath %>" method="post">
+            <a class="noHover">Estas conectado como DENTISTA con el email: <%= currentDentist.name %>, <%= currentDentist.mail %></a>
+
+            <form  action="<%= destroyDentistSessionPath %>" method="post">
               <input type="hidden" name="_method" value="delete" />
-              <input style="float:right" type="submit" value="Cerrar Sesión" />
+              <input class="topbutton" style="float:right" type="submit" value="Cerrar Sesión" />
             </form>
         <% } else { %>
 
@@ -44,7 +44,7 @@
 
 
     </section>
-    </header>
+<!--     </header> -->
     <%- body %>
     <script src="<%= assetPath('app.js') %>"></script>
   </body>

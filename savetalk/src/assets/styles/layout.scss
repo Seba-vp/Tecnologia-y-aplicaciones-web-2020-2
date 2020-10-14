@@ -9,14 +9,14 @@ body {
 }
 
 /* Header/Blog Title */
-.header {
+header {
   padding: 30px;
   text-align: center;
   background: #0278AE;
   color: white;
 }
 
-.header h1 {
+header h1 {
   font-size: 50px;
 }
 table {
@@ -38,7 +38,7 @@ td {
   margin-bottom: 2%;;
 }
 
-/* Style the topnav links */
+
 .button a {
   /* float: ; */
   display: block;
@@ -54,7 +54,7 @@ td {
   color: black;
 }
 
-
+/* TOP NAV*/
 
 /* Style the top navigation bar */
 .topnav {
@@ -62,7 +62,7 @@ td {
   background-color: #51adcf;
 }
 
-/* Style the topnav links */
+
 .topnav a {
   float: left;
   display: block;
@@ -82,6 +82,10 @@ td {
   pointer-events: none;
 }
 
+.topbutton {
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
 
 /* COLUMNAS */
 /* Left column */
@@ -103,6 +107,12 @@ td {
   background-color: #51adcf;
   width: 100%;
   padding: 20px;
+}
+.card2 {
+  background-color: #dae1e7;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
 }
 
 /* Add a card effect for articles */

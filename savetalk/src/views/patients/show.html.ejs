@@ -1,40 +1,50 @@
 <html>
     <head>
-    <link rel="stylesheet" href="src/assets/styles/plantilla1.scss">
+    <link rel="stylesheet" href="src/assets/styles/index.scss">
     </head>
     
     <body>
     
-<div class="header">
-    <h1>Nombre: <%= patient.name %> </h1>
+<header>
+    <h1>Perfil de <%= patient.name %> </h1>
     <h5>Edad: <%= patient.age %> años</h5>
+</header>
+<div class="topnav">
+    <a href="<%= updatePatientPath(patient.id) %>">Modificar Paciente</a>
+    <a href="<%= deletePatientPath(patient.id) %>">Borrar Paciente</a>
+    <a href="#" style="float:right">Link</a>
 </div>
 
-<div class="caja2">
-    <h2><%= pains.length %> dolores presentados </h2>
+<div class="card    ">
+    <h2>Numero de dolores presentados: <%= pains.length %>  </h2>
     <% if (pains.length){ %>
-        <ul>
+       
             <% pains.forEach((pain) => { %>
-                <li>
+                <div class="card2">
                     <h4><%= pain.name %></h4>
-                    <a href="<%= specificPainPath(pain.id) %>">Ver más info</a>
-                </li>
+                    <div class="button">
+                        <a href="<%= specificPainPath(pain.id) %>">Ver más info</a>
+                    </div>
+                </div>
             <% });%>
-        </ul>
+        
     <% } %>
+    <div class="button">
+    <a href="<%= createPainPath(patient.id) %>" > Crear dolor </a>
+    </div>
 </div>
 
-<div class="caja2">
-<p><a href="<%= createPainPath(patient.id) %>" > Crear dolor </a></p>
-<br>
-<p><a href="<%= updatePatientPath(patient.id) %>" > Modificar Paciente </a></p>
-<br>
-<p><a href="<%= deletePatientPath(patient.id) %>" > Borrar Paciente </a></p>
+<div class="card">
+
+<div class="button">
+<a href="<%= updatePatientPath(patient.id) %>" > Modificar Paciente </a>
+</div>
+<div class="button">
+<a href="<%= deletePatientPath(patient.id) %>" > Borrar Paciente </a>
+</div>
 </div>
 
-<div class="pie">
-    <p>Made with &#10084;&#65039; by Rodolfo Mendoza Jorge Toro & Sebastian Villablanca.</p>
-  </div>
+
 </body>
 </html>
 

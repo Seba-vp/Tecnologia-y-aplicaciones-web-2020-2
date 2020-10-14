@@ -6,10 +6,10 @@
     
 <body>
     
-    <div class="header">
+    <header>
         <h1>DentList</h1>
         <p> Bienvenido a DentList, en desarrollo...</p>
-    </div>
+    </header>
 
     <div class="topnav">
         <a href="#">Link</a>
@@ -24,12 +24,21 @@
 
         <!-- Notificar que estas conectado como algo -->
         <% if (locals.currentPatient) { %>
-        <p>Estas conectado como PACIENTE con el email: <%= currentPatient.email %></p>
-        <p>Estas conectado como PACIENTE con el nombre: <%= currentPatient.name %></p>
+        <div class="card">
+            <h2>Estas conectado como PACIENTE: </h2>
+            <h3><%= currentPatient.email %></h3>
+            <h3><%= currentPatient.name %></h3>
+        </div>
+
         <% } else if (locals.currentDentist) { %>
-            <p>Estas conectado como DENTISTA con el email: <%= currentDentist.mail %></p>
-            <p>Estas conectado como DENTISTA con el nombre: <%= currentDentist.name %></p>
+        <div class="card">
+            <h2>Estas conectado como DENTISTA: </h2>
+            <h3><%= currentDentist.mail %></h3>
+            <h3><%= currentDentist.name %></h3>
+        </div>
+          
         <% } else { %>
+       
 
           <!-- Invitar a registrarse -->
           <div class="card">
@@ -123,12 +132,12 @@
                 </div>
             </form>
         </div>
-
-
+        
+        <% } %>
     </div>
 
+
     <div class="rightcolumn">
-       
         <% posts.forEach( post => { %>
             <div class="card">
                 
@@ -143,9 +152,7 @@
             </div>
         <% }) %>
     </div>
-</div>
-        
-    <% } %>
+
 </div>
 </body>
 </html>
