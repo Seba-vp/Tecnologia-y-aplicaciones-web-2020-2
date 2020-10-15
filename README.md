@@ -26,14 +26,21 @@ Todo implementado.
 ### Cosas implementadas: :white_check_mark: :stuck_out_tongue_closed_eyes: :white_check_mark:
 
  - **FUNCIONALIDADES MINIMAS:**
+
 Sesión de usuarios implementado
+
 Flujo de navegación implementado
+
 Layout inicial implementado
+
 Agregar estatus a dolor implementado
+
 elegir el odontólogo que sanara dolor implementado
+
 Dashboards de pacientes y dentistas implementados
 
  - **BONUS:**
+
 Landing page/Dashboard distinta para pacientes y odontólogos luego de ingresar sesion implementado
 
 Sesión en múltiples dispositivos implementado
