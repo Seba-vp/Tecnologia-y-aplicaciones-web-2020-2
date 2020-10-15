@@ -1,51 +1,54 @@
 <html>
-    <head>
+
+<head>
     <link rel="stylesheet" href="src/assets/styles/index.scss">
-    </head>
-    
-    <body>
-    
-<header>
-    <h1>Perfil de <%= patient.name %> </h1>
-    <h5>Edad: <%= patient.age %> años</h5>
-    <p>Cantidad de contactos: <%= chats.length %> </p>
-</header>
-<div class="topnav">
-    <a href="<%= updatePatientPath(patient.id) %>">Modificar Paciente</a>
-    <a href="<%= deletePatientPath(patient.id) %>">Borrar Paciente</a>
-    <a href="#" style="float:right">Link</a>
-</div>
+</head>
 
-<div class="card    ">
-    <h2>Numero de dolores presentados: <%= pains.length %>  </h2>
-    <% if (pains.length){ %>
-       
-            <% pains.forEach((pain) => { %>
-                <div class="card2">
-                    <h4><%= pain.name %></h4>
-                    <div class="button">
-                        <a href="<%= specificPainPath(pain.id) %>">Ver más info</a>
-                    </div>
-                </div>
-            <% });%>
-        
-    <% } %>
-    <div class="button">
-    <a href="<%= createPainPath(patient.id) %>" > Crear dolor </a>
+<body>
+
+    <header>
+        <h1>Perfil de <%= patient.name %> </h1>
+        <h5>Edad: <%= patient.age %> años</h5>
+        <p>Cantidad de contactos: <%= chats.length %> </p>
+    </header>
+    <div class="topnav">
+        <a href="<%= updatePatientPath(patient.id) %>">Modificar Paciente</a>
+        <a href="<%= deletePatientPath(patient.id) %>">Borrar Paciente</a>
+        <a href="#" style="float:right">Link</a>
     </div>
-</div>
 
-<div class="card">
+    <div class="card    ">
+        <h2>Numero de dolores presentados: <%= pains.length %> </h2>
+        <% if (pains.length){ %>
 
-<div class="button">
-<a href="<%= updatePatientPath(patient.id) %>" > Modificar Paciente </a>
-</div>
-<div class="button">
-<a href="<%= deletePatientPath(patient.id) %>" > Borrar Paciente </a>
-<a href="<%= seeChatPath(patient.id) %>"> Ver contactos </a>
-</div>
-</div>
- 
+        <% pains.forEach((pain) => { %>
+        <div class="card2">
+            <h4><%= pain.name %></h4>
+            <div class="button">
+                <a href="<%= specificPainPath(pain.id) %>">Ver más info</a>
+            </div>
+        </div>
+        <% });%>
+
+        <% } %>
+        <div class="button">
+            <a href="<%= createPainPath(patient.id) %>"> Crear dolor </a>
+        </div>
+    </div>
+
+    <div class="card">
+
+        <div class="button">
+            <a href="<%= messagesPatientPath %>"> Mensajes </a>
+            <a href="<%= createPatientMessagePath %>"> Enviar mensaje </a>
+            <a href="<%= updatePatientPath(patient.id) %>"> Modificar Paciente </a>
+        </div>
+        <div class="button">
+            <a href="<%= deletePatientPath(patient.id) %>"> Borrar Paciente </a>
+            <a href="<%= seeChatPath(patient.id) %>"> Ver contactos </a>
+        </div>
+    </div>
+
 </body>
 
 </html>

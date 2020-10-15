@@ -9,15 +9,27 @@
         </ul>
     </div>
     <% } %>
-
+    <!--
     <div class="field">
         <label for="idSend">Enviado por:</label>
         <input type="text" name="idSend" id="idSend" value="<%= message.idSend %>" />
     </div>
+    -->
+
+    <label for="idReceive">Enviar a:</label>
+    <select name="idReceive" id="idReceive">
+        <optgroup label="Pacientes">
+            <% chatsToSend.forEach((chat) => { %>
+            <option value="<%= chat %>"> <%= chat %> </option>
+            <% });%>
+        </optgroup>
+    </select>
+    <!--
     <div class="field">
         <label for="idReceive">Enviar a:</label>
         <input type="text" name="idReceive" id="idReceive" value="<%= message.idReceive %>" />
     </div>
+    -->
     <div class="field">
         <label for="body">Body</label>
         <input type="text" name="body" id="body" value="<%= message.body %>" />
