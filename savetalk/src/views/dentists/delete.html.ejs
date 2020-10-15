@@ -1,29 +1,30 @@
 <html>
     <head>
-    <link rel="stylesheet" href="src/assets/styles/plantilla1.scss">
+        <link rel="stylesheet" href="src/assets/styles/index.scss">
     </head>
     
-    <body>
-        <div class="header">
-            <h1>Borrar dentista</h1>
-        </div>
+<body>
+    <header>
+        <h1>Borrar dentista</h1>
+    </header>
+
+<div class="topnav">
+    <a href="<%= dentistPath(dentist.id) %>" style="float:right">Volver</a> 
+</div>
         
     
-<div class="caja2">
+<div class="card">
 <form method="post" action="<%= deleteDentistPathDataBase(dentist.id) %>" >
 
     <div>
-        <p><label >Si realmente quiere borrar a <%= dentist.name %>, aprete el boton Borrar</label></p>
+        <p>Si realmente quiere borrar a <%= dentist.name %>, aprete el boton Borrar</p>
     </div>
-    <div>
+    <div class="card2">
         <p><input type="submit" value="Borrar" /> </p>
     </div>
 </form>
 </div>
 
-<div class="pie">
-    <p>Made with &#10084;&#65039; by Rodolfo Mendoza Jorge Toro & Sebastian Villablanca.</p>
-  </div>
 </body>
 </html>
 

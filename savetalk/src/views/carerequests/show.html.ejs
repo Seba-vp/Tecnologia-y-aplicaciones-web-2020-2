@@ -5,22 +5,22 @@
     
     <body>
     
-<div class="header">
+<header>
     <h1> Solicitud de atencion con id:<%= carerequest.id %> </h1>
-</div>
+</header>
 
 
 
 
 
 
-<div class="caja2">
+<div class="card">
 <p>su paciente es: <%= carerequest.idInjury %> </p>
 <p>su precio estimado es: <%= carerequest.price %> </p>
 <p>sus fechas estimadas son: <%= carerequest.datesmeeting %> </p>
 <p>su mensaje es: <%= carerequest.message %> </p>
 </div>
-<div class="caja2">
+<div class="card">
 <a href="<%= updateCarerequestPath(carerequest.id) %>"> Modificar Solicitud </a>
 <br>
 <a href="<%= deleteCarerequestPath(carerequest.id) %>"> Eliminar solicitud </a>

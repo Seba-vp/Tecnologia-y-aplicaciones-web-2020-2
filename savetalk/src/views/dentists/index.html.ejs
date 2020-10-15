@@ -1,7 +1,7 @@
 
 <html>
     <head>
-    <link rel="stylesheet" href="src/assets/styles/plantilla1.scss">
+    <link rel="stylesheet" href="src/assets/styles/index.scss">
     </head>
     
     <body>
@@ -11,7 +11,7 @@
         <h1>Dentistas</h1>
     </div>
     
-<div class="caja2">
+<div class="card">
     <h1>Agregar un Dentista </h1>
    <p> <a href="<%= newDentistPath %>" >Agregar dentista!</a></p>
 </div>
@@ -19,7 +19,7 @@
 
 
 <% dentists.forEach( dentist => { %>
-    <div class="caja2"> <div>
+    <div class="card"> <div>
         <h2><%= dentist.name %></h2>
         <p><%= dentist.city %></p>
         <p><a href="<%= dentistPath(dentist.id) %>">Ver más</a> </p>

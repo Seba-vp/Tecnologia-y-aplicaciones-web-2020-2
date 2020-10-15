@@ -21,10 +21,14 @@ router.param('id', async (id, ctx, next) => {
 
 router.get('messages', '/', async (ctx) => {
     const messages = await ctx.orm.message.findAll();
+    const { dentist } = ctx.state;
     await ctx.render('messages/index', {
         messages,
+        dentist,
+        
         messagePath: id => ctx.router.url('message', id),
-        newMessagePath: ctx.router.url('messages-new')
+        newMessagePath: ctx.router.url('messages-new'),
+        dentistPath: id => ctx.router.url('dentist', id),
     });
 });
 
@@ -117,6 +121,7 @@ router.get('newmessagesdentist', '/new/dentist', async (ctx) => {
 
     await ctx.render('messages/new', {
         dentist,
+        iddentist,
         messages,
         chatsToSend,
         message,
@@ -124,7 +129,10 @@ router.get('newmessagesdentist', '/new/dentist', async (ctx) => {
         messagesSent,
         createMessagePath: ctx.router.url('messages-create-dentist'),
         messagePath: id => ctx.router.url('message', id),
+
+        dentistPath: id => ctx.router.url('dentist', id),
         newMessagePath: ctx.router.url('newmessagesdentist'),
+
     });
 });
 

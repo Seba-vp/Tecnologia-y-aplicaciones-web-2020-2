@@ -1,28 +1,38 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="src/assets/styles/plantilla1.scss">
+    <link rel="stylesheet" href="src/assets/styles/index.scss">
 </head>
 
 <body>
 
-    <div class="header">
+    <header>
         <h1> <%= dentist.name %> </h1>
 
+    </header>
+    <div class="topnav">
+      
+      
+        <a href="<%= seePainsPath(dentist.id) %>"> Ver Dolores disponibles </a>
+        <a href="<%= messagesPath(dentist.id) %>"> Ver mensajes </a>
+        <a href="<%= seeChatsPath(dentist.id) %>"> Ver contactos </a>
+        <a href="<%= updateDentistPath(dentist.id) %>"> Modificar Dentista </a>
+        <a href="<%= deleteDentistPath(dentist.id) %>"> Borrar Dentista </a>
+        <a href="#" style="float:right">Volver</a> 
     </div>
 
 
 
 
-    <div class="caja2">
-        <p>Universidad: <%= dentist.university %> </p>
-        <p>Año de la carrera: <%= dentist.year %> </p>
-        <p>Cantidad de contactos: <%= chats.length %> </p>
-        <p>id dentista: <%= dentist.id %> </p>
+    <div class="card">
+        <h2>Universidad: <%= dentist.university %> </h2>
+        <h2>Año de la carrera: <%= dentist.year %> </h2>
+        <h2>Cantidad de contactos: <%= chats.length %> </h2>
+        <h2>id dentista: <%= dentist.id %> </h2>
     </div>
 
     <% infoToSend.forEach( info => { %>
-    <div class="caja2">
+    <div class="card">
 
         <% if (info.date.state === 1) { %>
 
@@ -48,27 +58,37 @@
 
         <% } %>
 
-    </div>
+        </div>
     <% }) %>
 
-    <div class="caja2">
-        <p><a href="<%= seePainsPath(dentist.id) %>"> Ver Dolores disponibles </a></p>
-        <br>
-        <p><a href="<%= messagesDentistPath %>"> Ver mensajes </a></p>
-        <br>
-        <p><a href="<%= createDentistMessagePath %>"> Enviar mensaje </a></p>
-        <br>
-        <p><a href="<%= seeChatsPath(dentist.id) %>"> Ver contactos </a></p>
-        <br>
-        <p><a href="<%= updateDentistPath(dentist.id) %>"> Modificar Dentista </a></p>
-        <br>
-        <p><a href="<%= deleteDentistPath(dentist.id) %>"> Borrar Dentista </a></p>
+    <div class="card">
+        <div class="button">
+        <a href="<%= seePainsPath(dentist.id) %>"> Ver Dolores disponibles </a>
+    </div>
+    <div class="button">
+        <a href="<%= messagesDentistPath %>"> Ver mensajes </a>
+    </div>
+    <div class="button">
+        <a href="<%= seeChatsPath(dentist.id) %>"> Ver contactos </a>
+      </div>
+   
+    <div class="button">
+        <a href="<%= createDentistMessagePath %>"> Enviar mensaje </a>
+    </div>
+      
+
     </div>
 
-
-    <div class="pie">
-        <p>Made with &#10084;&#65039; by Rodolfo Mendoza Jorge Toro & Sebastian Villablanca.</p>
+    <div class="card">
+    <div class="button">
+        <a href="<%= updateDentistPath(dentist.id) %>"> Modificar Dentista </a>
     </div>
+    <div class="button">
+        <a href="<%= deleteDentistPath(dentist.id) %>"> Borrar Dentista </a>
+    </div>
+    </div>
+    </div>
+
 </body>
 
 </html>

@@ -1,18 +1,28 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="src/assets/styles/plantilla1.scss">
+
+<link rel="stylesheet" href="src/assets/styles/index.scss">
+
 </head>
 
 <body>
 
-    <div class="header">
+    <header>
         <h1>Nuevo Dentista</h1>
+    </header>
+
+    <div class="topnav">
+       
+        <a href="<%= wantToConnectSessionPath %>" style="float:right">Volver</a>
     </div>
 
 
-    <div class="caja2">
-        <form method="post" action="<%= createDentistPath %>">
+
+
+<div class="card">
+<form method="post" action="<%= createDentistPath %>" >
+
 
             <% if (locals.errors){ %>
             <div>
@@ -20,68 +30,91 @@
                 <ul>
                     <% errors.forEach(error => { %>
                     <li><%= error.path %>: <%= error.message %> </li>
-                    <% }); %>
-                </ul>
-            </div>
-            <% } %>
-
-            <div>
-                <label for="name">Nombre</label>
-                <input type="text" name="name" id="name" value="<%= dentist.name %>" />
-            </div>
-            <div>
-                <label for="university">Universidad</label>
-                <input type="text" name="university" id="university" value="<%= dentist.university %>" />
-            </div>
-            <div>
-                <label for="speciality">Especialidad</label>
-                <input type="text" name="speciality" id="speciality" value="<%= dentist.speciality %>" />
-            </div>
-            <div>
-                <label for="year">Año en la universidad</label>
-                <input type="text" name="year" id="year" value="<%= dentist.year %>" />
-            </div>
-            <div>
-                <label for="kind">Voluntario(si / no)</label>
-                <input type="text" name="kind" id="kind" value="<%= dentist.kind %>" />
-            </div>
-            <div>
-                <label for="mail">e-mail</label>
-                <input type="text" name="mail" id="mail" value="<%= dentist.mail %>" />
-            </div>
-            <div>
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" value="<%= dentist.password %>" />
-            </div>
-            <div>
-                <label for="city">Ciudad</label>
-                <input type="text" name="city" id="city" value="<%= dentist.city %>" />
-            </div>
-            <div>
-                <label for="address">Calle</label>
-                <input type="text" name="address" id="address" value="<%= dentist.address %>" />
-            </div>
-            <div>
-                <label for="picture">Foto</label>
-                <input type="text" name="picture" id="picture" value="<%= dentist.picture %>" />
-            </div>
-            <div>
-                <label for="rut">Rut</label>
-                <input type="text" name="rut" id="rut" value="<%= dentist.rut %>" />
-            </div>
-            <div>
-                <label for="phone">Telefono</label>
-                <input type="text" name="phone" id="phone" value="<%= dentist.phone %>" />
-            </div>
-            <div>
-                <input type="submit" value="Crear" />
-            </div>
-        </form>
+                <% }); %>
+            </ul>
+        </div>
+    <% } %>
+    
+    <table>
+    <div>
+    <tr>
+        <td><label for="name" >Nombre</label></td>
+        <td><input type="text" name="name" id="name" value="<%= dentist.name %>" /></td>
+    </tr>
     </div>
-
-    <div class="pie">
-        <p>Made with &#10084;&#65039; by Rodolfo Mendoza Jorge Toro & Sebastian Villablanca.</p>
+    <div>
+    <tr>
+        <td><label for="university" >Universidad</label></td>
+        <td><input type="text" name="university" id="university" value="<%= dentist.university %>" /></td>
+    </tr>
     </div>
+    <div>
+        <tr>
+            <td><label for="speciality" >Especialidad</label></td>
+            <td><input type="text" name="speciality" id="speciality" value="<%= dentist.speciality %>" /></td>
+    </tr>
+    </div>
+    <div>
+        <tr>
+            <td><label for="year" >Año en la universidad</label></td>
+            <td> <input type="text" name="year" id="year" value="<%= dentist.year %>" /></td>
+    </tr>
+    </div>
+    <div><tr>
+        <td> <label for="kind" >Voluntario(si / no)</label></td>
+        <td><input type="text" name="kind" id="kind" value="<%= dentist.kind %>" /></td>
+    </tr>
+    </div>
+    <div>
+        <tr>
+            <td><label for="mail" >e-mail</label></td>
+            <td><input type="text" name="mail" id="mail" value="<%= dentist.mail %>" /></td>
+    </tr>
+    </div>
+    <div>
+        <tr>
+            <td><label for="password" >Password</label></td>
+            <td><input type="password" name="password" id="password" value="<%= dentist.password %>" /></td>
+    </tr>
+    </div>
+    <div>
+        <tr>
+            <td><label for="city" >Ciudad</label></td>
+            <td><input type="text" name="city" id="city" value="<%= dentist.city %>" /></td>
+    </tr>
+    </div>
+    <div>
+        <tr>
+            <td><label for="address" >Calle</label></td>
+            <td><input type="text" name="address" id="address" value="<%= dentist.address %>" /></td>
+    </tr>
+    </div>
+    <div>
+        <tr>
+            <td><label for="picture" >Foto</label></td>
+            <td><input type="text" name="picture" id="picture" value="<%= dentist.picture %>" /></td>
+    </tr>
+    </div>
+    <div>
+        <tr>
+            <td><label for="rut" >Rut</label></td>
+            <td><input type="text" name="rut" id="rut" value="<%= dentist.rut %>" /></td>
+    </tr>
+    </div>
+    <div>
+        <tr>
+            <td><label for="phone" >Telefono</label></td>
+            <td><input type="text" name="phone" id="phone" value="<%= dentist.phone %>" /></td>
+    </tr>
+    </div>
+    </table>
+    <div>
+        <input type="submit" value="Crear" />
+    </div>
+</form>
+</div>
+
+
 </body>
 
 </html>

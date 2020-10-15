@@ -1,6 +1,6 @@
 <form method="post" action="<%= createMessagePath %>">
     <% if (locals.errors){ %>
-    <div>
+    <div class="card2">
         <p>No se pudo crear el mensaje debido a lo siguiente:</p>
         <ul>
             <% errors.forEach(error => { %>
@@ -9,12 +9,11 @@
         </ul>
     </div>
     <% } %>
-    <!--
-    <div class="field">
-        <label for="idSend">Enviado por:</label>
-        <input type="text" name="idSend" id="idSend" value="<%= message.idSend %>" />
-    </div>
-    -->
+
+
+    <table>
+
+
 
     <label for="idReceive">Enviar a:</label>
     <select name="idReceive" id="idReceive">
@@ -26,16 +25,25 @@
     </select>
     <!--
     <div class="field">
-        <label for="idReceive">Enviar a:</label>
-        <input type="text" name="idReceive" id="idReceive" value="<%= message.idReceive %>" />
+        <tr>
+            <td><label for="idReceive">Enviar a:</label></td>
+            <td><input type="text" name="idReceive" id="idReceive" value="<%= message.idReceive %>" /></td>
+     </tr>
     </div>
     -->
     <div class="field">
-        <label for="body">Body</label>
-        <input type="text" name="body" id="body" value="<%= message.body %>" />
+        <tr>
+            <td><label for="body">Body</label></td>
+            <td><input type="text" name="body" id="body" value="<%= message.body %>" /></td>
+        </tr>
     </div>
+    </table>
+
+
+    <div class="card2">
     <div class="actions">
         <input type="submit" value="Enviar mensaje" />
+    </div>
     </div>
 
 </form>
