@@ -9,7 +9,6 @@
 
     <header>
         <h1>Mensajes</h1>
-        <p>Cantidad de mensajes: <%= messages.length %></p>
     </header>
     <div class="topnav">
         <a href="<%= dentistPath(iddentist) %>" style="float:right">Volver</a>
@@ -24,25 +23,12 @@
     </div>
 
 
-    <div class="card">
-        <h2> Todos los mensajes</h2>
-    <% messages.forEach( message => { %>
-
-    <div class="card2">
-        <h3>Mensaje enviado por: <%= message.idSend %></h3>
-        <p>Mensaje recibido por: <%= message.idReceive %></p>
-
-         <div class="button"><a href="<%= messagePath(message.id) %>">leer</a></div>
-
-    </div>
-    <% }) %>
-
-    </div>
 
     <div class="card">
-    <h1>Mensajes enviados <%= messagesDentistSent.length %> </h1>
+    <h1>Mensajes enviados <%= messagesSent.length %> </h1>
 
-    <% messagesDentistSent.forEach( message => { %>
+     <% messagesSent.forEach( message => { %>
+
 
     <div class="card2">
         <h2>Mensaje enviado por: <%= message.idSend %></h2>
@@ -51,11 +37,13 @@
 
     </div>
     <% }) %>
+
     </div>
     
     <div class="card2">
-    <h1>Mensajes recividos <%= messagesDentistReceive.length %> </h1>
-    <% messagesDentistReceive.forEach( message => { %>
+    <h1>Mensajes recibidos<%= messagesReceive.length %> </h1>
+     <% messagesReceive.forEach( message => { %>
+
 
     <div class="card2">
         <h2>Mensaje enviado por: <%= message.idSend %></h2>

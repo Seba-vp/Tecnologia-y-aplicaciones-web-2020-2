@@ -10,19 +10,27 @@
     </div>
     <% } %>
 
+
     <table>
-    <div class="field">
-        <tr>
-        <td><label for="idSend">Enviado por:</label></td>
-        <td><input type="text" name="idSend" id="idSend" value="<%= message.idSend %>" /></td>
-        </tr>
-    </div>
+
+
+
+    <label for="idReceive">Enviar a:</label>
+    <select name="idReceive" id="idReceive">
+        <optgroup label="Pacientes">
+            <% chatsToSend.forEach((chat) => { %>
+            <option value="<%= chat %>"> <%= chat %> </option>
+            <% });%>
+        </optgroup>
+    </select>
+    <!--
     <div class="field">
         <tr>
             <td><label for="idReceive">Enviar a:</label></td>
             <td><input type="text" name="idReceive" id="idReceive" value="<%= message.idReceive %>" /></td>
      </tr>
     </div>
+    -->
     <div class="field">
         <tr>
             <td><label for="body">Body</label></td>
