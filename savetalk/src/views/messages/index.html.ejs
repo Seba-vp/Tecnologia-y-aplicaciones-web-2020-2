@@ -6,52 +6,40 @@
 
 <body>
 
-
     <header>
         <h1>Mensajes</h1>
     </header>
-    <div class="topnav">
-        <a href="<%= dentistPath(iddentist) %>" style="float:right">Volver</a>
-    </div>
-
-
-
 
     <div class="card">
         <h1>Enviar un nuevo mensaje </h1>
         <div class="button"><a href="<%= newMessagePath %>">Enviar un nuevo mensaje</a></div>
     </div>
 
-
-
     <div class="card">
-    <h1>Mensajes enviados <%= messagesSent.length %> </h1>
+        <h1>Mensajes enviados <%= messagesSent.length %> </h1>
 
-     <% messagesSent.forEach( message => { %>
+        <% messagesSent.forEach( message => { %>
 
+        <div class="card2">
+            <h2>Mensaje enviado por: <%= message.idSend %></h2>
+            <p>Mensaje recibido por: <%= message.idReceive %></p>
+            <div class="button"><a href="<%= messagePath(message.id) %>">leer</a></div>
+        </div>
+        <% }) %>
+    </div>
 
     <div class="card2">
-        <h2>Mensaje enviado por: <%= message.idSend %></h2>
-        <p>Mensaje recibido por: <%= message.idReceive %></p>
-        <div class="button"><a href="<%= messagePath(message.id) %>">leer</a></div>
-
-    </div>
-    <% }) %>
-
-    </div>
-    
-    <div class="card2">
-    <h1>Mensajes recibidos<%= messagesReceive.length %> </h1>
-     <% messagesReceive.forEach( message => { %>
+        <h1>Mensajes recibidos<%= messagesReceive.length %> </h1>
+        <% messagesReceive.forEach( message => { %>
 
 
-    <div class="card2">
-        <h2>Mensaje enviado por: <%= message.idSend %></h2>
-        <p>Mensaje recibido por: <%= message.idReceive %></p>
-        <div class="button"><a href="<%= messagePath(message.id) %>">leer</a></div>
+        <div class="card2">
+            <h2>Mensaje enviado por: <%= message.idSend %></h2>
+            <p>Mensaje recibido por: <%= message.idReceive %></p>
+            <div class="button"><a href="<%= messagePath(message.id) %>">leer</a></div>
 
-    </div>
-    <% }) %>
+        </div>
+        <% }) %>
     </div>
 </body>
 
