@@ -1,22 +1,28 @@
 
 <html>
     <head>
-    <link rel="stylesheet" href="src/assets/styles/plantilla1.scss">
+    <link rel="stylesheet" href="src/assets/styles/index.scss">
     </head>
     
 <body>
     
      
-<div class="header">
+<header>
 <h1>Estas modificando el post: <%= post.title %> </h1>
+</header>
+
+
+<div class="topnav">
+
+    <a href="<%= postPath(post.id) %>" style="float:right">Volver</a>
 </div>
 
-<div class="caja2">
+<div class="card">
 
 <form method="post" action="<%= updatePostPathDataBase(post.id) %>" >
 
     <% if (locals.errors){ %>
-        <div>
+        <div class="card2">
             <p>El post no se pudo actualizar debido a los siguientes errores:</p>
             <ul>
                 <% errors.forEach(error => { %>
@@ -26,56 +32,78 @@
         </div>
     <% } %>
 
+    <table>
     <div class="field" >
-        <label for="title">Título </label>
-        <input type="string" name="title" id="title" value="<%= post.title %>"/>
+        <tr>
+        <td><label for="title">Título </label></td>
+        <td><input type="string" name="title" id="title" value="<%= post.title %>"/></td>
+    </tr>
     </div>
 
     <div class="field" >
-        <label for="description">Descripción </label>
-        <textarea rows="4" cols="30" name="description" id="description" ><%= post.description %></textarea>
+        <tr>
+            <td><label for="description">Descripción </label></td>
+            <td><textarea rows="4" cols="30" name="description" id="description" ><%= post.description %></textarea></td>
+    </tr>
     </div>
 
     <div class="field" >
-        <label for="public">Publico objetivo </label>
-        <input type="string" name="public" id="public" value="<%= post.public %>"/>
+        <tr>
+            <td><label for="public">Publico objetivo </label></td>
+            <td><input type="string" name="public" id="public" value="<%= post.public %>"/></td>
+    </tr>
+    </tr>
     </div>
     
     <div class="field" >
-        <label for="city">Comunas objetivo</label>
-        <input type="string" name="city" id="city" value="<%= post.city %>"/>
+        <tr>
+            <td><label for="city">Comunas objetivo</label></td>
+            <td><input type="string" name="city" id="city" value="<%= post.city %>"/></td>
+    </tr>
     </div>
 
     <div class="field" >
-        <label for="coordinator">Coordinador </label>
-        <input type="string" name="coordinator" id="coordinator" value="<%= post.coordinator %>"/>
+        <tr>
+            <td><label for="coordinator">Coordinador </label></td>
+            <td><input type="string" name="coordinator" id="coordinator" value="<%= post.coordinator %>"/></td>
+    </tr>
     </div>
 
     <div class="field" >
-        <label for="email">Email </label>
-        <input type="string" name="email" id="email" value="<%= post.email %>"/>
+        <tr>
+            <td><label for="email">Email </label></td>
+            <td><input type="string" name="email" id="email" value="<%= post.email %>"/></td>
+    </tr>
     </div>
 
     <div class="field" >
-        <label for="location">Ubicación </label>
-        <input type="string" name="location" id="location" value="<%= post.location %>"/>
+        <tr>
+            <td><label for="location">Ubicación </label></td>
+            <td><input type="string" name="location" id="location" value="<%= post.location %>"/></td>
+    </tr>
     </div>
 
     <div class="field" >
-        <label for="image">Imagen </label>
-        <input type="string" name="image" id="image" value="<%= post.image %>"/>
+        <tr>
+            <td><label for="image">Imagen </label></td>
+            <td><input type="string" name="image" id="image" value="<%= post.image %>"/></td>
+    </tr>
     </div>
 
     <div class="field" >
-        <label for="id_user">Id usuario creador </label>
-        <input type="int" name="id_user" id="id_user" value="<%= post.id_user %>"/>
+        <tr>
+            <td><label for="id_user">Id usuario creador </label></td>
+            <td><input type="int" name="id_user" id="id_user" value="<%= post.id_user %>"/></td>
+    </tr>
     </div>
 
     <div class="field" >
-        <label for="interactions">Interacciones (numero) </label>
-        <input type="int" name="interactions" id="interactions" value="<%= post.interactions %>"/>
+        <tr>
+            <td><label for="interactions">Interacciones (numero) </label></td>
+            <td><input type="int" name="interactions" id="interactions" value="<%= post.interactions %>"/></td>
+    </tr>
     </div>
-
+</table>
     <div class="actions" >
         <input type="submit" value="Modificar"/>
     </div>
@@ -83,9 +111,6 @@
 </div>
 
 
-<div class="pie">
-    <p>Made with &#10084;&#65039; by Rodolfo Mendoza Jorge Toro & Sebastian Villablanca.</p>
-  </div>
 </body>
 </html>
 

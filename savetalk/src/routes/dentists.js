@@ -78,6 +78,7 @@ router.get('dentist', '/:id', async (ctx) => {
         dentist,
         chats,
         infoToSend,
+        dentistPath: id => ctx.router.url('dentist', id),
         seePainsPath: id => ctx.router.url('pains', id),
         seeChatsPath: id => ctx.router.url('chats-dentist', id),
         messagesPath: id => ctx.router.url('messagesdentist', id),
@@ -91,6 +92,7 @@ router.get('dentist-update', '/update/:id', (ctx) => {
     const { dentist } = ctx.state;
     return ctx.render('dentists/update', {
         dentist,
+        dentistPath: id => ctx.router.url('dentist', id),
         updateDentistPathDataBase: id => ctx.router.url('dentist-update-database', id)
     });
 })
@@ -143,6 +145,7 @@ router.get('dentist-delete', '/delete/:id', (ctx) => {
     const { dentist } = ctx.state;
     return ctx.render('dentists/delete', {
         dentist,
+        dentistPath: id => ctx.router.url('dentist', id),
         deleteDentistPathDataBase: id => ctx.router.url('dentist-delete-database', id)
     });
 })

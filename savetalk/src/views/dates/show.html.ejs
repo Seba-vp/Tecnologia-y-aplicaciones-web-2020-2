@@ -1,16 +1,23 @@
+
 <html>
     <head>
-    <link rel="stylesheet" href="src/assets/styles/plantilla1.scss">
+    <link rel="stylesheet" href="src/assets/styles/index.scss">
     </head>
     
     <body>
     
-<div class="header">
-    <h1>Cita ofrecida por el odontologo: <%= dentist.name %> </h1>
-        
+<header>
+    <h1>Cita ofrecida por el odontologo: <%= dentist.name %> </h1>    
+</header>
+
+<div class="topnav">
+    <a href="#" style="float:right">No sirve</a>
+   <!--  <a href="<%=  %>" style="float:right">Volver</a>
+
+    specificPainPath(pain.id) -->
 </div>
 
-<div class="caja2">
+<div class="card">
 <h2>Información de la cita ofrecida: </h2>
 <p><strong>Horario:</strong>  <%= date.schedule %></p>
 <p><strong>Precio:</strong>  <%= date.price %></p>
@@ -19,35 +26,42 @@
 
 
 <% if (date.state === 1) { %>
+    <div class="card">
     <p><strong>Estado:</strong> Cita Confirmada </p>
+    </div>
 <% } else if (date.state === -1) { %>
+    <div class="card">
     <p><strong>Estado:</strong> Cita Rechazada </p>
+    </div>
 <% } else if (date.state === 2) {  %>
+    <div class="card">
     <p><strong>Estado:</strong> Cita Realizada </p>
-    <div>
+    <div class="button">
         <a href=#> Dar Feedback(implementación a futuro) </a>
     </div>
+    </div>
 <% } else { %>
-    <div>
+
+    <div class="card">
+    <div class="card2">
         <form action="<%= confirmDatePath(date.id) %>" method="post">
             <input type="hidden" name="_method" value="patch" />
             <input type="submit" value="Confirmar Cita" />
         </form>
     </div>
     
-    <div>
+    <div class="card2">
         <form action="<%= rejectDatePath(date.id) %>" method="post">
             <input type="hidden" name="_method" value="patch" />
             <input type="submit" value="Rechazar Cita" />
         </form>
     </div>
+</div>
 <% } %>
 
 
 
-<div class="pie">
-    <p>Made with &#10084;&#65039; by Rodolfo Mendoza Jorge Toro & Sebastian Villablanca.</p>
-  </div>
+
 </body>
 </html>
 

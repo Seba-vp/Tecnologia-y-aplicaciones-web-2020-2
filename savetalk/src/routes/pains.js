@@ -63,6 +63,7 @@ router.get('pains', '/:dentistid', async (ctx) => {
         painsToSend,
         dentist,
         painPath: (idpain, iddentist) => ctx.router.url('dentistPain', idpain, iddentist),
+        dentistPath: id => ctx.router.url('dentist', id),
     });
 });
 
@@ -90,6 +91,9 @@ router.get('dentistPain', 'dentistpain/:idpain/:dentistid', async (ctx) => {
         patient: await pain.getPatient(),
         dentistAlreadyApplied,
         dateNewPath: (dentistid, painid) => ctx.router.url('dates-new', dentistid, painid),
+        dentistPath: id => ctx.router.url('dentist', id),
+        painPath: (idpain, iddentist) => ctx.router.url('dentistPain', idpain, iddentist),
+        seePainsPath: id => ctx.router.url('pains', id),
     });
 });
 
@@ -127,6 +131,7 @@ router.get('pains-new', '/new/:id', (ctx) => {
     return ctx.render('pains/new',{
         pain,
         patient,
+        patientPath: id => ctx.router.url('patient', id),
         createPainPath: id => ctx.router.url('pains-create', id)
     });
 })

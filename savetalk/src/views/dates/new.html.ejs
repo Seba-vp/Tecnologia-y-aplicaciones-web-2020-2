@@ -1,19 +1,22 @@
 <html>
 <head>
-<link rel="stylesheet" href="src/assets/styles/plantilla1.scss">
+<link rel="stylesheet" href="src/assets/styles/index.scss">
 </head>
 
 <body>
 
-    <div class="header">
+    <header>
         <h1>Odontólogo <%= dentist.name %> creando posible cita</h1>
+    </header>
+    <div class="topnav">
+        <a href="<%= painPath(pain.id, dentist.id) %>" style="float:right">Volver</a>
     </div>
 
-<div class="caja2">
+<div class="card">
 <form method="post" action="<%= createDatePath(dentist.id, pain.id) %>" >
 
     <% if (locals.errors){ %>
-        <div>
+        <div class="card2">
             <p>La Cita no se pudo crear debido a los siguientes errores:</p>
             <ul>
                 <% errors.forEach(error => { %>
@@ -22,16 +25,21 @@
             </ul>
         </div>
     <% } %>
-
+    <table>
     <div>
-        <label for="schedule" >Posibles horarios: </label>
-        <input type="text" name="schedule" id="schedule" value="<%= date.schedule %>" />
+    <tr>
+        <td><label for="schedule" >Posibles horarios: </label></td>
+        <td><input type="text" name="schedule" id="schedule" value="<%= date.schedule %>" /></td>
+    </tr>
     </div>
     <div>
-        <label for="price" >Precio: </label>
-        <input type="text" name="price" id="price" value="<%= date.price %>" />
+    <tr>
+        <td><label for="price" >Precio: </label></td>
+        <td><input type="text" name="price" id="price" value="<%= date.price %>" /></td>
+    </tr>
     </div>
-    <div>
+    </table>
+    <div class="card2">
         <input type="submit" value="Crear Cita" />
     </div>
 </form>

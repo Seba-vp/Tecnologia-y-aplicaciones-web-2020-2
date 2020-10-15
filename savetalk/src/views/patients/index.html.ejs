@@ -1,26 +1,26 @@
 
 <html>
     <head>
-    <link rel="stylesheet" href="src/assets/styles/plantilla1.scss">
+    <link rel="stylesheet" href="src/assets/styles/index.scss">
     </head>
     
     <body>
     
      
-<div class="header">
+<header>
         <h1>Pacientes</h1>
         <p> Aca en pacientes, podras ver todos los pacientes registrados.</p>
-</div>
+</header>
     
 
 
-<div class="caja2">
+<div class="card">
     <h1>Agregar un Paciente </h1>
    <p> <a href="<%=newPatientPath %>">Agregar un paciente </a></p>
 </div>
 
 <% patients.forEach( patient => { %>
-    <div class="caja2"> 
+    <div class="card"> 
         <h2><%= patient.name %></h2>
         <p><%= patient.city %></p>
         <p><a href="<%= patientPath(patient.id) %>">Ver más</a></p>
@@ -29,9 +29,7 @@
 
 
 
-<div class="pie">
-    <p>Made with &#10084;&#65039; by Rodolfo Mendoza Jorge Toro & Sebastian Villablanca.</p>
-  </div>
+
 </body>
 </html>
 

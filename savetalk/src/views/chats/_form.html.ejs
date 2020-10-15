@@ -1,6 +1,6 @@
 <form method="post" action="<%= createChatPath %>">
     <% if (locals.errors){ %>
-    <div>
+    <div class="card2">
         <p>No se pudo crear la conexión debido a lo siguiente:</p>
         <ul>
             <% errors.forEach(error => { %>
@@ -9,16 +9,25 @@
         </ul>
     </div>
     <% } %>
+    <tabla>
     <div class="field">
-        <label for="dentistId">id odontologo</label>
-        <input type="text" name="dentistId" id="dentistId" value="<%= chat.dentistId%>" />
+        <tr>
+        <td><label for="dentistId">id odontologo</label></td>
+        <td><input type="text" name="dentistId" id="dentistId" value="<%= chat.dentistId%>" /></td>
+    </tr>
     </div>
     <div class="field">
-        <label for="patientId">id paciente</label>
-        <input type="text" name="patientId" id="patientId" value="<%= chat.patientId%>" />
+        <tr>
+            <td><label for="patientId">id paciente</label></td>
+            <td><input type="text" name="patientId" id="patientId" value="<%= chat.patientId%>" /></td>
+    </tr>
     </div>
+
+    </tabla>
+    <div class="card2"> 
     <div class="actions">
         <input type="submit" value="crear contacto" />
     </div>
+</div>
 
 </form>

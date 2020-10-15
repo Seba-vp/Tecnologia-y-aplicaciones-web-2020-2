@@ -76,6 +76,7 @@ router.get('patient-update', '/update/:id', (ctx) => {
     const { patient } = ctx.state;
     return ctx.render('patients/update', {
         patient,
+        patientPath: id => ctx.router.url('patient', id),
         updatePatientPathDataBase: id => ctx.router.url('patient-update-database', id)
     });
 })
@@ -122,6 +123,7 @@ router.get('patient-delete', '/delete/:id', (ctx) => {
     const { patient } = ctx.state;
     return ctx.render('patients/delete', {
         patient,
+        patientPath: id => ctx.router.url('patient', id),
         deletePatientPathDataBase: id => ctx.router.url('patient-delete-database', id)
     });
 })
