@@ -9,6 +9,13 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true
       }
     },
+    message: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
+    },
     price: {
       type: DataTypes.FLOAT,
       allowNull: false,

@@ -29,13 +29,19 @@
     <div>
     <tr>
         <td><label for="schedule" >Posibles horarios: </label></td>
-        <td><input type="text" name="schedule" id="schedule" value="<%= date.schedule %>" /></td>
+        <td><textarea rows="4" cols="30" name="schedule" id="schedule" ><%= date.schedule %></textarea></td>
     </tr>
     </div>
     <div>
     <tr>
         <td><label for="price" >Precio: </label></td>
-        <td><input type="text" name="price" id="price" value="<%= date.price %>" /></td>
+        <td><input type="number" name="price" id="price" value="<%= date.price %>" /></td>
+    </tr>
+    </div>
+    <div>
+    <tr>
+        <td><label for="message" >Mensaje de Presentación para el Paciente: </label></td>
+        <td><textarea rows="4" cols="30" name="message" id="message" ><%= date.message %></textarea></td>
     </tr>
     </div>
     </table>

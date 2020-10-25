@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="src/assets/styles/index.scss">
+</head>
+
+<body>
+
+    <header>
+        <h1> Dolores postulados </h1>
+
+    </header>
+
+    <% if (infoToSend.length === 0) { %>
+        <h2>No has postulado a ningún dolor aún</h2>
+    <% } %>
+
+    <% infoToSend.forEach( info => { %>
+    <div class="card">
+
+        <% if (info.date.state === 1) { %>
+
+        <h2>Cita confirmada!</h2>
+        <p>Cita con el paciente: <%= info.patient.name %> </p>
+        <p>Nombre del Dolor: <%= info.pain.name %> </p>
+        <p>Descripción del Dolor: <%= info.pain.description %> </p>
+        <form action="<%= rejectedDateByDentistPath(info.date.id) %>" method="post">
+            <input type="hidden" name="_method" value="patch" />
+            <input type="submit" value="Cancelar Cita" />
+        </form>
+        <form action="<%= doneDatePath(info.date.id) %>" method="post">
+            <input type="hidden" name="_method" value="patch" />
+            <input type="submit" value="Cita realizada con éxito" />
+        </form>
+
+        <% } else if (info.date.state === 2) { %>
+
+        <h2>Cita Ya fue llevada a cabo!</h2>
+        <p>Cita con el paciente: <%= info.patient.name %> </p>
+        <p>Nombre del Dolor: <%= info.pain.name %> </p>
+        <p>Descripción del Dolor: <%= info.pain.description %> </p>
+
+        <p>Este fue tu feedback: (implementación futuro)</p>
+
+        <% } else if (info.date.state === 0) { %>
+
+            <h2>Cita en espera de la respuesta del paciente</h2>
+            <p>Cita con el paciente: <%= info.patient.name %> </p>
+            <p>Nombre del Dolor: <%= info.pain.name %> </p>
+            <p>Descripción del Dolor: <%= info.pain.description %> </p>  
+            <form action="<%= rejectedDateByDentistPath(info.date.id) %>" method="post">
+                <input type="hidden" name="_method" value="patch" />
+                <input type="submit" value="Cancelar Postulación a esta Cita" />
+            </form>
+
+        <% } else if (info.date.state === -1) { %>
+
+            <h2>Cita rechazada por el paciente: <%= info.patient.name %> </h2>
+            <p>Nombre del Dolor: <%= info.pain.name %> </p>
+            <p>Descripción del Dolor: <%= info.pain.description %> </p>         
+
+        <% } else if (info.date.state === -2) { %>
+
+            <h2>Cita cancelada por Dentista</h2>
+            <p>Paciente: <%= info.patient.name %> </p>
+            <p>Nombre del Dolor: <%= info.pain.name %> </p>
+            <p>Descripción del Dolor: <%= info.pain.description %> </p>         
+
+        <% } %>
+
+    </div>
+    <% }) %>
+
+</body>
+
+</html>
