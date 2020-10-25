@@ -14,6 +14,7 @@
 
 
         <a href="<%= seePainsPath(dentist.id) %>"> Ver Dolores disponibles </a>
+        <a href="<%= seeDatesPath(dentist.id) %>"> Ver estado de tus Postulaciones/Citas </a>
         <a href="<%= messagesDentistPath %>"> Ver mensajes </a>
         <a href="<%= seeChatsPath(dentist.id) %>"> Ver contactos </a>
         <a href="<%= updateDentistPath(dentist.id) %>"> Modificar Dentista </a>
@@ -37,19 +38,13 @@
         <% if (info.date.state === 1) { %>
 
         <h2>Cita confirmada!</h2>
-        <p>Cita con el id: <%= info.date.id %></p>
         <p>Cita con el paciente: <%= info.patient.name %> </p>
         <p>Nombre del Dolor: <%= info.pain.name %> </p>
         <p>Descripción del Dolor: <%= info.pain.description %> </p>
-        <form action="<%= doneDatePath(info.date.id) %>" method="post">
-            <input type="hidden" name="_method" value="patch" />
-            <input type="submit" value="Cita realizada con éxito" />
-        </form>
 
         <% } else if (info.date.state === 2) { %>
 
         <h2>Cita Ya fue llevada a cabo!</h2>
-        <p>Cita con el id: <%= info.date.id %></p>
         <p>Cita con el paciente: <%= info.patient.name %> </p>
         <p>Nombre del Dolor: <%= info.pain.name %> </p>
         <p>Descripción del Dolor: <%= info.pain.description %> </p>
@@ -64,6 +59,9 @@
     <div class="card">
         <div class="button">
             <a href="<%= seePainsPath(dentist.id) %>"> Ver Dolores disponibles </a>
+        </div>
+        <div class="button">
+            <a href="<%= seeDatesPath(dentist.id) %>"> Ver estado de tus Postulaciones/Citas </a>
         </div>
         <div class="button">
             <a href="<%= messagesDentistPath %>"> Ver mensajes </a>

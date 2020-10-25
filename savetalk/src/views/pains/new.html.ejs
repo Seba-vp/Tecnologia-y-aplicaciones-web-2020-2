@@ -43,10 +43,124 @@
     </tr>
     </div>
     <div>
+
         <tr>
-            <td><label for="category" >Categoría del dolor: </label></td>
-            <td><input type="text" name="category" id="category" value="<%= pain.category %>" /></td>
-    </tr>
+
+        <td><label for="category">Categoría del Dolor:</label></td>
+        <td>
+        <select name="category" id="category">
+
+        <% if (locals.errors) {%>
+
+            <% if (pain.category === "caries") { %>
+                <option value="caries">Caries</option>
+                <option value="encias">Encias</option>
+                <option value="labios">Labios</option>
+                <option value="lengua">Lengua</option>
+                <option value="limpieza">Limpieza</option>
+                <option value="frenillos">Frenillos</option>
+                <option value="dolor general">Dolor general</option>
+                <option value="otro">Otro</option>
+        
+            <% } else if (pain.category === "encias") { %>
+                <option value="encias">Encias</option>
+                <option value="caries">Caries</option>
+                <option value="labios">Labios</option>
+                <option value="lengua">Lengua</option>
+                <option value="limpieza">Limpieza</option>
+                <option value="frenillos">Frenillos</option>
+                <option value="dolor general">Dolor general</option>
+                <option value="otro">Otro</option>
+
+            <% } else if (pain.category === "labios") { %>
+                <option value="labios">Labios</option>
+                <option value="encias">Encias</option>
+                <option value="caries">Caries</option>
+                <option value="lengua">Lengua</option>
+                <option value="limpieza">Limpieza</option>
+                <option value="frenillos">Frenillos</option>
+                <option value="dolor general">Dolor general</option>
+                <option value="otro">Otro</option> 
+            
+            <% } else if (pain.category === "lengua") { %>
+                <option value="lengua">Lengua</option>
+                <option value="labios">Labios</option>
+                <option value="encias">Encias</option>
+                <option value="caries">Caries</option>
+                <option value="limpieza">Limpieza</option>
+                <option value="frenillos">Frenillos</option>
+                <option value="dolor general">Dolor general</option>
+                <option value="otro">Otro</option>   
+
+            <% } else if (pain.category === "limpieza") { %>
+                <option value="limpieza">Limpieza</option>
+                <option value="lengua">Lengua</option>
+                <option value="labios">Labios</option>
+                <option value="encias">Encias</option>
+                <option value="caries">Caries</option>
+                <option value="frenillos">Frenillos</option>
+                <option value="dolor general">Dolor general</option>
+                <option value="otro">Otro</option>  
+
+            <% } else if (pain.category === "frenillos") { %>
+                <option value="frenillos">Frenillos</option>
+                <option value="limpieza">Limpieza</option>
+                <option value="lengua">Lengua</option>
+                <option value="labios">Labios</option>
+                <option value="encias">Encias</option>
+                <option value="caries">Caries</option>
+                <option value="dolor general">Dolor general</option>
+                <option value="otro">Otro</option>  
+
+            <% } else if (pain.category === "dolor general") { %>
+                <option value="dolor general">Dolor general</option>
+                <option value="frenillos">Frenillos</option>
+                <option value="limpieza">Limpieza</option>
+                <option value="lengua">Lengua</option>
+                <option value="labios">Labios</option>
+                <option value="encias">Encias</option>
+                <option value="caries">Caries</option>
+                <option value="otro">Otro</option>  
+
+            <% } else if (pain.category === "otro") { %>
+                <option value="otro">Otro</option> 
+                <option value="dolor general">Dolor general</option>
+                <option value="frenillos">Frenillos</option>
+                <option value="limpieza">Limpieza</option>
+                <option value="lengua">Lengua</option>
+                <option value="labios">Labios</option>
+                <option value="encias">Encias</option>
+                <option value="caries">Caries</option>
+    
+            <% } else { %>
+
+                <option value="caries">Caries</option>
+                <option value="encias">Encias</option>
+                <option value="labios">Labios</option>
+                <option value="lengua">Lengua</option>
+                <option value="limpieza">Limpieza</option>
+                <option value="frenillos">Frenillos</option>
+                <option value="dolor general">Dolor general</option>
+                <option value="otro">Otro</option>
+
+            <% } %>
+
+        <% } else { %>
+
+        <option value="caries">Caries</option>
+        <option value="encias">Encias</option>
+        <option value="labios">Labios</option>
+        <option value="lengua">Lengua</option>
+        <option value="limpieza">Limpieza</option>
+        <option value="frenillos">Frenillos</option>
+        <option value="dolor general">Dolor general</option>
+        <option value="otro">Otro</option>
+
+        <% } %>
+        </select>
+        </td>
+        </tr>
+        
     </div>
 </table>
     <div class="card2">

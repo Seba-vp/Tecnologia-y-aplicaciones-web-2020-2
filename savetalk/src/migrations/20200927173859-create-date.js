@@ -26,6 +26,9 @@ module.exports = {
     schedule: {
       type: Sequelize.STRING,
     },
+    message: {
+      type: Sequelize.TEXT,
+    },
     price: {
       type: Sequelize.FLOAT,
     },

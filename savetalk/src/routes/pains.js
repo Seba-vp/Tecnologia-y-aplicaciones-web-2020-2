@@ -150,6 +150,7 @@ router.post('pains-create', '/:id', async (ctx) => {
         await ctx.render('pains/new', {
             pain,
             errors: error.errors,
+            patientPath: id => ctx.router.url('patient', id),
             createPainPath: id => ctx.router.url('pains-create', id)
         });
     }

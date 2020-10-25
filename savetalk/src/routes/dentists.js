@@ -85,6 +85,7 @@ router.get('dentist', '/:id', async (ctx) => {
         updateDentistPath: id => ctx.router.url('dentist-update', id),
         deleteDentistPath: id => ctx.router.url('dentist-delete', id),
         doneDatePath: dateId => ctx.router.url('date-done', dateId),
+        seeDatesPath: dentistId => ctx.router.url('see-dates-of-dentist', dentistId),
         createDentistMessagePath: ctx.router.url('newmessagesdentist'),
     });
 });
@@ -157,5 +158,29 @@ router.post('dentist-delete-database', 'delete/:id', async (ctx) => {
     ctx.session.currentDentistId = null;
     ctx.redirect('/');
 });
+
+router.get('see-dates-of-dentist', '/dentist/alldates/:id', async (ctx) => {
+    const { dentist } = ctx.state;
+
+    dates = await dentist.getDates();
+    infoToSend = [];
+    for (const date of dates) {
+        painAssociatedWithTheDate = await date.getPain();
+        patientAssociatedWithTheDate = await painAssociatedWithTheDate.getPatient();
+        newDate = {
+            date,
+            pain: painAssociatedWithTheDate,
+            patient: patientAssociatedWithTheDate
+        };
+        infoToSend.push(newDate);
+    }
+
+    return ctx.render('dentists/dates', {
+        dentist,
+        infoToSend,
+        rejectedDateByDentistPath: dateId => ctx.router.url('date-reject-by-dentist', dateId),
+        doneDatePath: dateId => ctx.router.url('date-done', dateId)
+    });
+})
 
 module.exports = router;

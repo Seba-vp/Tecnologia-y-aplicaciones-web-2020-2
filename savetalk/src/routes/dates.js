@@ -7,7 +7,8 @@ const PERMITTED_FIELDS = [
     'dentistId',
     'schedule',
     'price',
-    'state'
+    'state',
+    'message'
 ]
 const PERMITTED_FIELDS_CHAT = [
     'dentistId',
@@ -93,6 +94,11 @@ router.post('dates-create', '/:dentistid/:painid', async (ctx) => {
     }
 });
 
+//Cuando confirma es 1
+//Cuando se crea y no ha pasado nada es 0
+//Cuando la cita es rechazada por el paciente es -1
+//Cuando la cita ya fue hecha es 2
+//Cuando la cita es cancelada por el dentista es -2
 router.patch('date-confirm', '/dateconfirm/:id', async (ctx) => {
     const { date } = ctx.state;
     pain = await date.getPain();
@@ -136,5 +142,11 @@ router.patch('date-done', '/datedone/:id', async (ctx) => {
     ctx.redirect(ctx.router.url('dentist', ctx.state.currentDentist.id));
 })
 
+router.patch('date-reject-by-dentist', '/daterejectByDentist/:id', async (ctx) => {
+    const { date } = ctx.state;
+    date.state = -2;
+    await date.save({ fields: PERMITTED_FIELDS });
+    ctx.redirect(ctx.router.url('dentist', ctx.state.currentDentist.id));
+})
 
 module.exports = router;

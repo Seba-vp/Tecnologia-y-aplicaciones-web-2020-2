@@ -55,10 +55,26 @@
         <td><input type="text" name="year" id="year" value="<%= dentist.year %>" /></td>
     </tr>
     </div>
-    <div><tr>
-        <td><label for="kind" >Voluntario(si / no)</label></td>
-        <td><input type="text" name="kind" id="kind" value="<%= dentist.kind %>" /></td>
-    </tr>
+    <div>
+
+        <tr>
+        <td><label for="kind">Voluntario (si/no):</label></td>
+        <td>
+        <select name="kind" id="kind">
+
+        <% if (dentist.kind === "si") { %>
+            <option value="si">Si</option>
+            <option value="no">No</option>
+        <% } else { %>
+            <option value="no">No</option>
+            <option value="si">Si</option>
+        <% } %>
+
+        </select>
+        </td>
+        
+        </tr>
+        
     </div>
     <div><tr>
         <td><label for="mail" >e-mail</label></td>
