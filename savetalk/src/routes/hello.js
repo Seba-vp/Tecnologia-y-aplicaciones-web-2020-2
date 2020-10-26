@@ -14,10 +14,10 @@ router.post('hello', '/', async (ctx) => {
   ctx.flashMessage.notice = 'Form successfully processed';
   // this is just to show how to send an e-mail using a mailer helper fn
   // but it will never be executed
-  if (Math.random() > 1) {
-    await sendExampleEmail(ctx.request.body);
-  }
-  ctx.redirect(router.url('hello'));
+  //if (Math.random() > 1) {
+  await sendExampleEmail(ctx, ctx.request.body);
+  //}
+  ctx.redirect(ctx.router.url('hello'));
 });
 
 router.get('hello.name', '/:name', (ctx) => {

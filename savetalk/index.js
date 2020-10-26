@@ -1,5 +1,5 @@
 /* eslint no-console: "off" */
-
+require('dotenv').config()
 const app = require('./src/app');
 const db = require('./src/models');
 
