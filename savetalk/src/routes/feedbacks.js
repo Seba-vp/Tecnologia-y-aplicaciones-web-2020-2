@@ -5,8 +5,8 @@ const router = new KoaRouter();
 
 //Nuevo
 const PERMITED_FIELDS = [
-    'id_odontologo',
-    'id_user',
+    'id_date',
+    'id_pain',
     'description',
     'calification',
 ];
@@ -21,6 +21,15 @@ router.param('id', async (id, ctx, next) => {
     return next();
 });
 
+router.param('dateid', async (id, ctx, next) => {
+    const date = await ctx.orm.date.findByPk(id);
+    if (!date) {
+        ctx.throw(404);
+    }
+    ctx.state.date = date;
+    return next();
+});
+
 router.get('feedbacks', '/', async (ctx) => {
     const feedbacks = await ctx.orm.feedback.findAll();
     await ctx.render('feedbacks/index', {
@@ -31,44 +40,66 @@ router.get('feedbacks', '/', async (ctx) => {
     });
 });
 
-router.get('feedbacks-new', '/new', (ctx) => {
+router.get('feedbacks-new', '/new/:dateid', async (ctx) => {
+    const { date } = ctx.state;
+
+    let feedbackAlreadyCreated = await ctx.orm.feedback.findOne({ where: { id_date: date.id } });
+    if (feedbackAlreadyCreated === null) {
+        feedbackAlreadyCreated = false
+    } else {
+        feedbackAlreadyCreated = true
+    }
+
     const feedback = ctx.orm.feedback.build();
     return ctx.render('feedbacks/new',{
         feedback,
-        createFeedbackPath: ctx.router.url('feedbacks-create')
+        date,
+        feedbackAlreadyCreated,
+        createFeedbackPath: (dateId) => ctx.router.url('feedbacks-create', dateId)
     });
 })
 
-router.post('feedbacks-create','/', async (ctx)=>{
-    const feedback = ctx.orm.feedback.build(ctx.request.body);
+router.post('feedbacks-create','/:dateid', async (ctx)=>{
+    const { date } = ctx.state;
+    const pain = await date.getPain();
+    const attributes = {
+        ...ctx.request.body,
+        id_date: date.id,
+        id_pain: pain.id
+    }
+    const feedback = ctx.orm.feedback.build(attributes);
 
     try{
-    await feedback.save({fields:PERMITED_FIELDS});
-    ctx.redirect(ctx.router.url('feedbacks'));
-  }catch (error) {
-    await ctx.render('feedbacks/new',{
-        feedback,
-        errors: error.errors,
-        createFeedbackPath: ctx.router.url('feedbacks-create'),
-    });
-}
+        await feedback.save({fields:PERMITED_FIELDS});
+        ctx.redirect(ctx.router.url('patient', ctx.state.currentPatient.id));
+    }catch (error) {
+        const feedbackAlreadyCreated = false
+        await ctx.render('feedbacks/new',{
+            feedback,
+            date,
+            errors: error.errors,
+            feedbackAlreadyCreated,
+            createFeedbackPath: (dateId) => ctx.router.url('feedbacks-create', dateId),
+        });
+    }
 })
 
-//Hasta aca lo nuevo
 
-router.get('feedback', '/:id', (ctx) => {
-    const {feedback} = ctx.state;
+router.get('feedback', '/:dateid', async (ctx) => {
+    const { date } = ctx.state;
+    let feedback = await ctx.orm.feedback.findOne({ where: { id_date: date.id } });
+    let feedbackFound = true
+    if (feedback === null) {
+        feedbackFound = false
+    }
+
     return ctx.render('feedbacks/show', {
-
-//delete
         feedback,
+        feedbackFound,
         deleteFeedbackPath: id => ctx.router.url('feedback-delete', id)
     });
 });
 
-
-
-// monton de if's 
 
 router.get('feedback-delete', '/delete/:id', (ctx) => {
     const {feedback} = ctx.state;

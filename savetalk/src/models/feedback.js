@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const feedback = sequelize.define('feedback', {
-    id_odontologo:{ 
+    id_date:{ 
       type: DataTypes.INTEGER,
       allowNull: false,
       validate:{
@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         isNumeric: true,    
       },
     },
-    id_user: {
+    id_pain: {
       type: DataTypes.INTEGER,
       validate:{
         notEmpty: true,

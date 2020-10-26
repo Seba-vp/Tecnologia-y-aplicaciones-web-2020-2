@@ -9,11 +9,15 @@
         <h1>Nuevo Feedback</h1>
     </header>
 
+<% if (feedbackAlreadyCreated === true) { %>
+    <p>Ya le diste un Feedback a esta cita</p>
+<% } else {%>
 
-<div class="card">
-<%- include('_form')%>
-</div>
+    <div class="card">
+        <%- include('_form')%>
+    </div>
 
+<% } %>
 
 
 </body>

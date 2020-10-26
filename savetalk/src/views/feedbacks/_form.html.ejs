@@ -1,4 +1,4 @@
-<form method="post" action="<%= createFeedbackPath %>">
+<form method="post" action="<%= createFeedbackPath(date.id) %>">
     <% if (locals.errors){ %>
 
         <div class="errors">
@@ -6,8 +6,14 @@
             <p>El feedback no se pudo crear devido a los siguientes errores:</p>
 
             <ul>
+                <% let weDidTheAdvertisment = false %>
                 <% errors.forEach(error => { %>
-                <li><%= error.path %> : <%= error.message %></li>
+
+                    <% if (error.path == "calification" && !weDidTheAdvertisment) { %>
+                        <li>Las calificaciones solamente pueden ir del 0 al 5(ambos incluidos)</li>
+                        <li>Es necesario que le pongas la calificación. La desripción es opcional.</li>
+                        <% weDidTheAdvertisment = true %>
+                    <% }%>
 
                 <% }); %>
             </ul>
@@ -15,15 +21,7 @@
     <% } %>
 
     <div class="field" >
-        <label for="id_odontologo">Id Odontologo </label>
-        <input type="int" name="id_odontologo" id="id_odontologo" value="<%= feedback.id_odontologo %>"/>
-    </div>
-    <div class="field" >
-        <label for="id_user">Id Usuario </label>
-        <input type="int" name="id_user" id="id_user" value="<%= feedback.id_user %>"/>
-    </div>
-    <div class="field" >
-        <label for="description">Descripción </label>
+        <label for="description">Descripción de la Atención del Dentista</label>
         <textarea rows="4" cols="30" name="description" id="description"> <%= feedback.description%></textarea>
     </div>
     <div class="field" >

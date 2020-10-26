@@ -6,22 +6,22 @@
     <body>
     
 <header>
-    <h1> Feedback <%= feedback.id %></h1>
         
 </header>
 
+<% if (feedbackFound === false) {%>
+    <p>El paciente aún no escribe un Feedback</p>
+<% } else {%>
 
-<div class="card">
-<p>Id odontologo: <%= feedback.id_odontologo %></p>
-<p>Id_user: <%= feedback.id_user %></p>
-<p>Descripcion: <%= feedback.description %></p>
-<p>Calificacion: <%= feedback.calification %></p>
+    <div class="card">
 
-</div>
+        <p>Descripcion del Paciente sobre tu Atención: <%= feedback.description %></p>
+        <p>Calificacion (0 al 5): <%= feedback.calification %></p>
+        
+    </div>
 
-<div class="card">
-    <p><a href="<%= deleteFeedbackPath(feedback.id) %>" > Borrar Feedback </a></p>
-</div>
+<% } %>
+
 
 </body>
 </html>
