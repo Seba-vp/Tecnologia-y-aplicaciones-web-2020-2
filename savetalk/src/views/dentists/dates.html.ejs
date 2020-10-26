@@ -40,7 +40,9 @@
         <p>Nombre del Dolor: <%= info.pain.name %> </p>
         <p>Descripción del Dolor: <%= info.pain.description %> </p>
 
-        <p>Este fue tu feedback: (implementación futuro)</p>
+        <div class="button">
+            <a href="<%= seeFeedbackPath(info.date.id) %>"> Ver Feedback del Paciente </a>
+        </div>
 
         <% } else if (info.date.state === 0) { %>
 

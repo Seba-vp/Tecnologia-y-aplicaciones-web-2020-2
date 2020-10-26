@@ -179,7 +179,8 @@ router.get('see-dates-of-dentist', '/dentist/alldates/:id', async (ctx) => {
         dentist,
         infoToSend,
         rejectedDateByDentistPath: dateId => ctx.router.url('date-reject-by-dentist', dateId),
-        doneDatePath: dateId => ctx.router.url('date-done', dateId)
+        doneDatePath: dateId => ctx.router.url('date-done', dateId),
+        seeFeedbackPath: dateId => ctx.router.url('feedback', dateId)
     });
 })
 

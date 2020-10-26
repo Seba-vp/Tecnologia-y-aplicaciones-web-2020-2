@@ -54,6 +54,7 @@ router.get('date', '/:id', async (ctx) => {
         confirmDatePath: (dateId) => ctx.router.url('date-confirm', dateId),
         rejectDatePath: (dateId) => ctx.router.url('date-reject', dateId),
         specificPainPath: id => ctx.router.url('patientPain', id),
+        newFeedbackPath: (dateId) => ctx.router.url('feedbacks-new', dateId)
     });
 })
 
