@@ -1,10 +1,4 @@
 
-<html>
-    <head>
-    <link rel="stylesheet" href="src/assets/styles/index.scss">
-    </head>
-    
-<body>
     
     <header>
         <h1>DentList</h1>
@@ -12,10 +6,8 @@
     </header>
 
     <div class="topnav">
-        <a href="#">Link</a>
-        <a href="#">Link</a>
-        <a href="#">Link</a>
-        <a href="#" style="float:right">Link</a>
+        <a href="#">DentList</a>
+        <!-- <a id= "r" href="#" >Inicio</a> -->
     </div>
 
 <div class="row">
@@ -145,7 +137,7 @@
                 <p><%= post.description %></p>
 
             <div class="fakeimg">
-                <img src="<%= post.image %>" alt="<%= post.image %>" style="width: 100%;">
+                <img src="<%= post.image %>" alt="<%= post.image %>" >
             </div>
                 
                 <a href="<%= postPath(post.id) %>">Ver más</a>
@@ -154,8 +146,7 @@
     </div>
 
 </div>
-</body>
-</html>
+
 
 
 

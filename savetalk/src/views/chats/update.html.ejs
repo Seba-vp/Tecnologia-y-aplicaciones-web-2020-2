@@ -1,22 +1,19 @@
 
-<html>
-    <head>
-    <link rel="stylesheet" href="src/assets/styles/plantilla1.scss">
-    </head>
-    
-<body>
-    
      
-<div class="header">
+<header>
     <h1> Modificación de conexión con usuario:</h1>
+</header>
+<div class="topnav">
+    <a href="#" id= "r">No sirve</a>
 </div>
 
-<div class="caja2">
+
+<div class="card">
 
 
 <form method="post" action="<%= updateChatPathDataBase(chat.id) %>">
     <% if (locals.errors){ %>
-    <div>
+    <div class="card2">
         <p>No se pudo cambiar la conexión por lo siguiente:</p>
         <ul>
             <% errors.forEach(error => { %>
@@ -26,8 +23,12 @@
     </div>
     <% } %>
     <div>
-        <label for="block">Conexión</label>
-        <input type="text" name="block" />
+        <table>
+            <tr>
+                <td><label for="block">Conexión</label></td>
+                <td><input type="text" name="block" /></td>
+            </tr>
+    </table>
     </div>
     <div>
         <input type="submit" value="Modificar conexión" />
@@ -36,10 +37,5 @@
 </div>
 
 
-<div class="pie">
-    <p>Made with &#10084;&#65039; by Rodolfo Mendoza Jorge Toro & Sebastian Villablanca.</p>
-  </div>
-</body>
-</html>
 
 

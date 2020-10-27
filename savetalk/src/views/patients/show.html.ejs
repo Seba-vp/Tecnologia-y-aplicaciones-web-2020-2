@@ -1,9 +1,4 @@
-<html>
-    <head>
-    <link rel="stylesheet" href="src/assets/styles/index.scss">
-    </head>
-    
-    <body>
+
     
 <header>
     <h1>Perfil de <%= patient.name %> </h1>
@@ -13,7 +8,8 @@
 <div class="topnav">
     <a href="<%= updatePatientPath(patient.id) %>">Modificar Paciente</a>
     <a href="<%= deletePatientPath(patient.id) %>">Borrar Paciente</a>
-    <a href="#" style="float:right">Link</a>
+    <a href="<%= seeChatPath(patient.id) %>"> Ver contactos </a>
+    <a href="#" id= "r">No sirve</a> 
 </div>
 
 <div class="card    ">
@@ -42,10 +38,16 @@
 </div>
 <div class="button">
 <a href="<%= deletePatientPath(patient.id) %>" > Borrar Paciente </a>
+</div>
+<div class="button">
 <a href="<%= seeChatPath(patient.id) %>"> Ver contactos </a>
 </div>
+<div class="button">
+<a href="<%= messagesPatientPath %>"> Mensajes </a>
+</div>
+<div class="button">
+<a href="<%= createPatientMessagePath %>"> Enviar mensaje </a>
+</div>
+
 </div>
  
-</body>
-
-</html>

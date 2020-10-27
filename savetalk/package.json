@@ -45,7 +45,10 @@
     "webpack-manifest-plugin": "^2.2.0"
   },
   "dependencies": {
+    "archiver": "^5.0.2",
+    "aws-sdk": "^2.779.0",
     "bcrypt": "^5.0.0",
+    "cloudinary": "^1.23.0",
     "core-js": "^3.6.5",
     "dotenv": "^8.2.0",
     "koa": "^2.13.0",

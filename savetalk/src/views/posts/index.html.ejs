@@ -1,24 +1,18 @@
 
-<html>
-    <head>
-    <link rel="stylesheet" href="src/assets/styles/plantilla1.scss">
-    </head>
-    
-    <body>
     
      
-    <div class="header">
+    <header>
         <h1>Posts</h1>
         <p> Aca en posts, podras ver todos los posts de voluntariados y noticias relacionadas a dentlist...</p>
-    </div>
+    <header>
     
-<div class="caja2">
+<div class="card">
     <h1>Agregar un Post </h1>
    <p> <a href="<%=newPostPath %>">Agregar un post </a></p>
 </div>
 
 <% posts.forEach( post => { %>
-    <div class="caja2"> 
+    <div class="card"> 
         
         <p>ID:  <%= post.id %></p>
         <h1><%= post.title %> </h1>
@@ -28,10 +22,7 @@
     </div>
 <% }) %>
 
-<div class="pie">
-    <p>Made with &#10084;&#65039; by Rodolfo Mendoza Jorge Toro & Sebastian Villablanca.</p>
-  </div>
-</body>
-</html>
+
+
 
 

@@ -18,6 +18,21 @@ const PERMITED_FIELDS = [
 ];
 // hasta aca
 
+// LA parte para cargar fotos
+const koaBody = require("koa-body");
+
+router.post("/upload", async ctx => {
+    const file = ctx.request.files.file;
+    const { key, url } = await uploadFile({
+      fileName: file.name,
+      filePath: file.path,
+      fileType: file.type,
+    });
+    ctx.body = { key, url };
+  });
+
+//#################################################  
+
 router.param('id', async (id, ctx, next) => {
     const post = await ctx.orm.post.findByPk(id);
     if (!post) {
@@ -67,6 +82,7 @@ router.get('post', '/:id', (ctx) => {
     const {post} = ctx.state;
     return ctx.render('posts/show', {
         post,
+        postPath: id => ctx.router.url('post', id),
         updatePostPath: id => ctx.router.url('post-update', id),
         deletePostPath: id => ctx.router.url('post-delete', id)
     });
@@ -75,6 +91,7 @@ router.get('post-update', '/update/:id', (ctx) => {
     const {post} = ctx.state;
     return ctx.render('posts/update', {
         post,
+        postPath: id => ctx.router.url('post', id),
         updatePostPathDataBase: id => ctx.router.url('post-update-database', id)
     });
 })
@@ -122,6 +139,7 @@ router.get('post-delete', '/delete/:id', (ctx) => {
     const {post} = ctx.state;
     return ctx.render('posts/delete', {
         post,
+        postPath: id => ctx.router.url('post', id),
         deletePostPathDataBase: id => ctx.router.url('post-delete-database', id)
     });
 })

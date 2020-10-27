@@ -86,4 +86,11 @@ mailer(app);
 // Routing middleware
 app.use(routes.routes());
 
+// NUEVO PARA AGREGAR ARCHIVOS
+/* app.use(koaBody({ multipart: true }));
+app.use(router.allowedMethods()); */
+//######################################
+
 module.exports = app;
+
+

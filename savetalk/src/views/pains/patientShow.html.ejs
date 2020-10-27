@@ -1,19 +1,15 @@
-<html>
-    <head>
-    <link rel="stylesheet" href="src/assets/styles/plantilla1.scss">
-    </head>
-    
-    <body>
-    
-<div class="header">
+
+<header>
     <h1>Información específica del Dolor </h1>        
+</header>
+<div class="topnav">
+         <a href="#" id= "r">No sirve</a>
 </div>
 
 
 
 
-
-<div class="caja2">
+<div class="card">
 <h2>Dolor perteneciente al paciente: <%= patient.name %> </h2>
 <p> <strong>Resumen del dolor: </strong><%= pain.name %> </p>
 <p> <strong>Descripción del dolor: </strong> <%= pain.description%>  </p>
@@ -22,25 +18,29 @@
 
 <% if (locals.definitiveDate) { %>
 
-    <div class="caja2">
+    <div class="card">
         <h2> Cita Elegida: </h2>
         <h4> <%= definitiveDate.schedule %> </h4>
+        <div class="button">
         <a href="<%= specificDatePath(definitiveDate.id) %>">Ver más info de esta cita</a>
+    </div>
     </div>
 
 <% } else { %>
 
-    <div class="caja2">
+    <div class="card">
         <h2><%= dates.length %> Potenciales citas disponibles: </h2>
         <% if (dates.length){ %>
-            <ul>
+            
                 <% dates.forEach((date) => { %>
-                    <li>
+                    <div class="card2">
                         <h4><%= date.schedule %></h4>
+                    <div class="button">
                         <a href="<%= specificDatePath(date.id) %>">Ver más info de esta cita</a>
-                    </li>
+                    </div>
+                </div>  
                 <% });%>
-            </ul>
+           
         <% } %>
     </div>
 

@@ -1,30 +1,24 @@
-<html>
-    <head>
-    <link rel="stylesheet" href="src/assets/styles/plantilla1.scss">
-    </head>
-    
-    <body>
-        <div class="header">
+
+        <header>
             <h1>Borrar post</h1>
+        </header>
+
+        <div class="topnav">
+
+            <a href="<%= postPath(post.id) %>" id= "r">Volver</a>
         </div>
         
+        
     
-<div class="caja2">
+<div class="card">
 <form method="post" action="<%= deletePostPathDataBase(post.id) %>" >
 
-    <div>
-    <p><label >Para borrar el post <%= post.title %>, aprete el boton Borrar</label></p>
+    <div class="card2">
+    <label >Para borrar el post <%= post.title %>, aprete el boton Borrar</label>
     </div>
     <div>
-    <p><input type="submit" value="Borrar" /></p>
+    <input type="submit" value="Borrar" /></p>
     </div>
 </form>
 </div>
-
-<div class="pie">
-    <p>Made with &#10084;&#65039; by Rodolfo Mendoza Jorge Toro & Sebastian Villablanca.</p>
-  </div>
-</body>
-</html>
-
 
