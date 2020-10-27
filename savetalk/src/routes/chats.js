@@ -33,14 +33,26 @@ router.get('chats', '/', async (ctx) => {
     idpatient = ctx.state.currentPatient.id;
 
     let chatsToSend = [];
+    let chatsPersonToSend = [];
+    let chatsGet = await ctx.state.currentPatient.getChats();
+
+    for (const element of chatsGet) {
+        person = await element.getDentist();
+        data = {
+            'chat': element,
+            'person': person
+        }
+        chatsPersonToSend.push(data)
+    }
 
     chats.forEach(chat => {
         if (chat.patientId === idpatient) {
             chatsToSend.push(chat);
         }
     });
-    await ctx.render('chats/indexdentist', {
+    await ctx.render('chats/indexpatient', {
         chatsToSend,
+        chatsPersonToSend,
         dentist,
         chatsPath: id => ctx.router.url('chat', id),
         updateChatPath: id => ctx.router.url('chat-update', id),
@@ -58,6 +70,17 @@ router.get('chats-dentist', '/:dentistid', async (ctx) => {
     iddentist = ctx.state.currentDentist.id;
 
     let chatsToSend = [];
+    let chatsPersonToSend = [];
+    let chatsGet = await ctx.state.currentDentist.getChats();
+
+    for (const element of chatsGet) {
+        person = await element.getPatient();
+        data = {
+            'chat': element,
+            'person': person
+        }
+        chatsPersonToSend.push(data)
+    }
 
     chats.forEach(element => {
         if (element.dentistId === iddentist) {
@@ -66,6 +89,7 @@ router.get('chats-dentist', '/:dentistid', async (ctx) => {
     });
     await ctx.render('chats/indexdentist', {
         chatsToSend,
+        chatsPersonToSend,
         dentist,
         chat,
         updateChatPath: id => ctx.router.url('chat-update', id),
@@ -83,6 +107,17 @@ router.get('chats-patient', '/:patientid', async (ctx) => {
     idpatient = ctx.state.currentPatient.id;
 
     let chatsToSend = [];
+    let chatsPersonToSend = [];
+    let chatsGet = await ctx.state.currentPatient.getChats();
+
+    for (const element of chatsGet) {
+        person = await element.getDentist();
+        data = {
+            'chat': element,
+            'person': person
+        }
+        chatsPersonToSend.push(data)
+    }
 
     chats.forEach(element => {
         if (element.patientId === idpatient) {
@@ -91,6 +126,7 @@ router.get('chats-patient', '/:patientid', async (ctx) => {
     });
     await ctx.render('chats/indexpatient', {
         chatsToSend,
+        chatsPersonToSend,
         patient,
         chat,
         // updateChatPath: id => ctx.router.url('chat-update', id),
