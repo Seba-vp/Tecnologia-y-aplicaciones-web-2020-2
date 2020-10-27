@@ -16,28 +16,25 @@
     </div>
 
     <div class="card">
-        <h1>Mensajes enviados <%= messagesSent.length %> </h1>
+        <h1>Mensajes enviados <%= infoToSendSent.length %> </h1>
 
-        <% messagesSent.forEach( message => { %>
+        <% infoToSendSent.forEach( info => { %>
 
         <div class="card2">
-            <h2>Mensaje enviado por: <%= message.idSend %></h2>
-            <p>Mensaje recibido por: <%= message.idReceive %></p>
-            <div class="button"><a href="<%= messagePath(message.id) %>">leer</a></div>
+            <p>Mensaje enviado a <%= info.person.name %></p>
+            <p><%= info.message.body %> </p>
         </div>
         <% }) %>
     </div>
 
-    <div class="card2">
-        <h1>Mensajes recibidos<%= messagesReceive.length %> </h1>
-        <% messagesReceive.forEach( message => { %>
+    <div class="card">
+        <h1>Mensajes recibidos <%= infoToSendReceive.length %> </h1>
 
+        <% infoToSendReceive.forEach( info => { %>
 
         <div class="card2">
-            <h2>Mensaje enviado por: <%= message.idSend %></h2>
-            <p>Mensaje recibido por: <%= message.idReceive %></p>
-            <div class="button"><a href="<%= messagePath(message.id) %>">leer</a></div>
-
+            <p>Mensaje enviado por <%= info.person.name %></p>
+            <p><%= info.message.body %> </p>
         </div>
         <% }) %>
     </div>

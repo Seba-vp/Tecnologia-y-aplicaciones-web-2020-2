@@ -15,15 +15,19 @@
 
 
 
-    <label for="idReceive">Enviar a:</label>
-    <select name="idReceive" id="idReceive">
-        <optgroup label="Pacientes">
-            <% chatsToSend.forEach((chat) => { %>
-            <option value="<%= chat %>"> <%= chat %> </option>
-            <% });%>
-        </optgroup>
-    </select>
-    <!--
+        <label for="idReceive">Enviar a:</label>
+        <select name="idReceive" id="idReceive">
+            <% if (type === 'Dentist'){ %>
+            <optgroup label="Pacientes">
+                <% } else {%>
+            <optgroup label="Dentistas">
+                <% }%>
+                <% chatsToSend.forEach((element) => { %>
+                <option value="<%= element.chat %>"> <%= element.person.name %> </option>
+                <% });%>
+            </optgroup>
+        </select>
+        <!--
     <div class="field">
         <tr>
             <td><label for="idReceive">Enviar a:</label></td>
@@ -31,19 +35,19 @@
      </tr>
     </div>
     -->
-    <div class="field">
-        <tr>
-            <td><label for="body">Body</label></td>
-            <td><input type="text" name="body" id="body" value="<%= message.body %>" /></td>
-        </tr>
-    </div>
+        <div class="field">
+            <tr>
+                <td><label for="body">Body</label></td>
+                <td><input type="text" name="body" id="body" value="<%= message.body %>" /></td>
+            </tr>
+        </div>
     </table>
 
 
     <div class="card2">
-    <div class="actions">
-        <input type="submit" value="Enviar mensaje" />
-    </div>
+        <div class="actions">
+            <input type="submit" value="Enviar mensaje" />
+        </div>
     </div>
 
 </form>

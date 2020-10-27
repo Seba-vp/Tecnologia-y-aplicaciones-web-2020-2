@@ -4,6 +4,7 @@ const router = new KoaRouter();
 
 const PERMITTED_FIELDS = [
     'idSend',
+    'chatId',
     'idReceive',
     'rolSend',
     'rolReceive',
@@ -25,7 +26,7 @@ router.get('messages', '/', async (ctx) => {
     await ctx.render('messages/index', {
         messages,
         dentist,
-        
+
         messagePath: id => ctx.router.url('message', id),
         newMessagePath: ctx.router.url('messages-new'),
         dentistPath: id => ctx.router.url('dentist', id),
@@ -39,20 +40,38 @@ router.get('messagesdentist', '/dentist', async (ctx) => {
     const message = ctx.orm.message.build();
     let messagesSent = [];
     let messagesReceive = [];
+    let infoToSendSent = [];
+    let infoToSendReceive = [];
     let chatsToSend = [];
-    iddentist = ctx.state.currentDentist.id;
-    messages.forEach(message => {
+    iddentist = await ctx.state.currentDentist.id;
+    for (const message of messages) {
+        chatAsociate = await message.getChat();
+        patientAsociateChat = await chatAsociate.getPatient();
         if (message.idSend === iddentist && message.rolSend === 'Dentist') {
             messagesSent.push(message)
+            newData = {
+                message,
+                person: patientAsociateChat,
+                chat: chatAsociate
+            }
+            infoToSendSent.push(newData)
         }
         if (message.idReceive === iddentist && message.rolReceive === 'Dentist') {
             messagesReceive.push(message)
+            newData = {
+                message,
+                person: patientAsociateChat,
+                chat: chatAsociate
+            }
+            infoToSendReceive.push(newData)
         }
-    })
+    }
     await ctx.render('messages/index', {
         dentist,
         patient,
         chatsToSend,
+        infoToSendReceive,
+        infoToSendSent,
         messages,
         message,
         messagesReceive,
@@ -69,21 +88,39 @@ router.get('messagespatient', '/patient', async (ctx) => {
     const message = ctx.orm.message.build();
     let messagesSent = [];
     let messagesReceive = [];
+    let infoToSendReceive = [];
+    let infoToSendSent = [];
     let chatsToSend = [];
-    idpatient = ctx.state.currentPatient.id;
-    messages.forEach(message => {
+    idpatient = await ctx.state.currentPatient.id;
+    for (const message of messages) {
+        chatAsociate = await message.getChat();
+        dentistAsociateChat = await chatAsociate.getDentist();
         if (message.idSend === idpatient && message.rolSend === 'Patient') {
             messagesSent.push(message)
+            newData = {
+                message,
+                person: dentistAsociateChat,
+                chat: chatAsociate
+            }
+            infoToSendSent.push(newData)
         }
         if (message.idReceive === idpatient && message.rolReceive === 'Patient') {
             messagesReceive.push(message)
+            newData = {
+                message,
+                person: dentistAsociateChat,
+                chat: chatAsociate
+            }
+            infoToSendReceive.push(newData)
         }
-    })
+    }
     await ctx.render('messages/index', {
         patient,
         messages,
         chatsToSend,
         message,
+        infoToSendReceive,
+        infoToSendSent,
         messagesReceive,
         messagesSent,
         createMessagePath: ctx.router.url('messages-create'),
@@ -98,6 +135,7 @@ router.get('newmessagesdentist', '/new/dentist', async (ctx) => {
     const messages = await ctx.orm.message.findAll();
     const message = ctx.orm.message.build();
     let messagesSent = [];
+    let type = 'Dentist';
     let messagesReceive = [];
     iddentist = ctx.state.currentDentist.id;
     messages.forEach(message => {
@@ -109,18 +147,22 @@ router.get('newmessagesdentist', '/new/dentist', async (ctx) => {
         }
     })
 
-    const chats = await ctx.orm.chat.findAll();
+    const chats = await ctx.state.currentDentist.getChats();
 
     let chatsToSend = [];
 
-    chats.forEach(element => {
-        if (element.dentistId === iddentist) {
-            chatsToSend.push(element.patientId);
+    for (const element of chats) {
+        person = await element.getPatient();
+        data = {
+            'chat': element.id,
+            'person': person
         }
-    });
+        chatsToSend.push(data);
+    };
 
     await ctx.render('messages/new', {
         dentist,
+        type,
         iddentist,
         messages,
         chatsToSend,
@@ -142,6 +184,7 @@ router.get('newmessagespatient', '/new/patient', async (ctx) => {
     const messages = await ctx.orm.message.findAll();
     const message = ctx.orm.message.build();
     let messagesSent = [];
+    let type = 'Patient';
     let messagesReceive = [];
     idpatient = ctx.state.currentPatient.id;
     messages.forEach(message => {
@@ -153,18 +196,22 @@ router.get('newmessagespatient', '/new/patient', async (ctx) => {
         }
     })
 
-    const chats = await ctx.orm.chat.findAll();
+    const chats = await ctx.state.currentPatient.getChats();
 
     let chatsToSend = [];
 
-    chats.forEach(element => {
-        if (element.patientId === idpatient) {
-            chatsToSend.push(element.dentistId);
+    for (const element of chats) {
+        person = await element.getDentist();
+        data = {
+            'chat': element.id,
+            'person': person
         }
-    });
+        chatsToSend.push(data);
+    };
 
     await ctx.render('messages/new', {
         patient,
+        type,
         messages,
         message,
         chatsToSend,
@@ -195,11 +242,19 @@ router.get('newmessagespatient', '/new/patient', async (ctx) => {
 
 router.post('messages-create-dentist', '/dentist', async (ctx) => {
     const message = ctx.orm.message.build(ctx.request.body);
+    console.log('B O D Y')
     console.log(ctx.request.body)
+    console.log(message.idReceive)
     message.idSend = ctx.state.currentDentist.id;
     message.rolReceive = 'Patient';
     message.rolSend = 'Dentist';
     chatsToSend = [];
+    chats = await ctx.state.currentDentist.getChats();
+    for (const element of chats) {
+        if (element.patientId.toString() === ctx.request.body.idReceive) {
+            message.chatId = element.id
+        }
+    }
     try {
         await message.save({ fields: PERMITTED_FIELDS });
         ctx.redirect(ctx.router.url('messagesdentist'))
@@ -218,6 +273,12 @@ router.post('messages-create-patient', '/patient', async (ctx) => {
     message.rolReceive = 'Dentist';
     message.rolSend = 'Patient';
     chatsToSend = [];
+    chats = await ctx.state.currentPatient.getChats();
+    for (const element of chats) {
+        if (element.dentistId.toString() === ctx.request.body.idReceive) {
+            message.chatId = element.id
+        }
+    }
     try {
         await message.save({ fields: PERMITTED_FIELDS });
         ctx.redirect(ctx.router.url('messagespatient'))

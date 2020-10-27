@@ -13,19 +13,18 @@
     <div class="topnav">
         <a href="#" style="float:right">No sirve</a>
     </div>
-    
 
-
-    <% chatsToSend.forEach( chat => { %>
+    <% chatsPersonToSend.forEach( element => { %>
     <div class="card">
-        <h2> id paciente: <%= chat.patientId %></h2>
-        <h2> id dentista: <%= chat.dentistId %></h2>
-        <p> block: <%= chat.block %></p>
+        <h2> Odontologo <%= element.person.name %></h2>
+        <% if (element.chat.block) { %>
+        <p>conexión no disponible</p>
+        <% } else {%>
+        <p>conexión disponible</p>
+        <% } %>
+        <a href="<%= updateChatPath(element.chat.id) %>"> Modificar conexión </a>
     </div>
     <% }) %>
-
-
-  
 </body>
 
 </html>

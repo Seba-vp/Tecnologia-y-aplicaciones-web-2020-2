@@ -16,6 +16,7 @@ module.exports = {
     messagesArray.push({
       idSend: 1,
       idReceive: 1,
+      chatId: 1,
       rolSend: 'Dentist',
       rolReceive: 'Patient',
       body: 'Hola! tenemos hora hoy!',
@@ -27,6 +28,7 @@ module.exports = {
     messagesArray.push({
       idSend: 1,
       idReceive: 1,
+      chatId: 1,
       rolSend: 'Patient',
       rolReceive: 'Dentist',
       body: 'Sii ¿a las 18:30?',
@@ -38,6 +40,7 @@ module.exports = {
     messagesArray.push({
       idSend: 1,
       idReceive: 2,
+      chatId: 2,
       rolSend: 'Dentist',
       rolReceive: 'Patient',
       body: 'Hola!! tenemos hora hoy',
@@ -49,6 +52,7 @@ module.exports = {
     messagesArray.push({
       idSend: 2,
       idReceive: 1,
+      chatId: 2,
       rolSend: 'Patient',
       rolReceive: 'Dentist',
       body: 'Oh se me había olvidado ¿a las 19:30?',
@@ -60,6 +64,7 @@ module.exports = {
     messagesArray.push({
       idSend: 1,
       idReceive: 3,
+      chatId: 3,
       rolSend: 'Dentist',
       rolReceive: 'Patient',
       body: 'Hola!! tenemos hora hoy',
@@ -71,6 +76,7 @@ module.exports = {
     messagesArray.push({
       idSend: 3,
       idReceive: 1,
+      chatId: 3,
       rolSend: 'Patient',
       rolReceive: 'Dentist',
       body: 'Estoy anciose',

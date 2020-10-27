@@ -27,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here. This method receives a models parameter.
     chat.belongsTo(models.dentist);
     chat.belongsTo(models.patient);
+    chat.hasMany(models.message);
   };
 
   return chat;

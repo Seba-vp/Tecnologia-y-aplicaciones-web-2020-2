@@ -8,31 +8,23 @@
 
 
     <header>
-        <h1>Chats</h1>
+        <h1>Contactos: <%= chatsPersonToSend.length %> </h1>
     </header>
 
-<div class="topnav">
-    <a href="#" style="float:right">No sirve</a>
-</div>
-
-
-    <% chatsToSend.forEach( chat => { %>
+    <div class="topnav">
+        <a href="#" style="float:right">No sirve</a>
+    </div>
+    <% chatsPersonToSend.forEach( element => { %>
     <div class="card">
-        <h2> id paciente: <%= chat.patientId %></h2>
-        <h2> id dentista: <%= chat.dentistId %></h2>
-        <p> block: <%= chat.block %></p>
-        
-        <div class="card2">
-        <div class="button">
-            <a href="<%= updateChatPath(chat.id) %>"> Modificar conexión </a>
-        </div>
-        <div class="button">
-            <a href="<%= deleteChatPath(chat.id) %>"> Eliminar conexión </a>
-        </div>
-        </div>
+        <h2> <%= element.person.name %></h2>
+        <% if (element.chat.block) { %>
+        <p>conexión no disponible</p>
+        <% } else {%>
+        <p>conexión disponible</p>
+        <% } %>
+        <a href="<%= updateChatPath(element.chat.id) %>"> Modificar conexión </a>
     </div>
     <% }) %>
-
 
 </body>
 
