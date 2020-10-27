@@ -20,7 +20,7 @@
           
           <form  action="<%= destroyPatientSessionPath %>" method="post">
             <input type="hidden" name="_method" value="delete" />
-            <input class="topbutton" style="float:right" type="submit" value="Cerrar Sesión" />
+            <input class="topbutton" id="r" type="submit" value="Cerrar Sesión" />
           </form>
         
           <% } else if (locals.currentDentist) { %>
@@ -28,14 +28,14 @@
 
             <form  action="<%= destroyDentistSessionPath %>" method="post">
               <input type="hidden" name="_method" value="delete" />
-              <input class="topbutton" style="float:right" type="submit" value="Cerrar Sesión" />
+              <input class="topbutton" id="r" type="submit" value="Cerrar Sesión" />
             </form>
         <% } else { %>
 
           
                 <a class="noHover">NO ESTAS CONECTADO</a>
             
-                <a href="<%= wantToConnectSessionPath %>" style="float:right">HAZ CLICK AQUI SI QUIERES CONECTARTE</a>
+                <a href="<%= wantToConnectSessionPath %>" id="r">HAZ CLICK AQUI SI QUIERES CONECTARTE</a>
               
       
 
