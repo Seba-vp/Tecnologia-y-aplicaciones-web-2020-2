@@ -1,4 +1,5 @@
 const KoaRouter = require('koa-router');
+const sendExampleEmail = require('../mailers/example');
 
 const router = new KoaRouter();
 
@@ -105,6 +106,7 @@ router.patch('date-confirm', '/dateconfirm/:id', async (ctx) => {
     pain = await date.getPain();
     patient = await pain.getPatient();
     chats = await patient.getChats();
+
     // manejar el caso de que ya tengan citas 
     createchat = true;
     for (const element of chats) {
@@ -124,6 +126,21 @@ router.patch('date-confirm', '/dateconfirm/:id', async (ctx) => {
 
     date.state = 1;
     await date.save({ fields: PERMITTED_FIELDS });
+
+    const dentistMatched = await date.getDentist();
+    const dentistEmail = dentistMatched.mail;
+    const patientEmail = patient.email;
+    emailData = {
+        dentistEmail: dentistEmail,
+        patientEmail: patientEmail,
+        dentist: dentistMatched,
+        patient: patient,
+        to: 'patient'
+    };
+    await sendExampleEmail(ctx, emailData);
+    
+    emailData.to = 'dentist';
+    await sendExampleEmail(ctx, emailData);
 
 
     ctx.redirect(ctx.router.url('patient', ctx.state.currentPatient.id));
