@@ -18,6 +18,7 @@
         <p>Cita con el paciente: <%= info.patient.name %> </p>
         <p>Nombre del Dolor: <%= info.pain.name %> </p>
         <p>Descripción del Dolor: <%= info.pain.description %> </p>
+        <p>Fecha: <%= info.date.schedule %> </p>
         <form action="<%= rejectedDateByDentistPath(info.date.id) %>" method="post">
             <input type="hidden" name="_method" value="patch" />
             <input type="submit" value="Cancelar Cita" />
@@ -33,6 +34,7 @@
         <p>Cita con el paciente: <%= info.patient.name %> </p>
         <p>Nombre del Dolor: <%= info.pain.name %> </p>
         <p>Descripción del Dolor: <%= info.pain.description %> </p>
+        <p>Fecha: <%= info.date.schedule %> </p>
 
         <div class="button">
             <a href="<%= seeFeedbackPath(info.date.id) %>"> Ver Feedback del Paciente </a>
@@ -43,7 +45,8 @@
             <h2>Cita en espera de la respuesta del paciente</h2>
             <p>Cita con el paciente: <%= info.patient.name %> </p>
             <p>Nombre del Dolor: <%= info.pain.name %> </p>
-            <p>Descripción del Dolor: <%= info.pain.description %> </p>  
+            <p>Descripción del Dolor: <%= info.pain.description %> </p> 
+            <p>Fecha: <%= info.date.schedule %> </p> 
             <form action="<%= rejectedDateByDentistPath(info.date.id) %>" method="post">
                 <input type="hidden" name="_method" value="patch" />
                 <input type="submit" value="Cancelar Postulación a esta Cita" />
