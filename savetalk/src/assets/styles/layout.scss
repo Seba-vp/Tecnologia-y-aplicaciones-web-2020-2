@@ -35,7 +35,11 @@ td {
 .button {
   overflow: hidden;
   background-color: #51adcf;
-  margin-bottom: 2%;;
+  margin-bottom: 2%;
+  margin-left: 30%;
+  margin-right: 30%;
+  /* width: 100%; */
+
 }
 
 
@@ -110,6 +114,10 @@ img {
   width: 100%;
 }
 
+.profile {
+  max-width: 50%;
+}
+
 /* Fake image */
 .fakeimg {
   background-color: #51adcf;
@@ -146,7 +154,7 @@ img {
   margin-top: 20px;
 }
 
-/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+/* RESPONSIVE */
 @media screen and (max-width: 800px) {
   .leftcolumn, .rightcolumn {   
     width: 100%;
@@ -154,7 +162,7 @@ img {
   }
 }
 
-/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+/* NAVBAR ON TOP */
 @media screen and (max-width: 400px) {
   .topnav a {
     float: none;
