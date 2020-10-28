@@ -1,10 +1,11 @@
 const KoaRouter = require('koa-router');
 const post = require('../models/post');
-
+const fsPromises = require('fs').promises;
+const path = require('path');
 const router = new KoaRouter();
 
 //Nuevo
-const PERMITED_FIELDS = [
+const PERMITTED_FIELDS = [
     'title',
     'description',
     'public',
@@ -47,31 +48,28 @@ return ctx.render('posts/new',{
 })
 
 router.post('posts-create','/', async (ctx)=>{
-    const post = ctx.orm.post.build(ctx.request.body);
+    /* const post = ctx.orm.post.build(ctx.request.body); */
     const  { cloudinary} = ctx.state;
-    
-
-
     try{
-        console.log(cloudinary)
         /* ESTA PARTE ES DE ARCHIVOS */
-        const { imagen } = ctx.request.files;
-        console.log(imagen)
-        if (imagen.size > 0) {
+        const { image } = ctx.request.files;
+         if (image.size > 0) {
+
             const uploadedImage = await cloudinary.uploader.upload(image.path);
             ctx.request.body.image = uploadedImage.public_id;
         }
         /* ********************** */
-
-    await post.save({fields:PERMITED_FIELDS});
+    const post = ctx.orm.post.build(ctx.request.body);
+    await post.save( { fields : PERMITTED_FIELDS }); 
     ctx.redirect(ctx.router.url('posts'));
+
     }catch (error) {
+    console.log(error);
     await ctx.render('posts/new',{
         post,
         errors: error.errors,
         createPostPath: ctx.router.url('posts-create'),
     });
-    
     }
 })
 
@@ -95,7 +93,8 @@ router.get('post-update', '/update/:id', (ctx) => {
 })
 
 router.post('post-update-database', 'update/:id', async (ctx) => {
-    const {post} = ctx.state;
+    const {post, cloudinary} = ctx.state;
+
 
     if (post.title !== ctx.request.body.title) {
         post.title = ctx.request.body.title;
@@ -127,10 +126,28 @@ router.post('post-update-database', 'update/:id', async (ctx) => {
     if (post.interactions !== ctx.request.body.interactions) {
         post.interactions = ctx.request.body.interactions;
     }
-  
+    
 
-    await post.save({ fields: PERMITED_FIELDS });
-    ctx.redirect(ctx.router.url('posts'));
+    try{
+
+        /* ESTA PARTE ES DE ARCHIVOS */
+        const { image } = ctx.request.files;
+
+        if (image.size > 0) {
+            const uploadedImage = await cloudinary.uploader.upload(image.path);
+            post.image = uploadedImage.public_id;
+         }
+        await post.save({ fields: PERMITTED_FIELDS });
+        ctx.redirect(ctx.router.url('post', post.id));
+
+        }catch (error) {
+           /*  console.log(error); */
+            await ctx.render('update/:id',{
+                post,
+                errors: error.errors,
+                createPostPath: ctx.router.url('update/', post.id),
+            });
+        }
 });
 
 router.get('post-delete', '/delete/:id', (ctx) => {

@@ -11,7 +11,7 @@
 
 <div class="card">
 
-<form method="post" action="<%= updatePostPathDataBase(post.id) %>" >
+<form method="post" action="<%= updatePostPathDataBase(post.id) %>" enctype="multipart/form-data">
 
     <% if (locals.errors){ %>
         <div class="card2">
@@ -78,7 +78,7 @@
     <div class="field" >
         <tr>
             <td><label for="image">Imagen </label></td>
-            <td><input type="string" name="image" id="image" value="<%= post.image %>"/></td>
+            <td><input type="file" name="image" id="image" /></td>
     </tr>
     </div>
 

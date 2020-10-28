@@ -1,4 +1,4 @@
-<form method="post" action="<%= createPatientPath %>" >
+<form method="post" action="<%= createPatientPath %>" enctype="multipart/form-data">
 
     <% if (locals.errors){ %>
         <div class="card">
@@ -51,7 +51,7 @@
     <div>
         <tr>
             <td> <label for="picture" >Foto</label></td>
-            <td> <input type="text" name="picture" id="picture" value="<%= patient.picture %>" /></td>
+            <td> <input type="file" name="picture" id="picture"  /></td>
     </tr>
     </div>
     <div>
