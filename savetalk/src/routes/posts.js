@@ -48,8 +48,21 @@ return ctx.render('posts/new',{
 
 router.post('posts-create','/', async (ctx)=>{
     const post = ctx.orm.post.build(ctx.request.body);
+    const  { cloudinary} = ctx.state;
+    
+
 
     try{
+        console.log(cloudinary)
+        /* ESTA PARTE ES DE ARCHIVOS */
+        const { imagen } = ctx.request.files;
+        console.log(imagen)
+        if (imagen.size > 0) {
+            const uploadedImage = await cloudinary.uploader.upload(image.path);
+            ctx.request.body.image = uploadedImage.public_id;
+        }
+        /* ********************** */
+
     await post.save({fields:PERMITED_FIELDS});
     ctx.redirect(ctx.router.url('posts'));
     }catch (error) {
@@ -59,7 +72,7 @@ router.post('posts-create','/', async (ctx)=>{
         createPostPath: ctx.router.url('posts-create'),
     });
     
-}
+    }
 })
 
 //Hasta aca lo nuevo
