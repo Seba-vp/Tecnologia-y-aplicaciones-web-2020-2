@@ -9,42 +9,58 @@
 
 ### Cosas no implementadas: :x::cry::x:
 
-Todo implementado.
+    Todo implementado.
  
 ### Cosas implementadas: :white_check_mark: :stuck_out_tongue_closed_eyes: :white_check_mark:
 
  - **FUNCIONALIDADES MINIMAS:**
 
-Sacamos los tag html de todas las vistas
+    Sacamos los tag html de todas las vistas
 
-Avanzamos en las siguientes funcionalidades:
+    Avanzamos en las siguientes funcionalidades:
 
-  * Calificar una atención (dar feedback)
-  * Acceder a dolores postulados
-  * Cancelar una postulación a un dolor
-  * Avanzar en chat
+    * Calificar una atención (dar feedback)
+    * Acceder a dolores postulados
+    * Cancelar una postulación a un dolor
+    * Avanzar en chat
 
-Incorporamos imagenes para pacientes, dentistas, posts y organizaciones en storage en cloudinary y tenemos imagenes por default.
+    Incorporamos imagenes para pacientes, dentistas, posts y organizaciones en storage en cloudinary y tenemos imagenes por default.
 
-Agregamos guards a rutas (middlewares) para restringir acceso a vistas en base a role y permisos. Además de las acciones sean visibles para los usuarios correspondientes.
+    Agregamos guards a rutas (middlewares) para restringir acceso a vistas en base a role y permisos. Además de las acciones sean visibles para los usuarios correspondientes.
  
  - **BONUS:**
 
-Se envía un mail a paciente y dentista cuando se hace match por un dolor.
+    Se envía un mail a paciente y dentista cuando se hace match por un dolor.
 
-Mejoramos estilo de la aplicación.
+    Mejoramos estilo de la aplicación.
 
-Usamos el tipo de input correspondiente para cada tipo de dato.
+    Usamos el tipo de input correspondiente para cada tipo de dato.
 
 ### Ejecución del código:  :floppy_disk::floppy_disk::floppy_disk:
 
-Para ver la app DentList, ingresar a ___ , o descargar la carpeta savetalk de este repositorio y correr la app localmente.
+    Para ver la app DentList, ingresar a ___ , o descargar la carpeta savetalk de este repositorio y correr la app localmente.
 
 ### Librerías: :books: 
 
 **Librerías:**
 
+- Cloudinary 
 
+### Usuarios y contraseñas 
+
+Te recomendamos crear tus propios pacientes y odontologos para que confirmes el correcto envío de mail. Sin embargo te dejamos algunos ya registrados.
+
+ - **Pacientes**
+    * rodobkn98@gmail.com 
+    * 123456
+    - 2 dolores creados
+    - 1 cita confirmada
+
+ - **Dentistas**
+    * josefa@gmail.com
+    * 123456
+    - 
+    -
 
 ### Consideraciones específicas y/o supuestos: :grin: :flushed: 
 Todo sigue la normativa
