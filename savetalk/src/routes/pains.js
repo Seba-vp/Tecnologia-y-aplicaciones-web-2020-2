@@ -12,24 +12,24 @@ const PROTECTED_PATH_D = [
     '/:dentistid',
 ]
 
-const PROTECTED_PATH_P = [
-    'patientpain/:idpain',
-]
+//const PROTECTED_PATH_P = [
+//    'patientpain/:idpain',
+//]
 
-function checkAuthD(ctx, next) {
-    const { currentDentist } = ctx.state;
-    if (!currentDentist) ctx.throw(401);
-    return next();
-}
+//function checkAuthD(ctx, next) {
+//    const { currentDentist } = ctx.state;
+//    if (!currentDentist) ctx.throw(401);
+//    return next();
+//}
 
-function checkAuthP(ctx, next) {
-    const { currentPatient } = ctx.state;
-    if (!currentPatient) ctx.throw(401);
-    return next();
-}
+//function checkAuthP(ctx, next) {
+//    const { currentPatient } = ctx.state;
+//    if (!currentPatient) ctx.throw(401);
+//    return next();
+//}
 
-router.use(PROTECTED_PATH_D, checkAuthD);
-router.use(PROTECTED_PATH_P, checkAuthP);
+//router.use(PROTECTED_PATH_D, checkAuthD);
+//router.use(PROTECTED_PATH_P, checkAuthP);
 
 router.param('id', async (id, ctx, next) => {
     const patient = await ctx.orm.patient.findByPk(id);
