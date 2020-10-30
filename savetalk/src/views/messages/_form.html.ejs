@@ -15,13 +15,9 @@
 
 
 
-        <label for="idReceive">Enviar a:</label>
-        <select name="idReceive" id="idReceive">
-            <% if (type === 'Dentist'){ %>
-            <optgroup label="Pacientes">
-                <% } else {%>
-            <optgroup label="Dentistas">
-                <% }%>
+        <label for="chatId">Enviar a:</label>
+        <select name="chatId" id="chatId">
+            <optgroup label="Contactos">
                 <% chatsToSend.forEach((element) => { %>
                 <option value="<%= element.chat %>"> <%= element.person.name %> </option>
                 <% });%>
