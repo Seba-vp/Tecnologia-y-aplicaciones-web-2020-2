@@ -51,15 +51,15 @@ Para ver la app DentList, ingresar a https://dent-list.herokuapp.com/ , o descar
 Te recomendamos crear tus propios pacientes y odontologos para que confirmes el correcto envío de mail, funciona correctamente con un '@gmail' (llega al Spam) ya que con '@uc' se demora mucho y '@hotmail' detecta el spam y no lo muestra. Sin embargo te dejamos algunos ya registrados.
 
  - **Pacientes**
-    * rodobkn98@gmail.com 
-    * 123456
+    * mail: rodobkn98@gmail.com 
+    * password: 123456
     - 2 dolores creados
     - 1 cita confirmada
     - 1 cita realizada
 
  - **Dentistas**
-    * josefa@gmail.com
-    * 123456
+    * mail: josefa@gmail.com
+    * password: 123456
     - 1 cita realizada
     - Tiene un feedback de un paciente
 
