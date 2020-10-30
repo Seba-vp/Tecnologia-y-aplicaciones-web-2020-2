@@ -9,7 +9,7 @@
 
 ### Cosas no implementadas: :x::cry::x:
 
-    Todo implementado.
+Todo implementado.
  
 ### Cosas implementadas: :white_check_mark: :stuck_out_tongue_closed_eyes: :white_check_mark:
 
@@ -38,7 +38,7 @@
 
 ### Ejecución del código:  :floppy_disk::floppy_disk::floppy_disk:
 
-    Para ver la app DentList, ingresar a ___ , o descargar la carpeta savetalk de este repositorio y correr la app localmente.
+Para ver la app DentList, ingresar a ___ , o descargar la carpeta savetalk de este repositorio y correr la app localmente.
 
 ### Librerías: :books: 
 
@@ -55,12 +55,13 @@ Te recomendamos crear tus propios pacientes y odontologos para que confirmes el 
     * 123456
     - 2 dolores creados
     - 1 cita confirmada
+    - 1 cita realizada
 
  - **Dentistas**
     * josefa@gmail.com
     * 123456
-    - 
-    -
+    - 1 cita realizada
+    - Tiene un feedback de un paciente
 
 ### Consideraciones específicas y/o supuestos: :grin: :flushed: 
 Todo sigue la normativa
