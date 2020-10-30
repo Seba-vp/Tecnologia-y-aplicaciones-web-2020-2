@@ -28,8 +28,8 @@ function checkAuthP(ctx, next) {
     return next();
 }
 
-router.use(PROTECTED_PATH_D, checkAuthD);
-router.use(PROTECTED_PATH_P, checkAuthP);
+//router.use(PROTECTED_PATH_D, checkAuthD);
+//router.use(PROTECTED_PATH_P, checkAuthP);
 
 router.param('id', async (id, ctx, next) => {
     const patient = await ctx.orm.patient.findByPk(id);
