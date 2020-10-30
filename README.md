@@ -1,23 +1,11 @@
 # DENTLIST - MANATI
 
-# ENTREGA 3 - DENTLIST
+# ENTREGA 4 - DENTLIST
 
-## Link App en Heroku https://dent-list.herokuapp.com/
+## Link App en Heroku 
 
 ## Consideraciones generales :bangbang:
 **Antes de comenzar a correr el programa** ...
-
-Está implementado el registro de pacientes y dentistas.
-
-Asimismo se puede inciar sesión como dentista o paciente (obviamente también cerrar sesión).
-
-Los pacientes pueden crear dolores, para que luego sean atendidos por los dentistas.
-
-Los dentistas pueden ver los dolores disponibles en la app, para postularse.
-
-Luegos los pacientes pueden ver los dentistas que se han postulado a sus dolores, y poder elegir el que más le guste.
-
-Por último el dentista puede decir que efectivamente se realizó la cita.
 
 ### Cosas no implementadas: :x::cry::x:
 
@@ -26,36 +14,36 @@ Todo implementado.
 ### Cosas implementadas: :white_check_mark: :stuck_out_tongue_closed_eyes: :white_check_mark:
 
  - **FUNCIONALIDADES MINIMAS:**
+Sacamos los tag html de todas las vistas
 
-Sesión de usuarios implementado
+Avanzamos en las siguientes funcionalidades:
 
-Flujo de navegación implementado
+Calificar una atención (dar feedback)
+Acceder a dolores postulados
+Cancelar una postulación a un dolor
+Avanzar en chat
 
-Layout inicial implementado
+Incorporamos imagenes para pacientes, dentistas, posts y organizaciones en storage en cloudinary y tenemos imagenes por default.
 
-Agregar estatus a dolor implementado
-
-elegir el odontólogo que sanara dolor implementado
-
-Dashboards de pacientes y dentistas implementados
-
+Agregamos guards a rutas (middlewares) para restringir acceso a vistas en base a role y permisos. Además de las acciones sean visibles para los usuarios correspondientes.
+ 
  - **BONUS:**
 
-Landing page/Dashboard distinta para pacientes y odontólogos luego de ingresar sesion implementado
+Se envía un mail a paciente y dentista cuando se hace match por un dolor.
 
-Sesión en múltiples dispositivos implementado
+Mejoramos estilo de la aplicación.
 
-Mini framework CSS que les permita reutilizar clases a lo largo de toda la app implementado. 
+Usamos el tipo de input correspondiente para cada tipo de dato.
 
 ### Ejecución del código:  :floppy_disk::floppy_disk::floppy_disk:
 
-Para ver la app DentList, ingresar a https://dent-list.herokuapp.com/, o descargar la carpeta savetalk de este repositorio y correr la app localmente.
+Para ver la app DentList, ingresar a ___ , o descargar la carpeta savetalk de este repositorio y correr la app localmente.
 
 ### Librerías: :books: 
 
 **Librerías:**
 
-No usamos ninguna libreria especifica fuera de las usadas en el curso para desarrollar la app.
+
 
 ### Consideraciones específicas y/o supuestos: :grin: :flushed: 
 Todo sigue la normativa

@@ -1,41 +1,35 @@
-
-    
-     
 <header>
     <h1> Modificación de conexión con usuario:</h1>
 </header>
 <div class="topnav">
-   <!--  <a href="#" id="r">No sirve</a> -->
+    <!--  <a href="#" id="r">No sirve</a> -->
 </div>
 
 
 <div class="card">
 
 
-<form method="post" action="<%= updateChatPathDataBase(chat.id) %>">
-    <% if (locals.errors){ %>
-    <div class="card2">
-        <p>No se pudo cambiar la conexión por lo siguiente:</p>
-        <ul>
-            <% errors.forEach(error => { %>
-            <li><%= error.path %>: <%= error.message %> </li>
-            <% }); %>
-        </ul>
-    </div>
-    <% } %>
-    <div>
-        <table>
-            <tr>
-                <td><label for="block">Conexión</label></td>
-                <td><input type="text" name="block" /></td>
-            </tr>
-    </table>
-    </div>
-    <div>
-        <input type="submit" value="Modificar conexión" />
-    </div>
-</form>
+    <form method="post" action="<%= updateChatPathDataBase(chat.id) %>">
+        <% if (locals.errors){ %>
+        <div class="card2">
+            <p>No se pudo cambiar la conexión por lo siguiente:</p>
+            <ul>
+                <% errors.forEach(error => { %>
+                <li><%= error.path %>: <%= error.message %> </li>
+                <% }); %>
+            </ul>
+        </div>
+        <% } %>
+        <div>
+            <table>
+                <tr>
+                    <td><label for="block">Conexión</label></td>
+                    <td><input type="text" name="block" /></td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <input type="submit" value="Modificar conexión" />
+        </div>
+    </form>
 </div>
-
-
-
