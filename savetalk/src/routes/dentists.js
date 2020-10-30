@@ -17,6 +17,12 @@ const PERMITTED_FIELDS = [
     'year'
 ]
 
+function checkAuth(ctx, next) {
+    const { currentDentist } = ctx.state;
+    if (!currentDentist) ctx.throw(401);
+
+    return next();
+}
 
 router.param('id', async (id, ctx, next) => {
     const dentist = await ctx.orm.dentist.findByPk(id);
@@ -59,7 +65,7 @@ router.post('dentists-create', '/', async (ctx) => {
     }
 });
 
-router.get('dentist', '/:id', async (ctx) => {
+router.get('dentist', '/:id', checkAuth, async (ctx) => {
     const { dentist } = ctx.state;
     dates = await dentist.getDates();
     chats = await dentist.getChats();
@@ -90,7 +96,7 @@ router.get('dentist', '/:id', async (ctx) => {
     });
 });
 
-router.get('dentist-update', '/update/:id', (ctx) => {
+router.get('dentist-update', '/update/:id', checkAuth, (ctx) => {
     const { dentist } = ctx.state;
     return ctx.render('dentists/update', {
         dentist,
@@ -99,7 +105,7 @@ router.get('dentist-update', '/update/:id', (ctx) => {
     });
 })
 
-router.post('dentist-update-database', 'update/:id', async (ctx) => {
+router.post('dentist-update-database', 'update/:id', checkAuth, async (ctx) => {
     const { dentist } = ctx.state;
 
     if (dentist.name !== ctx.request.body.name) {
@@ -143,7 +149,7 @@ router.post('dentist-update-database', 'update/:id', async (ctx) => {
     ctx.redirect(ctx.router.url('dentist', ctx.state.currentDentist.id));
 });
 
-router.get('dentist-delete', '/delete/:id', (ctx) => {
+router.get('dentist-delete', '/delete/:id', checkAuth, (ctx) => {
     const { dentist } = ctx.state;
     return ctx.render('dentists/delete', {
         dentist,
@@ -152,7 +158,7 @@ router.get('dentist-delete', '/delete/:id', (ctx) => {
     });
 })
 
-router.post('dentist-delete-database', 'delete/:id', async (ctx) => {
+router.post('dentist-delete-database', 'delete/:id', checkAuth, async (ctx) => {
     const { dentist } = ctx.state;
     await dentist.destroy();
     ctx.session.currentDentistId = null;
