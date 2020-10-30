@@ -17,12 +17,12 @@ Todo implementado.
 
 Sacamos los tag html de todas las vistas
 
-- Avanzamos en las siguientes funcionalidades:
+Avanzamos en las siguientes funcionalidades:
 
-Calificar una atención (dar feedback)
-Acceder a dolores postulados
-Cancelar una postulación a un dolor
-Avanzar en chat
+  * Calificar una atención (dar feedback)
+  * Acceder a dolores postulados
+  * Cancelar una postulación a un dolor
+  * Avanzar en chat
 
 Incorporamos imagenes para pacientes, dentistas, posts y organizaciones en storage en cloudinary y tenemos imagenes por default.
 
