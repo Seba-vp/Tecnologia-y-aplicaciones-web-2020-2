@@ -5,17 +5,17 @@
     <header>
     
 <div class="card">
-    <h1>Agregar un Post </h1>
-   <p> <a href="<%=newPostPath %>">Agregar un post </a></p>
+    <h2>Agregar un Post </h2>
+  <a href="<%=newPostPath %>">Agregar un post </a>
 </div>
 
 <% posts.forEach( post => { %>
     <div class="card"> 
         
         <p>ID:  <%= post.id %></p>
-        <h1><%= post.title %> </h1>
+        <h2><%= post.title %> </h2>
         <p><%= post.description %></p>
         
-        <p><a href="<%= postPath(post.id) %>">Ver más</a></p>
+     <a href="<%= postPath(post.id) %>">Ver más</a>
     </div>
 <% }) %>

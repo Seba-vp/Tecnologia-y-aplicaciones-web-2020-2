@@ -1,7 +1,7 @@
 const KoaRouter = require('koa-router');
 
 const router = new KoaRouter();
-
+const path = require('path');
 const PERMITTED_FIELDS = [
     'kind',
     'name',
@@ -51,8 +51,18 @@ router.get('dentists-new', '/new', (ctx) => {
 })
 
 router.post('dentists-create', '/', async (ctx) => {
-    const dentist = ctx.orm.dentist.build(ctx.request.body);   //Lo creamos
+    const  { cloudinary} = ctx.state;
+    /* const dentist = ctx.orm.dentist.build(ctx.request.body); esta mas abajo*/   //Lo creamos
     try {
+        /* ESTA PARTE ES DE ARCHIVOS */
+        const { picture } = ctx.request.files;
+         if (picture.size > 0) {
+
+            const uploadedImage = await cloudinary.uploader.upload(picture.path);
+            ctx.request.body.picture = uploadedImage.public_id;
+        }
+        /* ********************** */
+        const dentist = ctx.orm.dentist.build(ctx.request.body);
         await dentist.save({ fields: PERMITTED_FIELDS });          //Lo insertamos en la base de datos
         ctx.session.currentDentistId = dentist.id;
         ctx.redirect(ctx.router.url('dentist', dentist.id));
@@ -105,8 +115,10 @@ router.get('dentist-update', '/update/:id', checkAuth, (ctx) => {
     });
 })
 
+
 router.post('dentist-update-database', 'update/:id', checkAuth, async (ctx) => {
-    const { dentist } = ctx.state;
+    const { dentist, cloudinary } = ctx.state;
+
 
     if (dentist.name !== ctx.request.body.name) {
         dentist.name = ctx.request.body.name;
@@ -144,7 +156,13 @@ router.post('dentist-update-database', 'update/:id', checkAuth, async (ctx) => {
     if (dentist.password !== ctx.request.body.password) {
         dentist.password = ctx.request.body.password;
     }
-
+    /* ESTA PARTE ES DE ARCHIVOS */
+    const { picture } = ctx.request.files;
+    if (picture.size > 0) {
+        const uploadedImage = await cloudinary.uploader.upload(picture.path);
+        dentist.picture = uploadedImage.public_id;
+     }
+    /* ################################ */
     await dentist.save({ fields: PERMITTED_FIELDS });
     ctx.redirect(ctx.router.url('dentist', ctx.state.currentDentist.id));
 });

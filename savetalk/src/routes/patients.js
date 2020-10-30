@@ -1,7 +1,7 @@
 const KoaRouter = require('koa-router');
 
 const router = new KoaRouter();
-
+const path = require('path');
 const PERMITTED_FIELDS = [
     'age',
     'name',
@@ -49,11 +49,23 @@ router.get('patients-new', '/new', (ctx) => {
 })
 
 router.post('patients-create', '/', async (ctx) => {
-    const patient = ctx.orm.patient.build(ctx.request.body);   //Lo creamos
+    const  { cloudinary} = ctx.state;
+    /* const patient = ctx.orm.patient.build(ctx.request.body);  esta mas abajo */
+      //Lo creamos
     try {
+        /* ESTA PARTE ES DE ARCHIVOS */
+        const { picture } = ctx.request.files;
+         if (picture.size > 0) {
+
+            const uploadedImage = await cloudinary.uploader.upload(picture.path);
+            ctx.request.body.picture = uploadedImage.public_id;
+        }
+        /* ********************** */
+        const patient = ctx.orm.patient.build(ctx.request.body);
         await patient.save({ fields: PERMITTED_FIELDS });          //Lo insertamos en la base de datos
         ctx.session.currentPatientId = patient.id;
         ctx.redirect(ctx.router.url('patient', patient.id));
+    
     } catch (error) {
         await ctx.render('patients/new', {
             patient,
@@ -90,8 +102,10 @@ router.get('patient-update', '/update/:id', checkAuth, (ctx) => {
     });
 })
 
+
 router.post('patient-update-database', 'update/:id', checkAuth, async (ctx) => {
-    const { patient } = ctx.state;
+    const { patient, cloudinary } = ctx.state;
+
 
     if (patient.name !== ctx.request.body.name) {
         patient.name = ctx.request.body.name;
@@ -124,6 +138,13 @@ router.post('patient-update-database', 'update/:id', checkAuth, async (ctx) => {
         patient.password = ctx.request.body.password;
     }
 
+    /* ESTA PARTE ES DE ARCHIVOS */
+    const { picture } = ctx.request.files;
+    if (picture.size > 0) {
+        const uploadedImage = await cloudinary.uploader.upload(picture.path);
+        patient.picture = uploadedImage.public_id;
+     }
+    /* ################################ */
     await patient.save({ fields: PERMITTED_FIELDS });
     ctx.redirect(ctx.router.url('patient', ctx.state.currentPatient.id));
 });

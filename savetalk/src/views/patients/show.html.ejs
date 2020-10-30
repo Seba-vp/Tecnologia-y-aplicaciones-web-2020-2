@@ -11,7 +11,12 @@
     <a href="#" id="r">Volver</a> 
 </div>
 
-<div class="card    ">
+<div class="card ">
+    <div class="card2">
+        <div class="fakeimg">
+            <img src="<%= cloudinary.url(patient.picture) %>" alt="<%= patient.picture %>" class="profile">
+        </div>
+    </div>
     <h2>Numero de dolores presentados: <%= pains.length %>  </h2>
     <% if (pains.length){ %>
        
