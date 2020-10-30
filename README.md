@@ -24,7 +24,7 @@ Todo implementado.
 
     Incorporamos imagenes para pacientes, dentistas, posts y organizaciones en storage en cloudinary y tenemos imagenes por default.
 
-    Agregamos guards a rutas (middlewares) para restringir acceso a vistas en base a role y permisos. Además de las acciones sean visibles para los usuarios correspondientes.
+    Agregamos guards a rutas (middlewares) para restringir acceso a vistas en base a role y permisos. Además de las acciones sean visibles para los usuarios correspondientes. (Te devuelve a la página de inicio en caso de NO TENER ACCESO)
  
  - **BONUS:**
 
