@@ -20,25 +20,42 @@ const chats = require('./routes/chats');
 const router = new KoaRouter();
 
 router.use(async (ctx, next) => {
-    Object.assign(ctx.state, {
-        destroyPatientSessionPath: ctx.router.url('session-destroy-patient'),
-        destroyDentistSessionPath: ctx.router.url('session-destroy-dentist'),
-        wantToConnectSessionPath: ctx.router.url('logging-menu')
-    });
-    return next();
-  });
+  try {
+    await next();
+  } catch (err) {
+    switch (err.status) {
+      case 401:
+        ctx.app.emit('error', err, ctx);
+        ctx.redirect(ctx.router.url('logging-menu'));
+        break;
+      default:
+        throw err;
+    }
+  }
+})
+
+
 
 router.use(async (ctx, next) => {
-    if (ctx.session.currentPatientId) {
-      ctx.state.currentPatient = await ctx.orm.patient.findByPk(ctx.session.currentPatientId);
-    }
-    if (ctx.session.currentDentistId) {
-        ctx.state.currentDentist = await ctx.orm.dentist.findByPk(ctx.session.currentDentistId);
-      }
-    return next();
+  Object.assign(ctx.state, {
+    destroyPatientSessionPath: ctx.router.url('session-destroy-patient'),
+    destroyDentistSessionPath: ctx.router.url('session-destroy-dentist'),
+    wantToConnectSessionPath: ctx.router.url('logging-menu')
   });
+  return next();
+});
 
-router.use('/', sessions.routes());  
+router.use(async (ctx, next) => {
+  if (ctx.session.currentPatientId) {
+    ctx.state.currentPatient = await ctx.orm.patient.findByPk(ctx.session.currentPatientId);
+  }
+  if (ctx.session.currentDentistId) {
+    ctx.state.currentDentist = await ctx.orm.dentist.findByPk(ctx.session.currentDentistId);
+  }
+  return next();
+});
+
+router.use('/', sessions.routes());
 router.use('/session', sessions_2.routes());
 router.use('/pain', pains.routes());
 router.use('/hello', hello.routes());

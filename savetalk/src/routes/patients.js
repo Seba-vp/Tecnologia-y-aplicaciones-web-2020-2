@@ -15,6 +15,13 @@ const PERMITTED_FIELDS = [
     'isapre'
 ]
 
+function checkAuth(ctx, next) {
+    const { currentPatient } = ctx.state;
+    if (!currentPatient) ctx.throw(401);
+
+    return next();
+}
+
 router.param('id', async (id, ctx, next) => {
     const patient = await ctx.orm.patient.findByPk(id);
     if (!patient) {
@@ -24,7 +31,7 @@ router.param('id', async (id, ctx, next) => {
     return next();
 });
 
-router.get('patients', '/', async (ctx) => {
+router.get('patients', '/', checkAuth, async (ctx) => {
     const patients = await ctx.orm.patient.findAll();
     await ctx.render('patients/index', {
         patients,
@@ -69,7 +76,7 @@ router.post('patients-create', '/', async (ctx) => {
 });
 
 
-router.get('patient', '/:id', async (ctx) => {
+router.get('patient', '/:id', checkAuth, async (ctx) => {
     const { patient } = ctx.state;
     chats = await patient.getChats();
     return ctx.render('patients/show', {
@@ -86,7 +93,7 @@ router.get('patient', '/:id', async (ctx) => {
     });
 });
 
-router.get('patient-update', '/update/:id', (ctx) => {
+router.get('patient-update', '/update/:id', checkAuth, (ctx) => {
     const { patient } = ctx.state;
     return ctx.render('patients/update', {
         patient,
@@ -95,8 +102,10 @@ router.get('patient-update', '/update/:id', (ctx) => {
     });
 })
 
-router.post('patient-update-database', 'update/:id', async (ctx) => {
+
+router.post('patient-update-database', 'update/:id', checkAuth, async (ctx) => {
     const { patient, cloudinary } = ctx.state;
+
 
     if (patient.name !== ctx.request.body.name) {
         patient.name = ctx.request.body.name;
@@ -140,7 +149,7 @@ router.post('patient-update-database', 'update/:id', async (ctx) => {
     ctx.redirect(ctx.router.url('patient', ctx.state.currentPatient.id));
 });
 
-router.get('patient-delete', '/delete/:id', (ctx) => {
+router.get('patient-delete', '/delete/:id', checkAuth, (ctx) => {
     const { patient } = ctx.state;
     return ctx.render('patients/delete', {
         patient,
@@ -149,7 +158,7 @@ router.get('patient-delete', '/delete/:id', (ctx) => {
     });
 })
 
-router.post('patient-delete-database', 'delete/:id', async (ctx) => {
+router.post('patient-delete-database', 'delete/:id', checkAuth, async (ctx) => {
     const { patient } = ctx.state;
     await patient.destroy();
     ctx.session.currentPatientId = null;

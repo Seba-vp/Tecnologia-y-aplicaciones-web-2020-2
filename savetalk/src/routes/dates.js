@@ -16,6 +16,31 @@ const PERMITTED_FIELDS_CHAT = [
     'patientId',
     'block'
 ]
+const PROTECTED_PATH_D = [
+    '/new/:dentistid/:painid',
+    '/datedone/:id',
+    '/:dentistid/:painid',
+]
+
+const PROTECTED_PATH_P = [
+    '/datereject/:id',
+    '/dateconfirm/:id',
+]
+
+function checkAuthD(ctx, next) {
+    const { currentDentist } = ctx.state;
+    if (!currentDentist) ctx.throw(401);
+    return next();
+}
+
+function checkAuthP(ctx, next) {
+    const { currentPatient } = ctx.state;
+    if (!currentPatient) ctx.throw(401);
+    return next();
+}
+
+//router.use(PROTECTED_PATH_D, checkAuthD);
+//router.use(PROTECTED_PATH_P, checkAuthP);
 
 router.param('id', async (id, ctx, next) => {
     const date = await ctx.orm.date.findByPk(id);
@@ -69,7 +94,7 @@ router.get('dates-new', '/new/:dentistid/:painid', (ctx) => {
         date,
         createDatePath: (dentistid, painid) => ctx.router.url('dates-create', dentistid, painid),
         painPath: (idpain, iddentist) => ctx.router.url('dentistPain', idpain, iddentist),
-        
+
     });
 })
 
