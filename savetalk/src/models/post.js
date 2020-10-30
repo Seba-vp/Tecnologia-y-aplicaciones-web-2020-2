@@ -46,6 +46,8 @@ module.exports = (sequelize, DataTypes) => {
     image: {
       type: DataTypes.STRING,
       allowNull: true,
+      defaultValue: 'jisysgzmbj2burdw53k5',
+        
     },
     
     id_user: {

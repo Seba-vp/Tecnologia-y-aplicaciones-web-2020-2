@@ -20,7 +20,12 @@ module.exports = (sequelize, DataTypes) => {
     phone: DataTypes.STRING,
     address: DataTypes.STRING,
     city: DataTypes.STRING,
-    picture: DataTypes.STRING,
+
+    picture: {
+      type: DataTypes.STRING,
+      defaultValue: 'jisysgzmbj2burdw53k5',
+       },
+
     email: {
       type: DataTypes.STRING,
       allowNull: false,

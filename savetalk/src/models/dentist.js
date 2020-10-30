@@ -28,7 +28,13 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true
       }
     },
-    picture: DataTypes.STRING,
+    
+    picture: {
+      type: DataTypes.STRING,
+      defaultValue: 'jisysgzmbj2burdw53k5',
+
+    },
+
     phone: DataTypes.STRING,
     address: DataTypes.STRING,
     city: DataTypes.STRING,
