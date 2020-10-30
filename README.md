@@ -14,9 +14,10 @@ Todo implementado.
 ### Cosas implementadas: :white_check_mark: :stuck_out_tongue_closed_eyes: :white_check_mark:
 
  - **FUNCIONALIDADES MINIMAS:**
+
 Sacamos los tag html de todas las vistas
 
-Avanzamos en las siguientes funcionalidades:
+- Avanzamos en las siguientes funcionalidades:
 
 Calificar una atención (dar feedback)
 Acceder a dolores postulados
