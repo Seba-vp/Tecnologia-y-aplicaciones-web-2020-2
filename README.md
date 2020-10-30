@@ -1,8 +1,6 @@
-# DENTLIST - MANATI
+# DENTLIST - MANATI - ENTREGA 4 
 
-# ENTREGA 4 - DENTLIST
-
-## Link App en Heroku 
+## Link App en Heroku https://dent-list.herokuapp.com/
 
 ## Consideraciones generales :bangbang:
 **Antes de comenzar a correr el programa** ...
@@ -38,7 +36,7 @@ Todo implementado.
 
 ### Ejecución del código:  :floppy_disk::floppy_disk::floppy_disk:
 
-Para ver la app DentList, ingresar a ___ , o descargar la carpeta savetalk de este repositorio y correr la app localmente.
+Para ver la app DentList, ingresar a https://dent-list.herokuapp.com/ , o descargar la carpeta savetalk de este repositorio y correr la app localmente.
 
 ### Librerías: :books: 
 
@@ -48,7 +46,7 @@ Para ver la app DentList, ingresar a ___ , o descargar la carpeta savetalk de es
 
 ### Usuarios y contraseñas 
 
-Te recomendamos crear tus propios pacientes y odontologos para que confirmes el correcto envío de mail. Sin embargo te dejamos algunos ya registrados.
+Te recomendamos crear tus propios pacientes y odontologos para que confirmes el correcto envío de mail, funciona correctamente con un '@gmail' (llega al Spam) ya que con '@uc' se demora mucho y '@hotmail' detecta el spam y no lo muestra. Sin embargo te dejamos algunos ya registrados.
 
  - **Pacientes**
     * rodobkn98@gmail.com 
@@ -64,6 +62,7 @@ Te recomendamos crear tus propios pacientes y odontologos para que confirmes el 
     - Tiene un feedback de un paciente
 
 ### Consideraciones específicas y/o supuestos: :grin: :flushed: 
+
 Todo sigue la normativa
 
 ## Referencias de código externo :
