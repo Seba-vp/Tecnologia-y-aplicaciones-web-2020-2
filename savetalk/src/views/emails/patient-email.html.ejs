@@ -1,5 +1,48 @@
-<h3>Hola <%= data.patient.name %>! </h3>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
 
-<h3>Has hecho Match con el dentista <%= data.dentist.name %> para tratar tu dolor </h3>
 
-<p>Para más información accede a nuestra página web </p>
+
+.card {
+    text-align: center;
+    background-color:  #51adcf;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+
+.card h1 {
+    font-size: 50px;
+    text-align: center;
+    color: white;
+}
+
+.card2 {
+    text-align: center;
+    background-color: rgba(235, 228, 228, 0.966);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+    </style>
+</head>
+<body>
+
+
+<div class="card">
+    <h1>DentList </h1>
+</div>
+
+<div class="card2">
+<h2>Hola <%= data.patient.name %>! </h2>
+
+<h2>Has hecho Match con el dentista <%= data.dentist.name %> para tratar tu dolor </h2>
+
+
+</div>
+<h3 style="text-align: center;">Para más información accede a nuestra página web </h3>
+<p style="text-align: center;"><a  href="https://dent-list.herokuapp.com/"> Ir a DentList</a> </p>
+</body>
+</html>

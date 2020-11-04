@@ -67,6 +67,7 @@ router.post('patients-create', '/', async (ctx) => {
         ctx.redirect(ctx.router.url('patient', patient.id));
     
     } catch (error) {
+        const patient = ctx.orm.patient.build(ctx.request.body);
         await ctx.render('patients/new', {
             patient,
             errors: error.errors,
