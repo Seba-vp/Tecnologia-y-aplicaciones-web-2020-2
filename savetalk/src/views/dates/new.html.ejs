@@ -14,7 +14,11 @@
             <p>La Cita no se pudo crear debido a los siguientes errores:</p>
             <ul>
                 <% errors.forEach(error => { %>
-                    <li><%= error.path %>: <%= error.message %> </li>
+                    <% if (error.path == "price") {%>
+                        <li>Tienes que poner un valor no negativo en Precio</li>
+                    <% } else {%>
+                        <li><%= error.path %>: <%= error.message %> </li>
+                    <% } %>
                 <% }); %>
             </ul>
         </div>
@@ -23,19 +27,19 @@
     <div>
     <tr>
         <td><label for="schedule" >Posibles horarios: </label></td>
-        <td><textarea rows="4" cols="30" name="schedule" id="schedule" ><%= date.schedule %></textarea></td>
+        <td><textarea rows="4" cols="30" name="schedule" id="schedule" required ><%= date.schedule %></textarea></td>
     </tr>
     </div>
     <div>
     <tr>
         <td><label for="price" >Precio: </label></td>
-        <td><input type="number" name="price" id="price" value="<%= date.price %>" /></td>
+        <td><input type="number" name="price" id="price" value="<%= date.price %>" required /></td>
     </tr>
     </div>
     <div>
     <tr>
         <td><label for="message" >Mensaje de Presentación para el Paciente: </label></td>
-        <td><textarea rows="4" cols="30" name="message" id="message" ><%= date.message %></textarea></td>
+        <td><textarea rows="4" cols="30" name="message" id="message" required ><%= date.message %></textarea></td>
     </tr>
     </div>
     </table>

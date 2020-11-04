@@ -114,9 +114,12 @@ router.post('dates-create', '/:dentistid/:painid', async (ctx) => {
         ctx.redirect(ctx.router.url('dentist', ctx.state.currentDentist.id));
     } catch (error) {
         await ctx.render('dates/new', {
+            dentist,
             date,
+            pain,
             errors: error.errors,
-            createDatePath: (dentistid, painid) => ctx.router.url('dates-create', dentistid, painid)
+            createDatePath: (dentistid, painid) => ctx.router.url('dates-create', dentistid, painid),
+            painPath: (idpain, iddentist) => ctx.router.url('dentistPain', idpain, iddentist)
         });
     }
 });
