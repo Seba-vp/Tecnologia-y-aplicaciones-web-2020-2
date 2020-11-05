@@ -67,6 +67,7 @@ router.post('dentists-create', '/', async (ctx) => {
         ctx.session.currentDentistId = dentist.id;
         ctx.redirect(ctx.router.url('dentist', dentist.id));
     } catch (error) {
+        const dentist = ctx.orm.dentist.build(ctx.request.body);
         await ctx.render('dentists/new', {
             dentist,
             errors: error.errors,
