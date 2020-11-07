@@ -27,7 +27,7 @@ function Spinner (props) {
         <div className="card2">
             <form action={string} method="post" onClick={onClickHandler} >
                 <input type="hidden" name="_method" value="patch" />
-                <input type="submit" value="Confirmar Cita REACT" />
+                <input type="submit" value="Confirmar Cita" />
             </form>
             {spinnerToShow}
         </div>

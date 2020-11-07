@@ -45,13 +45,6 @@
     <div id="spinner" 
         data-date="<%= JSON.stringify(date) %>"> 
     </div>
-
-    <div class="card2">
-        <form action="<%= confirmDatePath(date.id) %>" method="post">
-            <input type="hidden" name="_method" value="patch" />
-            <input type="submit" value="Confirmar Cita" />
-        </form>
-    </div>
     
     <div class="card2">
         <form action="<%= rejectDatePath(date.id) %>" method="post">
