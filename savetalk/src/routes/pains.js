@@ -89,7 +89,7 @@ router.get('pains', '/:dentistid', async (ctx) => {
     });
 });
 
-router.get('dentistPain', 'dentistpain/:idpain/:dentistid', async (ctx) => {
+router.get('dentistPain', '/dentistpain/:idpain/:dentistid', async (ctx) => {
     const {pain} = ctx.state;
     const {dentist} = ctx.state;
     let dentistAlreadyAppliedToThePain = false;
