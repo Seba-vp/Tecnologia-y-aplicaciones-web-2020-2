@@ -7,16 +7,25 @@
     <div class="topnav">
         <a href="<%= dentistPath(dentist.id) %>" id="r">Volver</a> 
     </div>
-    
+
 <div class="card">
     <h1>Dolores disponibles</h1>
-<% painsToSend.forEach( pain => { %>
+
+    <!-- LO DE ABAJO ES MI REACT -->
+    <div id="pain-filter" 
+        data-pains="<%= JSON.stringify(painsToSend) %>" 
+        data-dentist="<%= JSON.stringify(dentist) %>" > 
+    </div>
+
+    
+<!-- <% painsToSend.forEach( pain => { %>
     <div class="card2"> 
         <h2><%= pain.name %></h2>
         <div class="button">
             <a href="<%= painPath(pain.id, dentist.id) %>">Ver más</a>
         </div>
     </div>
-<% }) %>
+<% }) %> -->
+
 </div>
 

@@ -41,6 +41,11 @@
 <% } else { %>
 
     <div class="card">
+
+    <div id="spinner" 
+        data-date="<%= JSON.stringify(date) %>"> 
+    </div>
+
     <div class="card2">
         <form action="<%= confirmDatePath(date.id) %>" method="post">
             <input type="hidden" name="_method" value="patch" />
