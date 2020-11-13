@@ -18,7 +18,7 @@ const PERMITTED_FIELDS = [
 function checkAuth(ctx, next) {
     const { currentPatient } = ctx.state;
     if (!currentPatient) ctx.throw(401);
-
+    if (currentPatient.id.toString() !== ctx.params.id) ctx.throw(401);
     return next();
 }
 
@@ -49,13 +49,13 @@ router.get('patients-new', '/new', (ctx) => {
 })
 
 router.post('patients-create', '/', async (ctx) => {
-    const  { cloudinary} = ctx.state;
+    const { cloudinary } = ctx.state;
     /* const patient = ctx.orm.patient.build(ctx.request.body);  esta mas abajo */
-      //Lo creamos
+    //Lo creamos
     try {
         /* ESTA PARTE ES DE ARCHIVOS */
         const { picture } = ctx.request.files;
-         if (picture.size > 0) {
+        if (picture.size > 0) {
 
             const uploadedImage = await cloudinary.uploader.upload(picture.path);
             ctx.request.body.picture = uploadedImage.public_id;
@@ -65,7 +65,7 @@ router.post('patients-create', '/', async (ctx) => {
         await patient.save({ fields: PERMITTED_FIELDS });          //Lo insertamos en la base de datos
         ctx.session.currentPatientId = patient.id;
         ctx.redirect(ctx.router.url('patient', patient.id));
-    
+
     } catch (error) {
         const patient = ctx.orm.patient.build(ctx.request.body);
         await ctx.render('patients/new', {
@@ -144,7 +144,7 @@ router.post('patient-update-database', 'update/:id', checkAuth, async (ctx) => {
     if (picture.size > 0) {
         const uploadedImage = await cloudinary.uploader.upload(picture.path);
         patient.picture = uploadedImage.public_id;
-     }
+    }
     /* ################################ */
     await patient.save({ fields: PERMITTED_FIELDS });
     ctx.redirect(ctx.router.url('patient', ctx.state.currentPatient.id));

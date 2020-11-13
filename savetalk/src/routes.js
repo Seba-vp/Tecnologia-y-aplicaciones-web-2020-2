@@ -34,8 +34,6 @@ router.use(async (ctx, next) => {
   }
 })
 
-
-
 router.use(async (ctx, next) => {
   Object.assign(ctx.state, {
     destroyPatientSessionPath: ctx.router.url('session-destroy-patient'),
