@@ -20,7 +20,7 @@ const PERMITTED_FIELDS = [
 function checkAuth(ctx, next) {
     const { currentDentist } = ctx.state;
     if (!currentDentist) ctx.throw(401);
-
+    if (currentDentist.id.toString() !== ctx.params.id) ctx.throw(401);
     return next();
 }
 
@@ -51,12 +51,12 @@ router.get('dentists-new', '/new', (ctx) => {
 })
 
 router.post('dentists-create', '/', async (ctx) => {
-    const  { cloudinary} = ctx.state;
+    const { cloudinary } = ctx.state;
     /* const dentist = ctx.orm.dentist.build(ctx.request.body); esta mas abajo*/   //Lo creamos
     try {
         /* ESTA PARTE ES DE ARCHIVOS */
         const { picture } = ctx.request.files;
-         if (picture.size > 0) {
+        if (picture.size > 0) {
 
             const uploadedImage = await cloudinary.uploader.upload(picture.path);
             ctx.request.body.picture = uploadedImage.public_id;
@@ -162,7 +162,7 @@ router.post('dentist-update-database', 'update/:id', checkAuth, async (ctx) => {
     if (picture.size > 0) {
         const uploadedImage = await cloudinary.uploader.upload(picture.path);
         dentist.picture = uploadedImage.public_id;
-     }
+    }
     /* ################################ */
     await dentist.save({ fields: PERMITTED_FIELDS });
     ctx.redirect(ctx.router.url('dentist', ctx.state.currentDentist.id));
@@ -184,7 +184,7 @@ router.post('dentist-delete-database', 'delete/:id', checkAuth, async (ctx) => {
     ctx.redirect('/');
 });
 
-router.get('see-dates-of-dentist', '/dentist/alldates/:id', async (ctx) => {
+router.get('see-dates-of-dentist', '/dentist/alldates/:id', checkAuth, async (ctx) => {
     const { dentist } = ctx.state;
 
     dates = await dentist.getDates();
