@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 import PainFilter from './components/PainFilter/PainFilter';
 import Spinner from './components/Spinner/Spinner';
+import PatientForm from './components/PatientForm/PatientForm';
 
 const reactAppContainer = document.getElementById('react-app');
 
@@ -13,7 +14,7 @@ if (reactAppContainer) {
 const painFilterContainer = document.getElementById('pain-filter');
 
 if (painFilterContainer) {
-  ReactDOM.render(<PainFilter 
+  ReactDOM.render(<PainFilter
     serverData={painFilterContainer.dataset}
   />, painFilterContainer);
 }
@@ -21,7 +22,15 @@ if (painFilterContainer) {
 const spinnerContainer = document.getElementById('spinner');
 
 if (spinnerContainer) {
-  ReactDOM.render(<Spinner 
+  ReactDOM.render(<Spinner
     serverData={spinnerContainer.dataset}
   />, spinnerContainer);
+}
+
+const patientFormContainer = document.getElementById('patient-form');
+
+if (patientFormContainer) {
+  ReactDOM.render(<PatientForm
+    serverData={patientFormContainer.dataset}
+  />, patientFormContainer);
 }

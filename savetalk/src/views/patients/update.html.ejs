@@ -1,91 +1,94 @@
-
 <header>
-<h1>Estas modificando al paciente: <%= patient.name %> </h1>
+    <h1>Estas modificando al paciente: <%= patient.name %> </h1>
 </header>
 
 <div class="topnav">
-        <a href="<%= patientPath(patient.id) %>" id="r">Volver</a>
+    <a href="<%= patientPath(patient.id) %>" id="r">Volver</a>
 </div>
 
 <div class="card">
-<form method="post" action="<%= updatePatientPathDataBase(patient.id) %>" enctype="multipart/form-data">
+    <form method="post" action="<%= updatePatientPathDataBase(patient.id) %>" enctype="multipart/form-data">
 
-    <% if (locals.errors){ %>
+        <% if (locals.errors){ %>
         <div class="card2">
             <p>El paciente no se pudo crear debido a los siguientes errores:</p>
             <ul>
                 <% errors.forEach(error => { %>
-                    <li><%= error.path %>: <%= error.message %> </li>
+                <li><%= error.path %>: <%= error.message %> </li>
                 <% }); %>
             </ul>
         </div>
-    <% } %>
-    <h2>Recuerda re ingresar tu contraseña actual, o tu nueva contraseña</h2>
-    <table>
-    <div>
-        <tr>
-        <td><label for="name" >Nombre</label></td>
-        <td><input type="text" name="name" id="name" value="<%= patient.name %>" /></td>
-    </tr>
-    </div>
-    <div>
-        <tr>
-            <td><label for="age" >Edad</label></td>
-            <td><input type="number" name="age" id="age" value="<%= patient.age %>" /></td>
-    </tr>
-    </div>
-    <div>
-        <tr>
-            <td><label for="email" >e-mail</label></td>
-            <td><input type="text" name="email" id="email" value="<%= patient.email %>" /></td>
-    </tr>
-    </div>
-    <div>
-        <tr>
-            <td><label for="password" >Password</label></td>
-            <td><input type="password" name="password" id="password" required /></td>
-    </tr>
-    </div>
-    <div>
-        <tr>
-            <td><label for="city" >Ciudad</label></td>
-            <td><input type="text" name="city" id="city" value="<%= patient.city %>" /></td>
-    </tr>
-    </div>
-    <div><tr>
-        <td><label for="address" >Calle</label></td>
-        <td><input type="text" name="address" id="address" value="<%= patient.address %>" /></td>
-    </tr>
-    </div>
-    <div>
-        <tr>
-            <td><label for="picture" >Foto</label></td>
-            <td><input type="file" name="picture" id="picture"  /></td>
-    </tr>
-    </div>
-    <div>
-        <tr>
-            <td><label for="rut" >Rut</label></td>
-            <td><input type="text" name="rut" id="rut" value="<%= patient.rut %>" /></td>
-    </tr>
-    </div>
-    <div>
-        <tr>
-            <td><label for="isapre" >Isapre</label></td>
-            <td><input type="text" name="isapre" id="isapre" value="<%= patient.isapre %>" /></td>
-    </tr>
-    </div>
-    <div>
-        <tr>
-            <td><label for="phone" >Telefono</label></td>
-            <td><input type="text" name="phone" id="phone" value="<%= patient.phone %>" /></td>
-    </tr>
-    </div>
-</table>
-    <div class="card2">
-        <input type="submit" value="Modificar" />
-    </div>
-</form>
+        <% } %>
+        <h2>Recuerda re ingresar tu contraseña actual, o tu nueva contraseña</h2>
+        <table>
+            <div>
+                <tr>
+                    <td><label for="name">Nombre</label></td>
+                    <td><input type="text" name="name" id="name" value="<%= patient.name %>" /></td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td><label for="age">Edad</label></td>
+                    <td><input type="number" name="age" id="age" value="<%= patient.age %>" /></td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td><label for="email">e-mail</label></td>
+                    <td><input type="text" name="email" id="email" value="<%= patient.email %>" /></td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td><label for="password">Password</label></td>
+                    <td><input type="password" name="password" id="password" required /></td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td><label for="city">Ciudad</label></td>
+                    <td><input type="text" name="city" id="city" value="<%= patient.city %>" /></td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td><label for="address">Calle</label></td>
+                    <td><input type="text" name="address" id="address" value="<%= patient.address %>" /></td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td><label for="picture">Foto</label></td>
+                    <td><input type="file" name="picture" id="picture" /></td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td><label for="rut">Rut</label></td>
+                    <td><input type="text" name="rut" id="rut" value="<%= patient.rut %>" /></td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td><label for="isapre">Isapre</label></td>
+                    <td><input type="text" name="isapre" id="isapre" value="<%= patient.isapre %>" /></td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td><label for="phone">Telefono</label></td>
+                    <td><input type="text" name="phone" id="phone" value="<%= patient.phone %>" /></td>
+                </tr>
+            </div>
+        </table>
+        <div class="card2">
+            <input type="submit" value="Modificar" />
+        </div>
+    </form>
 </div>
 
 
+<div id="patient-form">
+
+</div>
