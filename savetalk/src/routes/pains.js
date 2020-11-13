@@ -19,12 +19,14 @@ const PROTECTED_PATH_P = [
 function checkAuthD(ctx, next) {
     const { currentDentist } = ctx.state;
     if (!currentDentist) ctx.throw(401);
+    if (currentDentist.id.toString() !== ctx.params.id) ctx.throw(401);
     return next();
 }
 
 function checkAuthP(ctx, next) {
     const { currentPatient } = ctx.state;
     if (!currentPatient) ctx.throw(401);
+    if (currentPatient.id.toString() !== ctx.params.id) ctx.throw(401);
     return next();
 }
 
@@ -59,7 +61,7 @@ router.param('dentistid', async (id, ctx, next) => {
 });
 
 router.get('pains', '/:dentistid', async (ctx) => {
-    const {dentist} = ctx.state;
+    const { dentist } = ctx.state;
     const pains = await ctx.orm.pain.findAll({ include: ctx.orm.date });
 
     let painsToSend = [];
@@ -69,7 +71,7 @@ router.get('pains', '/:dentistid', async (ctx) => {
 
         pain.dates.forEach(date => {
 
-            if (date.state===1 || date.state===2) {
+            if (date.state === 1 || date.state === 2) {
                 painHasAConfirmDate = true;
             }
 
@@ -90,14 +92,14 @@ router.get('pains', '/:dentistid', async (ctx) => {
 });
 
 router.get('dentistPain', '/dentistpain/:idpain/:dentistid', async (ctx) => {
-    const {pain} = ctx.state;
-    const {dentist} = ctx.state;
+    const { pain } = ctx.state;
+    const { dentist } = ctx.state;
     let dentistAlreadyAppliedToThePain = false;
 
     painDates = await pain.getDates();
 
     for (const date of painDates) {
-        dentistToCompare =  await date.getDentist();
+        dentistToCompare = await date.getDentist();
         if (dentist.id === dentistToCompare.id) {
             dentistAlreadyAppliedToThePain = true;
         }
@@ -120,12 +122,12 @@ router.get('dentistPain', '/dentistpain/:idpain/:dentistid', async (ctx) => {
 });
 
 router.get('patientPain', 'patientpain/:idpain', async (ctx) => {
-    const {pain} = ctx.state;
+    const { pain } = ctx.state;
     painDates = await pain.getDates();
     painAlreadyHasAConfirmDate = false;
     let definitiveDate = null;
 
-    for (const date of painDates){
+    for (const date of painDates) {
         if (date.state === 1 || date.state === 2) {
             painAlreadyHasAConfirmDate = true;
             definitiveDate = date;
@@ -147,10 +149,10 @@ router.get('patientPain', 'patientpain/:idpain', async (ctx) => {
     });
 });
 
-router.get('pains-new', '/new/:id', (ctx) => {
-    const {patient} = ctx.state;
+router.get('pains-new', '/new/:id', checkAuthP, (ctx) => {
+    const { patient } = ctx.state;
     const pain = ctx.orm.pain.build();
-    return ctx.render('pains/new',{
+    return ctx.render('pains/new', {
         pain,
         patient,
         patientPath: id => ctx.router.url('patient', id),
@@ -159,7 +161,7 @@ router.get('pains-new', '/new/:id', (ctx) => {
 })
 
 router.post('pains-create', '/:id', async (ctx) => {
-    const {patient} = ctx.state;
+    const { patient } = ctx.state;
     const attributes = {
         ...ctx.request.body,
         patientId: patient.id
@@ -177,8 +179,5 @@ router.post('pains-create', '/:id', async (ctx) => {
         });
     }
 });
-
-
-
 
 module.exports = router;
