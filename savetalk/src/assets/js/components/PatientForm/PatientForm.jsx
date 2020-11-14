@@ -4,13 +4,21 @@ import useForm from './useForm';
 import validate from './validateInfo';
 import './Form.css'
 
-const PatientForm = () => {
+const PatientForm = (props) => {
+
+    const { serverData } = props;
+    const prePatientObject = serverData['patient'];
+    const patient = JSON.parse(prePatientObject);
+
+    const string = `/update/${patient.id}`;
 
     const { handleChange, values, handleSubmit, errors } = useForm(validate);
 
+    // { values.name = patient.name }
+
     return (
         <div className="card">
-            <form className="form" method="post" action="<%= updatePatientPathDataBase(patient.id) %>" enctype="multipart/form-data" >
+            <form action={string} method="post" className="form" onSubmit={handleSubmit} >
                 <h1> Modifica tu información </h1>
                 <div className="form-inputs">
                     <label htmlFor="name" className="form-label">
@@ -19,9 +27,9 @@ const PatientForm = () => {
                     <input
                         id='name'
                         type="text"
-                        name='name' c
-                        lassName="form-input"
-                        placeholder='Cambia tu nombre'
+                        name='name'
+                        className="form-input"
+                        placeholder={patient.name}
                         value={values.name}
                         onChange={handleChange}
                     />
@@ -36,7 +44,7 @@ const PatientForm = () => {
                         type="number"
                         name='age'
                         className="form-input"
-                        placeholder='Cambia tu edad'
+                        placeholder={patient.age}
                         value={values.age}
                         onChange={handleChange}
                     />
@@ -50,7 +58,7 @@ const PatientForm = () => {
                         type="email"
                         name='email'
                         className="form-input"
-                        placeholder='Cambia tu Email'
+                        placeholder={patient.email}
                         value={values.email}
                         onChange={handleChange}
                     />
@@ -65,7 +73,7 @@ const PatientForm = () => {
                         type="text"
                         name='city'
                         className="form-input"
-                        placeholder='Cambia tu ciudad'
+                        placeholder={patient.city}
                         value={values.city}
                         onChange={handleChange}
                     />
@@ -79,7 +87,7 @@ const PatientForm = () => {
                         type="text"
                         name='address'
                         className="form-input"
-                        placeholder='Cambia tu dirección'
+                        placeholder={patient.address}
                         value={values.address}
                         onChange={handleChange}
                     />
@@ -107,7 +115,7 @@ const PatientForm = () => {
                         type="text"
                         name='rut'
                         className="form-input"
-                        placeholder='Cambia tu RUT'
+                        placeholder={patient.rut}
                         value={values.rut}
                         onChange={handleChange}
                     />
@@ -121,7 +129,7 @@ const PatientForm = () => {
                         type="text"
                         name='isapre'
                         className="form-input"
-                        placeholder='Cambia tu Isapre'
+                        placeholder={patient.isapre}
                         value={values.isapre}
                         onChange={handleChange}
                     />
@@ -135,7 +143,7 @@ const PatientForm = () => {
                         type="text"
                         name='phone'
                         className="form-input"
-                        placeholder='phone'
+                        placeholder={patient.phone}
                         value={values.phone}
                         onChange={handleChange}
                     />
@@ -149,7 +157,7 @@ const PatientForm = () => {
                         type="password"
                         name='password'
                         className="form-input"
-                        placeholder='Cambia tu contraseña'
+                        placeholder='Introduce tu contraseña'
                         value={values.password}
                         onChange={handleChange}
                     />
@@ -170,10 +178,8 @@ const PatientForm = () => {
                     />
                     {errors.password2 && <p>{errors.password2}</p>}
                 </div>
-                <div class="card2">
-                    <button type='submit' className="form-input-btn">
-                        Modificar
-                </button>
+                <div className="card2">
+                    <input type="submit" value="Confirmar Cita" />
                 </div>
             </form>
         </div>
