@@ -10,7 +10,7 @@ const PatientForm = (props) => {
     const prePatientObject = serverData['patient'];
     const patient = JSON.parse(prePatientObject);
 
-    const string = `/update/${patient.id}`;
+    const string = `${patient.id}`;
 
     const { handleChange, values, handleSubmit, errors } = useForm(validate);
 
@@ -101,8 +101,6 @@ const PatientForm = (props) => {
                         type="file"
                         name='picture'
                         className="form-input"
-                        placeholder='Email'
-                        value={values.picture}
                         onChange={handleChange}
                     />
                 </div>

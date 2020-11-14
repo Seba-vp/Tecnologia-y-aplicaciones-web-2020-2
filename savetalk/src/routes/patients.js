@@ -91,7 +91,7 @@ router.get('patient', '/:id', checkAuth, async (ctx) => {
         updatePatientPath: id => ctx.router.url('patient-update', id),
         deletePatientPath: id => ctx.router.url('patient-delete', id),
         createPatientMessagePath: ctx.router.url('newmessagespatient'),
-    });
+    }); 
 });
 
 router.get('patient-update', '/update/:id', checkAuth, (ctx) => {
@@ -103,9 +103,11 @@ router.get('patient-update', '/update/:id', checkAuth, (ctx) => {
     });
 })
 
-
-router.post('patient-update-database', 'update/:id', checkAuth, async (ctx) => {
+ 
+router.post('patient-update-database', '/update/:id', checkAuth, async (ctx) => {
     const { patient, cloudinary } = ctx.state;
+
+    console.log("HOLAAAA MIRAR ACAAAA KING");
 
 
     if (patient.name !== ctx.request.body.name) {
@@ -140,11 +142,11 @@ router.post('patient-update-database', 'update/:id', checkAuth, async (ctx) => {
     }
 
     /* ESTA PARTE ES DE ARCHIVOS */
-    const { picture } = ctx.request.files;
-    if (picture.size > 0) {
-        const uploadedImage = await cloudinary.uploader.upload(picture.path);
-        patient.picture = uploadedImage.public_id;
-    }
+    // const { picture } = ctx.request.files;
+    // if (picture.size > 0) {
+    //     const uploadedImage = await cloudinary.uploader.upload(picture.path);
+    //     patient.picture = uploadedImage.public_id;
+    // }
     /* ################################ */
     await patient.save({ fields: PERMITTED_FIELDS });
     ctx.redirect(ctx.router.url('patient', ctx.state.currentPatient.id));
