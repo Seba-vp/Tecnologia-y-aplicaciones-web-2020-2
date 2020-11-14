@@ -1,4 +1,5 @@
 const KoaRouter = require('koa-router');
+const { FALSE } = require('node-sass');
 
 const router = new KoaRouter();
 
@@ -60,6 +61,7 @@ router.get('messages', '/', async (ctx) => {
 router.get('messagesdentist', '/dentist', async (ctx) => {
     const { dentist } = ctx.state;
     const { patient } = ctx.state;
+    
     const messages = await ctx.orm.message.findAll();
     const message = ctx.orm.message.build();
     let messagesSent = [];
@@ -68,6 +70,7 @@ router.get('messagesdentist', '/dentist', async (ctx) => {
     let infoToSendReceive = [];
     let chatsToSend = [];
     iddentist = await ctx.state.currentDentist.id;
+    const ruta = '/dentists/' + String(iddentist)
     for (const message of messages) {
         chatAsociate = await message.getChat();
         patientAsociateChat = await chatAsociate.getPatient();
@@ -91,6 +94,7 @@ router.get('messagesdentist', '/dentist', async (ctx) => {
         }
     }
     await ctx.render('messages/index', {
+        ruta,
         dentist,
         patient,
         chatsToSend,
@@ -103,6 +107,7 @@ router.get('messagesdentist', '/dentist', async (ctx) => {
         createMessagePath: ctx.router.url('messages-create-dentist'),
         messagePath: id => ctx.router.url('message', id),
         newMessagePath: ctx.router.url('newmessagesdentist'),
+        dentistPath: id => ctx.router.url('dentist', id),
     });
 });
 
@@ -117,6 +122,7 @@ router.get('messagespatient', '/patient', async (ctx) => {
     let infoToSendSent = [];
     let chatsToSend = [];
     idpatient = await ctx.state.currentPatient.id;
+    const ruta = '/patients/' + String(idpatient)
     for (const message of messages) {
         chatAsociate = await message.getChat();
         dentistAsociateChat = await chatAsociate.getDentist();
@@ -140,6 +146,7 @@ router.get('messagespatient', '/patient', async (ctx) => {
         }
     }
     await ctx.render('messages/index', {
+        ruta,
         patient,
         messages,
         type,
@@ -152,6 +159,7 @@ router.get('messagespatient', '/patient', async (ctx) => {
         createMessagePath: ctx.router.url('messages-create'),
         messagePath: id => ctx.router.url('message', id),
         newMessagePath: ctx.router.url('newmessagespatient'),
+        patientPath: id => ctx.router.url('patient', id),
     });
 });
 
@@ -164,6 +172,7 @@ router.get('newmessagesdentist', '/new/dentist', async (ctx) => {
     let type = 'Dentist';
     let messagesReceive = [];
     iddentist = ctx.state.currentDentist.id;
+    const ruta = '/dentists/' + String(iddentist)
     messages.forEach(message => {
         if (message.idSend === iddentist && message.rolSend === 'Dentist') {
             messagesSent.push(message)
@@ -187,6 +196,7 @@ router.get('newmessagesdentist', '/new/dentist', async (ctx) => {
     };
 
     await ctx.render('messages/new', {
+        ruta,
         dentist,
         type,
         iddentist,
@@ -213,6 +223,7 @@ router.get('newmessagespatient', '/new/patient', async (ctx) => {
     let type = 'Patient';
     let messagesReceive = [];
     idpatient = ctx.state.currentPatient.id;
+    const ruta = '/patients/' + String(idpatient);
     messages.forEach(message => {
         if (message.idSend === idpatient && message.rolSend === 'Patient') {
             messagesSent.push(message)
@@ -234,9 +245,10 @@ router.get('newmessagespatient', '/new/patient', async (ctx) => {
         }
         chatsToSend.push(data);
     };
-
     await ctx.render('messages/new', {
+        ruta,
         patient,
+        idpatient,
         type,
         messages,
         message,
@@ -272,6 +284,8 @@ router.post('messages-create-dentist', '/dentist', async (ctx) => {
     message.idSend = ctx.state.currentDentist.id;
     message.rolReceive = 'Patient';
     message.rolSend = 'Dentist';
+    iddentist = await ctx.state.currentDentist.id;
+    const ruta = '/dentists/' + String(iddentist)
     chatsToSend = [];
     chats = await ctx.state.currentDentist.getChats();
     for (const element of chats) {
@@ -286,6 +300,7 @@ router.post('messages-create-dentist', '/dentist', async (ctx) => {
         console.log('Cae en el error')
         await ctx.render('messages/new', {
             message,
+            ruta,
             errors: error.errors,
             createMessagePath: ctx.router.url('messages-create-dentist')
         });
@@ -294,6 +309,9 @@ router.post('messages-create-dentist', '/dentist', async (ctx) => {
 
 router.post('messages-create-patient', '/patient', async (ctx) => {
     const message = ctx.orm.message.build(ctx.request.body);
+    const { patient } = ctx.state;
+    idpatient = await ctx.state.currentPatient.id;
+    const ruta = '/patients/' + String(idpatient)
     message.idSend = ctx.state.currentPatient.id;
     message.rolReceive = 'Dentist';
     message.rolSend = 'Patient';
@@ -309,8 +327,12 @@ router.post('messages-create-patient', '/patient', async (ctx) => {
         ctx.redirect(ctx.router.url('messagespatient'))
     } catch (error) {
         await ctx.render('messages/new', {
+            ruta,
+            patient,
+            idpatient,
             message,
             errors: error.errors,
+            patientPath: id => ctx.router.url('patient', id),
             createMessagePath: ctx.router.url('messages-create-patient')
         });
     }

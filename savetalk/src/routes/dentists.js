@@ -109,7 +109,10 @@ router.get('dentist', '/:id', checkAuth, async (ctx) => {
 
 router.get('dentist-update', '/update/:id', checkAuth, (ctx) => {
     const { dentist } = ctx.state;
+    iddentist = ctx.state.currentDentist.id;
+    const ruta = '/dentists/' + String(iddentist);
     return ctx.render('dentists/update', {
+        ruta,
         dentist,
         dentistPath: id => ctx.router.url('dentist', id),
         updateDentistPathDataBase: id => ctx.router.url('dentist-update-database', id)
@@ -119,7 +122,8 @@ router.get('dentist-update', '/update/:id', checkAuth, (ctx) => {
 
 router.post('dentist-update-database', 'update/:id', checkAuth, async (ctx) => {
     const { dentist, cloudinary } = ctx.state;
-
+    iddentist = await ctx.state.currentDentist.id;
+    const ruta = '/dentists/' + String(iddentist);
 
     if (dentist.name !== ctx.request.body.name) {
         dentist.name = ctx.request.body.name;
@@ -186,7 +190,8 @@ router.post('dentist-delete-database', 'delete/:id', checkAuth, async (ctx) => {
 
 router.get('see-dates-of-dentist', '/dentist/alldates/:id', checkAuth, async (ctx) => {
     const { dentist } = ctx.state;
-
+    iddentist = await ctx.state.currentDentist.id;
+    const ruta = '/dentists/' + String(iddentist)
     dates = await dentist.getDates();
     infoToSend = [];
     for (const date of dates) {
@@ -203,6 +208,7 @@ router.get('see-dates-of-dentist', '/dentist/alldates/:id', checkAuth, async (ct
     return ctx.render('dentists/dates', {
         dentist,
         infoToSend,
+        ruta,
         rejectedDateByDentistPath: dateId => ctx.router.url('date-reject-by-dentist', dateId),
         doneDatePath: dateId => ctx.router.url('date-done', dateId),
         seeFeedbackPath: dateId => ctx.router.url('feedback', dateId)

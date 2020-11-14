@@ -3,10 +3,10 @@
     <header>
         <h1>Chats</h1>
     </header>
-    <div class="topnav">
-      <!--   <a href="#" id="r">No sirve</a> -->
+    <div class="topnav">   
+        <a href="<%= patientPath(idpatient) %>" id="r">Volver</a>
+        <a href="<%= patientPath(idpatient) %>" >Inicio</a> 
     </div>
-
     <% chatsPersonToSend.forEach( element => { %>
     <div class="card">
         <h2> Odontologo <%= element.person.name %></h2>

@@ -1,10 +1,14 @@
 
 <header>
-        
+        <h1>Feedback</h1>
 </header>
-
+<div class="topnav">
+    <a href="<%= ruta %>" >Inicio</a>
+</div>
 <% if (feedbackFound === false) {%>
+    <div class="card">
     <p>El paciente aún no escribe un Feedback</p>
+</div>
 <% } else {%>
 
     <div class="card">
