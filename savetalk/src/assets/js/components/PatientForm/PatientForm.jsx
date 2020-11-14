@@ -4,15 +4,15 @@ import useForm from './useForm';
 import validate from './validateInfo';
 import './Form.css'
 
-const PatientForm = (props) => {
+const PatientForm = (props, { submitForm }) => {
 
     const { serverData } = props;
     const prePatientObject = serverData['patient'];
     const patient = JSON.parse(prePatientObject);
 
-    const string = `/update/${patient.id}`;
+    const string = `update/${patient.id}`;
 
-    const { handleChange, values, handleSubmit, errors } = useForm(validate);
+    const { handleChange, values, handleSubmit, errors } = useForm(submitForm, validate);
 
     // { values.name = patient.name }
 
