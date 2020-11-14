@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { hot } from 'react-hot-loader';
 import useForm from './useForm';
 import validate from './validateInfo';
@@ -9,11 +9,33 @@ const PatientForm = (props) => {
     const prePatientObject = serverData['patient'];
     const patient = JSON.parse(prePatientObject);
 
-    const string = `/update/${patient.id}`;
+    const string = `${patient.id}`;
 
     const { handleChange, values, handleSubmit, errors } = useForm(validate);
 
     // { values.name = patient.name }
+
+    const [name, setName] = useState(patient.name);
+    const [age, setAge] = useState(patient.age);
+    const [email, setEmail] = useState(patient.email);
+    const [city, setCity] = useState(patient.city);
+    const [address, setAddres] = useState(patient.address);
+    const [rut, setRut] = useState(patient.rut);
+    const [isapre, setIsapre] = useState(patient.isapre);
+    const [phone, setPhone] = useState(patient.phone);
+    const [password, setPassword] = useState('');
+    const [password2, setPassword2] = useState('');
+
+
+    let validatePassword = <p>Tus password tienen que ser iguales para modificar tu data</p>
+    if ((password === password2) && (password !== '' && password2 !== '')) {
+        validatePassword = (
+            <div className="card2">
+                <input type="submit" value="Modificar" />
+            </div>
+        );
+    }
+
 
     return (
         <div className="card">
@@ -29,11 +51,10 @@ const PatientForm = (props) => {
                         type="text"
                         name='name'
                         className="form-input"
-                        placeholder={patient.name}
-                        value={values.name}
-                        onChange={handleChange}
+                        value={name}
+                        onChange={event => setName(event.target.value)}
+                        required
                     />
-                    {errors.name && <p>{errors.name}</p>}
                 </div>
                 <div className="form-inputs">
                     <label htmlFor="age" className="form-label">
@@ -44,9 +65,9 @@ const PatientForm = (props) => {
                         type="number"
                         name='age'
                         className="form-input"
-                        placeholder={patient.age}
-                        value={values.age}
-                        onChange={handleChange}
+                        value={age}
+                        onChange={event => setAge(event.target.value)}
+                        required
                     />
                 </div>
                 <div className="form-inputs">
@@ -58,11 +79,10 @@ const PatientForm = (props) => {
                         type="email"
                         name='email'
                         className="form-input"
-                        placeholder={patient.email}
-                        value={values.email}
-                        onChange={handleChange}
+                        value={email}
+                        onChange={event => setEmail(event.target.value)}
+                        required
                     />
-                    {errors.email && <p>{errors.email}</p>}
                 </div>
                 <div className="form-inputs">
                     <label htmlFor="city" className="form-label">
@@ -73,9 +93,8 @@ const PatientForm = (props) => {
                         type="text"
                         name='city'
                         className="form-input"
-                        placeholder={patient.city}
-                        value={values.city}
-                        onChange={handleChange}
+                        value={city}
+                        onChange={event => setCity(event.target.value)}
                     />
                 </div>
                 <div className="form-inputs">
@@ -87,23 +106,8 @@ const PatientForm = (props) => {
                         type="text"
                         name='address'
                         className="form-input"
-                        placeholder={patient.address}
-                        value={values.address}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="form-inputs">
-                    <label htmlFor="picture" className="form-label">
-                        Foto de perfil
-                    </label>
-                    <input
-                        id="picture"
-                        type="file"
-                        name='picture'
-                        className="form-input"
-                        placeholder='Email'
-                        value={values.picture}
-                        onChange={handleChange}
+                        value={address}
+                        onChange={event => setAddres(event.target.value)}
                     />
                 </div>
                 <div className="form-inputs">
@@ -115,9 +119,8 @@ const PatientForm = (props) => {
                         type="text"
                         name='rut'
                         className="form-input"
-                        placeholder={patient.rut}
-                        value={values.rut}
-                        onChange={handleChange}
+                        value={rut}
+                        onChange={event => setRut(event.target.value)}
                     />
                 </div>
                 <div className="form-inputs">
@@ -129,9 +132,8 @@ const PatientForm = (props) => {
                         type="text"
                         name='isapre'
                         className="form-input"
-                        placeholder={patient.isapre}
-                        value={values.isapre}
-                        onChange={handleChange}
+                        value={isapre}
+                        onChange={event => setIsapre(event.target.value)}
                     />
                 </div>
                 <div className="form-inputs">
@@ -143,9 +145,8 @@ const PatientForm = (props) => {
                         type="text"
                         name='phone'
                         className="form-input"
-                        placeholder={patient.phone}
-                        value={values.phone}
-                        onChange={handleChange}
+                        value={phone}
+                        onChange={event => setPhone(event.target.value)}
                     />
                 </div>
                 <div className="form-inputs">
@@ -157,11 +158,9 @@ const PatientForm = (props) => {
                         type="password"
                         name='password'
                         className="form-input"
-                        placeholder='Introduce tu contraseña'
-                        value={values.password}
-                        onChange={handleChange}
+                        value={password}
+                        onChange={event => setPassword(event.target.value)}
                     />
-                    {errors.password && <p>{errors.password}</p>}
                 </div>
                 <div className="form-inputs">
                     <label htmlFor="password2" className="form-label">
@@ -172,17 +171,12 @@ const PatientForm = (props) => {
                         type="password"
                         name='password2'
                         className="form-input"
-                        placeholder='Confirma tu contraseña'
-                        value={values.password2}
-                        onChange={handleChange}
+                        value={password2}
+                        onChange={event => setPassword2(event.target.value)}
                     />
-                    {errors.password2 && <p>{errors.password2}</p>}
+
                 </div>
-                <div className="card2">
-                <div className="actions" >
-                    <input type="submit" value="modificar" />
-                </div>
-                </div>
+                {validatePassword}
             </form>
         </div>
     );
