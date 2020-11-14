@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { hot } from 'react-hot-loader';
 import useForm from './useForm';
 import validate from './validateInfo';
@@ -27,16 +27,63 @@ const PatientForm = (props) => {
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
 
+    let allValidate = <p>Quedan campos por cambiar para modificar tu perfil</p>
 
-    let validatePassword = <p>Tus password tienen que ser iguales para modificar tu data</p>
-    if ((password === password2) && (password !== '' && password2 !== '')) {
-        validatePassword = (
+    let validatePassword = ''
+    let validateName = ''
+    let validateRut = ''
+    let validateEmail = ''
+    let validateAge = ''
+    let validatePhone = ''
+
+    if (!password || !password2) {
+        validatePassword = <p>Debes introducir tu contraseña y confirmarla para realizar cambios</p>
+    } else if (password !== password2) {
+        validatePassword = <p>Las contraseñas son distintas</p>
+    }
+
+    if (phone) {
+        if (phone.length !== 9)
+            validatePhone = <p>tu número de telefono debe tener 9 digitos</p>
+    };
+
+    if (!name.trim()) {
+        validateName = <p>No puedes dejar tu nombre en blanco</p>
+    };
+
+    if (!email) {
+        validateEmail = <p>Debes introducir tu mail</p>
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+        validateEmail = <p>Tu mail es inválido</p>
+    }
+
+    if (!age) {
+        validateAge = <p>Debes introducir tu edad</p>
+    } else if (age < 5) {
+        validateAge = <p>Dudamos que una persona tan jóven esté usando la aplicación, intruduce tu edad real</p>
+    } else if (age > 123) {
+        validateAge = <p>Jeanne Louise Calment fue la persona más longeva, ¿La estás superando? introduce tu edad real</p>
+    } else if (!Number.isInteger(Number(age))) {
+        validateAge = <p>Ingresa un número entero porfavor</p>
+    } else if (/\N+.\N/.test(age)) {
+        validateAge = <p>Ingresa un número porfavor</p>
+    }
+
+
+    if (!rut) {
+        validateRut = <p>Debes introducir tu RUT</p>
+    } else if (!/\S+-\S+/.test(rut)) {
+        validateRut = <p>Tu RUT debe ser de la forma XXXXXXXX-X o XX.XXX.XXX-X  </p>
+    }
+
+    if ((!validatePassword) && (!validateName) && (!validateEmail) && (!validateRut) && (!validateAge) && (!validatePhone)) {
+
+        allValidate = (
             <div className="card2">
                 <input type="submit" value="Modificar" />
             </div>
         );
     }
-
 
     return (
         <div className="card">
@@ -55,6 +102,7 @@ const PatientForm = (props) => {
                         onChange={event => setName(event.target.value)}
                         required
                     />
+                    {validateName}
                 </div>
                 <div className="form-inputs">
                     <label htmlFor="age" className="form-label">
@@ -69,6 +117,7 @@ const PatientForm = (props) => {
                         onChange={event => setAge(event.target.value)}
                         required
                     />
+                    {validateAge}
                 </div>
                 <div className="form-inputs">
                     <label htmlFor="email" className="form-label">
@@ -83,6 +132,7 @@ const PatientForm = (props) => {
                         onChange={event => setEmail(event.target.value)}
                         required
                     />
+                    {validateEmail}
                 </div>
                 <div className="form-inputs">
                     <label htmlFor="city" className="form-label">
@@ -122,6 +172,7 @@ const PatientForm = (props) => {
                         value={rut}
                         onChange={event => setRut(event.target.value)}
                     />
+                    {validateRut}
                 </div>
                 <div className="form-inputs">
                     <label htmlFor="isapre" className="form-label">
@@ -148,6 +199,7 @@ const PatientForm = (props) => {
                         value={phone}
                         onChange={event => setPhone(event.target.value)}
                     />
+                    {validatePhone}
                 </div>
                 <div className="form-inputs">
                     <label htmlFor="password" className="form-label">
@@ -174,8 +226,9 @@ const PatientForm = (props) => {
                         value={password2}
                         onChange={event => setPassword2(event.target.value)}
                     />
+                    {validatePassword}
                 </div>
-                {validatePassword}
+                {allValidate}
             </form>
         </div>
     );
