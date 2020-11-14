@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 import PainFilter from './components/PainFilter/PainFilter';
 import Spinner from './components/Spinner/Spinner';
+import DynamicStars from './components/Star';
 
 const reactAppContainer = document.getElementById('react-app');
 
@@ -24,4 +25,12 @@ if (spinnerContainer) {
   ReactDOM.render(<Spinner 
     serverData={spinnerContainer.dataset}
   />, spinnerContainer);
+}
+
+const starContainer = document.getElementById('star-raiting');
+
+if (starContainer) {
+  ReactDOM.render(<DynamicStars
+    serverData={starContainer.dataset}
+  />, starContainer);
 }
