@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 import PainFilter from './components/PainFilter/PainFilter';
 import Spinner from './components/Spinner/Spinner';
+import DynamicStars from './components/Star';
 import PatientForm from './components/PatientForm/PatientForm';
+
 
 const reactAppContainer = document.getElementById('react-app');
 
@@ -27,6 +29,15 @@ if (spinnerContainer) {
   />, spinnerContainer);
 }
 
+
+const starContainer = document.getElementById('star-raiting');
+
+if (starContainer) {
+  ReactDOM.render(<DynamicStars
+    serverData={starContainer.dataset}
+  />, starContainer);
+}
+
 const patientFormContainer = document.getElementById('patient-form');
 
 if (patientFormContainer) {
@@ -34,3 +45,4 @@ if (patientFormContainer) {
     serverData={patientFormContainer.dataset}
   />, patientFormContainer);
 }
+

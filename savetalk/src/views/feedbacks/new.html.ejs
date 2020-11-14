@@ -7,9 +7,34 @@
     <p>Ya le diste un Feedback a esta cita</p>
 <% } else {%>
 
+
     <div class="card">
-        <%- include('_form')%>
-    </div>
+            <% if (locals.errors){ %>
+        
+                <div class="errors">
+        
+                    <p>El feedback no se pudo crear devido a los siguientes errores:</p>
+        
+                    <ul>
+                        <% let weDidTheAdvertisment = false %>
+                        <% errors.forEach(error => { %>
+        
+                            <% if (error.path == "calification" && !weDidTheAdvertisment) { %>
+                                <li>Las calificaciones solamente pueden ir del 0 al 5(ambos incluidos)</li>
+                                <li>Es necesario que le pongas la calificación. La desripción es opcional.</li>
+                                <% weDidTheAdvertisment = true %>
+                            <% }%>
+        
+                        <% }); %>
+                    </ul>
+                </div>
+            <% } %>
+            
+                <div id="star-raiting" data-dateid = "<%= JSON.stringify(date.id) %>"> 
+                    
+                </div>
+        
+
 
 <% } %>
 

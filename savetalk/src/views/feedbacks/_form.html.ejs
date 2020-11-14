@@ -19,14 +19,24 @@
             </ul>
         </div>
     <% } %>
-
+    <table>
+    <tr>
     <div class="field" >
-        <label for="description">Descripción de la Atención del Dentista</label>
-        <textarea rows="4" cols="30" name="description" id="description"> <%= feedback.description%></textarea>
+        <td><label for="description">Descripción de la Atención del Dentista</label></td>
+        <td><textarea rows="4" cols="30" name="description" id="description"> <%= feedback.description%></textarea></td>
     </div>
+    </tr>
+    </table>
     <div class="field" >
         <label for="calification">Calificación (0 a 5)</label>
         <input type="int" name="calification" id="calification" value="<%= feedback.calification %>"/>
+        <!-- Lo de abajo es el react de las estrellas  -->
+    
+        <div id="star-raiting" > 
+            
+        </div>
+
+        <!-- Termina el react  -->
     </div>
     <div class="actions" >
         <input type="submit" value="Crear"/>
