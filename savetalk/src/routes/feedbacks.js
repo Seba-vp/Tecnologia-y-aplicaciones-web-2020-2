@@ -91,7 +91,7 @@ router.post('feedbacks-create','/:dateid', async (ctx)=>{
 router.get('feedback', '/:dateid', async (ctx) => {
     const { date } = ctx.state;
     iddentist = await ctx.state.currentDentist.id;
-    const ruta = '/dentists/' + String(iddentist)
+    const ruta = '/dentists/' + String(iddentist);
     let feedback = await ctx.orm.feedback.findOne({ where: { id_date: date.id } });
     let feedbackFound = true
     if (feedback === null) {
