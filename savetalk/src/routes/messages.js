@@ -1,5 +1,4 @@
 const KoaRouter = require('koa-router');
-const { FALSE } = require('node-sass');
 
 const router = new KoaRouter();
 
@@ -61,7 +60,7 @@ router.get('messages', '/', async (ctx) => {
 router.get('messagesdentist', '/dentist', async (ctx) => {
     const { dentist } = ctx.state;
     const { patient } = ctx.state;
-    
+
     const messages = await ctx.orm.message.findAll();
     const message = ctx.orm.message.build();
     let messagesSent = [];
