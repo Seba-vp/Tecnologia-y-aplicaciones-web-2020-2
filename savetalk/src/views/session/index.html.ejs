@@ -129,7 +129,9 @@
 
 
     <div class="rightcolumn">
-        <% posts.forEach( post => { %>
+        <% postsShuffled = posts.sort(() => 0.5 - Math.random());%>
+        <% randomPosts = postsShuffled.slice(0, 2);%>
+        <% randomPosts.forEach( post => { %>
             <div class="card">
                 
                 <h1><%= post.title %> </h1>
@@ -138,6 +140,7 @@
             <div class="fakeimg">
                 <img src="<%= cloudinary.url(post.image) %>" alt="<%= post.image %>" >
             </div>
+            <br>
             <div class="button">
                 <a href="<%= postPath(post.id) %>">Ver más</a>
             </div>
