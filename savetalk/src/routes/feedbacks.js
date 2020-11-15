@@ -42,6 +42,8 @@ router.get('feedbacks', '/', async (ctx) => {
 
 router.get('feedbacks-new', '/new/:dateid', async (ctx) => {
     const { date } = ctx.state;
+    idpatient = await ctx.state.currentPatient.id;
+    const ruta = '/patients/' + String(idpatient);
 
     let feedbackAlreadyCreated = await ctx.orm.feedback.findOne({ where: { id_date: date.id } });
     if (feedbackAlreadyCreated === null) {
@@ -52,6 +54,7 @@ router.get('feedbacks-new', '/new/:dateid', async (ctx) => {
 
     const feedback = ctx.orm.feedback.build();
     return ctx.render('feedbacks/new',{
+        ruta,
         feedback,
         date,
         feedbackAlreadyCreated,
@@ -87,6 +90,8 @@ router.post('feedbacks-create','/:dateid', async (ctx)=>{
 
 router.get('feedback', '/:dateid', async (ctx) => {
     const { date } = ctx.state;
+    iddentist = await ctx.state.currentDentist.id;
+    const ruta = '/dentists/' + String(iddentist);
     let feedback = await ctx.orm.feedback.findOne({ where: { id_date: date.id } });
     let feedbackFound = true
     if (feedback === null) {
@@ -94,6 +99,7 @@ router.get('feedback', '/:dateid', async (ctx) => {
     }
 
     return ctx.render('feedbacks/show', {
+        ruta,
         feedback,
         feedbackFound,
         deleteFeedbackPath: id => ctx.router.url('feedback-delete', id)

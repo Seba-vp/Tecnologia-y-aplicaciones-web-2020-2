@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     
     picture: {
       type: DataTypes.STRING,
-      defaultValue: 'jisysgzmbj2burdw53k5',
+      defaultValue: 'o7vsqkxcdshmfplo2dh7',
 
     },
 

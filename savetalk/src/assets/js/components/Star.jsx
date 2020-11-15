@@ -81,9 +81,7 @@ class DynamicStars extends React.Component {
         return (
         <div className= "card">
             <form method="post" action= {this.buildFeedbackPath()} >
-        <h1> {this.buildFeedbackPath()} </h1>
-        <h1> {this.dateId} </h1>
-            
+
                 <div className="field" >
                     <h3>Descripción de la Atención del Dentista</h3>
                     <textarea rows="4" cols="30" name="description" id="description"> </textarea>

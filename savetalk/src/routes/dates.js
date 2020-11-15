@@ -73,8 +73,11 @@ router.param('painid', async (id, ctx, next) => {
 router.get('date', '/:id', async (ctx) => {
     const { date } = ctx.state;
     const { pain } = ctx.state;
+    idpatient = await ctx.state.currentPatient.id;
+    const ruta = '/patients/' + String(idpatient)
     const dentist = await ctx.orm.dentist.findByPk(date.dentistId);
     return ctx.render('dates/show', {
+        ruta,
         dentist,
         date,
         pain,
@@ -95,7 +98,7 @@ router.get('dates-new', '/new/:dentistid/:painid', (ctx) => {
         date,
         createDatePath: (dentistid, painid) => ctx.router.url('dates-create', dentistid, painid),
         painPath: (idpain, iddentist) => ctx.router.url('dentistPain', idpain, iddentist),
-
+        dentistPath: id => ctx.router.url('dentist', id),
     });
 })
 

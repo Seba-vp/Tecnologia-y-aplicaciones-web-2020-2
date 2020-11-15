@@ -28,6 +28,7 @@ router.get('chats', '/', async (ctx) => {
     //    newChatsPath: ctx.router.url('chats-new'),
     //});
     const { dentist } = ctx.state;
+    const { patient } = ctx.state;
     const chats = await ctx.orm.chat.findAll();
 
     idpatient = ctx.state.currentPatient.id;
@@ -57,6 +58,8 @@ router.get('chats', '/', async (ctx) => {
         chatsPath: id => ctx.router.url('chat', id),
         updateChatPath: id => ctx.router.url('chat-update', id),
         deleteChatPath: id => ctx.router.url('chat-delete', id),
+        patient,
+        patientPath: id => ctx.router.url('patient', id),
         // chatPath: (idchat, iddentist) => ctx.router.url('dentistChat', idchat, iddentist),
     });
 });
@@ -64,10 +67,12 @@ router.get('chats', '/', async (ctx) => {
 
 router.get('chats-dentist', '/:dentistid', async (ctx) => {
     const { dentist } = ctx.state;
+    const { patient } = ctx.state;
     const { chat } = ctx.state;
     const chats = await ctx.orm.chat.findAll();
 
     iddentist = ctx.state.currentDentist.id;
+    const ruta = '/dentists/' + String(iddentist)
 
     let chatsToSend = [];
     let chatsPersonToSend = [];
@@ -88,13 +93,16 @@ router.get('chats-dentist', '/:dentistid', async (ctx) => {
         }
     });
     await ctx.render('chats/indexdentist', {
+        ruta,
         chatsToSend,
         chatsPersonToSend,
         dentist,
         chat,
         updateChatPath: id => ctx.router.url('chat-update', id),
         deleteChatPath: id => ctx.router.url('chat-delete', id),
-        chatsPath: id => ctx.router.url('chat', id)
+        chatsPath: id => ctx.router.url('chat', id),
+        patient,
+        patientPath: id => ctx.router.url('patient', id),
         // chatPath: (idchat, iddentist) => ctx.router.url('dentistChat', idchat, iddentist),
     });
 });
@@ -125,6 +133,7 @@ router.get('chats-patient', '/:patientid', async (ctx) => {
         }
     });
     await ctx.render('chats/indexpatient', {
+        patientPath: id => ctx.router.url('patient', id),   
         chatsToSend,
         chatsPersonToSend,
         patient,
@@ -138,14 +147,18 @@ router.get('chats-patient', '/:patientid', async (ctx) => {
 
 router.get('chats-new', '/new', (ctx) => {
     const chat = ctx.orm.chat.build();
+    const { patient } = ctx.state;
     return ctx.render('chats/new', {
         chat,
         createChatPath: ctx.router.url('chats-create'),
+        patient,
+        patientPath: id => ctx.router.url('patient', id),
     });
 })
 
 router.post('chats-create', '/', async (ctx) => {
     const chat = ctx.orm.chat.build(ctx.request.body);
+    const { patient } = ctx.state;
     chat.block = false
     try {
         await chat.save({ fields: PERMITED_FIELDS });
@@ -154,7 +167,9 @@ router.post('chats-create', '/', async (ctx) => {
         await ctx.render('chats/new', {
             chat,
             errors: error.errors,
-            createChatPath: ctx.router.url('chats-create')
+            createChatPath: ctx.router.url('chats-create'),
+            patient,
+            patientPath: id => ctx.router.url('patient', id), 
         });
     }
 })
@@ -170,7 +185,17 @@ router.get('chat', '/:id', (ctx) => {
 
 router.get('chat-update', '/update/:id', (ctx) => {
     const { chat } = ctx.state;
+    if (ctx.session.currentDentistId){
+        id = ctx.state.currentDentist.id
+        ruta = '/dentists/' + String(id)
+    } 
+    if (ctx.session.currentPatientId){
+        id = ctx.state.currentPatient.id
+        ruta = '/patients/' + String(id)
+    }
+    
     return ctx.render('chats/update', {
+        ruta,
         chat,
         updateChatPathDataBase: id => ctx.router.url('chat-update-database', id)
     });

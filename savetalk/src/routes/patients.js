@@ -32,6 +32,7 @@ router.param('id', async (id, ctx, next) => {
 });
 
 router.get('patients', '/', checkAuth, async (ctx) => {
+    
     const patients = await ctx.orm.patient.findAll();
     await ctx.render('patients/index', {
         patients,

@@ -118,11 +118,14 @@ router.get('dentistPain', '/dentistpain/:idpain/:dentistid', async (ctx) => {
         dentistPath: id => ctx.router.url('dentist', id),
         painPath: (idpain, iddentist) => ctx.router.url('dentistPain', idpain, iddentist),
         seePainsPath: id => ctx.router.url('pains', id),
+        dentistPath: id => ctx.router.url('dentist', id),
     });
 });
 
 router.get('patientPain', 'patientpain/:idpain', async (ctx) => {
     const { pain } = ctx.state;
+    const { patient } = ctx.state;
+    idpatient = await ctx.state.currentPatient.id;
     painDates = await pain.getDates();
     painAlreadyHasAConfirmDate = false;
     let definitiveDate = null;
@@ -136,7 +139,9 @@ router.get('patientPain', 'patientpain/:idpain', async (ctx) => {
                 patient: await pain.getPatient(),
                 dates: await pain.getDates(),
                 specificDatePath: (dateid) => ctx.router.url('date', dateid),
-                definitiveDate
+                definitiveDate,
+                patientPath: id => ctx.router.url('patient', id),
+                
             });
         }
     }
@@ -145,7 +150,8 @@ router.get('patientPain', 'patientpain/:idpain', async (ctx) => {
         pain,
         patient: await pain.getPatient(),
         dates: await pain.getDates(),
-        specificDatePath: (dateid) => ctx.router.url('date', dateid)
+        specificDatePath: (dateid) => ctx.router.url('date', dateid),
+        patientPath: id => ctx.router.url('patient', id),
     });
 });
 

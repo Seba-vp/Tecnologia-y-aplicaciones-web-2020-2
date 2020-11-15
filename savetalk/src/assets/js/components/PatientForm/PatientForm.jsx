@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { hot } from 'react-hot-loader';
 import useForm from './useForm';
 import validate from './validateInfo';
-import './Form.css'
 
 const PatientForm = (props) => {
 
@@ -87,8 +86,9 @@ const PatientForm = (props) => {
 
     return (
         <div className="card">
-            <form action={string} method="post" className="form" onSubmit={handleSubmit} >
+            <form method="post"  action={string} className="form" onSubmit={handleSubmit} encType="multipart/form-data">
                 <h1> Modifica tu información </h1>
+                <h1> {string} </h1>
                 <div className="form-inputs">
                     <label htmlFor="name" className="form-label">
                         Nombre
@@ -226,6 +226,7 @@ const PatientForm = (props) => {
                         value={password2}
                         onChange={event => setPassword2(event.target.value)}
                     />
+
                     {validatePassword}
                 </div>
                 {allValidate}
