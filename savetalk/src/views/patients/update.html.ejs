@@ -6,7 +6,7 @@
     <a href="<%= patientPath(patient.id) %>" id="r">Volver</a>
     <a href="<%= patientPath(patient.id) %>" >Inicio</a> 
 </div>
-
+<!-- 
 <div class="card">
     <form method="post" action="<%= updatePatientPathDataBase(patient.id) %>" enctype="multipart/form-data">
 
@@ -50,7 +50,7 @@
                 <tr>
                     <td><label for="city">Ciudad</label></td>
                     <td><input type="text" name="city" id="city" value="<%= patient.city %>" /></td>
-                </tr> 
+                </tr>
             </div>
             <div>
                 <tr>
@@ -88,9 +88,9 @@
         </div>
     </form>
 </div>
+-->
 
-
-<div id="patient-form" data-patient="<%= JSON.stringify(patient) %>">
+<div class="card" id="patient-form" data-patient="<%= JSON.stringify(patient) %>">
 
 
 </div>

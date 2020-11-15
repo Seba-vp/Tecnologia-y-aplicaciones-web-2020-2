@@ -26,6 +26,7 @@ router.use(async (ctx, next) => {
     switch (err.status) {
       case 401:
         ctx.app.emit('error', err, ctx);
+        console.log('error identificado')
         ctx.redirect(ctx.router.url('logging-menu'));
         break;
       default:
