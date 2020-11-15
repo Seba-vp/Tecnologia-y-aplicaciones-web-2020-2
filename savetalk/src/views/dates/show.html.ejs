@@ -9,28 +9,28 @@
 
 <div class="card">
 <h2>Información de la cita ofrecida: </h2>
-<p><strong>Horario:</strong>  <%= date.schedule %></p>
-<p><strong>Precio:</strong>  <%= date.price %></p>
-<p><strong>Mensaje de presentación del Dentista:</strong>  <%= date.message %></p>
+<p>Horario:  <%= date.schedule %></p>
+<p>Precio:  <%= date.price %></p>
+<p>Mensaje de presentación del Dentista:  <%= date.message %></p>
 </div>
 
 
 
 <% if (date.state === 1) { %>
     <div class="card">
-    <p><strong>Estado:</strong> Cita Confirmada </p>
+    <p>Estado: Cita Confirmada </p>
     </div>
 <% } else if (date.state === -1) { %>
     <div class="card">
-    <p><strong>Estado:</strong> Cita Rechazada por paciente </p>
+    <p>Estado: Cita Rechazada por paciente </p>
     </div>
 <% } else if (date.state === -2) { %>
     <div class="card">
-    <p><strong>Estado:</strong> Cita Rechazada por el Dentista/ Postulación cancelada por Dentista </p>
+    <p>Estado: Cita Rechazada por el Dentista/ Postulación cancelada por Dentista </p>
     </div>
 <% } else if (date.state === 2) {  %>
     <div class="card">
-    <p><strong>Estado:</strong> Cita Realizada </p>
+    <p>Estado: Cita Realizada </p>
     <div class="button">
         <a href="<%= newFeedbackPath(date.id) %>">Dar Feedback al Odontólogo</a>
     </div>

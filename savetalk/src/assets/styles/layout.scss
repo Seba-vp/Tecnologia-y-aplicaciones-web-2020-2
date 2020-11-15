@@ -38,6 +38,7 @@ td {
   margin-bottom: 2%;
   margin-left: 30%;
   margin-right: 30%;
+  cursor: pointer;
   /* width: 100%; */
 
 }
@@ -50,6 +51,7 @@ td {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  
 }
 
 /* Change color on hover */
@@ -93,7 +95,9 @@ td {
 .topbutton {
   padding-top: 1%;
   padding-bottom: 1%;
+  cursor: pointer;
 }
+
 
 /* COLUMNAS */
 /* Left column */

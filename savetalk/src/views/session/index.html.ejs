@@ -138,8 +138,10 @@
             <div class="fakeimg">
                 <img src="<%= cloudinary.url(post.image) %>" alt="<%= post.image %>" >
             </div>
-                
+            <div class="button">
                 <a href="<%= postPath(post.id) %>">Ver más</a>
+            </div>
+                
             </div>
         <% }) %>
     </div>
