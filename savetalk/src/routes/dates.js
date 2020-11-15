@@ -30,7 +30,8 @@ const PROTECTED_PATH_P = [
 function checkAuthD(ctx, next) {
     const { currentDentist } = ctx.state;
     if (!currentDentist) ctx.throw(401);
-    if (currentDentist.id.toString() !== ctx.params.id) ctx.throw(401);
+    console.log(ctx.params)
+    if (currentDentist.id.toString() !== ctx.params.dentistid) ctx.throw(401);
     return next();
 }
 
@@ -88,7 +89,7 @@ router.get('date', '/:id', async (ctx) => {
     });
 })
 
-router.get('dates-new', '/new/:dentistid/:painid', (ctx) => {
+router.get('dates-new', '/new/:dentistid/:painid', checkAuthD, (ctx) => {
     const { dentist } = ctx.state;
     const { pain } = ctx.state;
     const date = ctx.orm.date.build();

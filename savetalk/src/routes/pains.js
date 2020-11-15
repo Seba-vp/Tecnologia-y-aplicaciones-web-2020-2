@@ -19,7 +19,8 @@ const PROTECTED_PATH_P = [
 function checkAuthD(ctx, next) {
     const { currentDentist } = ctx.state;
     if (!currentDentist) ctx.throw(401);
-    if (currentDentist.id.toString() !== ctx.params.id) ctx.throw(401);
+    console.log(ctx.params)
+    if (currentDentist.id.toString() !== ctx.params.dentistid) ctx.throw(401);
     return next();
 }
 
@@ -29,6 +30,8 @@ function checkAuthP(ctx, next) {
     if (currentPatient.id.toString() !== ctx.params.id) ctx.throw(401);
     return next();
 }
+
+
 
 //router.use(PROTECTED_PATH_D, checkAuthD);
 //router.use(PROTECTED_PATH_P, checkAuthP);
@@ -60,7 +63,7 @@ router.param('dentistid', async (id, ctx, next) => {
     return next();
 });
 
-router.get('pains', '/:dentistid', async (ctx) => {
+router.get('pains', '/:dentistid', checkAuthD, async (ctx) => {
     const { dentist } = ctx.state;
     const pains = await ctx.orm.pain.findAll({ include: ctx.orm.date });
 
@@ -91,7 +94,7 @@ router.get('pains', '/:dentistid', async (ctx) => {
     });
 });
 
-router.get('dentistPain', '/dentistpain/:idpain/:dentistid', async (ctx) => {
+router.get('dentistPain', '/dentistpain/:idpain/:dentistid', checkAuthD, async (ctx) => {
     const { pain } = ctx.state;
     const { dentist } = ctx.state;
     let dentistAlreadyAppliedToThePain = false;
@@ -141,7 +144,7 @@ router.get('patientPain', 'patientpain/:idpain', async (ctx) => {
                 specificDatePath: (dateid) => ctx.router.url('date', dateid),
                 definitiveDate,
                 patientPath: id => ctx.router.url('patient', id),
-                
+
             });
         }
     }
