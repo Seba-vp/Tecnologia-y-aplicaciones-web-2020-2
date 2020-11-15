@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { hot } from 'react-hot-loader';
 import useForm from './useForm';
 import validate from './validateInfo';
+import './Form.css';
 
 const PatientForm = (props) => {
 
@@ -59,7 +60,7 @@ const PatientForm = (props) => {
     if (!age) {
         validateAge = <p>Debes introducir tu edad</p>
     } else if (age < 5) {
-        validateAge = <p>Dudamos que una persona tan jóven esté usando la aplicación, intruduce tu edad real</p>
+        validateAge = <p>Dudamos que una persona tan joven esté usando la aplicación, intruduce tu edad real</p>
     } else if (age > 123) {
         validateAge = <p>Jeanne Louise Calment fue la persona más longeva, ¿La estás superando? introduce tu edad real</p>
     } else if (!Number.isInteger(Number(age))) {
@@ -86,150 +87,212 @@ const PatientForm = (props) => {
 
     return (
         <div className="card">
-            <form method="post"  action={string} className="form" onSubmit={handleSubmit} encType="multipart/form-data">
+            <form method="post" action={string} className="form" onSubmit={handleSubmit} encType="multipart/form-data">
                 <h1> Modifica tu información </h1>
-                <h1> {string} </h1>
-                <div className="form-inputs">
-                    <label htmlFor="name" className="form-label">
-                        Nombre
-                    </label>
-                    <input
-                        id='name'
-                        type="text"
-                        name='name'
-                        className="form-input"
-                        value={name}
-                        onChange={event => setName(event.target.value)}
-                        required
-                    />
-                    {validateName}
-                </div>
-                <div className="form-inputs">
-                    <label htmlFor="age" className="form-label">
-                        Edad
-                    </label>
-                    <input
-                        id="age"
-                        type="number"
-                        name='age'
-                        className="form-input"
-                        value={age}
-                        onChange={event => setAge(event.target.value)}
-                        required
-                    />
-                    {validateAge}
-                </div>
-                <div className="form-inputs">
-                    <label htmlFor="email" className="form-label">
-                        E-mail
-                    </label>
-                    <input
-                        id="email"
-                        type="email"
-                        name='email'
-                        className="form-input"
-                        value={email}
-                        onChange={event => setEmail(event.target.value)}
-                        required
-                    />
-                    {validateEmail}
-                </div>
-                <div className="form-inputs">
-                    <label htmlFor="city" className="form-label">
-                        Ciudad
-                    </label>
-                    <input
-                        id="city"
-                        type="text"
-                        name='city'
-                        className="form-input"
-                        value={city}
-                        onChange={event => setCity(event.target.value)}
-                    />
-                </div>
-                <div className="form-inputs">
-                    <label htmlFor="address" className="form-label">
-                        Dirección
-                    </label>
-                    <input
-                        id="address"
-                        type="text"
-                        name='address'
-                        className="form-input"
-                        value={address}
-                        onChange={event => setAddres(event.target.value)}
-                    />
-                </div>
-                <div className="form-inputs">
-                    <label htmlFor="rut" className="form-label">
-                        RUT
-                    </label>
-                    <input
-                        id="rut"
-                        type="text"
-                        name='rut'
-                        className="form-input"
-                        value={rut}
-                        onChange={event => setRut(event.target.value)}
-                    />
-                    {validateRut}
-                </div>
-                <div className="form-inputs">
-                    <label htmlFor="isapre" className="form-label">
-                        ISAPRE
-                    </label>
-                    <input
-                        id="isapre"
-                        type="text"
-                        name='isapre'
-                        className="form-input"
-                        value={isapre}
-                        onChange={event => setIsapre(event.target.value)}
-                    />
-                </div>
-                <div className="form-inputs">
-                    <label htmlFor="phone" className="form-label">
-                        Telefono
-                    </label>
-                    <input
-                        d="phone"
-                        type="text"
-                        name='phone'
-                        className="form-input"
-                        value={phone}
-                        onChange={event => setPhone(event.target.value)}
-                    />
-                    {validatePhone}
-                </div>
-                <div className="form-inputs">
-                    <label htmlFor="password" className="form-label">
-                        Contraseña
-                    </label>
-                    <input
-                        id="password"
-                        type="password"
-                        name='password'
-                        className="form-input"
-                        value={password}
-                        onChange={event => setPassword(event.target.value)}
-                    />
-                </div>
-                <div className="form-inputs">
-                    <label htmlFor="password2" className="form-label">
-                        Confirma tu contraseña
-                    </label>
-                    <input
-                        id="password2"
-                        type="password"
-                        name='password2'
-                        className="form-input"
-                        value={password2}
-                        onChange={event => setPassword2(event.target.value)}
-                    />
-
-                    {validatePassword}
-                </div>
-                {allValidate}
+                <table>
+                    <tbody>
+                        <tr>
+                            <div className="form-inputs">
+                                <td>
+                                    <label htmlFor="name" className="form-label">
+                                        Nombre
+                            </label>
+                                </td>
+                                <td>
+                                    <input
+                                        id='name'
+                                        type="text"
+                                        name='name'
+                                        className="form-input"
+                                        value={name}
+                                        onChange={event => setName(event.target.value)}
+                                        required
+                                    />
+                                </td>
+                            </div>
+                        </tr>
+                        <tr><td>{validateName}</td></tr>
+                        <tr>
+                            <div className="form-inputs">
+                                <td>
+                                    <label htmlFor="age" className="form-label">
+                                        Edad
+                                    </label>
+                                </td>
+                                <td>
+                                    <input
+                                        id="age"
+                                        type="number"
+                                        name='age'
+                                        className="form-input"
+                                        value={age}
+                                        onChange={event => setAge(event.target.value)}
+                                        required
+                                    />
+                                </td>
+                            </div>
+                        </tr>
+                        <tr><td>{validateAge}</td></tr>
+                        <tr>
+                            <div className="form-inputs">
+                                <td>
+                                    <label htmlFor="email" className="form-label">
+                                        E-mail
+                            </label>
+                                </td>
+                                <td>
+                                    <input
+                                        id="email"
+                                        type="email"
+                                        name='email'
+                                        className="form-input"
+                                        value={email}
+                                        onChange={event => setEmail(event.target.value)}
+                                        required
+                                    />
+                                </td>
+                            </div>
+                        </tr>
+                        <tr><td>{validateEmail}</td></tr>
+                        <tr>
+                            <div className="form-inputs">
+                                <td>
+                                    <label htmlFor="city" className="form-label">
+                                        Ciudad
+                            </label>
+                                </td>
+                                <td>
+                                    <input
+                                        id="city"
+                                        type="text"
+                                        name='city'
+                                        className="form-input"
+                                        value={city}
+                                        onChange={event => setCity(event.target.value)}
+                                    />
+                                </td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div className="form-inputs">
+                                <td>
+                                    <label htmlFor="address" className="form-label">
+                                        Dirección
+                            </label>
+                                </td>
+                                <td>
+                                    <input
+                                        id="address"
+                                        type="text"
+                                        name='address'
+                                        className="form-input"
+                                        value={address}
+                                        onChange={event => setAddres(event.target.value)}
+                                    />
+                                </td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div className="form-inputs">
+                                <td>
+                                    <label htmlFor="rut" className="form-label">
+                                        RUT
+                            </label>
+                                </td>
+                                <td>
+                                    <input
+                                        id="rut"
+                                        type="text"
+                                        name='rut'
+                                        className="form-input"
+                                        value={rut}
+                                        onChange={event => setRut(event.target.value)}
+                                    />
+                                </td>
+                            </div>
+                        </tr>
+                        <tr><td>{validateRut}</td></tr>
+                        <tr>
+                            <div className="form-inputs">
+                                <td>
+                                    <label htmlFor="isapre" className="form-label">
+                                        ISAPRE
+                            </label>
+                                </td>
+                                <td>
+                                    <input
+                                        id="isapre"
+                                        type="text"
+                                        name='isapre'
+                                        className="form-input"
+                                        value={isapre}
+                                        onChange={event => setIsapre(event.target.value)}
+                                    />
+                                </td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div className="form-inputs">
+                                <td>
+                                    <label htmlFor="phone" className="form-label">
+                                        Telefono
+                            </label>
+                                </td>
+                                <td>
+                                    <input
+                                        d="phone"
+                                        type="text"
+                                        name='phone'
+                                        className="form-input"
+                                        value={phone}
+                                        onChange={event => setPhone(event.target.value)}
+                                    />
+                                </td>
+                            </div>
+                        </tr>
+                        <tr><td>{validatePhone}</td></tr>
+                        <tr>
+                            <div className="form-inputs">
+                                <td>
+                                    <label htmlFor="password" className="form-label">
+                                        Contraseña
+                            </label>
+                                </td>
+                                <td>
+                                    <input
+                                        id="password"
+                                        type="password"
+                                        name='password'
+                                        className="form-input"
+                                        value={password}
+                                        onChange={event => setPassword(event.target.value)}
+                                    />
+                                </td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div className="form-inputs">
+                                <td>
+                                    <label htmlFor="password2" className="form-label">
+                                        Confirma tu contraseña
+                            </label>
+                                </td>
+                                <td>
+                                    <input
+                                        id="password2"
+                                        type="password"
+                                        name='password2'
+                                        className="form-input"
+                                        value={password2}
+                                        onChange={event => setPassword2(event.target.value)}
+                                    />
+                                </td>
+                            </div>
+                        </tr>
+                        <tr><td>{validatePassword}</td></tr>
+                        <tr><td>{allValidate}</td></tr>
+                    </tbody>
+                </table>
             </form>
         </div>
     );

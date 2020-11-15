@@ -16,6 +16,7 @@ router.get('logging-menu', '/', async (ctx) => {
 });
 
 router.get('error-auth', '/error', async (ctx) => {
+    console.log('ENTREEEE ------')
     const posts = await ctx.orm.post.findAll();
     await ctx.render('session/eauth', {
         posts,

@@ -25,9 +25,10 @@ router.use(async (ctx, next) => {
   } catch (err) {
     switch (err.status) {
       case 401:
+        ctx.body = 'No tienes acceso a esta vista';
         ctx.app.emit('error', err, ctx);
-        console.log('error identificado')
-        ctx.redirect(ctx.router.url('logging-menu'));
+        // ctx.assert()
+        // ctx.redirect(ctx.router.url('logging-menu'));
         break;
       default:
         throw err;
