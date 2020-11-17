@@ -7,22 +7,35 @@
 
 ### Cosas no implementadas: :x::cry::x:
 
-Todo implementado.
+Tenemos un bug :bug: en la parte de proteger las vistas para los usuarios. Especificamente tenemos el problema que se puede acceder a través de un dolor a dar feedback de un odontologo. Para solucionarlo y en vista de mejorar los path decidimos dejarlo para la próxima entrega, ya que queremos cambiar los path y necesitamos tiempo para testear toda la aplicación. Actualmente estamos en construcción de la solución. :construction: Lamentamos los inconvenientes.
  
 ### Cosas implementadas: :white_check_mark: :stuck_out_tongue_closed_eyes: :white_check_mark:
 
  - **FUNCIONALIDADES MINIMAS:**
+   
+   Realizamos todos los puntos establecidos en el feedback de la entrega pasada. En particular los siguientes:
+
+   * Rutas protegidas
+
+   * No se puede crear dolor, eliminar ni modificar la información a otros pacientes.
 
    * Ahora los botones de "update user" y "delete user" se cambiaron por "modificar perfil" y "borrar cuenta" para que sean más amigables
 
    * Ya no se puede crear una postulación con precio negativo
 
+ - **ReactJS:**
+
    * Se implemento un buscador para filtrar dolores con ReactJS.
 
+   * Se implemento la modificación del perfil del paciente con ReactJS.
+
+   * Se implemento el feedback con estrellas.
  
  - **BONUS:**
 
    * Cuando se acepta una cita de un odontólogo como paciente, se muestra un sppiner (React)
+
+   * Estilo al Mail.
 
 ### Ejecución del código:  :floppy_disk::floppy_disk::floppy_disk:
 
