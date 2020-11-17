@@ -13,28 +13,16 @@ Todo implementado.
 
  - **FUNCIONALIDADES MINIMAS:**
 
-    Sacamos los tag html de todas las vistas
+   * Ahora los botones de "update user" y "delete user" se cambiaron por "modificar perfil" y "borrar cuenta" para que sean más amigables
 
-    Avanzamos en las siguientes funcionalidades:
+   * Ya no se puede crear una postulación con precio negativo
 
-    * Calificar una atención (dar feedback)
-    * Acceder a dolores postulados
-    * Cancelar una postulación a un dolor
-    * Avanzar en chat
+   * Se implemento un buscador para filtrar dolores con ReactJS.
 
-    Incorporamos imagenes para pacientes, dentistas, posts y organizaciones en storage en cloudinary y tenemos imagenes por default.
-
-    Agregamos guards a rutas (middlewares) para restringir acceso a vistas en base a role y permisos. Además de las acciones sean visibles para los usuarios correspondientes. (Te devuelve a la página de inicio en caso de NO TENER ACCESO)
-
-    ** Puedes probar entrando sin logearte a : https://dent-list.herokuapp.com/patients/2
  
  - **BONUS:**
 
-    Se envía un mail a paciente y dentista cuando se hace match por un dolor.
-
-    Mejoramos estilo de la aplicación.
-
-    Usamos el tipo de input correspondiente para cada tipo de dato.
+   * Cuando se acepta una cita de un odontólogo como paciente, se muestra un sppiner (React)
 
 ### Ejecución del código:  :floppy_disk::floppy_disk::floppy_disk:
 
