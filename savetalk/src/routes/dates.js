@@ -124,7 +124,8 @@ router.post('dates-create', '/:dentistid/:painid', async (ctx) => {
             pain,
             errors: error.errors,
             createDatePath: (dentistid, painid) => ctx.router.url('dates-create', dentistid, painid),
-            painPath: (idpain, iddentist) => ctx.router.url('dentistPain', idpain, iddentist)
+            painPath: (idpain, iddentist) => ctx.router.url('dentistPain', idpain, iddentist),
+            dentistPath: id => ctx.router.url('dentist', id)
         });
     }
 });
