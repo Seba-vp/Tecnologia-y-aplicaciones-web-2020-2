@@ -12,6 +12,7 @@ const assets = require('./assets');
 const mailer = require('./mailers');
 const routes = require('./routes');
 const orm = require('./models');
+const apiRoutes = require('./routes/api');
 require('dotenv').config()
 
 // App constructor
@@ -94,6 +95,9 @@ app.use((ctx, next)=> {
   }
   return next();
 });
+
+//API routing middleware
+app.use(apiRoutes.routes());
 
 // Routing middleware
 app.use(routes.routes());
