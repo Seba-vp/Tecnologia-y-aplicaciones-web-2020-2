@@ -77,11 +77,31 @@ router.get('date', '/:id', async (ctx) => {
     idpatient = await ctx.state.currentPatient.id;
     const ruta = '/patients/' + String(idpatient)
     const dentist = await ctx.orm.dentist.findByPk(date.dentistId);
+    const dates = await dentist.getDates()
+
+    let sumFeedbackPoints = 0;
+    let numbersOfFeedbacks = 0;
+    for (const date of dates) {
+
+        let feedback = await ctx.orm.feedback.findOne({ where: { id_date: date.id } });
+        if (feedback !== null) {
+            sumFeedbackPoints += feedback.calification;
+            numbersOfFeedbacks += 1;
+        }
+
+    }
+
+    let averageFeedback = "No tiene puntuación aún"
+    if (numbersOfFeedbacks > 0) {
+        averageFeedback = (sumFeedbackPoints/numbersOfFeedbacks).toFixed(2);
+    }
+
     return ctx.render('dates/show', {
         ruta,
         dentist,
         date,
         pain,
+        averageFeedback,
         confirmDatePath: (dateId) => ctx.router.url('date-confirm', dateId),
         rejectDatePath: (dateId) => ctx.router.url('date-reject', dateId),
         specificPainPath: id => ctx.router.url('patientPain', id),

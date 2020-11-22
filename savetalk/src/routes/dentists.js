@@ -91,10 +91,29 @@ router.get('dentist', '/:id', checkAuth, async (ctx) => {
         };
         infoToSend.push(newDate);
     }
+
+    let sumFeedbackPoints = 0;
+    let numbersOfFeedbacks = 0;
+    for (const info of infoToSend) {
+
+        let feedback = await ctx.orm.feedback.findOne({ where: { id_date: info.date.id } });
+        if (feedback !== null) {
+            sumFeedbackPoints += feedback.calification;
+            numbersOfFeedbacks += 1;
+        }
+
+    }
+
+    let averageFeedback = "No tiene puntuación aún"
+    if (numbersOfFeedbacks > 0) {
+        averageFeedback = (sumFeedbackPoints/numbersOfFeedbacks).toFixed(2);
+    }
+
     return ctx.render('dentists/show', {
         dentist,
         chats,
         infoToSend,
+        averageFeedback,
         dentistPath: id => ctx.router.url('dentist', id),
         seePainsPath: id => ctx.router.url('pains', id),
         seeChatsPath: id => ctx.router.url('chats-dentist', id),
@@ -204,6 +223,7 @@ router.get('see-dates-of-dentist', '/dentist/alldates/:id', checkAuth, async (ct
         };
         infoToSend.push(newDate);
     }
+
 
     return ctx.render('dentists/dates', {
         dentist,

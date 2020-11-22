@@ -1,6 +1,7 @@
 
 <header>
-    <h1>Cita ofrecida por el odontologo: <%= dentist.name %> </h1>    
+    <h1>Cita ofrecida por el odontologo: <%= dentist.name %> </h1>
+    <h1> Puntuación Promedio: <%= averageFeedback %> </h1>    
 </header>
 
 <div class="topnav">
@@ -9,9 +10,9 @@
 
 <div class="card">
 <h2>Información de la cita ofrecida: </h2>
-<p>Horario:  <%= date.schedule %></p>
+<p>Posible Día a realizarse:  <%= date.schedule %></p>
 <p>Precio:  <%= date.price %></p>
-<p>Mensaje de presentación del Dentista:  <%= date.message %></p>
+<p>Mensaje de Presentación y horarios para el día seleccionado:  <%= date.message %></p>
 </div>
 
 

@@ -27,8 +27,8 @@
     <table>
     <div>
     <tr>
-        <td><label for="schedule" >Posibles horarios: </label></td>
-        <td><textarea rows="4" cols="30" name="schedule" id="schedule" required ><%= date.schedule %></textarea></td>
+        <td><label for="schedule" >Día disponible: </label></td>
+        <td><input type="date" name="schedule" id="schedule" value="<%= date.schedule %>" required /> </td>
     </tr>
     </div>
     <div>
@@ -39,7 +39,7 @@
     </div>
     <div>
     <tr>
-        <td><label for="message" >Mensaje de Presentación para el Paciente: </label></td>
+        <td><label for="message" >Mensaje de Presentación y posibles horarios en el día seleccionado: </label></td>
         <td><textarea rows="4" cols="30" name="message" id="message" required ><%= date.message %></textarea></td>
     </tr>
     </div>
