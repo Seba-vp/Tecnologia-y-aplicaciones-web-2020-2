@@ -111,7 +111,7 @@ const PatientForm = (props) => {
                                 </td>
                             </div>
                         </tr>
-                        <tr><td>{validateName}</td></tr>
+                        <tr><td><p className="errortype">{validateName}</p></td></tr>
                         <tr>
                             <div className="form-inputs">
                                 <td>
@@ -132,7 +132,7 @@ const PatientForm = (props) => {
                                 </td>
                             </div>
                         </tr>
-                        <tr><td>{validateAge}</td></tr>
+                        <tr><td><p className="errortype">{validateAge}</p></td></tr>
                         <tr>
                             <div className="form-inputs">
                                 <td>
@@ -153,7 +153,7 @@ const PatientForm = (props) => {
                                 </td>
                             </div>
                         </tr>
-                        <tr><td>{validateEmail}</td></tr>
+                        <tr><td><p className="errortype">{validateEmail}</p></td></tr>
                         <tr>
                             <div className="form-inputs">
                                 <td>
@@ -211,7 +211,7 @@ const PatientForm = (props) => {
                                 </td>
                             </div>
                         </tr>
-                        <tr><td>{validateRut}</td></tr>
+                        <tr><td><p className="errortype">{validateRut}</p></td></tr>
                         <tr>
                             <div className="form-inputs">
                                 <td>
@@ -250,7 +250,7 @@ const PatientForm = (props) => {
                                 </td>
                             </div>
                         </tr>
-                        <tr><td>{validatePhone}</td></tr>
+                        <tr><td><p className="errortype">{validatePhone}</p></td></tr>
                         <tr>
                             <div className="form-inputs">
                                 <td>
@@ -289,8 +289,8 @@ const PatientForm = (props) => {
                                 </td>
                             </div>
                         </tr>
-                        <tr><td>{validatePassword}</td></tr>
-                        <tr><td>{allValidate}</td></tr>
+                        <tr><td><p className="errortype">{validatePassword}</p></td></tr>
+                        <tr><td><p className="errortype">{allValidate}</p></td></tr>
                     </tbody>
                 </table>
             </form>

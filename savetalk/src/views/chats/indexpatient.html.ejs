@@ -1,20 +1,39 @@
-
-
-    <header>
-        <h1>Chats</h1>
-    </header>
-    <div class="topnav">   
-        <a href="<%= patientPath(idpatient) %>" id="r">Volver</a>
-        <a href="<%= patientPath(idpatient) %>" >Inicio</a> 
-    </div>
-    <% chatsPersonToSend.forEach( element => { %>
-    <div class="card">
-        <h2> Odontologo <%= element.person.name %></h2>
-        <% if (element.chat.block) { %>
-        <p>conexión no disponible</p>
-        <% } else {%>
-        <p>conexión disponible</p>
+<header>
+    <h1>Chats</h1>
+</header>
+<div class="topnav">
+    <a href="<%= patientPath(idpatient) %>" id="r">Volver</a>
+    <a href="<%= patientPath(idpatient) %>">Inicio</a>
+</div>
+<% chatsPersonToSend.forEach( element => { %>
+<div class="card">
+    <h2> Odontologo <%= element.person.name %></h2>
+    <form method="post" action="<%= updateChatPathDataBase(element.chat.id) %>">
+        <% if (locals.errors){ %>
+        <div class="card2">
+            <p>No se pudo cambiar la conexión por lo siguiente:</p>
+            <ul>
+                <% errors.forEach(error => { %>
+                <li><%= error.path %>: <%= error.message %> </li>
+                <% }); %>
+            </ul>
+        </div>
         <% } %>
-        <a href="<%= updateChatPath(element.chat.id) %>"> Modificar conexión </a>
-    </div>
-    <% }) %>
+        <div>
+            <table>
+                <% if (element.chat.block) { %>
+                <p>Odontologo bloqueado</p>
+                <div>
+                    <button name="block" value="false" type="submit">Desbloquear</button>
+                </div>
+                <% } else {%>
+                <p>Odontologo activo</p>
+                <div>
+                    <button name="block" value="true" type="submit">Bloquear</button>
+                </div>
+                <% } %>
+            </table>
+        </div>
+    </form>
+</div>
+<% }) %>

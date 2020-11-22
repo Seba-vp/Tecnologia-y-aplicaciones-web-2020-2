@@ -31,8 +31,6 @@ function checkAuthP(ctx, next) {
     return next();
 }
 
-
-
 //router.use(PROTECTED_PATH_D, checkAuthD);
 //router.use(PROTECTED_PATH_P, checkAuthP);
 
