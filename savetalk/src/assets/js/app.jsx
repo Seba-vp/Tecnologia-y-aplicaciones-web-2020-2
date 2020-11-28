@@ -6,7 +6,6 @@ import Spinner from './components/Spinner/Spinner';
 import DynamicStars from './components/Star';
 import PatientForm from './components/PatientForm/PatientForm';
 
-
 const reactAppContainer = document.getElementById('react-app');
 
 if (reactAppContainer) {
@@ -45,4 +44,3 @@ if (patientFormContainer) {
     serverData={patientFormContainer.dataset}
   />, patientFormContainer);
 }
-

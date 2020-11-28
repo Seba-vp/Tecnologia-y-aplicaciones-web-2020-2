@@ -31,6 +31,18 @@ function checkAuthP(ctx, next) {
     return next();
 }
 
+async function checkAuthPain(ctx, next) {
+    const { pain } = ctx.state;
+    painPatient = await pain.getPatient();
+    const { currentPatient } = ctx.state;
+    console.log(currentPatient.id)
+    console.log(painPatient.id)
+    if (currentPatient.id !== painPatient.id) ctx.throw(401);
+    console.log(ctx.params)
+    console.log(pain.id)
+    if (pain.id.toString() !== ctx.params.idpain) ctx.throw(401);
+    return next();
+}
 
 
 //router.use(PROTECTED_PATH_D, checkAuthD);
@@ -125,7 +137,7 @@ router.get('dentistPain', '/dentistpain/:idpain/:dentistid', checkAuthD, async (
     });
 });
 
-router.get('patientPain', 'patientpain/:idpain', async (ctx) => {
+router.get('patientPain', 'patientpain/:idpain', checkAuthPain, async (ctx) => {
     const { pain } = ctx.state;
     const { patient } = ctx.state;
     idpatient = await ctx.state.currentPatient.id;

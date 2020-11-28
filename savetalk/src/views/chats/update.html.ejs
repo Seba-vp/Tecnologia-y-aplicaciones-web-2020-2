@@ -1,8 +1,8 @@
 <header>
-    <h1> Modificación de conexión con usuario:</h1>
+    <h1> chats update:</h1>
 </header>
 <div class="topnav">
-    <a href="<%= ruta %>" >Inicio</a> 
+    <a href="<%= ruta %>">Inicio</a>
 </div>
 
 
@@ -23,8 +23,11 @@
         <div>
             <table>
                 <tr>
-                    <td><label for="block">Conexión</label></td>
-                    <td><input type="text" name="block" /></td>
+                    <td><label for="block">Conexión:</label></td>
+                    <select name="block" id="block">
+                        <option value="true"> Bloquear usuario </option>
+                        <option value="false"> Desbloquear usuario </option>
+                    </select>
                 </tr>
             </table>
         </div>

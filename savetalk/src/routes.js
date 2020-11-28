@@ -5,6 +5,7 @@ const index = require('./routes/index');
 const patients = require('./routes/patients');
 const sessions = require('./routes/session');
 const sessions_2 = require('./routes/session_2');
+const auth = require('./routes/auth');
 
 const notifications = require('./routes/notifications');
 const feedbacks = require('./routes/feedbacks');
@@ -28,7 +29,7 @@ router.use(async (ctx, next) => {
         ctx.body = 'No tienes acceso a esta vista';
         ctx.app.emit('error', err, ctx);
         // ctx.assert()
-        // ctx.redirect(ctx.router.url('logging-menu'));
+        ctx.redirect(ctx.router.url('error-auth'));
         break;
       default:
         throw err;
@@ -40,7 +41,8 @@ router.use(async (ctx, next) => {
   Object.assign(ctx.state, {
     destroyPatientSessionPath: ctx.router.url('session-destroy-patient'),
     destroyDentistSessionPath: ctx.router.url('session-destroy-dentist'),
-    wantToConnectSessionPath: ctx.router.url('logging-menu')
+    wantToConnectSessionPath: ctx.router.url('logging-menu'),
+    errorToAuthPath: ctx.router.url('error-auth')
   });
   return next();
 });
@@ -56,6 +58,7 @@ router.use(async (ctx, next) => {
 });
 
 router.use('/', sessions.routes());
+router.use('/error', auth.routes());
 router.use('/session', sessions_2.routes());
 router.use('/pain', pains.routes());
 router.use('/hello', hello.routes());

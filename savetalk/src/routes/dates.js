@@ -35,6 +35,15 @@ function checkAuthD(ctx, next) {
     return next();
 }
 
+function checkAuthDP(ctx, next) {
+    const { currentDentist } = ctx.state;
+    if (!currentDentist) ctx.throw(401);
+    console.log(ctx.params)
+    console.log(currentDentist.id.toString())
+    if (currentDentist.id.toString() !== ctx.params.dentistid) ctx.throw(401);
+    return next();
+}
+
 function checkAuthP(ctx, next) {
     const { currentPatient } = ctx.state;
     if (!currentPatient) ctx.throw(401);

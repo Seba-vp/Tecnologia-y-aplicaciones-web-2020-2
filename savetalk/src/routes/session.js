@@ -15,17 +15,4 @@ router.get('logging-menu', '/', async (ctx) => {
     });
 });
 
-router.get('error-auth', '/error', async (ctx) => {
-    console.log('ENTREEEE ------')
-    const posts = await ctx.orm.post.findAll();
-    await ctx.render('session/eauth', {
-        posts,
-        postPath: id => ctx.router.url('post', id),
-        patientRegistrationPath: ctx.router.url('patients-new'),
-        dentistRegistrationPath: ctx.router.url('dentists-new'),
-        loginPatientPath: ctx.router.url('session-create-patient'),
-        loginDentistPath: ctx.router.url('session-create-dentist')
-    });
-});
-
 module.exports = router;

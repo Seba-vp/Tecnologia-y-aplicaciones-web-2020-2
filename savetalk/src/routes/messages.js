@@ -186,12 +186,14 @@ router.get('newmessagesdentist', '/new/dentist', async (ctx) => {
     let chatsToSend = [];
 
     for (const element of chats) {
-        person = await element.getPatient();
-        data = {
-            'chat': element.id,
-            'person': person
+        if (element.block === false) {
+            person = await element.getPatient();
+            data = {
+                'chat': element.id,
+                'person': person
+            }
+            chatsToSend.push(data);
         }
-        chatsToSend.push(data);
     };
 
     await ctx.render('messages/new', {
@@ -237,13 +239,16 @@ router.get('newmessagespatient', '/new/patient', async (ctx) => {
     let chatsToSend = [];
 
     for (const element of chats) {
-        person = await element.getDentist();
-        data = {
-            'chat': element.id,
-            'person': person
-        }
-        chatsToSend.push(data);
+        if (element.block === false) {
+            person = await element.getDentist();
+            data = {
+                'chat': element.id,
+                'person': person
+            }
+            chatsToSend.push(data);
+        };
     };
+
     await ctx.render('messages/new', {
         ruta,
         patient,

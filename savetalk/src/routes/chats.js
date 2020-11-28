@@ -60,6 +60,7 @@ router.get('chats', '/', async (ctx) => {
         deleteChatPath: id => ctx.router.url('chat-delete', id),
         patient,
         patientPath: id => ctx.router.url('patient', id),
+        updateChatPathDataBase: id => ctx.router.url('chat-update-database', id)
         // chatPath: (idchat, iddentist) => ctx.router.url('dentistChat', idchat, iddentist),
     });
 });
@@ -70,7 +71,6 @@ router.get('chats-dentist', '/:dentistid', async (ctx) => {
     const { patient } = ctx.state;
     const { chat } = ctx.state;
     const chats = await ctx.orm.chat.findAll();
-
     iddentist = ctx.state.currentDentist.id;
     const ruta = '/dentists/' + String(iddentist)
 
@@ -92,6 +92,7 @@ router.get('chats-dentist', '/:dentistid', async (ctx) => {
             chatsToSend.push(element);
         }
     });
+    console.log('PASANDO')
     await ctx.render('chats/indexdentist', {
         ruta,
         chatsToSend,
@@ -103,6 +104,7 @@ router.get('chats-dentist', '/:dentistid', async (ctx) => {
         chatsPath: id => ctx.router.url('chat', id),
         patient,
         patientPath: id => ctx.router.url('patient', id),
+        updateChatPathDataBase: id => ctx.router.url('chat-update-database', id),
         // chatPath: (idchat, iddentist) => ctx.router.url('dentistChat', idchat, iddentist),
     });
 });
@@ -133,11 +135,12 @@ router.get('chats-patient', '/:patientid', async (ctx) => {
         }
     });
     await ctx.render('chats/indexpatient', {
-        patientPath: id => ctx.router.url('patient', id),   
+        patientPath: id => ctx.router.url('patient', id),
         chatsToSend,
         chatsPersonToSend,
         patient,
         chat,
+        updateChatPathDataBase: id => ctx.router.url('chat-update-database', id)
         // updateChatPath: id => ctx.router.url('chat-update', id),
         // deleteChatPath: id => ctx.router.url('chat-delete', id),
         // chatsPath: id => ctx.router.url('chat', id)
@@ -169,7 +172,7 @@ router.post('chats-create', '/', async (ctx) => {
             errors: error.errors,
             createChatPath: ctx.router.url('chats-create'),
             patient,
-            patientPath: id => ctx.router.url('patient', id), 
+            patientPath: id => ctx.router.url('patient', id),
         });
     }
 })
@@ -185,16 +188,23 @@ router.get('chat', '/:id', (ctx) => {
 
 router.get('chat-update', '/update/:id', (ctx) => {
     const { chat } = ctx.state;
-    if (ctx.session.currentDentistId){
+    if (ctx.session.currentDentistId) {
         id = ctx.state.currentDentist.id
         ruta = '/dentists/' + String(id)
-    } 
-    if (ctx.session.currentPatientId){
+    }
+    if (ctx.session.currentPatientId) {
         id = ctx.state.currentPatient.id
         ruta = '/patients/' + String(id)
     }
-    
+    console.log(chat)
+
+    data = {
+        'Bloquear usuario': true,
+        'Desbloquear usuario': false
+    }
+
     return ctx.render('chats/update', {
+        data,
         ruta,
         chat,
         updateChatPathDataBase: id => ctx.router.url('chat-update-database', id)
@@ -203,18 +213,43 @@ router.get('chat-update', '/update/:id', (ctx) => {
 
 router.post('chat-update-database', 'update/:id', async (ctx) => {
     const { chat } = ctx.state;
+    if (ctx.session.currentDentistId) {
+        id = ctx.state.currentDentist.id
+        ruta = '/dentists/' + String(id)
+    }
+    if (ctx.session.currentPatientId) {
+        id = ctx.state.currentPatient.id
+        ruta = '/patients/' + String(id)
+    }
     try {
         if (chat.block !== ctx.request.body.block) {
             chat.block = ctx.request.body.block;
         }
         await chat.save({ fields: PERMITED_FIELDS_UPDATE });
-        ctx.redirect(ctx.router.url('dentist', ctx.state.currentDentist.id));
+
+        if (ctx.session.currentDentistId) {
+            ctx.redirect(ctx.router.url('dentist', ctx.state.currentDentist.id));
+        }
+        if (ctx.session.currentPatientId) {
+            ctx.redirect(ctx.router.url('patient', ctx.state.currentPatient.id));
+        }
     } catch (error) {
-        await ctx.render('chats/update', {
-            chat,
-            errors: error.errors,
-            updateChatPathDataBase: id => ctx.router.url('chat-update-database', id)
-        });
+        if (ctx.session.currentDentistId) {
+            await ctx.render('chats/indexdentist', {
+                chat,
+                ruta,
+                errors: error.errors,
+                updateChatPathDataBase: id => ctx.router.url('chat-update-database', id)
+            });
+        }
+        if (ctx.session.currentPatientId) {
+            await ctx.render('chats/indexpatient', {
+                chat,
+                ruta,
+                errors: error.errors,
+                updateChatPathDataBase: id => ctx.router.url('chat-update-database', id)
+            });
+        }
     }
 });
 
