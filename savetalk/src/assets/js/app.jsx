@@ -5,7 +5,6 @@ import PainFilter from './components/PainFilter/PainFilter';
 import Spinner from './components/Spinner/Spinner';
 import DynamicStars from './components/Star';
 import PatientForm from './components/PatientForm/PatientForm';
-import ChatModify from './components/ChatModify/ChatModify.jsx';
 
 const reactAppContainer = document.getElementById('react-app');
 
