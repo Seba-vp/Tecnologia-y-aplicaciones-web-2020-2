@@ -1,4 +1,4 @@
-# DENTLIST - MANATI - ENTREGA 4 
+# DENTLIST - MANATI - ENTREGA 6(Final) 
 
 ## Link App en Heroku https://dent-list.herokuapp.com/
 
@@ -36,6 +36,347 @@ Tenemos un bug :bug: en la parte de proteger las vistas para los usuarios. Espec
    * Cuando se acepta una cita de un odontólogo como paciente, se muestra un sppiner (React)
 
    * Estilo al Mail.
+
+### Documentacion API(recuerden cambiar los "localhost:3000"):
+
+- **Login Paciente:**
+
+  tipo = POST
+  path = localhost:3000/api/auth/loginPatient
+  RUTA ABIERTA
+
+  Esta es una ruta ABIERTA, y la finalidad de ésta es poder hacer login con un Paciente respectivo. Se debe proveer el siguiente Header:
+  key = Content-Type
+  value = application/json
+
+  Asimismo se debe proveer un body con el email y password del paciente con el que te quieras logear. Estos datos deben ser insertados de la siguiente forma:
+
+  ```
+		{
+      "email": "emailx@gmail.com",
+      "password": "123456"
+    }
+	```
+
+  Luego de eso, si se ingresaron de forma correcta, la respuesta debiese ser de la siguiente forma:
+
+   ```
+    {
+      "patientToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxcCIsIdsadsaTYwNjYwNjkzN30.wPGGTvdsadsacEBi5qiNPPPjKZF7MGCD6WxtRVEI"
+    }
+	``` 
+
+  Recuerda seguir las intrucciones a detalle, sino recibirás un error.
+
+- **Login Dentista:**
+
+  tipo = POST
+  path = localhost:3000/api/auth/loginDentist
+  RUTA ABIERTA
+
+  Esta es una ruta ABIERTA, y la finalidad de ésta es poder hacer login con un Dentista respectivo. Se debe proveer el siguiente Header:
+  key = Content-Type
+  value = application/json
+
+  Asimismo se debe proveer un body con el email y password del Dentista con el que te quieras logear. Estos datos deben ser insertados de la siguiente forma:
+
+  ```
+		{
+      "email": "emailx@gmail.com",
+      "password": "123456"
+    }
+	```
+
+  Luego de eso, si se ingresaron de forma correcta, la respuesta debiese ser de la siguiente forma:
+
+   ```
+    {
+      "dentistToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxcCIsIdsadsaTYwNjYwNjkzN30.wPGGTvdsadsacEBi5qiNPPPjKZF7MGCD6WxtRVEI"
+    }
+	``` 
+
+  Recuerda seguir las intrucciones a detalle, sino recibirás un error.
+
+- **Obtener Data de un Paciente:**
+
+  tipo = GET
+  path = localhost:3000/api/patient/data
+  RUTA RESTRINGIDA
+
+  Esta es una ruta RESTRINGIDA, y la finalidad de ésta es poder obtener la data del Paciente con el que estas logeado. Para esto se debe proveer la Bearer Token entregada en el Login del Paciente.
+
+  No necesita Headers adicionales ni Body.
+
+  Si todo se realiza de manera correcta, la respuesta debiese ser de la siguiente forma:
+
+   ```
+    {
+      "id": 1,
+      "age": 30,
+      "name": "Rodolfo Mendoza",
+      "phone": "12345678",
+      "address": "la nueva avenida",
+      "city": "Santiago",
+      "email": "email@gmail.com",
+      "rut": "19956567-8",
+      "isapre": "Cruz Blanca"
+    }
+	``` 
+
+  Recuerda seguir las intrucciones a detalle, sino recibirás un error correspondiente.
+
+- **Obtener Data de un Dentista:**
+
+  tipo = GET
+  path = localhost:3000/api/dentist/data
+  RUTA RESTRINGIDA
+
+  Esta es una ruta RESTRINGIDA, y la finalidad de ésta es poder obtener la data del Dentista con el que estas logeado. Para esto se debe proveer la Bearer Token entregada en el Login del Dentista.
+
+  No necesita Headers adicionales ni Body.
+
+  Si todo se realiza de manera correcta, la respuesta debiese ser de la siguiente forma:
+
+   ```
+    {
+      "id": 1,
+      "voluntario": "Si",
+      "speciality": "ortodoncia",
+      "rut": "19956143-k",
+      "university": "La Chile",
+      "universityYear": 4,
+      "email": "josefa@gmail.com",
+      "name": "Josefita Saes",
+      "phone": "12345678",
+      "address": "Paso del Roble",
+      "city": "La Florida"
+    }
+	``` 
+
+  Recuerda seguir las intrucciones a detalle, sino recibirás un error correspondiente.
+
+
+- **Obtener las Citas de un Dentista:**
+
+  tipo = GET
+  path = localhost:3000/api/dentist/seeDates
+  RUTA RESTRINGIDA
+
+  Esta es una ruta RESTRINGIDA, y la finalidad de ésta es poder obtener las CITAS del Dentista con el que estas logeado. Para esto se debe proveer la Bearer Token entregada en el Login del Dentista.
+
+  No necesita Headers adicionales ni Body.
+
+  Si todo se realiza de manera correcta, la respuesta debiese ser de la siguiente forma:
+
+   ```
+    [
+      {
+        "dateId": 2,
+        "status": "Cita Cancelada por Dentista",
+        "nombrePaciente": "Rodolfo Mendoza",
+        "nombreDolor": "Me duele la encia",
+        "descripcionDolor": "dolor de encia"
+      },
+      {
+        "dateId": 1,
+        "status": "Cita ya fue llevada a cabo",
+        "nombrePaciente": "Rodolfo Mendoza",
+        "nombreDolor": "Me duele la lengua",
+        "descripcionDolor": "Me queme la Lengua",
+        "fecha": "2021-02-01"
+      },
+      {
+        "dateId": 6,
+        "status": "Cita en espera de la respuesta del paciente",
+        "nombrePaciente": "fabricio",
+        "nombreDolor": "dolor muela",
+        "descripcionDolor": "muelas",
+        "fecha": "2021-02-01"
+      },
+      {
+        "dateId": 11,
+        "status": "Cita confirmada por Paciente",
+        "nombrePaciente": "Rodolfo Mendoza",
+        "nombreDolor": "Dolor Labio",
+        "descripcionDolor": "Me duele el Labio",
+        "fecha": "2021-02-01"
+      }
+    ]
+	``` 
+
+  Recuerda seguir las intrucciones a detalle, sino recibirás un error correspondiente.
+
+  Es importante destacar que debes prestar atención a la citas con los siguientes posibles "status":
+
+  "status": "Cita confirmada por Paciente"
+  "status": "Cita en espera de la respuesta del paciente"
+
+  Puesto que SOLAMENTE LAS CITAS QUE TENGAN ESTOS STATUS podrán ser modificadas(PATCH) en la ruta que corresponde a "Update Cita por un Dentista"
+
+- **Update Cita por un Dentista:**
+
+  tipo = PATCH
+  path = localhost:3000/api/dentist/updateDateApi
+  RUTA RESTRINGIDA
+
+  Esta es una ruta Restringida, y la finalidad de ésta es poder hacer un Update de una cita a la que ya postuló el Dentista.
+  Es importante mencionar que esta ruta va de la mano con la ruta anterior(Obtener las Citas de un Dentista) puesto que solamente se podrá hacer Update de las citas que tengan los siguientes "status":
+
+  "status": "Cita confirmada por Paciente"
+  "status": "Cita en espera de la respuesta del paciente"
+
+  Es importante tener esto en mente, puesto que los demás "status" no pueden ser modificados por el Dentista Logeado en cuestión.
+
+  Como es una ruta Restringida, se debe proveer la Bearer Token del Dentista con el que estés Logeado.
+
+  Asimismo se debe proveer el siguiente Header:
+  key = Content-Type
+  value = application/json
+
+  También se debe proveer un body con el id de la cita, el cual debe ser un id de cita que le pertenezca al Dentista Logeado, sino te tirará error ya que el id de esa cita le pertenecerá a otro Dentista.
+  Asimismo se debe proveer en el body dos posibles "state":
+
+  "state": "citaRealizada"
+  "state": "rechazarCita"
+
+  los cuales son basicamente tu decisión para hacer el UPDATE de la cita elegida. Es importante mencionar que si la cita tiene el siguiente "status":
+
+  "status": "Cita en espera de la respuesta del paciente"
+
+  no podrás elegir el "state": "citaRealizada" puesto que aún el paciente no acepta la cita que ofreciste. Sin embargo si podrás rechazar la cita, ya que puedes tener algún contratiempo y quizás ya no tienes esa fecha disponible para una posible cita.
+
+  Por lo tanto, el body ingresado en esta ruta debiese tener la siguiente forma:
+
+  ```
+  {
+    "dateId": 9,
+    "state": "citaRealizada"
+  }
+	```
+
+  Luego de eso, si se ingresaron de forma correcta, la respuesta debiese ser de la siguiente forma:
+
+   ```
+    {
+      "message": "Realizó la cita exitosamente"
+    }
+	``` 
+
+  Recuerda seguir las intrucciones a detalle, sino recibirás un error correspondiente.
+
+- **Update Datos de un Paciente:**
+
+  tipo = PATCH
+  path = localhost:3000/api/patient/data/update
+  RUTA RESTRINGIDA
+
+  Esta es una ruta Restringida, y la finalidad de ésta es poder hacer un Update de los datos del Paciente con el que estás logeado.
+
+  Como es una ruta Restringida, se debe proveer la Bearer Token del Paciente con el que estés Logeado.
+
+  Asimismo se debe proveer el siguiente Header:
+  key = Content-Type
+  value = application/json
+
+  El body a ingresar debe ser con TODOS los datos que se mostrarán en el body de ejemplo. Si te falta algún dato te tirará error por no seguir las instrucciones.
+
+  Además, los datos ingresados en este body serán los futuros datos del Paciente, ya que los antiguos datos serán modificados por los que ingresarás en el Body.
+
+  Por lo tanto, el body ingresado en esta ruta debiese tener la siguiente forma:
+
+  ```
+    {
+      "name": "Rodolfo Mendoza",
+      "age": "24",
+      "phone": "12345678",
+      "address": "callex",
+      "city": "La Florida",
+      "email": "emailx@gmail.com",
+      "rut": "19956156-9",
+      "isapre": "Fonasa",
+      "password": "123456"
+    }
+	```
+
+  Luego de eso, si se ingresaron de forma correcta, la respuesta debiese ser de la siguiente forma:
+
+   ```
+    {
+      "name": "Rodolfo Mendoza",
+      "age": "24",
+      "phone": "12345678",
+      "address": "callex",
+      "city": "La Florida",
+      "email": "emailx@gmail.com",
+      "rut": "19956156-9",
+      "isapre": "Fonasa",
+      "password": "No te la reenviamos por tu seguridad, pero fue cambiada exitosamente!"
+    }
+	``` 
+
+  Respuesta que muestra los datos actualizados del paciente.
+
+  Recuerda seguir las intrucciones a detalle, sino recibirás un error correspondiente.
+
+
+- **Update Datos de un Dentista:**
+
+  tipo = PATCH
+  path = localhost:3000/api/dentist/data/update
+  RUTA RESTRINGIDA
+
+  Esta es una ruta Restringida, y la finalidad de ésta es poder hacer un Update de los datos del Dentista con el que estás logeado.
+
+  Como es una ruta Restringida, se debe proveer la Bearer Token del Dentista con el que estés Logeado.
+
+  Asimismo se debe proveer el siguiente Header:
+  key = Content-Type
+  value = application/json
+
+  El body a ingresar debe ser con TODOS los datos que se mostrarán en el body de ejemplo. Si te falta algún dato te tirará error por no seguir las instrucciones.
+
+  Además, los datos ingresados en este body serán los futuros datos del Dentista, ya que los antiguos datos serán modificados por los que ingresarás en el Body.
+
+  Por lo tanto, el body ingresado en esta ruta debiese tener la siguiente forma:
+
+  ```
+    {
+      "name": "Josefa Saes",
+      "year": "4",
+      "phone": "12345678",
+      "address": "callex",
+      "city": "La Florida",
+      "email": "josefa@gmail.com",
+      "rut": "19956321-k",
+      "voluntario": "Si",
+      "speciality": "ortodoncia",
+      "university": "Universidad de Chile",
+      "password": "123456"
+    }
+	```
+
+  Luego de eso, si se ingresaron de forma correcta, la respuesta debiese ser de la siguiente forma:
+
+   ```
+    {
+      "name": "Josefa Saes",
+      "year": "4",
+      "phone": "12345678",
+      "address": "callex",
+      "city": "La Florida",
+      "email": "josefa@gmail.com",
+      "rut": "19956321-k",
+      "voluntario": "Si",
+      "speciality": "ortodoncia",
+      "university": "Universidad de Chile",
+      "password": "No te la reenviamos por tu seguridad, pero fue cambiada exitosamente!"
+    }
+	``` 
+
+  Respuesta que muestra los datos actualizados del Dentista.
+
+  Recuerda seguir las intrucciones a detalle, sino recibirás un error correspondiente.
+
 
 ### Ejecución del código:  :floppy_disk::floppy_disk::floppy_disk:
 

@@ -108,9 +108,6 @@ router.get('patient-update', '/update/:id', checkAuth, (ctx) => {
 router.post('patient-update-database', '/update/:id', checkAuth, async (ctx) => {
     const { patient, cloudinary } = ctx.state;
 
-    console.log("HOLAAAA MIRAR ACAAAA KING");
-
-
     if (patient.name !== ctx.request.body.name) {
         patient.name = ctx.request.body.name;
     }
