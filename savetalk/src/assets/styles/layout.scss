@@ -103,6 +103,20 @@ td {
 
 
 /* COLUMNAS */
+.row {
+  display: flex; /* equal height of the children */
+}
+
+.column {
+  flex: 1; 
+  padding: 10px;
+}
+.columnx {
+  flex: 1; 
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
 /* Left column */
 .leftcolumn {   
   float: left;
@@ -131,11 +145,23 @@ img {
   width: 100%;
   padding: 20px;
 }
+
+.fakeimg2 {
+  width: 90%;
+  padding: 20px;
+}
 .card2 {
   background-color: #dae1e7;
   padding: 10px;
   margin: 10px;
   text-align: center;
+}
+.card3 {
+  background-color: #dae1e7;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+  height: 100%;
 }
 
 /* Add a card effect for articles */
@@ -145,7 +171,12 @@ img {
   margin-top: 20px;
   text-align: center;
 }
-
+.card4 {
+  background-color: white;
+  margin-top: 20px;
+  text-align: center;
+  padding: 20px;
+}
 /* Clear floats after the columns */
 .row:after {
   content: "";

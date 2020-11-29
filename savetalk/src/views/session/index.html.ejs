@@ -6,6 +6,7 @@
     <a href="#">DentList</a>
 </div>
 
+
 <div class="row">
     <div class="leftcolumn">
 
@@ -121,21 +122,53 @@
             </form>
         </div>
 
+
+
+           <!-- Noticias-->
+        <div class="card4">
+            <h1>Noticias</h1>
+        <div class="row">
+            
+            <% articlesShuffled = articles.sort(() => 0.5 - Math.random());%>
+            <% randomArticles = articlesShuffled.slice(0, 2);%>
+            <% randomArticles.forEach( article => { %>
+                <div class="column">
+                        <div class="card3">
+                           
+                            <h1><%= article.title %> </h1>
+                            <p><%= article.description %></p>
+                            <div class="fakeimg2">
+                                <img src="<%= article.urlToImage%>" alt="<%= article.urlToImage %>" >
+                            </div>
+                            <br>
+                            <div class="button">
+                                <a href="<%= article.url %>">Ver más</a>
+                            </div>
+                        </div>
+                </div>
+                
+            <% }) %>
+        </div>
+        </div>
+        
+
         <% } %>
     </div>
 
 
     <div class="rightcolumn">
         <% postsShuffled = posts.sort(() => 0.5 - Math.random());%>
-        <% randomPosts = postsShuffled.slice(0, 2);%>
+        <% randomPosts = postsShuffled.slice(0, 3);%>
         <% randomPosts.forEach( post => { %>
         <div class="card">
 
             <h1><%= post.title %> </h1>
             <p><%= post.description %></p>
 
-            <div class="fakeimg">
-                <img src="<%= cloudinary.url(post.image) %>" alt="<%= post.image %>">
+
+            <div class="fakeimg2">
+                <img src="<%= cloudinary.url(post.image) %>" alt="<%= post.image %>" >
+
             </div>
             <br>
             <div class="button">

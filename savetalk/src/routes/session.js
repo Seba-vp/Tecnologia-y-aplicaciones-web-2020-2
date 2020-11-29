@@ -7,11 +7,14 @@ const router = new KoaRouter();
 router.get('logging-menu', '/', async (ctx) => {
     const posts = await ctx.orm.post.findAll();
 
-    var url = "http://newsapi.org/v2/top-headlines?country=us&category=health&apiKey=497fa2c163be479dbc4fdb1a5e017cdc";
+    var url = "http://newsapi.org/v2/top-headlines?country=us&category=health&apiKey="+String(process.env.API_KEY);
     const res = await axios.get(url)
     console.log("HOLLAA MIRAAR ACA: ", res.data.articles[0])
+    const articles = res.data.articles
+    console.log("ARTICLES", articles)
 
     await ctx.render('session/index', {
+        articles,
         posts,
         postPath: id => ctx.router.url('post', id),
         patientRegistrationPath: ctx.router.url('patients-new'),
