@@ -223,6 +223,7 @@ Tenemos un bug :bug: en la parte de proteger las vistas para los usuarios. Espec
   Es importante destacar que debes prestar atención a la citas con los siguientes posibles "status":
 
   "status": "Cita confirmada por Paciente"
+  <br />
   "status": "Cita en espera de la respuesta del paciente"
 
   Puesto que SOLAMENTE LAS CITAS QUE TENGAN ESTOS STATUS podrán ser modificadas(PATCH) en la ruta que corresponde a "Update Cita por un Dentista"
