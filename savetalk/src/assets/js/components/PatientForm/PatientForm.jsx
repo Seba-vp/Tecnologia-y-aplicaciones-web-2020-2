@@ -5,6 +5,9 @@ import validate from './validateInfo';
 import './Form.css';
 
 const PatientForm = (props) => {
+    const checkRut2 = (ruttocheck) => {
+
+    }
 
     const { serverData } = props;
     const prePatientObject = serverData['patient'];
@@ -209,6 +212,7 @@ const PatientForm = (props) => {
                                         maxlength="12"
                                         value={rut}
                                         onChange={event => setRut(event.target.value)}
+
                                     />
                                 </td>
                             </div>
