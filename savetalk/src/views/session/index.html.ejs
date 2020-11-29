@@ -1,16 +1,14 @@
+<header>
+    <img id="logo" src="<%= cloudinary.url('rqaga2u0qibj10mx4yqb') %>">
+</header>
 
-    
-    <header>
-        <h1>DentList</h1>
-        <p> Bienvenido a DentList</p>
-    </header>
+<div class="topnav">
+    <a href="#">DentList</a>
+</div>
 
-    <div class="topnav">
-        <a href="#">DentList</a>
-    </div>
 
 <div class="row">
-    <div class="leftcolumn" >
+    <div class="leftcolumn">
 
 
         <!-- Notificar que estas conectado como algo -->
@@ -27,102 +25,103 @@
             <h3><%= currentDentist.mail %></h3>
             <h3><%= currentDentist.name %></h3>
         </div>
-          
-        <% } else { %>
-       
 
-          <!-- Invitar a registrarse -->
-          <div class="card">
+        <% } else { %>
+
+
+        <!-- Invitar a registrarse -->
+        <div class="card">
             <h1>Registrarse</h1>
 
-          <div class="button">
-            <a href="<%=patientRegistrationPath %>">Registrarse como Paciente</a>
-          </div>
-          <!--   <form action="<%=patientRegistrationPath %>" method="post">
+            <div class="button">
+                <a href="<%=patientRegistrationPath %>">Registrarse como Paciente</a>
+            </div>
+            <!--   <form action="<%=patientRegistrationPath %>" method="post">
                 <input type="submit" value="Registrarse como Paciente" />
               </form>  -->
-        <div class="button">
-            <a href="<%=dentistRegistrationPath %>">Registrarse como Dentista</a>
+            <div class="button">
+                <a href="<%=dentistRegistrationPath %>">Registrarse como Dentista</a>
+            </div>
         </div>
-        </div>
-         
-        
-          <!-- Login paciente-->
-          <div class="card">
+
+
+        <!-- Login paciente-->
+        <div class="card">
             <h2>Iniciar sesión como PACIENTE</h2>
-            <form method="post" action="<%= loginPatientPath %>" >
+            <form method="post" action="<%= loginPatientPath %>">
 
                 <% if (locals.error){ %>
-                    <div>
-                        <p>No pudiste iniciar sesión debido a:</p>
-                        <p><%= error %></p>
-                    </div>
+                <div>
+                    <p>No pudiste iniciar sesión debido a:</p>
+                    <p><%= error %></p>
+                </div>
                 <% } %>
-                
-                <table >
-                <tr> 
-                <div class="field">
-                
-                    <td><label for="email">E-mail</label></td>
-               
-               
-                
-                    <td><input type="email" id="email" name="email" value="<%= locals.email %>" /></td> 
-                </div>
 
-                 </tr>
-                 
-                 <tr> 
-                <div class="field">
-                    <td><label for="password">Contraseña</label></td>
-                    <td><input type="password" id="password" name="password" /></td>
-                </div>
-                </tr>
+                <table>
+                    <tr>
+                        <div class="field">
+
+                            <td><label for="email">E-mail</label></td>
+
+
+
+                            <td><input type="email" id="email" name="email" value="<%= locals.email %>" /></td>
+                        </div>
+
+                    </tr>
+
+                    <tr>
+                        <div class="field">
+                            <td><label for="password">Contraseña</label></td>
+                            <td><input type="password" id="password" name="password" /></td>
+                        </div>
+                    </tr>
 
                 </table>
-                    
+
                 <div class="actions">
                     <input type="submit" value="Iniciar sesión paciente" />
                 </div>
             </form>
-       
+
         </div>
 
 
-            
-            <!-- Login dentista-->
+
+        <!-- Login dentista-->
         <div class="card">
             <h2>Iniciar sesión como DENTISTA</h2>
-            <form method="post" action="<%= loginDentistPath %>" >
+            <form method="post" action="<%= loginDentistPath %>">
 
                 <% if (locals.error){ %>
-                    <div>
-                        <p>No pudiste iniciar sesión debido a:</p>
-                        <p><%= error %></p>
-                    </div>
+                <div>
+                    <p>No pudiste iniciar sesión debido a:</p>
+                    <p><%= error %></p>
+                </div>
                 <% } %>
 
-                <table >
-                <tr> 
-                <div class="field">
-                    <td><label for="mail">E-mail</label></td>
-                    <td><input type="mail" id="mail" name="mail" value="<%= locals.mail %>" /></td>
-                </div>
-                </tr>
-                <tr>
-                <div class="field">
-                    <td><label for="password">Contraseña</label></td>
-                    <td><input type="password" id="password" name="password" /></td>
-                </div>
-                </tr>
+                <table>
+                    <tr>
+                        <div class="field">
+                            <td><label for="mail">E-mail</label></td>
+                            <td><input type="mail" id="mail" name="mail" value="<%= locals.mail %>" /></td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="field">
+                            <td><label for="password">Contraseña</label></td>
+                            <td><input type="password" id="password" name="password" /></td>
+                        </div>
+                    </tr>
 
                 </table>
-                
+
                 <div class="actions">
                     <input type="submit" value="Iniciar sesión dentista" />
                 </div>
             </form>
         </div>
+
 
 
            <!-- Noticias-->
@@ -152,6 +151,7 @@
         </div>
         </div>
         
+
         <% } %>
     </div>
 
@@ -160,22 +160,23 @@
         <% postsShuffled = posts.sort(() => 0.5 - Math.random());%>
         <% randomPosts = postsShuffled.slice(0, 3);%>
         <% randomPosts.forEach( post => { %>
-            <div class="card">
-                
-                <h1><%= post.title %> </h1>
-                <p><%= post.description %></p>
+        <div class="card">
+
+            <h1><%= post.title %> </h1>
+            <p><%= post.description %></p>
+
 
             <div class="fakeimg2">
                 <img src="<%= cloudinary.url(post.image) %>" alt="<%= post.image %>" >
+
             </div>
             <br>
             <div class="button">
                 <a href="<%= postPath(post.id) %>">Ver más</a>
             </div>
-                
-            </div>
+
+        </div>
         <% }) %>
     </div>
 
 </div>
-

@@ -5,9 +5,7 @@ import validate from './validateInfo';
 import './Form.css';
 
 const PatientForm = (props) => {
-    const checkRut2 = (ruttocheck) => {
 
-    }
 
     const { serverData } = props;
     const prePatientObject = serverData['patient'];
@@ -24,7 +22,7 @@ const PatientForm = (props) => {
     const [email, setEmail] = useState(patient.email);
     const [city, setCity] = useState(patient.city);
     const [address, setAddres] = useState(patient.address);
-    const [rut, setRut] = useState(patient.rut);
+    let [rut, setRut] = useState(patient.rut);
     const [isapre, setIsapre] = useState(patient.isapre);
     const [phone, setPhone] = useState(patient.phone);
     const [password, setPassword] = useState('');
@@ -72,11 +70,26 @@ const PatientForm = (props) => {
         validateAge = <p>Ingresa un número porfavor</p>
     }
 
-
+    if (rut.length < 11) {
+        validateRut = <p>Debes introducir tu RUT</p>
+    }
     if (!rut) {
         validateRut = <p>Debes introducir tu RUT</p>
-    } else if (rut.length > 7) {
-        validateRut = <p>F</p>
+    } else if (rut.length > 0) {
+        rut = rut.replace(/\./g, '').replace('-', '');
+
+        if (rut.match(/^(\d{2})(\d{3}){2}(\w{1})$/)) {
+            rut = rut.replace(/^(\d{2})(\d{3})(\d{3})(\w{1})$/, '$1.$2.$3-$4');
+        }
+        else if (rut.match(/^(\d)(\d{3}){2}(\w{0,1})$/)) {
+            rut = rut.replace(/^(\d)(\d{3})(\d{3})(\w{0,1})$/, '$1.$2.$3-$4');
+        }
+        else if (rut.match(/^(\d)(\d{3})(\d{0,2})$/)) {
+            rut = rut.replace(/^(\d)(\d{3})(\d{0,2})$/, '$1.$2.$3');
+        }
+        else if (rut.match(/^(\d)(\d{0,2})$/)) {
+            rut = rut.replace(/^(\d)(\d{0,2})$/, '$1.$2');
+        }
     }
 
 
