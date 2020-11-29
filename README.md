@@ -42,16 +42,20 @@ Tenemos un bug :bug: en la parte de proteger las vistas para los usuarios. Espec
 - **Login Paciente:**
 
   tipo = POST
+  <br />
   path = localhost:3000/api/auth/loginPatient
+  <br />
   RUTA ABIERTA
 
   Esta es una ruta ABIERTA, y la finalidad de ésta es poder hacer login con un Paciente respectivo. Se debe proveer el siguiente Header:
+  <br />
   key = Content-Type
+  <br />
   value = application/json
 
   Asimismo se debe proveer un body con el email y password del paciente con el que te quieras logear. Estos datos deben ser insertados de la siguiente forma:
 
-  ```
+   ```
 		{
       "email": "emailx@gmail.com",
       "password": "123456"
@@ -71,16 +75,20 @@ Tenemos un bug :bug: en la parte de proteger las vistas para los usuarios. Espec
 - **Login Dentista:**
 
   tipo = POST
+  <br />
   path = localhost:3000/api/auth/loginDentist
+  <br />
   RUTA ABIERTA
 
   Esta es una ruta ABIERTA, y la finalidad de ésta es poder hacer login con un Dentista respectivo. Se debe proveer el siguiente Header:
+  <br />
   key = Content-Type
+  <br />
   value = application/json
 
   Asimismo se debe proveer un body con el email y password del Dentista con el que te quieras logear. Estos datos deben ser insertados de la siguiente forma:
 
-  ```
+   ```
 		{
       "email": "emailx@gmail.com",
       "password": "123456"
@@ -100,7 +108,9 @@ Tenemos un bug :bug: en la parte de proteger las vistas para los usuarios. Espec
 - **Obtener Data de un Paciente:**
 
   tipo = GET
+  <br />
   path = localhost:3000/api/patient/data
+  <br />
   RUTA RESTRINGIDA
 
   Esta es una ruta RESTRINGIDA, y la finalidad de ésta es poder obtener la data del Paciente con el que estas logeado. Para esto se debe proveer la Bearer Token entregada en el Login del Paciente.
@@ -128,7 +138,9 @@ Tenemos un bug :bug: en la parte de proteger las vistas para los usuarios. Espec
 - **Obtener Data de un Dentista:**
 
   tipo = GET
+  <br />
   path = localhost:3000/api/dentist/data
+  <br />
   RUTA RESTRINGIDA
 
   Esta es una ruta RESTRINGIDA, y la finalidad de ésta es poder obtener la data del Dentista con el que estas logeado. Para esto se debe proveer la Bearer Token entregada en el Login del Dentista.
@@ -159,7 +171,9 @@ Tenemos un bug :bug: en la parte de proteger las vistas para los usuarios. Espec
 - **Obtener las Citas de un Dentista:**
 
   tipo = GET
+  <br />
   path = localhost:3000/api/dentist/seeDates
+  <br />
   RUTA RESTRINGIDA
 
   Esta es una ruta RESTRINGIDA, y la finalidad de ésta es poder obtener las CITAS del Dentista con el que estas logeado. Para esto se debe proveer la Bearer Token entregada en el Login del Dentista.
@@ -216,13 +230,16 @@ Tenemos un bug :bug: en la parte de proteger las vistas para los usuarios. Espec
 - **Update Cita por un Dentista:**
 
   tipo = PATCH
+  <br />
   path = localhost:3000/api/dentist/updateDateApi
+  <br />
   RUTA RESTRINGIDA
 
   Esta es una ruta Restringida, y la finalidad de ésta es poder hacer un Update de una cita a la que ya postuló el Dentista.
   Es importante mencionar que esta ruta va de la mano con la ruta anterior(Obtener las Citas de un Dentista) puesto que solamente se podrá hacer Update de las citas que tengan los siguientes "status":
 
   "status": "Cita confirmada por Paciente"
+  <br />
   "status": "Cita en espera de la respuesta del paciente"
 
   Es importante tener esto en mente, puesto que los demás "status" no pueden ser modificados por el Dentista Logeado en cuestión.
@@ -230,13 +247,16 @@ Tenemos un bug :bug: en la parte de proteger las vistas para los usuarios. Espec
   Como es una ruta Restringida, se debe proveer la Bearer Token del Dentista con el que estés Logeado.
 
   Asimismo se debe proveer el siguiente Header:
+  <br />
   key = Content-Type
+  <br />
   value = application/json
 
   También se debe proveer un body con el id de la cita, el cual debe ser un id de cita que le pertenezca al Dentista Logeado, sino te tirará error ya que el id de esa cita le pertenecerá a otro Dentista.
   Asimismo se debe proveer en el body dos posibles "state":
 
   "state": "citaRealizada"
+  <br />
   "state": "rechazarCita"
 
   los cuales son basicamente tu decisión para hacer el UPDATE de la cita elegida. Es importante mencionar que si la cita tiene el siguiente "status":
@@ -267,7 +287,9 @@ Tenemos un bug :bug: en la parte de proteger las vistas para los usuarios. Espec
 - **Update Datos de un Paciente:**
 
   tipo = PATCH
+  <br />
   path = localhost:3000/api/patient/data/update
+  <br />
   RUTA RESTRINGIDA
 
   Esta es una ruta Restringida, y la finalidad de ésta es poder hacer un Update de los datos del Paciente con el que estás logeado.
@@ -275,7 +297,9 @@ Tenemos un bug :bug: en la parte de proteger las vistas para los usuarios. Espec
   Como es una ruta Restringida, se debe proveer la Bearer Token del Paciente con el que estés Logeado.
 
   Asimismo se debe proveer el siguiente Header:
+  <br />
   key = Content-Type
+  <br />
   value = application/json
 
   El body a ingresar debe ser con TODOS los datos que se mostrarán en el body de ejemplo. Si te falta algún dato te tirará error por no seguir las instrucciones.
@@ -322,7 +346,9 @@ Tenemos un bug :bug: en la parte de proteger las vistas para los usuarios. Espec
 - **Update Datos de un Dentista:**
 
   tipo = PATCH
+  <br />
   path = localhost:3000/api/dentist/data/update
+  <br />
   RUTA RESTRINGIDA
 
   Esta es una ruta Restringida, y la finalidad de ésta es poder hacer un Update de los datos del Dentista con el que estás logeado.
@@ -330,7 +356,9 @@ Tenemos un bug :bug: en la parte de proteger las vistas para los usuarios. Espec
   Como es una ruta Restringida, se debe proveer la Bearer Token del Dentista con el que estés Logeado.
 
   Asimismo se debe proveer el siguiente Header:
+  <br />
   key = Content-Type
+  <br />
   value = application/json
 
   El body a ingresar debe ser con TODOS los datos que se mostrarán en el body de ejemplo. Si te falta algún dato te tirará error por no seguir las instrucciones.
