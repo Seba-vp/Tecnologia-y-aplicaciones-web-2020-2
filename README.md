@@ -61,6 +61,11 @@ Tenemos un bug :bug: en la parte de proteger las vistas para los usuarios. Espec
       "password": "123456"
     }
 	```
+  ```
+    {
+      "patientToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxcCIsIdsadsaTYwNjYwNjkzN30.wPGGTvdsadsacEBi5qiNPPPjKZF7MGCD6WxtRVEI"
+    }
+	``` 
 
   Luego de eso, si se ingresaron de forma correcta, la respuesta debiese ser de la siguiente forma:
 
