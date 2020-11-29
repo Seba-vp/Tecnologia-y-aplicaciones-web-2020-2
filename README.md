@@ -55,15 +55,10 @@ Tenemos un bug :bug: en la parte de proteger las vistas para los usuarios. Espec
 
   Asimismo se debe proveer un body con el email y password del paciente con el que te quieras logear. Estos datos deben ser insertados de la siguiente forma:
 
-   ```
-		{
-      "email": "emailx@gmail.com",
-      "password": "123456"
-    }
-	```
   ```
     {
-      "patientToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxcCIsIdsadsaTYwNjYwNjkzN30.wPGGTvdsadsacEBi5qiNPPPjKZF7MGCD6WxtRVEI"
+      "email": "emailx@gmail.com",
+      "password": "123456"
     }
 	``` 
 
