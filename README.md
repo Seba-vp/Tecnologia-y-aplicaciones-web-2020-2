@@ -88,12 +88,12 @@ Tenemos un bug :bug: en la parte de proteger las vistas para los usuarios. Espec
 
   Asimismo se debe proveer un body con el email y password del Dentista con el que te quieras logear. Estos datos deben ser insertados de la siguiente forma:
 
-   ```
-		{
+  ```
+    {
       "email": "emailx@gmail.com",
       "password": "123456"
     }
-	```
+	``` 
 
   Luego de eso, si se ingresaron de forma correcta, la respuesta debiese ser de la siguiente forma:
 
