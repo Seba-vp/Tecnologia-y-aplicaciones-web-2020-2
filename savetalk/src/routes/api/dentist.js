@@ -321,6 +321,14 @@ router.patch('update-date-by-dentist', '/updateDateApi', async (ctx) => {
             
         } else {
 
+            if (date.state == 0) {
+                ctx.status = 400;
+                ctx.body = {
+                    error: "No puedes realizar una cita la cual aún no está confirmada por el Paciente. SIGUE LAS INSTRUCCIONES!"
+                }
+                return;
+            }
+
             try {
                 date.state = 2;
                 await date.save();     
