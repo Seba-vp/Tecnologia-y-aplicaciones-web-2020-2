@@ -6,7 +6,7 @@ const PERMITTED_FIELDS = [
     'name',
     'description',
     'category',
-    'dentistId'
+    'patientId'
 ]
 
 router.post('pain-new', '/new', async (ctx) => {
@@ -15,19 +15,19 @@ router.post('pain-new', '/new', async (ctx) => {
     const finalLetter = sub.substr(sub.length - 1);  //Agarro el último caracter de "sub"
     
     if (finalLetter === "p") {
-        const realdentistId = sub.substr(0, sub.length - 1);
-        const dentist = await ctx.orm.dentist.findByPk(realdentistId);
+        const realPatientId = sub.substr(0, sub.length - 1);
+        const patient = await ctx.orm.patient.findByPk(realPatientId);
         
-        if (!dentist) {
+        if (!patient) {
             ctx.throw(404);
             ctx.body = {
                 error: "Este token NO es para PACIENTE"
             }
         }
-        // Obtengo los atributos del dolor, y agrego el id de dentist
+        // Obtengo los atributos del dolor, y agrego el id de patient
         const attributes = {
             ...ctx.request.body,
-            dentistId: dentist.id
+            patientId: patient.id
         }
         const pain = ctx.orm.pain.build(attributes);
         try {
@@ -40,10 +40,6 @@ router.post('pain-new', '/new', async (ctx) => {
                 error: "No se pudo guardar dolor en base de datos"
             }
             }
-
-        if (!dentist) {
-            ctx.throw(404);
-        }
 
         ctx.body = {
             notice: "Dolor creado correctamente"
