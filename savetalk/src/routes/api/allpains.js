@@ -13,10 +13,16 @@ router.get('pains-data', '/pains', async (ctx) => {
             ctx.throw(404);
         }
 
-        const pains = await ctx.orm.pain.findAll();
+        const pains = await patient.getPains();
 
-        ctx.body = {
-            pains: pains
+        if (pains.length === 0) {
+            ctx.body = {
+                error: 'No tienes dolores'
+            }
+        } else {
+            ctx.body = {
+                pains: pains
+            }
         }
 
     } else {
