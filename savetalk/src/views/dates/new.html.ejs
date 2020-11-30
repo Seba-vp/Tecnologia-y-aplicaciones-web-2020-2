@@ -1,52 +1,54 @@
-
-    <header>
-        <h1>Odontólogo <%= dentist.name %> creando posible cita</h1>
-    </header>
-    <div class="topnav">
-        <a href="<%= painPath(pain.id, dentist.id) %>" id="r">Volver</a>
-        <a href="<%= dentistPath(dentist.id) %>"    >Inicio</a>
-    </div>
+<header>
+    <h1>Odontólogo <%= dentist.name %> creando posible cita</h1>
+</header>
+<div class="topnav">
+    <a href="<%= painPath(pain.id, dentist.id) %>" id="r">Volver</a>
+    <a href="<%= dentistPath(dentist.id) %>">Inicio</a>
+</div>
 
 <div class="card">
-<form method="post" action="<%= createDatePath(dentist.id, pain.id) %>" >
+    <form method="post" action="<%= createDatePath(dentist.id, pain.id) %>">
 
-    <% if (locals.errors){ %>
+        <% if (locals.errors){ %>
         <div class="card2">
             <p>La Cita no se pudo crear debido a los siguientes errores:</p>
             <ul>
                 <% errors.forEach(error => { %>
-                    <% if (error.path == "price") {%>
-                        <li>Tienes que poner un valor no negativo en Precio</li>
-                    <% } else {%>
-                        <li><%= error.path %>: <%= error.message %> </li>
-                    <% } %>
+                <% if (error.path == "price") {%>
+                <li>Tienes que poner un valor no negativo en Precio</li>
+                <% } else {%>
+                <li><%= error.path %>: <%= error.message %> </li>
+                <% } %>
                 <% }); %>
             </ul>
         </div>
-    <% } %>
-    <table>
-    <div>
-    <tr>
-        <td><label for="schedule" >Día disponible: </label></td>
-        <td><input type="date" name="schedule" id="schedule" value="<%= date.schedule %>" required /> </td>
-    </tr>
-    </div>
-    <div>
-    <tr>
-        <td><label for="price" >Precio: </label></td>
-        <td><input type="number" name="price" id="price" value="<%= date.price %>" required /></td>
-    </tr>
-    </div>
-    <div>
-    <tr>
-        <td><label for="message" >Mensaje de Presentación y posibles horarios en el día seleccionado: </label></td>
-        <td><textarea rows="4" cols="30" name="message" id="message" required ><%= date.message %></textarea></td>
-    </tr>
-    </div>
-    </table>
-    <div class="card2">
-        <input type="submit" value="Crear Cita" />
-    </div>
-</form>
+        <% } %>
+        <table>
+            <div>
+                <tr>
+                    <td><label for="schedule">Día disponible: </label></td>
+                    <td><input class="textarearesume" type="date" name="schedule" id="schedule"
+                            value="<%= date.schedule %>" required /> </td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td><label for="price">Precio: </label></td>
+                    <td><input class="textarearesume" type="number" name="price" id="price" value="<%= date.price %>"
+                            required /></td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td><label for="message">Mensaje de Presentación y posibles horarios en el día seleccionado:
+                        </label></td>
+                    <td><textarea class="textarea" rows="4" cols="30" name="message" id="message"
+                            required><%= date.message %></textarea></td>
+                </tr>
+            </div>
+        </table>
+        <div class="card2">
+            <input type="submit" value="Crear Cita" />
+        </div>
+    </form>
 </div>
-

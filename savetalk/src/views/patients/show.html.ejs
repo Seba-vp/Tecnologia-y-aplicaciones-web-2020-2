@@ -1,56 +1,55 @@
-
 <header>
-    <h1>Perfil de <%= patient.name %> </h1>
-    <h5>Edad: <%= patient.age %> años</h5>
-    <p>Cantidad de contactos: <%= chats.length %> </p>
+    <h1><%= patient.name %> </h1>
 </header>
 <div class="topnav">
     <a href="<%= updatePatientPath(patient.id) %>">Modificar tu Perfil</a>
     <a href="<%= deletePatientPath(patient.id) %>">Borrar Cuenta</a>
     <a href="<%= seeChatPath(patient.id) %>"> Ver contactos </a>
-  <!--   <a href="#" id="r">Volver</a>  -->
+    <!--   <a href="#" id="r">Volver</a>  -->
 </div>
 
-<div class="card ">
-    <div class="card2">
-        <div class="fakeimg">
-            <img src="<%= cloudinary.url(patient.picture) %>" alt="<%= patient.picture %>" class="profile">
+
+<div class="grid-container-profile ">
+    <div class="left-profile ">
+        <h2><%= pains.length %> Dolores presentados </h2>
+        <% if (pains.length){ %>
+
+        <% pains.forEach((pain) => { %>
+        <div class="card-profile">
+            <h3><%= pain.name %></h3>
+            <div class="button-profile">
+                <a href="<%= specificPainPath(pain.id) %>">Ver más info</a>
+            </div>
+        </div>
+        <% });%>
+
+        <% } %>
+        <div class="button-profile">
+            <a href="<%= createPainPath(patient.id) %>"> Crear dolor </a>
         </div>
     </div>
-    <h2>Numero de dolores presentados: <%= pains.length %>  </h2>
-    <% if (pains.length){ %>
-       
-            <% pains.forEach((pain) => { %>
-                <div class="card2">
-                    <h4><%= pain.name %></h4>
-                    <div class="button">
-                        <a href="<%= specificPainPath(pain.id) %>">Ver más info</a>
-                    </div>
-                </div>
-            <% });%>
-        
-    <% } %>
-    <div class="button">
-    <a href="<%= createPainPath(patient.id) %>" > Crear dolor </a>
+    <div class="right-profile">
+        <img class="profile" src="<%= cloudinary.url(patient.picture) %>" alt="<%= patient.picture %>">
+        <h3><%= patient.age %> años</h3>
+        <h3><%= patient.rut %></h3>
+        <h3><%= chats.length %> contactos</h3>
+
+        <h2> Opciones </h2>
+        <div class="button-profile">
+            <a href="<%= updatePatientPath(patient.id) %>"> Modificar tu Perfil </a>
+        </div>
+        <div class="button-profile">
+            <a href="<%= deletePatientPath(patient.id) %>"> Borrar Cuenta </a>
+        </div>
+        <div class="button-profile">
+            <a href="<%= seeChatPath(patient.id) %>"> Ver contactos </a>
+        </div>
+        <div class="button-profile">
+            <a href="<%= messagesPatientPath %>"> Mensajes </a>
+        </div>
+        <div class="button-profile">
+            <a href="<%= createPatientMessagePath %>"> Enviar mensaje </a>
+        </div>
     </div>
-</div>
-
-<div class="card">
-
-<div class="button">
-<a href="<%= updatePatientPath(patient.id) %>" > Modificar tu Perfil </a>
-</div>
-<div class="button">
-<a href="<%= deletePatientPath(patient.id) %>" > Borrar Cuenta </a>
-</div>
-<div class="button">
-<a href="<%= seeChatPath(patient.id) %>"> Ver contactos </a>
-</div>
-<div class="button">
-<a href="<%= messagesPatientPath %>"> Mensajes </a>
-</div>
-<div class="button">
-<a href="<%= createPatientMessagePath %>"> Enviar mensaje </a>
-</div>
 
 </div>

@@ -10,6 +10,7 @@
 <% chatsPersonToSend.forEach( element => { %>
 <div class="card">
     <h2> <%= element.person.name %></h2>
+    <img src="<%= cloudinary.url(element.person.picture) %>" alt="<%= element.person.picture %>" class="profile-chat">
     <form method="post" action="<%= updateChatPathDataBase(element.chat.id) %>">
         <% if (locals.errors){ %>
         <div class="card2">
@@ -26,12 +27,12 @@
                 <% if (element.chat.block) { %>
                 <p>Paciente bloqueado</p>
                 <div>
-                    <button name="block" value="false" type="submit">Desbloquear</button>
+                    <button class="buttonmodify" name="block" value="false" type="submit">Desbloquear</button>
                 </div>
                 <% } else {%>
                 <p>Paciente activo</p>
                 <div>
-                    <button name="block" value="true" type="submit">Bloquear</button>
+                    <button class="buttonmodifyr" name="block" value="true" type="submit">Bloquear</button>
                 </div>
                 <% } %>
             </table>

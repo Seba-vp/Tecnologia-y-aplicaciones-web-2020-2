@@ -1,7 +1,5 @@
 <header>
     <h1> <%= dentist.name %> </h1>
-    <h1> Puntuación Promedio: <%= averageFeedback %> </h1>
-
 </header>
 <div class="topnav">
 
@@ -12,75 +10,77 @@
     <a href="<%= seeChatsPath(dentist.id) %>"> Ver contactos </a>
     <a href="<%= updateDentistPath(dentist.id) %>"> Modificar tu Perfil </a>
     <a href="<%= deleteDentistPath(dentist.id) %>"> Borrar tu Cuenta</a>
-<!--     <a href="#" id="r">Volver</a> -->
+    <!--     <a href="#" id="r">Volver</a> -->
 </div>
 
-<div class="card ">
-    <div class="card2">
-        <div class="fakeimg">
-            <img src="<%= cloudinary.url(dentist.picture) %>" alt="<%= dentist.picture %>" class="profile">
+<div class="grid-container-profile ">
+    <div class="left-profile ">
+        <h2>Información de citas postuladas</h2>
+        <% infoToSend.forEach( info => { %>
+        <div class="card-profile">
+
+            <% if (info.date.state === 1) { %>
+
+            <h3>¡Cita confirmada!</h3>
+            <p>Cita con el paciente <%= info.patient.name %> </p>
+            <p>Dolor: <%= info.pain.name %> </p>
+            <p>Descripción: <%= info.pain.description %> </p>
+            <p>Fecha: <%= info.date.schedule %> </p>
+
+            <% } else if (info.date.state === 2) { %>
+
+            <h3>Cita Ya fue llevada a cabo!</h3>
+            <p>Cita con el paciente <%= info.patient.name %> </p>
+            <p>Dolor: <%= info.pain.name %> </p>
+            <p>Descripción: <%= info.pain.description %> </p>
+            <p>Fecha: <%= info.date.schedule %> </p>
+
+            <% } else if (info.date.state === 0) { %>
+            <h3>Cita en espera de confirmación ...</h3>
+            <p>Cita con el paciente <%= info.patient.name %> </p>
+            <p>Dolor: <%= info.pain.name %> </p>
+            <p>Descripción: <%= info.pain.description %> </p>
+            <p>Fecha: <%= info.date.schedule %> </p>
+
+            <% }  else if (info.date.state === -1) {%>
+            <h3>Cita rechazada :(</h3>
+            <p>Cita con el paciente <%= info.patient.name %> </p>
+            <p>Dolor: <%= info.pain.name %> </p>
+            <p>Descripción: <%= info.pain.description %> </p>
+            <p>Fecha: <%= info.date.schedule %> </p>
+            <% } %>
+        </div>
+        <% }) %>
+        <div class="button-profile">
+            <a href="<%= seePainsPath(dentist.id) %>"> Ver Dolores disponibles </a>
+        </div>
+        <div class="button-profile">
+            <a href="<%= seeDatesPath(dentist.id) %>"> Ver estado de tus Postulaciones o Citas </a>
         </div>
     </div>
-</div>
+    <div class="right-profile">
+        <img src="<%= cloudinary.url(dentist.picture) %>" alt="<%= dentist.picture %>" class="profile">
 
+        <h3><%= dentist.university %> </h3>
+        <h3><%= dentist.year %> año de Odontología</h3>
+        <h3><%= chats.length %> contactos</h3>
+        <h3> Puntuación Promedio: <%= averageFeedback %> </h3>
 
-<div class="card">
-    <h2>Universidad: <%= dentist.university %> </h2>
-    <h2>Año de la carrera: <%= dentist.year %> </h2>
-    <h2>Cantidad de contactos: <%= chats.length %> </h2>
-</div>
-
-<% infoToSend.forEach( info => { %>
-<div class="card">
-
-    <% if (info.date.state === 1) { %>
-
-    <h2>Cita confirmada!</h2>
-    <p>Cita con el paciente: <%= info.patient.name %> </p>
-    <p>Nombre del Dolor: <%= info.pain.name %> </p>
-    <p>Descripción del Dolor: <%= info.pain.description %> </p>
-    <p>Fecha: <%= info.date.schedule %> </p>
-
-    <% } else if (info.date.state === 2) { %>
-
-    <h2>Cita Ya fue llevada a cabo!</h2>
-    <p>Cita con el paciente: <%= info.patient.name %> </p>
-    <p>Nombre del Dolor: <%= info.pain.name %> </p>
-    <p>Descripción del Dolor: <%= info.pain.description %> </p>
-    <p>Fecha: <%= info.date.schedule %> </p>
-
-    <% } %>
-
-</div>
-<% }) %>
-
-<div class="card">
-    <div class="button">
-        <a href="<%= seePainsPath(dentist.id) %>"> Ver Dolores disponibles </a>
+        <h2> Opciones </h2>
+        <div class="button-profile">
+            <a href="<%= updateDentistPath(dentist.id) %>"> Modificar tu Perfil </a>
+        </div>
+        <div class="button-profile">
+            <a href="<%= messagesDentistPath %>"> Mensajes </a>
+        </div>
+        <div class="button-profile">
+            <a href="<%= createDentistMessagePath %>"> Enviar mensaje </a>
+        </div>
+        <div class="button-profile">
+            <a href="<%= seeChatsPath(dentist.id) %>"> Ver contactos </a>
+        </div>
+        <div class="button-profile">
+            <a href="<%= deleteDentistPath(dentist.id) %>"> Borrar tu Cuenta </a>
+        </div>
     </div>
-    <div class="button">
-        <a href="<%= seeDatesPath(dentist.id) %>"> Ver estado de tus Postulaciones/Citas </a>
-    </div>
-    <div class="button">
-        <a href="<%= messagesDentistPath %>"> Ver mensajes </a>
-    </div>
-    <div class="button">
-        <a href="<%= seeChatsPath(dentist.id) %>"> Ver contactos </a>
-    </div>
-
-    <div class="button">
-        <a href="<%= createDentistMessagePath %>"> Enviar mensaje </a>
-    </div>
-
-
-</div>
-
-<div class="card">
-    <div class="button">
-        <a href="<%= updateDentistPath(dentist.id) %>"> Modificar tu Perfil </a>
-    </div>
-    <div class="button">
-        <a href="<%= deleteDentistPath(dentist.id) %>"> Borrar tu Cuenta </a>
-    </div>
-</div>
 </div>

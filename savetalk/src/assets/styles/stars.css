@@ -1,8 +1,7 @@
-
 .single-star-outline {
   margin: 0;
   padding: 0;
-  height: 36px; 
+  height: 36px;
   width: 31px;
 }
 
@@ -11,15 +10,14 @@
   padding: 0;
   position: absolute;
   display: inline-block;
-  height: 36px; 
-  background-color:#51adcf;
+  height: 36px;
+  background-color: #51adcf;
 }
 
 .single-star-container {
   margin: 0;
   padding: 0;
-  height: 36px; 
+  height: 36px;
   width: 31px;
   display: inline-block;
 }
-
