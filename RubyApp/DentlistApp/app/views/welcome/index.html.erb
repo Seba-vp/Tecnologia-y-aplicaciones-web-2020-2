@@ -1,0 +1,58 @@
+<header>
+    <h1>DentList</h1>
+    <p> Esta app consume la API DentList</p>
+</header>
+
+<div class="topnav">
+    <a href="#">Atras</a>
+   
+    <a href="#" id="r">Inicio</a>
+</div>
+
+<div class="card">
+    <h2>CRUDS </h2>
+    <h5>Aca pudes acceder a las disntas entidades, verlas, crearlas, actualizarlas y eliminarlas </h5>
+</div>
+
+<div class="card">
+    <div class="card2">
+        <h2> Login de usuario</h2>
+        
+        <%= form_with(url: api_loginp_path, method: "get", remote: false, local:true) do %>
+            <div class="field" >
+                <%= label_tag(:email, "email:") %>
+                <%= text_field_tag(:email) %>
+            </div>
+            <div class="field" >
+                <%= label_tag(:password, "password:") %>
+                <%= text_field_tag(:password) %>
+            </div>
+            <div class="action" >
+                <%= submit_tag("Login") %>
+            </div>
+        <% end %>
+        
+    </div>
+
+    <div class="card2">
+        <h2> Login de dentista </h2>
+        
+        <%= form_with(url: api_logind_path, method: "get", remote: false, local:true) do %>
+            <div class="field" >
+                <%= label_tag(:email, "email:") %>
+                <%= text_field_tag(:email) %>
+            </div>
+            <div class="field" >
+                <%= label_tag(:password, "password:") %>
+                <%= text_field_tag(:password) %>
+            </div>
+            <div class="action" >
+                <%= submit_tag("Login") %>
+            </div>
+        <% end %>
+        
+    </div>
+</div>
+
+
+
