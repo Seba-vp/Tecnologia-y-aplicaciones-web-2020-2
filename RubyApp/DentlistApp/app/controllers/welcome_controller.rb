@@ -301,8 +301,119 @@ class WelcomeController < ApplicationController
     end
   end
 
+## 3 UPDATE
 
+  def updateDate
+    @url = MYHOST + "/api/dentist/updateDateApi"
+    @token = params[:token]
+    @dateId = params[:dateId]
+    @state = params[:state]
+  
+    
+    @auth = "Bearer " + @token
+    @auth2 = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZCIsImlhdCI6MTYwNjcwMDE3MX0.H7dhrj02811IkmpsMWRoOwtm1Drn4qNxVBH25gg8MC0"
+    @respuesta = HTTParty.patch(
+    @url.to_str,
+    headers: {
+      "Authorization": @auth2
+    },
+      body: {
+        "dateId": @dateId,
+        "state": @state 
+    }
+      )
+    @body = @respuesta.body
+    if @body 
+      redirect_to api_resultado_path(:body => @body)
+      return
+    end
+  end
 
+  def updatePatient
+    @url = MYHOST + "/api/patient/data/update"
+    @token = params[:token]
+
+    @name = params[:name]
+    @age = params[:age]
+    @phone = params[:phone]
+    @address = params[:address]
+    @city = params[:city]
+    @email = params[:email]
+    @rut = params[:rut]
+    @isapre = params[:isapre]
+    @password = params[:password]
+   
+    
+    @auth = "Bearer " + @token
+    @auth2 = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZCIsImlhdCI6MTYwNjcwMDE3MX0.H7dhrj02811IkmpsMWRoOwtm1Drn4qNxVBH25gg8MC0"
+    @respuesta = HTTParty.patch(
+    @url.to_str,
+    headers: {
+      "Authorization": @auth2
+    },
+      body:   {
+        "name": @name,
+        "age": @age,
+        "phone": @phone,
+        "address": @address,
+        "city": @city,
+        "email": @email,
+        "rut": @rut,
+        "isapre": @isapre,
+        "password": @password
+      }
+      )
+    @body = @respuesta.body
+    if @body 
+      redirect_to api_resultado_path(:body => @body)
+      return
+    end
+  end  
+
+  def updateDentist
+    @url = MYHOST + "/api/dentist/data/update"
+    @token = params[:token]
+
+    @name = params[:name]
+    @year = params[:year]
+    @phone = params[:phone]
+    @address = params[:address]
+    @city = params[:city]
+    @email = params[:email]
+    @rut = params[:rut]
+    @voluntario = params[:voluntario]
+    @speciality = params[:speciality]
+    @university = params[:university]
+    @password = params[:password]
+   
+    
+    @auth = "Bearer " + @token
+    @auth2 = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZCIsImlhdCI6MTYwNjcwMDE3MX0.H7dhrj02811IkmpsMWRoOwtm1Drn4qNxVBH25gg8MC0"
+    @respuesta = HTTParty.patch(
+    @url.to_str,
+    headers: {
+      "Authorization": @auth2
+    },
+      body:   {
+        "name": @name,
+        "year": @year,
+        "phone": @phone,
+        "address": @address,
+        "city": @city,
+        "email": @email,
+        "rut": @rut,
+        "voluntario": @voluntario,
+        "speciality": @speciality,
+        "university": @university,
+        "password": @password
+      }
+      )
+    @body = @respuesta.body
+    if @body 
+      redirect_to api_resultado_path(:body => @body)
+      return
+    end
+  end 
 
   def resultado
     @body = params[:body]

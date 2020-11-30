@@ -254,6 +254,137 @@
     </div>
 
 
+
+    <div class="card2">
+        <h2> UPDATE Date (dentista) </h2>
+        
+        <%= form_with(url: api_updateDate_path, method: "get", remote: false, local:true) do %>
+            <div class="field" >
+                <%= label_tag(:token, "token:") %>
+                <%= text_field_tag(:token) %>
+            </div>
+            <div class="field" >
+                <%= label_tag(:dateId, "dateId:") %>
+                <%= text_field_tag(:dateId) %>
+            </div>
+            <div class="field" >
+                <%= label_tag(:state, "state:") %>
+                <%= text_field_tag(:state) %>
+            </div>
+            <div class="action" >
+                <%= submit_tag("Actualizar cita") %>
+            </div>
+        <% end %>
+    </div>
+    <div class="card2">
+        <h2> UPDATE Patient (paciente) </h2>
+        
+        <%= form_with(url: api_updatePatient_path, method: "get", remote: false, local:true) do %>
+            <div class="field" >
+                <%= label_tag(:token, "token:") %>
+                <%= text_field_tag(:token) %>
+            </div>
+            <div class="field" >
+                <%= label_tag(:name, "name:") %>
+                <%= text_field_tag(:name) %>
+            </div>
+            <div class="field" >
+                <%= label_tag(:age, "age:") %>
+                <%= text_field_tag(:age) %>
+            </div>
+            <div class="field" >
+                <%= label_tag(:phone, "phone:") %>
+                <%= text_field_tag(:phone) %>
+            </div>
+            <div class="field" >
+                <%= label_tag(:address, "address:") %>
+                <%= text_field_tag(:address) %>
+            </div>
+            <div class="field" >
+                <%= label_tag(:city, "city:") %>
+                <%= text_field_tag(:city) %>
+            </div>
+            <div class="field" >
+                <%= label_tag(:email, "email:") %>
+                <%= text_field_tag(:email) %>
+            </div>
+            <div class="field" >
+                <%= label_tag(:rut, "rut:") %>
+                <%= text_field_tag(:rut) %>
+            </div>
+            <div class="field" >
+                <%= label_tag(:isapre, "isapre:") %>
+                <%= text_field_tag(:isapre) %>
+            </div>   
+            <div class="field" >
+                <%= label_tag(:password, "password:") %>
+                <%= text_field_tag(:password) %>
+            </div>                       
+            <div class="action" >
+                <%= submit_tag("Actualizar paciente") %>
+            </div>
+        <% end %>
+    </div>
+
+    <div class="card2">
+        <h2> UPDATE Dentist (dentista) </h2>
+        
+        <%= form_with(url: api_updateDentist_path, method: "get", remote: false, local:true) do %>
+            <div class="field" >
+                <%= label_tag(:token, "token:") %>
+                <%= text_field_tag(:token) %>
+            </div>
+            <div class="field" >
+                <%= label_tag(:name, "name:") %>
+                <%= text_field_tag(:name) %>
+            </div>
+            <div class="field" >
+                <%= label_tag(:year, "year:") %>
+                <%= text_field_tag(:year) %>
+            </div>
+            <div class="field" >
+                <%= label_tag(:phone, "phone:") %>
+                <%= text_field_tag(:phone) %>
+            </div>
+            <div class="field" >
+                <%= label_tag(:address, "address:") %>
+                <%= text_field_tag(:address) %>
+            </div>
+            <div class="field" >
+                <%= label_tag(:city, "city:") %>
+                <%= text_field_tag(:city) %>
+            </div>
+            <div class="field" >
+                <%= label_tag(:email, "email:") %>
+                <%= text_field_tag(:email) %>
+            </div>
+            <div class="field" >
+                <%= label_tag(:rut, "rut:") %>
+                <%= text_field_tag(:rut) %>
+            </div>
+            <div class="field" >
+                <%= label_tag(:voluntario, "voluntario:") %>
+                <%= text_field_tag(:voluntario) %>
+            </div>
+            <div class="field" >
+                <%= label_tag(:speciality, "speciality:") %>
+                <%= text_field_tag(:speciality) %>
+            </div>
+            <div class="field" >
+                <%= label_tag(:university, "university:") %>
+                <%= text_field_tag(:university) %>
+            </div>
+            <div class="field" >
+                <%= label_tag(:password, "password:") %>
+                <%= text_field_tag(:password) %>
+            </div>                                      
+            <div class="action" >
+                <%= submit_tag("Actualizar dentista") %>
+            </div>
+        <% end %>
+    </div>
+
+
 </div>
 
 

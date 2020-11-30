@@ -35,6 +35,12 @@ Rails.application.routes.draw do
 
   #3patch
 
+  get 'api/updateDate', to: "welcome#updateDate"
+  get 'api/updatePatient', to: "welcome#updatePatient"
+  get 'api/updateDentist', to: "welcome#updateDentist"
+
+
+
 
   get 'api/resultado', to: "welcome#resultado"  
 end
