@@ -1,11 +1,10 @@
-
 <header>
     <h1>Chat </h1>
-    <h5>ESTADO CHAT BLOQUEADO: <%= chat.block %>  </h5>
-        
+    <h5>ESTADO CHAT BLOQUEADO: <%= chat.block %> </h5>
+
 </header>
 <div class="topnav">
-<!--     <a href="#" id="r">No sirve</a> -->
+    <!--     <a href="#" id="r">No sirve</a> -->
 </div>
 
 
@@ -14,11 +13,10 @@
 
 
 <div class="card">
-<div class="button">
-<a href="<%= updateChatPath(chat.id) %>"> Modificar conexión </a>
+    <div class="buttonmodify">
+        <a href="<%= updateChatPath(chat.id) %>"> Modificar conexión </a>
+    </div>
+    <div class="buttonmodify">
+        <a href="<%= deleteChatPath(chat.id) %>"> Eliminar conexión </a>
+    </div>
 </div>
-<div class="button">
-<a href="<%= deleteChatPath(chat.id) %>"> Eliminar conexión </a>
-</div>
-</div>
-

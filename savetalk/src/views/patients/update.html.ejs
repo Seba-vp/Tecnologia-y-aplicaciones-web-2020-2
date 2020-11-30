@@ -2,9 +2,9 @@
     <h1>Estas modificando al paciente: <%= patient.name %> </h1>
 </header>
 
-<div class="topnav">   
+<div class="topnav">
     <a href="<%= patientPath(patient.id) %>" id="r">Volver</a>
-    <a href="<%= patientPath(patient.id) %>" >Inicio</a> 
+    <a href="<%= patientPath(patient.id) %>">Inicio</a>
 </div>
 <!-- 
 <div class="card">
@@ -89,8 +89,6 @@
     </form>
 </div>
 -->
-
-<div class="card" id="patient-form" data-patient="<%= JSON.stringify(patient) %>">
-
-
+<div class="card2">
+    <div id="patient-form" data-patient="<%= JSON.stringify(patient) %>"></div>
 </div>

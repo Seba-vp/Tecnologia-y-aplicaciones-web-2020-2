@@ -1,37 +1,33 @@
+<header>
+    <h1>Mensajes</h1>
+</header>
+<div class="topnav">
+    <!-- <a href=<%= "patientPath(idpatient)" %> >Inicio</a> -->
+    <a href="<%= ruta %>">Inicio</a>
+</div>
 
-    <header>
-        <h1>Mensajes</h1>
-    </header>
-    <div class="topnav">   
-        <!-- <a href=<%= "patientPath(idpatient)" %> >Inicio</a> -->
-        <a href="<%= ruta %>" >Inicio</a> 
-    </div>
-
-    <div class="card">
-        <h1>Enviar un nuevo mensaje </h1>
+<div class="grid-container-message">
+    <div class="header-message">
         <div class="button"><a href="<%= newMessagePath %>">Enviar un nuevo mensaje</a></div>
     </div>
 
-    <div class="card">
-        <h1>Mensajes enviados <%= infoToSendSent.length %> </h1>
-
+    <div class="left-message">
+        <h2><%= infoToSendSent.length %> Mensajes enviados </h2>
         <% infoToSendSent.forEach( info => { %>
 
-        <div class="card2">
+        <div class="message">
             <p>Mensaje enviado a <%= info.person.name %></p>
             <p><%= info.message.body %> </p>
         </div>
         <% }) %>
     </div>
-
-    <div class="card">
-        <h1>Mensajes recibidos <%= infoToSendReceive.length %> </h1>
-
+    <div class="right-message">
+        <h2><%= infoToSendReceive.length %> Mensajes recibidos </h2>
         <% infoToSendReceive.forEach( info => { %>
-
-        <div class="card2">
+        <div class="message">
             <p>Mensaje enviado por <%= info.person.name %></p>
             <p><%= info.message.body %> </p>
         </div>
         <% }) %>
     </div>
+</div>

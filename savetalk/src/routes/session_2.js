@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const KoaRouter = require('koa-router');
+const axios = require('axios');
 
 const router = new KoaRouter();
 
@@ -7,6 +8,13 @@ router.post('session-create-patient', '/patientPost', async (ctx) => {
   const posts = await ctx.orm.post.findAll();
   const { email, password } = ctx.request.body;
   const patient = await ctx.orm.patient.findOne({ where: { email } });
+
+  var url = "http://newsapi.org/v2/top-headlines?country=us&category=health&apiKey="+String(process.env.API_KEY);
+  const res = await axios.get(url)
+  console.log("HOLLAA MIRAAR ACA: ", res.data.articles[0])
+  const articles = res.data.articles
+  console.log("ARTICLES", articles)
+
   try {
     const authenticated = await bcrypt.compare(password, patient.password);
     if (patient && authenticated) {
@@ -14,6 +22,7 @@ router.post('session-create-patient', '/patientPost', async (ctx) => {
       ctx.redirect(ctx.router.url('patient', patient.id));
     } else {
       await ctx.render('session/index', {
+        articles,
         posts,
         postPath: id => ctx.router.url('post', id),
         error: 'Usuario y/o contraseña incorrectos',
@@ -27,6 +36,7 @@ router.post('session-create-patient', '/patientPost', async (ctx) => {
 
   } catch (error) {
     await ctx.render('session/index', {
+      articles,
       posts,
       postPath: id => ctx.router.url('post', id),
       error: 'Usuario y/o contraseña incorrectos',
@@ -45,6 +55,13 @@ router.post('session-create-dentist', 'dentistPost', async (ctx) => {
   const posts = await ctx.orm.post.findAll();
   const { mail, password } = ctx.request.body;
   const dentist = await ctx.orm.dentist.findOne({ where: { mail } });
+
+  var url = "http://newsapi.org/v2/top-headlines?country=us&category=health&apiKey="+String(process.env.API_KEY);
+  const res = await axios.get(url)
+  console.log("HOLLAA MIRAAR ACA: ", res.data.articles[0])
+  const articles = res.data.articles
+  console.log("ARTICLES", articles)
+
   try {
     const authenticated = await bcrypt.compare(password, dentist.password);
     if (dentist && authenticated) {
@@ -53,6 +70,7 @@ router.post('session-create-dentist', 'dentistPost', async (ctx) => {
 
     } else {
       await ctx.render('session/index', {
+        articles,
         posts,
         postPath: id => ctx.router.url('post', id),
         error: 'Usuario y/o contraseña incorrectos',
@@ -66,6 +84,7 @@ router.post('session-create-dentist', 'dentistPost', async (ctx) => {
 
   } catch (error) {
     await ctx.render('session/index', {
+      articles,
       posts,
       postPath: id => ctx.router.url('post', id),
       error: 'Usuario y/o contraseña incorrectos',
