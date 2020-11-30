@@ -6,12 +6,13 @@ require 'json'
 class WelcomeController < ApplicationController
   include HTTParty
 #LOGIN PACIENTE
+  @token = 'thisisatoken' 
   def loginp
       @url = MYHOST + "/api/auth/loginPatient"
 
       @email = params[:email]
       @password = params[:password]
-
+      puts @url
       @respuesta = HTTParty.post(
       @url.to_str,
       body: {
@@ -21,8 +22,14 @@ class WelcomeController < ApplicationController
         )
 
       @body = @respuesta.body
+
+      @parsed = JSON.parse(@body)
+      @token = @parsed["patientToken"]
+      puts '################################################################3'
+      puts @token
+      puts '################################################################3'
       if @body 
-        redirect_to api_resultado_path(:body => @body)
+        redirect_to api_resultado_path(:body => @body, :token => @token)
         return
       end
   end
@@ -43,7 +50,7 @@ class WelcomeController < ApplicationController
 
     @body = @respuesta.body
     if @body 
-      redirect_to api_resultado_path(:body => @body)
+      redirect_to api_resultado_path(:body => @body, :token => @token)
       return
     end
   end
@@ -59,7 +66,7 @@ class WelcomeController < ApplicationController
 
     @body = @respuesta.body
     if @body 
-      redirect_to api_resultado_path(:body => @body)
+      redirect_to api_resultado_path(:body => @body, :token => @token)
       return
     end
   end
@@ -74,17 +81,16 @@ class WelcomeController < ApplicationController
     @token = params[:token]
 
     @auth = "Bearer " + @token
-    @auth2 = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1cCIsImlhdCI6MTYwNjY5ODE2OH0.Tg7F9GVSqqQtxIQnNmEuV5-cXenXXGlkgb7t9ruQBT0"
     @respuesta = HTTParty.get(
     @url.to_str,
     headers: {
-      "Authorization": @auth2
+      "Authorization": @auth
     }
       )
 
     @body = @respuesta.body
     if @body 
-      redirect_to api_resultado_path(:body => @body)
+      redirect_to api_resultado_path(:body => @body, :token => @token)
       return
     end
   end
@@ -95,17 +101,16 @@ class WelcomeController < ApplicationController
     @token = params[:token]
 
     @auth = "Bearer " + @token
-    @auth2 = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZCIsImlhdCI6MTYwNjcwMDE3MX0.H7dhrj02811IkmpsMWRoOwtm1Drn4qNxVBH25gg8MC0"
     @respuesta = HTTParty.get(
     @url.to_str,
     headers: {
-      "Authorization": @auth2
+      "Authorization": @auth
     }
       )
 
     @body = @respuesta.body
     if @body 
-      redirect_to api_resultado_path(:body => @body)
+      redirect_to api_resultado_path(:body => @body, :token => @token)
       return
     end
   end
@@ -119,17 +124,16 @@ class WelcomeController < ApplicationController
     @token = params[:token]
 
     @auth = "Bearer " + @token
-    @auth2 = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZCIsImlhdCI6MTYwNjcwMDE3MX0.H7dhrj02811IkmpsMWRoOwtm1Drn4qNxVBH25gg8MC0"
     @respuesta = HTTParty.get(
     @url.to_str,
     headers: {
-      "Authorization": @auth2
+      "Authorization": @auth
     }
       )
 
     @body = @respuesta.body
     if @body 
-      redirect_to api_resultado_path(:body => @body)
+      redirect_to api_resultado_path(:body => @body, :token => @token)
       return
     end
   end
@@ -141,17 +145,16 @@ class WelcomeController < ApplicationController
     @token = params[:token]
 
     @auth = "Bearer " + @token
-    @auth2 = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1cCIsImlhdCI6MTYwNjcwNDg3Mn0.ogpFSwSV6VDoIenshBNxn62Dt0CMjWOu_-umG0GPu2s"
     @respuesta = HTTParty.get(
     @url.to_str,
     headers: {
-      "Authorization": @auth2
+      "Authorization": @auth
     }
       )
 
     @body = @respuesta.body
     if @body 
-      redirect_to api_resultado_path(:body => @body)
+      redirect_to api_resultado_path(:body => @body, :token => @token)
       return
     end
   end
@@ -167,11 +170,10 @@ class WelcomeController < ApplicationController
     @category =params[:category]
 
     @auth = "Bearer " + @token
-    @auth2 = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1cCIsImlhdCI6MTYwNjY5ODE2OH0.Tg7F9GVSqqQtxIQnNmEuV5-cXenXXGlkgb7t9ruQBT0"
     @respuesta = HTTParty.post(
     @url.to_str,
     headers: {
-      "Authorization": @auth2
+      "Authorization": @auth
     },
     body: {
       "name": @name,
@@ -181,7 +183,7 @@ class WelcomeController < ApplicationController
       )
     @body = @respuesta.body
     if @body 
-      redirect_to api_resultado_path(:body => @body)
+      redirect_to api_resultado_path(:body => @body, :token => @token)
       return
     end
   end
@@ -195,11 +197,10 @@ class WelcomeController < ApplicationController
     @message=params[:message]
 
     @auth = "Bearer " + @token
-    @auth2 = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZCIsImlhdCI6MTYwNjcwMDE3MX0.H7dhrj02811IkmpsMWRoOwtm1Drn4qNxVBH25gg8MC0"
     @respuesta = HTTParty.post(
     @url.to_str,
     headers: {
-      "Authorization": @auth2
+      "Authorization": @auth
     },
     body: {
         "painId": @painId,
@@ -210,7 +211,7 @@ class WelcomeController < ApplicationController
       )
     @body = @respuesta.body
     if @body 
-      redirect_to api_resultado_path(:body => @body)
+      redirect_to api_resultado_path(:body => @body, :token => @token)
       return
     end
   end
@@ -223,11 +224,10 @@ class WelcomeController < ApplicationController
     @body =params[:body]
 
     @auth = "Bearer " + @token
-    @auth2 = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZCIsImlhdCI6MTYwNjcwMDE3MX0.H7dhrj02811IkmpsMWRoOwtm1Drn4qNxVBH25gg8MC0"
     @respuesta = HTTParty.post(
     @url.to_str,
     headers: {
-      "Authorization": @auth2
+      "Authorization": @auth
     },
     body: {
         "chatId": @chatId,
@@ -237,7 +237,7 @@ class WelcomeController < ApplicationController
       )
     @body = @respuesta.body
     if @body 
-      redirect_to api_resultado_path(:body => @body)
+      redirect_to api_resultado_path(:body => @body, :token => @token)
       return
     end
   end
@@ -247,16 +247,15 @@ class WelcomeController < ApplicationController
     @token = params[:token]
     
     @auth = "Bearer " + @token
-    @auth2 = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0cCIsImlhdCI6MTYwNjcwNDI0N30.pPaeauPgGBF8Ek9Vdi_CgZmV7Uuar4GN8Ai3s8GlRoQ"
     @respuesta = HTTParty.delete(
     @url.to_str,
     headers: {
-      "Authorization": @auth2
+      "Authorization": @auth
     }
       )
     @body = @respuesta.body
     if @body 
-      redirect_to api_resultado_path(:body => @body)
+      redirect_to api_resultado_path(:body => @body, :token => @token)
       return
     end
   end
@@ -266,16 +265,15 @@ class WelcomeController < ApplicationController
     @token = params[:token]
     
     @auth = "Bearer " + @token
-    @auth2 = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0cCIsImlhdCI6MTYwNjcwNDI0N30.pPaeauPgGBF8Ek9Vdi_CgZmV7Uuar4GN8Ai3s8GlRoQ"
     @respuesta = HTTParty.delete(
     @url.to_str,
     headers: {
-      "Authorization": @auth2
+      "Authorization": @auth
     }
       )
     @body = @respuesta.body
     if @body 
-      redirect_to api_resultado_path(:body => @body)
+      redirect_to api_resultado_path(:body => @body, :token => @token)
       return
     end
   end
@@ -287,16 +285,15 @@ class WelcomeController < ApplicationController
     @url = MYHOST + "/api/deletepain/delete/"+ @idpain
     
     @auth = "Bearer " + @token
-    @auth2 = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1cCIsImlhdCI6MTYwNjcwNDg3Mn0.ogpFSwSV6VDoIenshBNxn62Dt0CMjWOu_-umG0GPu2s"
     @respuesta = HTTParty.delete(
     @url.to_str,
     headers: {
-      "Authorization": @auth2
+      "Authorization": @auth
     }
       )
     @body = @respuesta.body
     if @body 
-      redirect_to api_resultado_path(:body => @body)
+      redirect_to api_resultado_path(:body => @body, :token => @token)
       return
     end
   end
@@ -311,11 +308,10 @@ class WelcomeController < ApplicationController
   
     
     @auth = "Bearer " + @token
-    @auth2 = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZCIsImlhdCI6MTYwNjcwMDE3MX0.H7dhrj02811IkmpsMWRoOwtm1Drn4qNxVBH25gg8MC0"
     @respuesta = HTTParty.patch(
     @url.to_str,
     headers: {
-      "Authorization": @auth2
+      "Authorization": @auth
     },
       body: {
         "dateId": @dateId,
@@ -324,7 +320,7 @@ class WelcomeController < ApplicationController
       )
     @body = @respuesta.body
     if @body 
-      redirect_to api_resultado_path(:body => @body)
+      redirect_to api_resultado_path(:body => @body, :token => @token)
       return
     end
   end
@@ -345,11 +341,10 @@ class WelcomeController < ApplicationController
    
     
     @auth = "Bearer " + @token
-    @auth2 = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZCIsImlhdCI6MTYwNjcwMDE3MX0.H7dhrj02811IkmpsMWRoOwtm1Drn4qNxVBH25gg8MC0"
     @respuesta = HTTParty.patch(
     @url.to_str,
     headers: {
-      "Authorization": @auth2
+      "Authorization": @auth
     },
       body:   {
         "name": @name,
@@ -365,7 +360,7 @@ class WelcomeController < ApplicationController
       )
     @body = @respuesta.body
     if @body 
-      redirect_to api_resultado_path(:body => @body)
+      redirect_to api_resultado_path(:body => @body, :token => @token)
       return
     end
   end  
@@ -388,11 +383,10 @@ class WelcomeController < ApplicationController
    
     
     @auth = "Bearer " + @token
-    @auth2 = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZCIsImlhdCI6MTYwNjcwMDE3MX0.H7dhrj02811IkmpsMWRoOwtm1Drn4qNxVBH25gg8MC0"
     @respuesta = HTTParty.patch(
     @url.to_str,
     headers: {
-      "Authorization": @auth2
+      "Authorization": @auth
     },
       body:   {
         "name": @name,
@@ -410,7 +404,7 @@ class WelcomeController < ApplicationController
       )
     @body = @respuesta.body
     if @body 
-      redirect_to api_resultado_path(:body => @body)
+      redirect_to api_resultado_path(:body => @body, :token => @token)
       return
     end
   end 

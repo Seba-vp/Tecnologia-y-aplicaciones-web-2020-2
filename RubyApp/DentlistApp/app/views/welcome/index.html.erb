@@ -10,14 +10,15 @@
 </div>
 
 <div class="card">
-    <h2>CRUDS </h2>
-    <h5>Aca pudes acceder a las disntas entidades, verlas, crearlas, actualizarlas y eliminarlas </h5>
+    <h2>Acciones de la API </h2>
+    <h5> Al hacer login recibes un token ya sea de dentista o paciente, algunas rutas requiren un token especifico para funcionar. </h5>
 </div>
 
 <div class="card">
+<h1> Login</h1>
+<br>
     <div class="card2">
         <h2> Login de usuario</h2>
-        <h2> paciente2@gmail.com</h2>
         
         <%= form_with(url: api_loginp_path, method: "get", remote: false, local:true) do %>
             <div class="field" >
@@ -51,9 +52,63 @@
             </div>
         <% end %>
     </div>
-
+</div>
+<div class="card">
+    <h1> Ruta libre </h1>
+    <br>
     <div class="card2">
-        <h2> Get patient by id </h2>
+        <h2> Get Posts (libre)</h2>
+        
+        <%= form_with(url: api_posts_path, method: "get", remote: false, local:true) do %>
+    
+            <div class="action" >
+                <%= submit_tag("Get posts") %>
+            </div>
+        <% end %>
+    </div>
+</div>
+
+<div class="card">
+    <h1> Mensajes Paciente y Dentista </h1>
+    <br>
+    <div class="card2">
+    <h2> Post Crear mensaje (paciente o dentista) </h2>
+
+    <%= form_with(url: api_postMessage_path, method: "get", remote: false, local:true) do %>
+        <div class="field" >
+            <%= label_tag(:token, "token:") %>
+            <%= text_field_tag(:token) %>
+        </div>
+        <div class="field" >
+            <%= label_tag(:chatId, "chatId:") %>
+            <%= text_field_tag(:chatId) %>
+        </div>
+        <div class="field" >
+            <%= label_tag(:idReceive, "idReceive:") %>
+            <%= text_field_tag(:idReceive) %>
+        </div>
+        <div class="field" >
+            <%= label_tag(:body, "body:") %>
+            <%= text_field_tag(:body) %>
+        </div>
+        <div class="action" >
+            <%= submit_tag("Crear mensaje") %>
+        </div>
+    <% end %>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="card">
+<h1> Rutas de Paciente </h1>
+<br>
+    <div class="card2">
+        <h2> Get patient by id (paciente)</h2>
         
         <%= form_with(url: api_patientbyid_path, method: "get", remote: false, local:true) do %>
 
@@ -67,24 +122,9 @@
         <% end %>
     </div>
     <div class="card2">
-        <h2> Get dentist by id </h2>
+        <h2> Get All pains Paciente (paciente) </h2>
         
-        <%= form_with(url: api_dentistbyid_path, method: "get", remote: false, local:true) do %>
-
-            <div class="field" >
-                <%= label_tag(:token, "token:") %>
-                <%= text_field_tag(:token) %>
-            </div>
-            <div class="action" >
-                <%= submit_tag("Get dentist") %>
-            </div>
-        <% end %>
-    </div>
-    
-    <div class="card2">
-        <h2> Get All pains Dentista (dentista)</h2>
-        
-        <%= form_with(url: api_allpains_path, method: "get", remote: false, local:true) do %>
+        <%= form_with(url: api_allpainsp_path, method: "get", remote: false, local:true) do %>
 
             <div class="field" >
                 <%= label_tag(:token, "token:") %>
@@ -92,31 +132,6 @@
             </div>
             <div class="action" >
                 <%= submit_tag("Get pains") %>
-            </div>
-        <% end %>
-    </div>
-    <div class="card2">
-    <h2> Get All pains Paciente (paciente) </h2>
-    
-    <%= form_with(url: api_allpainsp_path, method: "get", remote: false, local:true) do %>
-
-        <div class="field" >
-            <%= label_tag(:token, "token:") %>
-            <%= text_field_tag(:token) %>
-        </div>
-        <div class="action" >
-            <%= submit_tag("Get pains") %>
-        </div>
-    <% end %>
-</div>
-
-    <div class="card2">
-        <h2> Get Posts </h2>
-        
-        <%= form_with(url: api_posts_path, method: "get", remote: false, local:true) do %>
-    
-            <div class="action" >
-                <%= submit_tag("Get posts") %>
             </div>
         <% end %>
     </div>
@@ -146,6 +161,120 @@
             </div>
         <% end %>
     </div>
+    
+    <div class="card2">
+        <h2> DELETE Paciente (paciente) </h2>
+        
+        <%= form_with(url: api_delPatient_path, method: "get", remote: false, local:true) do %>
+            <div class="field" >
+                <%= label_tag(:token, "token:") %>
+                <%= text_field_tag(:token) %>
+            </div>
+            <div class="action" >
+                <%= submit_tag("Borrar paciente") %>
+            </div>
+        <% end %>
+    </div>    
+    <div class="card2">
+        <h2> DELETE Pain (paciente) </h2>
+        
+        <%= form_with(url: api_delPain_path, method: "get", remote: false, local:true) do %>
+            <div class="field" >
+                <%= label_tag(:token, "token:") %>
+                <%= text_field_tag(:token) %>
+            </div>
+            <div class="field" >
+                <%= label_tag(:idpain, "idpain:") %>
+                <%= text_field_tag(:idpain) %>
+            </div>
+            <div class="action" >
+                <%= submit_tag("Borrar dolor") %>
+            </div>
+        <% end %>
+    </div>
+</div>
+<div class="card2">
+<h2> UPDATE Patient (paciente) </h2>
+
+<%= form_with(url: api_updatePatient_path, method: "get", remote: false, local:true) do %>
+    <div class="field" >
+        <%= label_tag(:token, "token:") %>
+        <%= text_field_tag(:token) %>
+    </div>
+    <div class="field" >
+        <%= label_tag(:name, "name:") %>
+        <%= text_field_tag(:name) %>
+    </div>
+    <div class="field" >
+        <%= label_tag(:age, "age:") %>
+        <%= text_field_tag(:age) %>
+    </div>
+    <div class="field" >
+        <%= label_tag(:phone, "phone:") %>
+        <%= text_field_tag(:phone) %>
+    </div>
+    <div class="field" >
+        <%= label_tag(:address, "address:") %>
+        <%= text_field_tag(:address) %>
+    </div>
+    <div class="field" >
+        <%= label_tag(:city, "city:") %>
+        <%= text_field_tag(:city) %>
+    </div>
+    <div class="field" >
+        <%= label_tag(:email, "email:") %>
+        <%= text_field_tag(:email) %>
+    </div>
+    <div class="field" >
+        <%= label_tag(:rut, "rut:") %>
+        <%= text_field_tag(:rut) %>
+    </div>
+    <div class="field" >
+        <%= label_tag(:isapre, "isapre:") %>
+        <%= text_field_tag(:isapre) %>
+    </div>   
+    <div class="field" >
+        <%= label_tag(:password, "password:") %>
+        <%= text_field_tag(:password) %>
+    </div>                       
+    <div class="action" >
+        <%= submit_tag("Actualizar paciente") %>
+    </div>
+<% end %>
+</div>
+<div class="card">
+<h1> Rutas de Dentista </h1>
+<br>
+    <div class="card2">
+        <h2> Get dentist by id (dentista)</h2>
+        
+        <%= form_with(url: api_dentistbyid_path, method: "get", remote: false, local:true) do %>
+
+            <div class="field" >
+                <%= label_tag(:token, "token:") %>
+                <%= text_field_tag(:token) %>
+            </div>
+            <div class="action" >
+                <%= submit_tag("Get dentist") %>
+            </div>
+        <% end %>
+    </div>
+    
+    <div class="card2">
+        <h2> Get All pains Dentista (dentista)</h2>
+        
+        <%= form_with(url: api_allpains_path, method: "get", remote: false, local:true) do %>
+
+            <div class="field" >
+                <%= label_tag(:token, "token:") %>
+                <%= text_field_tag(:token) %>
+            </div>
+            <div class="action" >
+                <%= submit_tag("Get pains") %>
+            </div>
+        <% end %>
+    </div>
+
 
     <div class="card2">
         <h2> Post Crear cita (dentista) </h2>
@@ -177,49 +306,9 @@
         <% end %>
     </div>
 
-    <div class="card2">
-        <h2> Post Crear mensaje (paciente o dentista) </h2>
-        
-        <%= form_with(url: api_postMessage_path, method: "get", remote: false, local:true) do %>
-            <div class="field" >
-                <%= label_tag(:token, "token:") %>
-                <%= text_field_tag(:token) %>
-            </div>
-            <div class="field" >
-                <%= label_tag(:chatId, "chatId:") %>
-                <%= text_field_tag(:chatId) %>
-            </div>
-            <div class="field" >
-                <%= label_tag(:idReceive, "idReceive:") %>
-                <%= text_field_tag(:idReceive) %>
-            </div>
-            <div class="field" >
-                <%= label_tag(:body, "body:") %>
-                <%= text_field_tag(:body) %>
-            </div>
-            <div class="action" >
-                <%= submit_tag("Crear mensaje") %>
-            </div>
-        <% end %>
-    </div>
 
 
 
-
-
-    <div class="card2">
-        <h2> DELETE Paciente (paciente) </h2>
-        
-        <%= form_with(url: api_delPatient_path, method: "get", remote: false, local:true) do %>
-            <div class="field" >
-                <%= label_tag(:token, "token:") %>
-                <%= text_field_tag(:token) %>
-            </div>
-            <div class="action" >
-                <%= submit_tag("Borrar paciente") %>
-            </div>
-        <% end %>
-    </div>
 
     <div class="card2">
         <h2> DELETE Dentista (dentista) </h2>
@@ -235,23 +324,7 @@
         <% end %>
     </div>
 
-    <div class="card2">
-        <h2> DELETE Pain (paciente) </h2>
-        
-        <%= form_with(url: api_delPain_path, method: "get", remote: false, local:true) do %>
-            <div class="field" >
-                <%= label_tag(:token, "token:") %>
-                <%= text_field_tag(:token) %>
-            </div>
-            <div class="field" >
-                <%= label_tag(:idpain, "idpain:") %>
-                <%= text_field_tag(:idpain) %>
-            </div>
-            <div class="action" >
-                <%= submit_tag("Borrar dolor") %>
-            </div>
-        <% end %>
-    </div>
+
 
 
 
@@ -276,55 +349,7 @@
             </div>
         <% end %>
     </div>
-    <div class="card2">
-        <h2> UPDATE Patient (paciente) </h2>
-        
-        <%= form_with(url: api_updatePatient_path, method: "get", remote: false, local:true) do %>
-            <div class="field" >
-                <%= label_tag(:token, "token:") %>
-                <%= text_field_tag(:token) %>
-            </div>
-            <div class="field" >
-                <%= label_tag(:name, "name:") %>
-                <%= text_field_tag(:name) %>
-            </div>
-            <div class="field" >
-                <%= label_tag(:age, "age:") %>
-                <%= text_field_tag(:age) %>
-            </div>
-            <div class="field" >
-                <%= label_tag(:phone, "phone:") %>
-                <%= text_field_tag(:phone) %>
-            </div>
-            <div class="field" >
-                <%= label_tag(:address, "address:") %>
-                <%= text_field_tag(:address) %>
-            </div>
-            <div class="field" >
-                <%= label_tag(:city, "city:") %>
-                <%= text_field_tag(:city) %>
-            </div>
-            <div class="field" >
-                <%= label_tag(:email, "email:") %>
-                <%= text_field_tag(:email) %>
-            </div>
-            <div class="field" >
-                <%= label_tag(:rut, "rut:") %>
-                <%= text_field_tag(:rut) %>
-            </div>
-            <div class="field" >
-                <%= label_tag(:isapre, "isapre:") %>
-                <%= text_field_tag(:isapre) %>
-            </div>   
-            <div class="field" >
-                <%= label_tag(:password, "password:") %>
-                <%= text_field_tag(:password) %>
-            </div>                       
-            <div class="action" >
-                <%= submit_tag("Actualizar paciente") %>
-            </div>
-        <% end %>
-    </div>
+
 
     <div class="card2">
         <h2> UPDATE Dentist (dentista) </h2>
