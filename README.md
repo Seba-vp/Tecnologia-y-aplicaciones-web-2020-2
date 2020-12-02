@@ -72,6 +72,16 @@ Tenemos un bug :bug: en la parte de proteger las vistas para los usuarios. Espec
 
   Recuerda seguir las intrucciones a detalle, sino recibirás un error.
 
+  Si ingresas mal las credenciales del usuario te arrojará lo siguiente:
+   ```
+    {
+      "error": "Correo o contraseña incorrectos para iniciar sesión como Paciente"
+    }
+	``` 
+
+  Sin embargo si no se provee la key de "email" o "password" en el body, tirará un internal server error, ya que se espara que se reciba eso.
+
+
 - **Login Dentista:**
 
   tipo = POST
@@ -105,6 +115,15 @@ Tenemos un bug :bug: en la parte de proteger las vistas para los usuarios. Espec
 
   Recuerda seguir las intrucciones a detalle, sino recibirás un error.
 
+  Si ingresas mal las credenciales del usuario te arrojará lo siguiente:
+   ```
+    {
+      "error": "Correo o contraseña incorrectos para iniciar sesión como Paciente"
+    }
+	``` 
+
+  Sin embargo si no se provee la key de "email" o "password" en el body, tirará un internal server error, ya que se espara que se reciba eso.
+
 - **Obtener Data de un Paciente:**
 
   tipo = GET
@@ -134,6 +153,17 @@ Tenemos un bug :bug: en la parte de proteger las vistas para los usuarios. Espec
 	``` 
 
   Recuerda seguir las intrucciones a detalle, sino recibirás un error correspondiente.
+
+  Si no estas autentificado correctamente te tirará un Authentication Error.
+
+  Si utilizas una token para dentista te tirará el siguiente error:
+
+  
+   ```
+   {
+    "error": "Este token NO es para PACIENTE"
+    }
+	``` 
 
 - **Obtener Data de un Dentista:**
 
@@ -166,6 +196,17 @@ Tenemos un bug :bug: en la parte de proteger las vistas para los usuarios. Espec
 	``` 
 
   Recuerda seguir las intrucciones a detalle, sino recibirás un error correspondiente.
+
+  Si no estas autentificado correctamente te tirará un Authentication Error.
+
+  Si utilizas una token para paciente te tirará el siguiente error:
+
+  
+   ```
+   {
+    "error": "Este token NO es para DENTISTA"
+    }
+	``` 
 
 
 - **Obtener las Citas de un Dentista:**
@@ -285,6 +326,22 @@ Tenemos un bug :bug: en la parte de proteger las vistas para los usuarios. Espec
 
   Recuerda seguir las intrucciones a detalle, sino recibirás un error correspondiente.
 
+  Si ingresas el id de una cita que ya fue realizada o rechazada se te tirará el siguiente error:
+
+   ```
+    {
+      "error": "No seguiste las instrucciones. INGRESASTE EL ID DE UNA CITA QUE YA FUE REALIZADA O YA FUE RECHAZADA. SIGUE LAS REGLAS!"
+    }
+	``` 
+
+  Si ingresas el id de una cita que no le pertenece al dentista logeado, te tirará el siguiente error:
+
+   ```
+  {
+    "error": "LA CITA CON EL ID INGRESADO NO PERTENECE AL DENTISTA QUE ESTA LOGEADO. SIGUE LAS INSTRUCCIONES"
+  }
+	``` 
+
 - **Update Datos de un Paciente:**
 
   tipo = PATCH
@@ -343,6 +400,13 @@ Tenemos un bug :bug: en la parte de proteger las vistas para los usuarios. Espec
 
   Recuerda seguir las intrucciones a detalle, sino recibirás un error correspondiente.
 
+  Si no ingresas TODOS los datos que deben ir en el body, como se especificó más arriba, te tirará el siguiente error:
+
+   ```
+    {
+      "error": "No seguiste las instrucciones. DEBES COMPLETAR TODOS LOS ATRIBUTOS QUE SE INDICAN EN LA DOCUMENTACION"
+    }
+	``` 
 
 - **Update Datos de un Dentista:**
 
@@ -405,6 +469,14 @@ Tenemos un bug :bug: en la parte de proteger las vistas para los usuarios. Espec
   Respuesta que muestra los datos actualizados del Dentista.
 
   Recuerda seguir las intrucciones a detalle, sino recibirás un error correspondiente.
+
+  Si no ingresas TODOS los datos que deben ir en el body, como se especificó más arriba, te tirará el siguiente error:
+
+   ```
+    {
+      "error": "No seguiste las instrucciones. DEBES COMPLETAR TODOS LOS ATRIBUTOS QUE SE INDICAN EN LA DOCUMENTACION"
+    }
+	``` 
 
 
 ### Ejecución del código:  :floppy_disk::floppy_disk::floppy_disk:
