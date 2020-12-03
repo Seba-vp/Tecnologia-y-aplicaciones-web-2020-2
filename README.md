@@ -44,23 +44,23 @@ Cabe destacar que entre los cuatro usuarios creados hay interacciones que demues
 
  - **Pacientes**
 
-  * SOFÍA 
-  * MAIL: sofia@gmail.com
-  * PASSWORD: 1234
+  SOFÍA 
+  - MAIL: sofia@gmail.com
+  - PASSWORD: 1234
 
-  * MARCOS
-  * MAIL: marcos@gmail.com
-  * PASSWORD: 1234
+  MARCOS
+  - MAIL: marcos@gmail.com
+  - PASSWORD: 1234
 
  - **Dentistas**
 
-  * MANUEL
-  * MAIL: manuel@uc.cl
-  * PASSWORD: 1234
+  MANUEL
+  - MAIL: manuel@uc.cl
+  - PASSWORD: 1234
 
-  * MACARENA
-  * MAIL: macarena@uc.cl
-  * PASSWORD: 1234
+  MACARENA
+  - MAIL: macarena@uc.cl
+  - PASSWORD: 1234
 
 
 ### Consideraciones específicas y/o supuestos: :grin: :flushed: 
