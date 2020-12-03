@@ -15,3 +15,10 @@ y correr el comando `<bundle install>` para instalar todas las gemas que requier
 Finalmente, para correr la aplicacion en local, se debe correr el comando `<rails server>`, y podras ver la aplicacion funcionando en http://localhost:3001 .
 
 OJO: La aplicacion corre en http://localhost:3001 y no en http://localhost:3000.
+
+
+## Instrucciones de uso:
+
+La seccion de rutas libres no requiere de mayores instrucciones, solo ingresar el email y contraseña en caso de ser pedidas, y ademas copiar el token entregado de ser correctos el email y contraseña para luego usarlo en las acciones que requieren validacion.
+
+Para las rutas protegidas, es necesario hacer login como paciente o dentista y copiar el token entregado en la pagina que se muestra luego de hacer click en el boton, luego ese toquen es pedido en el resto de acciones que requieren una validacion, basta con pegar el toquen donde es requerido y rellenar el resto de informacion pedida en los formularios.
