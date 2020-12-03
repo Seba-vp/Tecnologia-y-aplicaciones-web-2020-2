@@ -17,13 +17,13 @@ Por otro lado, dada las constantes recomendaciones de cambiar el estilo de la p�
  
  - **BONUS:**
 
-   * Hicimos una aplicación con RoR para consumir nuestra API
+   * Hicimos una aplicación con RoR para consumir nuestra API (Ubicada en la carpeta RubyApp), para correr la aplicacion, leer el readme de dicha carpeta. 
 
    * En cuanto a consumir otra API, decidimos consumir una API enfocada en entregar noticias actualizadas sobre el COVID-19 considerando que nuestra aplicación está enfocada en el área de salud y necesita estar actualizada en los protocolos COVID. La implementación se puede observar en la página de inicio, en la parte inferior. 
 
 ### Documentacion API y APP:
 
-  * Subimos la documentación de la API y la APP donde se indican claramente cómo utilizarlas.
+  * Subimos la documentación de la API y la APP donde se indican claramente cómo utilizarlas, la documentación está ubicada en la carpeta Documentación.
 
 
 ### Ejecución del código:  :floppy_disk::floppy_disk::floppy_disk:
@@ -34,7 +34,8 @@ Para ver la app DentList, ingresar a https://dent-list.herokuapp.com/ , o descar
 
 **Librerías:**
 
-- Cloudinary 
+- Cloudinary
+- Axios
 
 ### Usuarios y contraseñas 
 
